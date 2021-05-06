@@ -1,9 +1,6 @@
 import styled from "styled-components"
-
-const H1 = styled.h1`
-  color: blueviolet;
-`
+import { motion } from "framer-motion"
 
 export default function index() {
-  return <H1 className="">Hello World</H1>
+  return <></>
 }

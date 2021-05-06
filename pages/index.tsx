@@ -1,5 +1,5 @@
 import Head from "next/head"
-import Portfolio from "../components/Landing/landing"
+import Portfolio from "../components/landing/landing"
 
 export default function Home() {
   return (
