@@ -1,8 +1,7 @@
-import Portfolio from "../components/landing/landing"
 import Image from "next/image"
 import styled from "styled-components"
-import { motion } from "framer-motion"
-import { mobile_typeScale, typeScale } from "../utils"
+// import { motion } from "framer-motion"
+import { mobile_typeScale } from "../utils"
 
 const GridContainer = styled.div`
   margin: 0 24px;
