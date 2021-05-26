@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { H1, H2, H5 } from "../styled/Text"
+import { H1, H2, H5 } from "@/components/styled/index"
 
 export const GridContainer = styled.div`
   margin: 0 24px;

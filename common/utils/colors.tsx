@@ -1,4 +1,17 @@
-export const blue = {
+type Props = {
+  100?: string
+  200?: string
+  300?: string
+  400?: string
+  500?: string
+  600?: string
+  700?: string
+  800?: string
+  900?: string
+  1000?: string
+}
+
+export const blue: Props = {
   100: "#F1FCFF", // Light
   200: "#DEF9FF", // BG
   300: "#82E9FF", // Darkmode
@@ -6,7 +19,7 @@ export const blue = {
   500: "#0096B7", // Dark
 }
 
-export const purple = {
+export const purple: Props = {
   100: "#E4DAFF", // Light
   200: "#F3EFFF", // BG
   300: "#BCA4FF", // Darkmode
@@ -14,7 +27,7 @@ export const purple = {
   500: "#2A00A2", // Dark
 }
 
-export const green = {
+export const green: Props = {
   100: "#F2FFFB", // Light
   200: "#DFFFF6", // BG
   300: "#34EAB9", // Darkmode
@@ -22,7 +35,7 @@ export const green = {
   500: "#00966D", // Dark
 }
 
-export const yellow = {
+export const yellow: Props = {
   100: "#FFF9EF", // Light
   200: "#FFF4DF", // BG
   300: "#FFD789", // Darkmode
@@ -30,7 +43,7 @@ export const yellow = {
   500: "#946200", // Dark
 }
 
-export const red = {
+export const red: Props = {
   100: "#FFF3F8", // Light
   200: "#FFDFED", // BG
   300: "#FF84B7", // Darkmode
@@ -38,7 +51,7 @@ export const red = {
   500: "#C30052", // Dark
 }
 
-export const neutral = {
+export const neutral: Props = {
   100: "#F7F7FC", // Background
   200: "#fcfcfc", // Off-white
   300: "#EFF0F6", // Input Background

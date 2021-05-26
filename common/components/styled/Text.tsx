@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { device, typeScale } from "../../utils"
+import { device, typeScale } from "@/common/utils"
 
 const headerStyle = css`
   font-weight: 700;
@@ -13,7 +13,7 @@ const textStyle = css`
 
 export const H1 = styled.h1`
   ${headerStyle}
-  font-family: ${props => props.theme.secondaryFont};
+  font-family: ${(props) => props.theme.secondaryFont};
   font-size: ${typeScale.mobile.header1};
 
   @media ${device.laptop} {
@@ -23,7 +23,7 @@ export const H1 = styled.h1`
 
 export const H2 = styled.h2`
   ${headerStyle}
-  font-family: ${props => props.theme.secondaryFont};
+  font-family: ${(props) => props.theme.secondaryFont};
   font-size: ${typeScale.mobile.header2};
 
   @media ${device.laptop} {

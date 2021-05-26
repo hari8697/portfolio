@@ -1,9 +1,16 @@
-import Landing from "../components/landing"
+import styled from "styled-components"
+import App from "../common/components/landing/App"
 
-export default function Home() {
+function Home() {
   return (
-    <>
-      <Landing></Landing>
-    </>
+    <IndexPage>
+      <App />
+    </IndexPage>
   )
 }
+
+const IndexPage = styled.div`
+  height: 100%;
+`
+
+export default Home

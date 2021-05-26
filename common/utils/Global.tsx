@@ -4,10 +4,16 @@ import { primaryFont } from "./typography"
 
 export const GlobalStyle = createGlobalStyle`
 ${normalize()}
-html {
+
+html,
+body {
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
   box-sizing: border-box;
   font-size: 16px;
 }
+
 *, *:before, *:after {
   margin: 0;
   padding: 0;
@@ -15,7 +21,6 @@ html {
 }
 body {
   margin: 0;
-  padding: 56px 0 32px 0;
   font-family: ${primaryFont};
   background-color: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.textColor};
