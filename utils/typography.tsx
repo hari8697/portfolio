@@ -3,7 +3,35 @@ export const primaryFont =
 export const secondaryFont =
   '"Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif'
 
-export const typeScale = {
+const mobile = {
+  xxl: "4.3rem",
+  xl: "3.583rem",
+  large: "2.986rem",
+  header1: "2.074rem",
+  header2: "1.728rem",
+  header3: "1.44rem",
+  header4: "1.2rem",
+  header5: "1rem",
+  paragraph: "0.833rem",
+  helperText: "0.694rem",
+  copyrightText: "0.694rem",
+}
+
+const tablet = {
+  xxl: "4.3rem",
+  xl: "3.583rem",
+  large: "2.986rem",
+  header1: "2.074rem",
+  header2: "1.728rem",
+  header3: "1.44rem",
+  header4: "1.2rem",
+  header5: "1rem",
+  paragraph: "0.833rem",
+  helperText: "0.694rem",
+  copyrightText: "0.694rem",
+}
+
+const desktop = {
   xxl: "7.43rem",
   xl: "6.192rem",
   large: "5.16rem",
@@ -17,16 +45,8 @@ export const typeScale = {
   copyrightText: "0.694rem",
 }
 
-export const mobile_typeScale = {
-  xxl: "4.3rem",
-  xl: "3.583rem",
-  large: "2.986rem",
-  header1: "2.074rem",
-  header2: "1.728rem",
-  header3: "1.44rem",
-  header4: "1.2rem",
-  header5: "1rem",
-  paragraph: "0.833rem",
-  helperText: "0.694rem",
-  copyrightText: "0.694rem",
+export const typeScale = {
+  desktop,
+  mobile,
+  tablet,
 }
