@@ -20,6 +20,15 @@ export const GridContainer = styled.div`
     opacity: 0.8;
   }
 
+  .swipe_arrow {
+    opacity: 0.4;
+    grid-column-start: 20;
+    grid-row: 4 / 5;
+    align-self: flex-end;
+    position: absolute;
+    margin-right: 6.5vw;
+  }
+
   @media ${device.tablet} {
     margin: 0 48px;
     gap: 0px 24px;
@@ -118,6 +127,20 @@ export const Footer_wrap = styled.div`
     opacity: 0.3;
   }
 
+  .scrollProgressBar {
+    .bg,
+    .fg {
+      display: block;
+      height: 2.5px;
+    }
+
+    .bg {
+      width: 30vw;
+      background: #f3efff;
+      opacity: 0.1;
+    }
+  }
+
   @media ${device.tablet} {
     .social_icon {
       width: 20px;
@@ -144,6 +167,11 @@ export const Footer_wrap = styled.div`
         margin-top: 46px;
       }
     }
+
+    h5,
+    p {
+      margin-bottom: 20px;
+    }
   }
 
   @media ${device.desktopL} {
@@ -160,11 +188,11 @@ export const Footer_wrap = styled.div`
 export const Header5 = styled(H5)`
   opacity: ${(props) => (props.highlighted ? 0.5 : 0.3)};
   transition: opacity 100ms ease-out, border-bottom 100ms ease-out;
-  padding: 2px 0;
+  /* padding: 2px 0; */
   text-transform: ${(props) => props.capsON && "uppercase"};
-  border-bottom: 3px solid transparent;
 
   &.clickable {
+    border-bottom: 3px solid transparent;
     &:focus,
     &:hover {
       cursor: pointer;
@@ -177,11 +205,10 @@ export const Header5 = styled(H5)`
 export const Paragraph = styled(Para)`
   opacity: ${(props) => (props.highlighted ? 0.5 : 0.3)};
   transition: opacity 100ms ease-out, border-bottom 100ms ease-out;
-  padding: 2px 0;
   text-transform: ${(props) => props.capsON && "uppercase"};
-  border-bottom: 3px solid transparent;
 
   &.clickable {
+    border-bottom: 3px solid transparent;
     &:focus,
     &:hover {
       opacity: 1;

@@ -19,7 +19,8 @@ import { useWindowSize } from "@/common/utils/"
 // const windowDimensionsHook = dynamic(
 //   () => {
 //     return import("@/common/utils/windowDimensionsHook");
-//   },
+//   },import { Landing } from '@/components/landing/Landing';
+
 //   { ssr: false }
 // );
 
@@ -65,9 +66,29 @@ const socialItems = socialItemsArr.map((item) => {
   )
 })
 
+const footerSwipe = (vW, vH) => {
+  if (vW < 1024) {
+    if (vW < 768) {
+      return (
+        <Paragraph capsON className="text_wrap">
+          Swipe/Tap
+        </Paragraph>
+      )
+    } else {
+      return <Header5 capsON>Swipe/Tap</Header5>
+    }
+  } else if (vW / vH > 1) {
+    return (
+      <div className="scrollProgressBar">
+        <span className="fg"></span>
+        <span className="bg"></span>
+      </div>
+    )
+  }
+}
+
 export default function index() {
   const { width: vW, height: vH } = useWindowSize()
-
   // const vW = useWindowSize().width;
   // const vH = useWindowSize().height;
 
@@ -105,15 +126,18 @@ export default function index() {
         ></Image>
       </div>
       <Title_wrap className="noselect">{portItems}</Title_wrap>
+      <div className="swipe_arrow">
+        {vW > 1024 && vW / vH > 1 && (
+          <Image
+            src="/landing/scrollHorizontal.svg"
+            width={31}
+            height={22}
+          ></Image>
+        )}
+      </div>
       <Footer_wrap className="noselect">
         <div className="social_wrap ">{socialItems}</div>
-        {vW < 768 ? (
-          <Paragraph capsON className="text_wrap">
-            Swipe/Tap
-          </Paragraph>
-        ) : (
-          <Header5 capsON>Swipe/Tap</Header5>
-        )}
+        {footerSwipe(vW, vH)}
       </Footer_wrap>
     </GridContainer>
   )
