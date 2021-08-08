@@ -1,17 +1,17 @@
-import { ReactNode, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { AnimateSharedLayout, AnimatePresence } from "framer-motion";
-import { GlobalStyle, defaultTheme, darkTheme } from "@/utils/index";
-import Head from "next/head";
-import { device } from "@/common/utils";
+import { ReactNode, useState } from "react"
+import styled, { ThemeProvider } from "styled-components"
+import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
+import { GlobalStyle, defaultTheme, darkTheme } from "@/utils/index"
+import Head from "next/head"
+import { device } from "@/common/utils"
 
 type Props = {
-  children?: ReactNode;
-  title?: string;
-};
+  children?: ReactNode
+  title?: string
+}
 
 const Layout = ({ children, title = "DeathSpace LMAO" }: Props) => {
-  const [useDarkTheme, useDarkThemeSet] = useState(true);
+  const [useDarkTheme, useDarkThemeSet] = useState(true)
   return (
     <StyledLayout>
       <Head>
@@ -22,7 +22,7 @@ const Layout = ({ children, title = "DeathSpace LMAO" }: Props) => {
           href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/doge.ico" />
+        <link rel="icon" href="/common/doge.ico" />
       </Head>
       <ThemeProvider theme={useDarkTheme ? darkTheme : defaultTheme}>
         <AnimateSharedLayout>
@@ -31,12 +31,13 @@ const Layout = ({ children, title = "DeathSpace LMAO" }: Props) => {
         <GlobalStyle />
       </ThemeProvider>
     </StyledLayout>
-  );
-};
+  )
+}
 
 const StyledLayout = styled.div`
   min-height: 100vh;
   max-height: 100vh;
+  overflow-y: hidden;
   padding: 56px 0 32px 0;
   display: grid;
   place-items: center;
@@ -54,6 +55,10 @@ const StyledLayout = styled.div`
   @media ${device.tablet} {
     padding: 72px 0 50px 0;
   }
-`;
 
-export default Layout;
+  @media ${device.laptopL} {
+    padding: 96px 0 70px 0;
+  }
+`
+
+export default Layout

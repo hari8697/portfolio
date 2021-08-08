@@ -1,6 +1,6 @@
-import Image from "next/image";
+import Image from "next/image"
 // import styled from "styled-components"
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
 import {
   Title,
   GridContainer,
@@ -10,10 +10,10 @@ import {
   Subtitle,
   Title_wrap,
   Footer_wrap,
-} from "./Landing.style";
-import { useEffect, useState } from "react";
+} from "./Landing.style"
+import { useEffect, useState } from "react"
 
-import { useWindowSize } from "@/common/utils/";
+import { useWindowSize } from "@/common/utils/"
 
 // import dynamic from "next/dynamic";
 // const windowDimensionsHook = dynamic(
@@ -33,26 +33,26 @@ const ContainerVariants = {
   exit: {
     opacity: 0,
   },
-};
+}
 
 const portArray = [
   { id: 1, name: "Nike SB", selected: true },
   { id: 2, name: "Rhoncus urna", selected: false },
   { id: 3, name: "Amet facilisis", selected: false },
   { id: 4, name: "Magna ac placerat", selected: false },
-];
+]
 
 const portItems = portArray.map((item) => {
   return (
     <Title key={item.id} className={item.selected ? "sel" : ""}>
       {item.name}
     </Title>
-  );
-});
+  )
+})
 
-const socialItemsArr = Array.from(Array(4).keys());
+const socialItemsArr = Array.from(Array(4).keys())
 // const [socialItems, setsocialItems] = useState([]);
-let iconSize = 18;
+let iconSize = 18
 const socialItems = socialItemsArr.map((item) => {
   return (
     <div className="social_icon" key={item}>
@@ -62,33 +62,17 @@ const socialItems = socialItemsArr.map((item) => {
         objectFit="contain"
       ></Image>
     </div>
-  );
-});
+  )
+})
 
 export default function index() {
-  const { width: wW, height: wH } = useWindowSize();
+  const { width: vW, height: vH } = useWindowSize()
+
+  // const vW = useWindowSize().width;
+  // const vH = useWindowSize().height;
 
   // useEffect(() => {
-  //   setsocialItems(
-  //     socialItemsArr.map((item) => {
-  //       return (
-  //         <div className="social_icon" key={item}>
-  //           <Image
-  //             src={`/landing/social/${item + 1}.svg`}
-  //             width={iconSize}
-  //             height={iconSize}
-  //           ></Image>
-  //         </div>
-  //       );
-  //     })
-  //   );
-  // }, [iconSize]);
-
-  // const wW = useWindowSize().width;
-  // const wH = useWindowSize().height;
-
-  // useEffect(() => {
-  //   console.log(wW, wH);
+  //   console.log(vW, vH);
 
   // }, [useWindowSize()])
 
@@ -102,7 +86,7 @@ export default function index() {
             height={56}
           ></Image>
         </div>
-        {wW < 768 ? (
+        {vW < 768 ? (
           <Paragraph className="clickable" highlighted capsON>
             About
           </Paragraph>
@@ -123,7 +107,7 @@ export default function index() {
       <Title_wrap className="noselect">{portItems}</Title_wrap>
       <Footer_wrap className="noselect">
         <div className="social_wrap ">{socialItems}</div>
-        {wW < 768 ? (
+        {vW < 768 ? (
           <Paragraph capsON className="text_wrap">
             Swipe/Tap
           </Paragraph>
@@ -132,5 +116,5 @@ export default function index() {
         )}
       </Footer_wrap>
     </GridContainer>
-  );
+  )
 }

@@ -1,15 +1,15 @@
-import styled, { css } from "styled-components";
-import { device, typeScale } from "@/common/utils";
+import styled, { css } from "styled-components"
+import { device, typeScale } from "@/common/utils"
 
 const headerStyle = css`
   font-weight: 700;
   line-height: 122%;
-`;
+`
 
 const textStyle = css`
   font-weight: 400;
   line-height: 122%;
-`;
+`
 
 export const H1 = styled.h1`
   ${headerStyle}
@@ -23,7 +23,7 @@ export const H1 = styled.h1`
   @media ${device.laptop} {
     font-size: ${typeScale.desktop.header1};
   }
-`;
+`
 
 export const H2 = styled.h2`
   ${headerStyle}
@@ -38,7 +38,7 @@ export const H2 = styled.h2`
   @media ${device.laptop} {
     font-size: ${typeScale.desktop.header2};
   }
-`;
+`
 
 export const H3 = styled.h3`
   ${headerStyle}
@@ -48,7 +48,7 @@ export const H3 = styled.h3`
   @media ${device.laptop} {
     font-size: ${typeScale.desktop.header3};
   }
-`;
+`
 
 export const H4 = styled.h4`
   ${headerStyle}
@@ -58,7 +58,7 @@ export const H4 = styled.h4`
   @media ${device.laptop} {
     font-size: ${typeScale.desktop.header4};
   }
-`;
+`
 
 export const H5 = styled.h5`
   ${textStyle}
@@ -68,7 +68,11 @@ export const H5 = styled.h5`
   @media ${device.laptop} {
     font-size: ${typeScale.desktop.header5};
   }
-`;
+
+  @media ${device.desktopL} {
+    font-size: ${typeScale.desktop.header5L};
+  }
+`
 
 export const Para = styled.p`
   ${textStyle}
@@ -83,7 +87,7 @@ export const Para = styled.p`
   @media ${device.laptop} {
     font-size: ${typeScale.desktop.paragraph};
   }
-`;
+`
 
 export const HelperText = styled.p`
   ${textStyle}
@@ -93,7 +97,7 @@ export const HelperText = styled.p`
   @media ${device.laptop} {
     font-size: ${typeScale.desktop.helperText};
   }
-`;
+`
 
 export const CopyrightText = styled.p`
   ${textStyle}
@@ -103,4 +107,4 @@ export const CopyrightText = styled.p`
   @media ${device.laptop} {
     font-size: ${typeScale.desktop.copyrightText};
   }
-`;
+`
