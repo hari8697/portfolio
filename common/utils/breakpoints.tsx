@@ -1,3 +1,11 @@
+// Mobile S - 320px
+// Mobile M - 375px
+// Mobile L - 425px
+// Tablet - 768px
+// Laptop - 1024px
+// Laptop L - 1440px
+// 4K - 2560px
+
 const size = {
   mobileS: "320px",
   mobileM: "375px",

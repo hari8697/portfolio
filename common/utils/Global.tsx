@@ -19,6 +19,7 @@ body {
   padding: 0;
   box-sizing: inherit;
 }
+
 body {
   margin: 0;
   font-family: ${primaryFont};

@@ -1,16 +1,17 @@
-import { ReactNode, useState } from "react"
-import styled, { ThemeProvider } from "styled-components"
-import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
-import { GlobalStyle, defaultTheme, darkTheme } from "@/utils/index"
-import Head from "next/head"
+import { ReactNode, useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import { AnimateSharedLayout, AnimatePresence } from "framer-motion";
+import { GlobalStyle, defaultTheme, darkTheme } from "@/utils/index";
+import Head from "next/head";
+import { device } from "@/common/utils";
 
 type Props = {
-  children?: ReactNode
-  title?: string
-}
+  children?: ReactNode;
+  title?: string;
+};
 
 const Layout = ({ children, title = "DeathSpace LMAO" }: Props) => {
-  const [useDarkTheme, useDarkThemeSet] = useState(true)
+  const [useDarkTheme, useDarkThemeSet] = useState(true);
   return (
     <StyledLayout>
       <Head>
@@ -30,11 +31,12 @@ const Layout = ({ children, title = "DeathSpace LMAO" }: Props) => {
         <GlobalStyle />
       </ThemeProvider>
     </StyledLayout>
-  )
-}
+  );
+};
 
 const StyledLayout = styled.div`
   min-height: 100vh;
+  max-height: 100vh;
   padding: 56px 0 32px 0;
   display: grid;
   place-items: center;
@@ -48,6 +50,10 @@ const StyledLayout = styled.div`
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
   }
-`
 
-export default Layout
+  @media ${device.tablet} {
+    padding: 72px 0 50px 0;
+  }
+`;
+
+export default Layout;
