@@ -20,13 +20,41 @@ export const GridContainer = styled.div`
     opacity: 0.8;
   }
 
-  .swipe_arrow {
-    opacity: 0.4;
+  .scroll_wrapper {
+    display: flex;
+    .scroll_arrow {
+      width: 30px;
+      opacity: 0.4;
+      margin-right: 60px;
+    }
     grid-column-start: 20;
-    grid-row: 4 / 5;
+    /* grid-row: 4 / 5; */
     align-self: flex-end;
     position: absolute;
-    margin-right: 6.5vw;
+
+    .scrollProgressBar {
+      bottom: 0;
+      padding: 14px 0;
+      .bg,
+      .fg {
+        display: block;
+        height: 2.5px;
+      }
+
+      .bg {
+        position: relative;
+        width: 30vw;
+        background: #f3efff;
+        opacity: 0.1;
+      }
+
+      .fg {
+        position: absolute;
+        width: 10vw;
+        background: #5f2eea;
+        opacity: 1;
+      }
+    }
   }
 
   @media ${device.tablet} {
@@ -127,20 +155,6 @@ export const Footer_wrap = styled.div`
     opacity: 0.3;
   }
 
-  .scrollProgressBar {
-    .bg,
-    .fg {
-      display: block;
-      height: 2.5px;
-    }
-
-    .bg {
-      width: 30vw;
-      background: #f3efff;
-      opacity: 0.1;
-    }
-  }
-
   @media ${device.tablet} {
     .social_icon {
       width: 20px;
@@ -157,6 +171,11 @@ export const Footer_wrap = styled.div`
 
   @media ${device.laptop} and (orientation: landscape) {
     align-items: flex-end;
+    /* display: inherit;
+    grid-template-columns: inherit;
+    grid-template-rows: inherit;
+    grid-gap: inherit; */
+
     .social_wrap {
       flex-direction: column;
 

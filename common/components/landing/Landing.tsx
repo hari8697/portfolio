@@ -78,12 +78,7 @@ const footerSwipe = (vW, vH) => {
       return <Header5 capsON>Swipe/Tap</Header5>
     }
   } else if (vW / vH > 1) {
-    return (
-      <div className="scrollProgressBar">
-        <span className="fg"></span>
-        <span className="bg"></span>
-      </div>
-    )
+    return
   }
 }
 
@@ -126,15 +121,23 @@ export default function index() {
         ></Image>
       </div>
       <Title_wrap className="noselect">{portItems}</Title_wrap>
-      <div className="swipe_arrow">
-        {vW > 1024 && vW / vH > 1 && (
-          <Image
-            src="/landing/scrollHorizontal.svg"
-            width={31}
-            height={22}
-          ></Image>
-        )}
-      </div>
+      {vW > 1024 && vW / vH > 1 && (
+        <>
+          <div className="noselect scroll_wrapper">
+            <div className="scroll_arrow">
+              <Image
+                src="/landing/scrollHorizontal.svg"
+                width={31}
+                height={22}
+              ></Image>
+            </div>
+            <div className="scrollProgressBar">
+              <span className="fg"></span>
+              <span className="bg"></span>
+            </div>
+          </div>
+        </>
+      )}
       <Footer_wrap className="noselect">
         <div className="social_wrap ">{socialItems}</div>
         {footerSwipe(vW, vH)}
