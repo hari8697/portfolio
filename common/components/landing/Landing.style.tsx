@@ -9,7 +9,7 @@ export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: max-content max-content 1fr max-content;
-  gap: 0px 16px;
+  grid-gap: 0px 16px;
   max-height: 100vh;
 
   .hero_image {
@@ -23,9 +23,12 @@ export const GridContainer = styled.div`
   .scroll_wrapper {
     display: flex;
     .scroll_arrow {
+      display: grid;
+      place-items: center;
       width: 30px;
       opacity: 0.4;
       margin-right: 60px;
+      margin-top: 2px;
     }
     grid-column-start: 20;
     /* grid-row: 4 / 5; */
@@ -90,6 +93,7 @@ export const Header_wrap = styled.div`
   .logo {
     margin-right: auto;
     width: 27vw;
+    min-width: 150px;
     max-width: 235px;
   }
 
