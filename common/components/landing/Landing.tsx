@@ -92,18 +92,20 @@ export default function index() {
           ></Image>
         </div>
         {vW < 768 ? (
-          <Paragraph className="clickable" highlighted capsON>
+          <Paragraph className="link_about clickable" highlighted capsON>
             About
           </Paragraph>
         ) : (
-          <Header5 highlighted capsON className="clickable">
+          <Header5 highlighted capsON className="link_about clickable">
             About
           </Header5>
         )}
       </Header_wrap>
-      <div className="hero_image">
-        <Image src={`/landing/album/1.png`} width={1354} height={761}></Image>
-      </div>
+      {vW < 1023 && (
+        <div className="hero_image">
+          <Image src={`/landing/album/1.png`} width={1354} height={761}></Image>
+        </div>
+      )}
       <Title_wrap className="noselect">{portItems}</Title_wrap>
       {vW > 1023 && vW / vH > 1 && (
         <>

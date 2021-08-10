@@ -11,6 +11,7 @@ export const GridContainer = styled.div`
   grid-template-rows: max-content max-content 1fr max-content;
   grid-gap: 0px 16px;
   max-height: 100vh;
+  pointer-events: none;
 
   .hero_image {
     position: absolute;
@@ -97,6 +98,10 @@ export const Header_wrap = styled.div`
     max-width: 235px;
   }
 
+  .link_about {
+    pointer-events: all;
+  }
+
   @media ${device.tablet} {
     .logo {
       width: 20vw;
@@ -115,6 +120,15 @@ export const Header_wrap = styled.div`
 export const Title_wrap = styled.div`
   grid-column: 1 / -1;
   margin-top: 40vh;
+
+  h1 {
+    width: max-content;
+    /* pointer-events: all; */
+    &:focus,
+    &:hover {
+      cursor: grab;
+    }
+  }
 
   @media ${device.tablet} {
     margin: 0 5%;
@@ -147,6 +161,7 @@ export const Footer_wrap = styled.div`
     margin-right: 5px;
     opacity: 0.3;
     transition: opacity 250ms ease-out;
+    pointer-events: all;
 
     &:first-child {
       margin-left: -10px;
@@ -155,7 +170,7 @@ export const Footer_wrap = styled.div`
     &:focus,
     &:hover {
       opacity: 1;
-      cursor: pointer;
+      cursor: grab;
     }
   }
 
@@ -231,7 +246,7 @@ export const Header5 = styled(H5)`
     border-bottom: 3px solid transparent;
     &:focus,
     &:hover {
-      cursor: pointer;
+      cursor: grab;
       opacity: 1;
       border-bottom: 3px solid ${(props) => props.theme.primaryColor};
     }
