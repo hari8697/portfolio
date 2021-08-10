@@ -93,7 +93,7 @@ export const Header_wrap = styled.div`
   .logo {
     margin-right: auto;
     width: 27vw;
-    min-width: 150px;
+    min-width: 100px;
     max-width: 235px;
   }
 
@@ -104,7 +104,9 @@ export const Header_wrap = styled.div`
   }
 
   @media ${device.laptop} and (orientation: landscape) {
+    grid-column: 2 / 24;
     .logo {
+      min-width: 150px;
       width: 10vw;
     }
   }
@@ -140,18 +142,29 @@ export const Footer_wrap = styled.div`
     margin-right: auto;
   }
 
-  .social_icon {
-    width: 18px;
-    height: 18px;
-    position: relative;
-    margin-right: 25px;
+  .icon_wrapper {
+    padding: 10px;
+    margin-right: 5px;
     opacity: 0.3;
     transition: opacity 250ms ease-out;
+
+    &:first-child {
+      margin-left: -10px;
+    }
 
     &:focus,
     &:hover {
       opacity: 1;
       cursor: pointer;
+    }
+  }
+
+  .social_icon {
+    width: 18px;
+    height: 18px;
+    position: relative;
+
+    div {
     }
   }
 
@@ -175,10 +188,7 @@ export const Footer_wrap = styled.div`
 
   @media ${device.laptop} and (orientation: landscape) {
     align-items: flex-end;
-    /* display: inherit;
-    grid-template-columns: inherit;
-    grid-template-rows: inherit;
-    grid-gap: inherit; */
+    grid-column: 2 / 24;
 
     .social_wrap {
       flex-direction: column;
@@ -186,9 +196,13 @@ export const Footer_wrap = styled.div`
       .social_icon {
         width: 20px;
         height: 20px;
-        margin: 0;
-        margin-top: 46px;
       }
+    }
+
+    .icon_wrapper {
+      margin: 0;
+      margin-top: 26px;
+      margin-left: -10px;
     }
 
     h5,
@@ -202,7 +216,6 @@ export const Footer_wrap = styled.div`
       .social_icon {
         width: 24px;
         height: 24px;
-        margin-top: 56px;
       }
     }
   }

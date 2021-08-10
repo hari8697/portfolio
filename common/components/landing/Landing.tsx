@@ -7,22 +7,12 @@ import {
   Header_wrap,
   Header5,
   Paragraph,
-  Subtitle,
   Title_wrap,
   Footer_wrap,
 } from "./Landing.style"
 import { useEffect, useState } from "react"
 
 import { useWindowSize } from "@/common/utils/"
-
-// import dynamic from "next/dynamic";
-// const windowDimensionsHook = dynamic(
-//   () => {
-//     return import("@/common/utils/windowDimensionsHook");
-//   },import { Landing } from '@/components/landing/Landing';
-
-//   { ssr: false }
-// );
 
 const ContainerVariants = {
   initial: {
@@ -52,40 +42,39 @@ const portItems = portArray.map((item) => {
 })
 
 const socialItemsArr = Array.from(Array(4).keys())
-// const [socialItems, setsocialItems] = useState([]);
 let iconSize = 18
 const socialItems = socialItemsArr.map((item) => {
   return (
-    <div className="social_icon" key={item}>
-      <Image
-        src={`/landing/social/${item + 1}.svg`}
-        layout="fill"
-        objectFit="contain"
-      ></Image>
+    <div className="icon_wrapper" key={item}>
+      <div className="social_icon">
+        <Image
+          src={`/landing/social/${item + 1}.svg`}
+          layout="fill"
+          objectFit="contain"
+        ></Image>
+      </div>
     </div>
   )
 })
 
 const footerSwipe = (vW, vH) => {
-  if (vW < 1024) {
-    if (vW < 768) {
-      return (
-        <Paragraph capsON className="text_wrap">
-          Swipe/Tap
-        </Paragraph>
-      )
-    } else {
-      return <Header5 capsON>Swipe/Tap</Header5>
-    }
-  } else if (vW / vH > 1) {
-    return
+  if (vW < 768) {
+    return (
+      <Paragraph capsON className="text_wrap">
+        Swipe/Tap
+      </Paragraph>
+    )
+  } else if (vW / vH < 1) {
+    return (
+      <Header5 capsON className="text_wrap">
+        Swipe/Tap
+      </Header5>
+    )
   }
 }
 
 export default function index() {
   const { width: vW, height: vH } = useWindowSize()
-  // const vW = useWindowSize().width;
-  // const vH = useWindowSize().height;
 
   // useEffect(() => {
   //   console.log(vW, vH);
@@ -113,15 +102,10 @@ export default function index() {
         )}
       </Header_wrap>
       <div className="hero_image">
-        <Image
-          src={`/landing/album/1.png`}
-          width={1354}
-          height={761}
-          // layout="fill"
-        ></Image>
+        <Image src={`/landing/album/1.png`} width={1354} height={761}></Image>
       </div>
       <Title_wrap className="noselect">{portItems}</Title_wrap>
-      {vW > 1024 && vW / vH > 1 && (
+      {vW > 1023 && vW / vH > 1 && (
         <>
           <div className="noselect scroll_wrapper">
             <div className="scroll_arrow">

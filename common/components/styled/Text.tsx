@@ -14,7 +14,15 @@ const textStyle = css`
 export const H1 = styled.h1`
   ${headerStyle}
   font-family: ${(props) => props.theme.secondaryFont};
-  font-size: ${typeScale.mobile.header1};
+  font-size: ${typeScale.mobile.header2};
+
+  @media ${device.mobileM} {
+    font-size: ${typeScale.mobile.header1};
+  }
+
+  @media ${device.mobileL} {
+    font-size: ${typeScale.mobile.large};
+  }
 
   @media ${device.tablet} {
     font-size: ${typeScale.tablet.xl};
@@ -22,6 +30,14 @@ export const H1 = styled.h1`
 
   @media ${device.laptop} {
     font-size: ${typeScale.desktop.header1};
+  }
+
+  @media ${device.desktop} {
+    font-size: ${typeScale.desktop.xl};
+  }
+
+  @media ${device.desktopL} {
+    font-size: ${typeScale.desktop.xxl};
   }
 `
 
