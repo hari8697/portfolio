@@ -84,42 +84,6 @@ const VanillaHover = (props) => {
         el.mesh.position.set(el.id * 9, 0)
       })
 
-      // texture = new THREE.TextureLoader().load("image.jpg")
-      // texture2 = new THREE.TextureLoader().load("image.jpg")
-      // texture3 = new THREE.TextureLoader().load("image.jpg")
-
-      // geometry = new THREE.PlaneGeometry(8, 4.5)
-      // material = new THREE.MeshBasicMaterial({
-      //   map: texture,
-      // })
-      // material2 = new THREE.MeshBasicMaterial({
-      //   map: texture2,
-      // })
-      // material3 = new THREE.MeshBasicMaterial({
-      //   map: texture3,
-      // })
-      // mesh = new THREE.Mesh(geometry, material)
-      // mesh2 = new THREE.Mesh(geometry, material2)
-      // mesh3 = new THREE.Mesh(geometry, material3)
-
-      // mesh.scale.set(0.5, 0.5, 0.5)
-
-      // scene.add(mesh)
-      // scene.add(mesh2)
-      // scene.add(mesh3)
-
-      // mesh.position.set(0, 0)
-      // mesh2.position.set(9, 0)
-      // mesh3.position.set(18, 0)
-
-      // renderer = new THREE.WebGLRenderer()
-      // renderer.setSize(
-      //   canvasNode.offsetWidth,
-      //   canvasNode.offsetHeight
-      // )
-      // canvasNode.appendChild(renderer.domElement)
-
-      // const bgColor = new THREE.Color(0xffffff)
       // const bgColor = new THREE.Color(0x0e0c10)
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
       // renderer.setClearColor(0xffffff, 0)
@@ -172,13 +136,65 @@ const VanillaHover = (props) => {
       composer.addPass(customPass)
     }
 
+    var animate = function () {
+      // console.log(animatedX.get())
+
+      // let calcX = animatedX.get() + (currX - initialX) * 10
+      // if (calcX <= 0 && panPressed) animatedX.set(calcX)
+
+      // console.log("currX" + currX + "initialX" + initialX)
+
+      // console.log(movingX)
+
+      // camera.position.x = -animatedX.get()
+
+      meshArr.forEach((el) => {
+        scene.add(el.mesh)
+        el.mesh.position.x = animatedX.get() + el.id * 10.5
+      })
+
+      // mesh.position.x = animatedX.get()
+      // mesh2.position.x = animatedX.get() + 9
+
+      customPass.uniforms.uMouse.value = uMouse
+
+      // renderer.render( scene, camera );
+      composer.render()
+
+      requestAnimationFrame(animate)
+
+      // 165 fps limiter
+
+      // setTimeout(function () {
+      //   customPass.uniforms.uMouse.value = uMouse
+      //   camera.position.x = -animatedX.get()
+
+      //   requestAnimationFrame(animate)
+      // }, 1000 / 165)
+    }
+
+    window.addEventListener("resize", () => {
+      // console.log("updated!")
+      // console.log(2 * Math.atan(8 / camera.aspect / (2 * 5)) * (180 / Math.PI)) // in degrees
+      // camera.fov = 2 * Math.atan(12 / camera.aspect / (2 * 5)) * (180 / Math.PI)
+
+      canvasNode = canvasEl.current
+
+      if (canvasNode) {
+        panPressed = false
+        camera.aspect = canvasNode.offsetWidth / canvasNode.offsetHeight
+        camera.updateProjectionMatrix()
+        renderer.setSize(canvasNode.offsetWidth, canvasNode.offsetHeight)
+        composer.setSize(canvasNode.offsetWidth, canvasNode.offsetHeight)
+      }
+    })
+
     canvasEl.current.addEventListener("mousemove", (e) => {
       // mousemove / touchmove
       uMouse.x = e.clientX / canvasNode.offsetWidth
       uMouse.y = 1 - e.clientY / canvasNode.offsetHeight
 
-      // uMouse.x = e.clientX / canvasEl.current.offsetWidth
-      // uMouse.y = 1 - e.clientY / canvasEl.current.offsetHeight
+      // Original code
       // uMouse.x = e.clientX / window.innerWidth
       // uMouse.y = 1 - e.clientY / window.innerHeight
 
@@ -192,75 +208,12 @@ const VanillaHover = (props) => {
       //   ()
     })
 
-    var animate = function () {
-      // requestAnimationFrame(animate)
-      // renderer && renderer.render(scene, camera)
-
-      // mesh.position.x -= 0.001
-      // mesh2.position.x -= 0.001
-
-      // controls.update()
-      // console.log(animatedX.get())
-
-      // if (panPressed) animatedX.set(calcX)
-
-      // mesh.position.x = animatedX.get()
-      // mesh2.position.x = animatedX.get() + 9
-
-      let calcX = animatedX.get() + (currX - initialX) * 10
-      if (calcX <= 0 && panPressed) animatedX.set(calcX)
-
-      // console.log("currX" + currX + "initialX" + initialX)
-
-      // console.log(movingX)
-
-      camera.position.x = -animatedX.get()
-      // mesh.position.x = animatedX.get()
-      // mesh2.position.x = animatedX.get() + 9
-
-      customPass.uniforms.uMouse.value = uMouse
-      requestAnimationFrame(animate)
-
-      // setTimeout(function () {
-      //   customPass.uniforms.uMouse.value = uMouse
-      //   camera.position.x = -animatedX.get()
-
-      //   requestAnimationFrame(animate)
-      // }, 1000 / 165)
-
-      // renderer.render( scene, camera );
-      composer.render()
-    }
-
     init()
     animate()
   }
 
   useEffect(() => {
     ogFunc()
-
-    window.addEventListener("resize", () => {
-      // console.log("updated!")
-      // console.log(2 * Math.atan(8 / camera.aspect / (2 * 5)) * (180 / Math.PI)) // in degrees
-      // camera.fov = 2 * Math.atan(12 / camera.aspect / (2 * 5)) * (180 / Math.PI)
-
-      canvasNode = canvasEl.current
-
-      if (canvasNode) {
-        panPressed = false
-        // let currAnimX = animatedX.get()
-
-        // currX = initialX = undefined
-        // let currCamPos = camera.position.x
-        camera.aspect = canvasNode.offsetWidth / canvasNode.offsetHeight
-        camera.updateProjectionMatrix()
-        renderer.setSize(canvasNode.offsetWidth, canvasNode.offsetHeight)
-        composer.setSize(canvasNode.offsetWidth, canvasNode.offsetHeight)
-
-        // camera.position.x = currCamPos
-        // animatedX.set(currAnimX)
-      }
-    })
 
     // nativeDragger()
 
@@ -291,7 +244,7 @@ const VanillaHover = (props) => {
     // else if (animatedX.get() <= snapArr[1]) animatedX.set(-9)
     // else if (animatedX.get() <= snapArr[2]) animatedX.set(0)
 
-    const moveByFactor = 9
+    const moveByFactor = 10.5
     const snapArr = [
       { id: 0, val: 0 },
       { id: 1, val: -5 },
@@ -331,6 +284,11 @@ const VanillaHover = (props) => {
     currX = info.point.x / canvasNode.offsetWidth
 
     movingX = currX - initialX
+
+    // Move the images by manipulating animatedX
+    let calcX = animatedX.get() + movingX * 10
+    if (calcX <= 0 && panPressed) animatedX.set(calcX)
+
     // console.log("currX" + currX)
 
     // console.log("animatedX: " + animatedX.get())

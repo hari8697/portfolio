@@ -162,6 +162,7 @@ export const Footer_wrap = styled.div`
     opacity: 0.3;
     transition: opacity 250ms ease-out;
     pointer-events: all;
+    cursor: grab;
 
     &:first-child {
       margin-left: -10px;
@@ -170,7 +171,6 @@ export const Footer_wrap = styled.div`
     &:focus,
     &:hover {
       opacity: 1;
-      cursor: grab;
     }
   }
 
