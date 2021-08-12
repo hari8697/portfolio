@@ -77,7 +77,7 @@ const VanillaHover = (props) => {
         var obj = {
           id: i - 1,
           material,
-          geometry: new THREE.PlaneGeometry(8, 4.5),
+          geometry: new THREE.PlaneGeometry(7.5, 4),
           texture: new THREE.TextureLoader().load(`image${i}.png`),
           mesh,
         }
@@ -251,7 +251,26 @@ const VanillaHover = (props) => {
     }
   }, [])
 
+  const snapArr = []
+
+  // const nearestOddNumber = i => {
+  //   if (i%2 == 0) return i
+  //   else {
+  //     while (i%2 != 0) {
+  //       i++
+  //     }
+  //     return i
+  //   }
+  // }
   const snapFunc = () => {
+    for (let i = 0; i < meshArr.length; i++) {
+      i == 0
+        ? snapArr.push({ id: i, val: 0 })
+        : snapArr.push({
+            id: i,
+            val: -(moveByFactor * (i - 1) + moveByFactor / 2),
+          })
+    }
     // OG DRY implementation
     // const snapArr = [-13, -5, 0]
     // if (animatedX.get() <= snapArr[0]) animatedX.set(-18)
@@ -266,18 +285,19 @@ const VanillaHover = (props) => {
     // })
 
     // console.log(snapArr)
-
-    const snapArr = [
-      { id: 0, val: 0 },
-      { id: 1, val: -5.25 },
-      { id: 2, val: -15.75 },
-    ]
+    // const snapArr = [
+    //   { id: 0, val: 0 },
+    //   { id: 1, val: -5.25 },
+    //   { id: 2, val: -15.75 },
+    // ]
 
     // [
     //   { id: 0, val: 0 },
     //   { id: 1, val: -5.25 },
     //   { id: 2, val: -15.75 },
     // ]
+
+    // console.log(animatedX.get())
 
     snapArr.forEach((el) => {
       if (animatedX.get() <= el.val) {
