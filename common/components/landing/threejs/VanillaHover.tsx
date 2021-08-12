@@ -6,7 +6,13 @@ import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass"
 
 import { useEffect, useRef } from "react"
 import styled from "styled-components"
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useVelocity,
+  useTransform,
+} from "framer-motion"
 
 const VanillaHover = (props) => {
   const canvasEl = useRef(null)
@@ -32,6 +38,10 @@ const VanillaHover = (props) => {
     texture3,
     uMouse = new THREE.Vector2(0, 0)
 
+  const raycaster = new THREE.Raycaster()
+  const mouse = new THREE.Vector2()
+  const moveByFactor = 10.5
+
   let imagesArr = Array.from({ length: 3 }, (_, i) => i + 1)
   let meshArr
 
@@ -41,6 +51,7 @@ const VanillaHover = (props) => {
     stiffness: 800,
     damping: 100,
   })
+  let animatedXVelocity = useVelocity(animatedX)
 
   let initialX, currX, panPressed, movingX
 
@@ -81,7 +92,7 @@ const VanillaHover = (props) => {
 
       meshArr.forEach((el) => {
         scene.add(el.mesh)
-        el.mesh.position.set(el.id * 9, 0)
+        el.mesh.position.set(el.id * moveByFactor, 0)
       })
 
       // const bgColor = new THREE.Color(0x0e0c10)
@@ -146,15 +157,15 @@ const VanillaHover = (props) => {
 
       // console.log(movingX)
 
-      // camera.position.x = -animatedX.get()
+      camera.position.x = -animatedX.get()
 
-      meshArr.forEach((el) => {
-        scene.add(el.mesh)
-        el.mesh.position.x = animatedX.get() + el.id * 10.5
-      })
+      // meshArr.forEach((el) => {
+      //   scene.add(el.mesh)
+      //   el.mesh.position.x = animatedX.get() + el.id * 10.5
+      // })
 
       // mesh.position.x = animatedX.get()
-      // mesh2.position.x = animatedX.get() + 9
+      // mesh2.position.x = animatedX.get() + moveByFactor
 
       customPass.uniforms.uMouse.value = uMouse
 
@@ -190,6 +201,9 @@ const VanillaHover = (props) => {
     })
 
     canvasEl.current.addEventListener("mousemove", (e) => {
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1
+
       // mousemove / touchmove
       uMouse.x = e.clientX / canvasNode.offsetWidth
       uMouse.y = 1 - e.clientY / canvasNode.offsetHeight
@@ -207,6 +221,8 @@ const VanillaHover = (props) => {
       //   " mouseX: " + uMouse.x + " mouseY: " + uMouse.y
       //   ()
     })
+
+    canvasNode.addEventListener("click", onMouseClick, false)
 
     init()
     animate()
@@ -236,37 +252,41 @@ const VanillaHover = (props) => {
   }, [])
 
   const snapFunc = () => {
-    // console.log(animatedX.get())
-
     // OG DRY implementation
     // const snapArr = [-13, -5, 0]
     // if (animatedX.get() <= snapArr[0]) animatedX.set(-18)
     // else if (animatedX.get() <= snapArr[1]) animatedX.set(-9)
     // else if (animatedX.get() <= snapArr[2]) animatedX.set(0)
 
-    const moveByFactor = 10.5
+    // const snapArr = meshArr.forEach((el) => {
+    //   return {
+    //     id: el.id,
+    //     val: el.id * (moveByFactor / 2),
+    //   }
+    // })
+
+    // console.log(snapArr)
+
     const snapArr = [
       { id: 0, val: 0 },
-      { id: 1, val: -5 },
-      { id: 2, val: -13 },
+      { id: 1, val: -5.25 },
+      { id: 2, val: -15.75 },
     ]
+
+    // [
+    //   { id: 0, val: 0 },
+    //   { id: 1, val: -5.25 },
+    //   { id: 2, val: -15.75 },
+    // ]
 
     snapArr.forEach((el) => {
       if (animatedX.get() <= el.val) {
         animatedX.set(-(el.id * moveByFactor))
       }
     })
-
-    // for (const [key, el] of Object.entries(snapArr)) {
-
-    // }
   }
 
   function onPan(event, info) {
-    // console.log("currX" + currX)
-    // console.log("initialX" + initialX)
-    // console.log(currX - initialX)
-
     canvasNode = canvasEl.current
 
     // const relativeX = info.point.x / canvasNode.offsetWidth - 0.5
@@ -286,7 +306,7 @@ const VanillaHover = (props) => {
     movingX = currX - initialX
 
     // Move the images by manipulating animatedX
-    let calcX = animatedX.get() + movingX * 10
+    let calcX = animatedX.get() + movingX * 10.5
     if (calcX <= 0 && panPressed) animatedX.set(calcX)
 
     // console.log("currX" + currX)
@@ -312,34 +332,50 @@ const VanillaHover = (props) => {
     snapFunc()
   }
 
-  // const nativeDragger = () => {
-  //   canvasNode = canvasEl.current
+  function onMouseClick(event) {
+    var bounds = canvasNode.getBoundingClientRect()
+    mouse.x = ((event.clientX - bounds.left) / canvasNode.clientWidth) * 2 - 1
+    mouse.y = -((event.clientY - bounds.top) / canvasNode.clientHeight) * 2 + 1
+    raycaster.setFromCamera(mouse, camera)
 
-  //   canvasNode.addEventListener("mousedown", (e) => {
-  //     // mousemove / touchmove
-  //     panPressed = true
-  //     initialX = e.clientX / canvasNode.offsetWidth
-  //     console.log("initialX" + initialX)
+    var intersects = raycaster.intersectObjects(scene.children, true)
+    if (intersects.length > 0) {
+      // Check if still
 
-  //     canvasNode.addEventListener("mousemove", (e) => {
-  //       // mousemove / touchmove
-  //       currX = e.clientX / canvasNode.offsetWidth
-  //       console.log("currX" + currX)
-  //     })
-  //   })
+      // console.log(animatedX.get())
 
-  //   canvasNode.addEventListener("mousedown", (e) => {
-  //     // mousemove / touchmove
-  //     panPressed = false
-  //     snapFunc()
+      // Do stuff
 
-  //     canvasNode.removeEventListener("mousemove", (e) => {
-  //       // mousemove / touchmove
-  //       currX = e.clientX / canvasNode.offsetWidth
-  //       console.log("currX" + currX)
-  //     })
-  //   })
-  // }
+      intersects.forEach((element) => {
+        let positiveAnimatedX = Math.abs(animatedX.get())
+
+        // animatedX.get() < 0
+        //   ? (positiveAnimatedX = animatedX.get() * -1)
+        //   : (positiveAnimatedX = animatedX.get())
+
+        console.log(animatedX.get(), positiveAnimatedX)
+
+        if (
+          positiveAnimatedX < element.object.position.x + 0.1 &&
+          positiveAnimatedX > element.object.position.x - 0.1
+        ) {
+          // Open artwork page / portfolio piece
+          console.log("success!")
+          console.log(animatedXVelocity.get())
+          meshArr.forEach((el) => {
+            if (element.object.position === el.mesh.position) {
+              console.log(el.id)
+            }
+          })
+        } else {
+          // Do nothing
+          // console.log("lol")
+        }
+      })
+
+      // console.log(intersects)
+    }
+  }
 
   return (
     <CanvasElement
