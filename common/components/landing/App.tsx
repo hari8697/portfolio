@@ -4,6 +4,7 @@ import { defaultTheme, darkTheme } from "@/utils/index"
 import { motion } from "framer-motion"
 import VanillaHover from "./threejs/VanillaHover"
 import { useWindowSize } from "@/common/utils/"
+import { device } from "@/common/utils"
 
 const ContainerVariants = {
   initial: {
@@ -27,7 +28,9 @@ function App() {
       exit="exit"
     >
       {vW >= 1024 && <VanillaHover canvasNo="1" />}
-      <Landing></Landing>
+      <LandingWrapper>
+        <Landing></Landing>
+      </LandingWrapper>
     </Container>
   )
 }
@@ -39,6 +42,20 @@ const Container = styled(motion.div)`
   .threejsCover {
     position: absolute;
     z-index: 0;
+  }
+`
+const LandingWrapper = styled(motion.div)`
+  height: 100%;
+  position: relative;
+  pointer-events: none;
+  padding: 56px 0 32px 0;
+
+  @media ${device.tablet} {
+    padding: 72px 0 50px 0;
+  }
+
+  @media ${device.laptopL} {
+    padding: 96px 0 70px 0;
   }
 `
 

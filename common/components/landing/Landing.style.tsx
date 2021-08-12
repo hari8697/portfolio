@@ -11,7 +11,6 @@ export const GridContainer = styled.div`
   grid-template-rows: max-content max-content 1fr max-content;
   grid-gap: 0px 16px;
   max-height: 100vh;
-  pointer-events: none;
 
   .hero_image {
     position: absolute;
@@ -33,7 +32,8 @@ export const GridContainer = styled.div`
     }
     grid-column-start: 20;
     /* grid-row: 4 / 5; */
-    align-self: flex-end;
+    /* align-self: flex-end; */
+    bottom: 0;
     position: absolute;
 
     .scrollProgressBar {
