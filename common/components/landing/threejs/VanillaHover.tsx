@@ -38,6 +38,8 @@ const VanillaHover = (props) => {
     texture3,
     uMouse = new THREE.Vector2(0, 0)
 
+  const snapArr = []
+
   const raycaster = new THREE.Raycaster()
   const mouse = new THREE.Vector2()
   const moveByFactor = 10.5
@@ -53,7 +55,11 @@ const VanillaHover = (props) => {
   })
   let animatedXVelocity = useVelocity(animatedX)
 
-  let initialX, currX, panPressed, movingX
+  let initialX = 0,
+    currX = 0,
+    panPressed,
+    movingX,
+    calcX
 
   const ogFunc = () => {
     canvasNode = canvasEl.current
@@ -77,7 +83,7 @@ const VanillaHover = (props) => {
         var obj = {
           id: i - 1,
           material,
-          geometry: new THREE.PlaneGeometry(7.5, 4),
+          geometry: new THREE.PlaneGeometry(8, 4.5),
           texture: new THREE.TextureLoader().load(`image${i}.png`),
           mesh,
         }
@@ -94,6 +100,15 @@ const VanillaHover = (props) => {
         scene.add(el.mesh)
         el.mesh.position.set(el.id * moveByFactor, 0)
       })
+
+      for (let i = 0; i < meshArr.length; i++) {
+        i == 0
+          ? snapArr.push({ id: i, val: 0 })
+          : snapArr.push({
+              id: i,
+              val: -(moveByFactor * (i - 1) + moveByFactor / 2),
+            })
+      }
 
       // const bgColor = new THREE.Color(0x0e0c10)
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
@@ -251,8 +266,6 @@ const VanillaHover = (props) => {
     }
   }, [])
 
-  const snapArr = []
-
   // const nearestOddNumber = i => {
   //   if (i%2 == 0) return i
   //   else {
@@ -263,14 +276,6 @@ const VanillaHover = (props) => {
   //   }
   // }
   const snapFunc = () => {
-    for (let i = 0; i < meshArr.length; i++) {
-      i == 0
-        ? snapArr.push({ id: i, val: 0 })
-        : snapArr.push({
-            id: i,
-            val: -(moveByFactor * (i - 1) + moveByFactor / 2),
-          })
-    }
     // OG DRY implementation
     // const snapArr = [-13, -5, 0]
     // if (animatedX.get() <= snapArr[0]) animatedX.set(-18)
@@ -326,7 +331,7 @@ const VanillaHover = (props) => {
     movingX = currX - initialX
 
     // Move the images by manipulating animatedX
-    let calcX = animatedX.get() + movingX * 10.5
+    calcX = animatedX.get() + movingX * 10.5
     if (calcX <= 0 && panPressed) animatedX.set(calcX)
 
     // console.log("currX" + currX)
@@ -353,6 +358,7 @@ const VanillaHover = (props) => {
   }
 
   function onMouseClick(event) {
+    movingX = currX - initialX
     var bounds = canvasNode.getBoundingClientRect()
     mouse.x = ((event.clientX - bounds.left) / canvasNode.clientWidth) * 2 - 1
     mouse.y = -((event.clientY - bounds.top) / canvasNode.clientHeight) * 2 + 1
@@ -375,9 +381,13 @@ const VanillaHover = (props) => {
 
         console.log(animatedX.get(), positiveAnimatedX)
 
+        console.log(movingX)
+
         if (
           positiveAnimatedX < element.object.position.x + 0.1 &&
-          positiveAnimatedX > element.object.position.x - 0.1
+          positiveAnimatedX > element.object.position.x - 0.1 &&
+          movingX < 0.01 &&
+          movingX > -0.01
         ) {
           // Open artwork page / portfolio piece
           console.log("success!")
@@ -389,7 +399,7 @@ const VanillaHover = (props) => {
           })
         } else {
           // Do nothing
-          // console.log("lol")
+          console.log("lol")
         }
       })
 
