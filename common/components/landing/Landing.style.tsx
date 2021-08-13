@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components"
 import { H1, H2, H5, Para } from "@/components/styled/index"
-import { device } from "@/common/utils"
+import { device, typeScale } from "@/common/utils"
+import { h1Style } from "../styled/Text"
 
 export const GridContainer = styled.div`
   height: 100%;
@@ -121,15 +122,6 @@ export const Title_wrap = styled.div`
   grid-column: 1 / -1;
   margin-top: 40vh;
 
-  h1 {
-    width: max-content;
-    /* pointer-events: all; */
-    &:focus,
-    &:hover {
-      cursor: grab;
-    }
-  }
-
   @media ${device.tablet} {
     margin: 0 5%;
     margin-top: 40vh;
@@ -142,6 +134,24 @@ export const Title_wrap = styled.div`
     grid-column: 4 / 21;
     /* left: 16%; */
     /* transform: translateY(-50%); */
+  }
+
+  .filters_wrapper {
+    position: relative;
+    .selected_filter {
+      ${h1Style}
+      display: block;
+      position: absolute;
+      top: -0.25rem;
+      height: 1.22em;
+
+      z-index: 2;
+      overflow: hidden;
+      /* clip-path: inset(0px); */
+    }
+    .unselected_filter {
+      opacity: 0.1;
+    }
   }
 `
 
@@ -270,11 +280,12 @@ export const Paragraph = styled(Para)`
 
 export const Title = styled(H1)`
   text-transform: capitalize;
-  opacity: 0.1;
+  opacity: 1;
   margin: 0.25rem 0;
+  width: max-content;
 
   &.sel {
-    opacity: 1;
+    /* opacity: 1; */
   }
 `
 

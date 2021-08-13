@@ -11,8 +11,7 @@ const textStyle = css`
   line-height: 122%;
 `
 
-export const H1 = styled.h1`
-  ${headerStyle}
+export const h1Style = css`
   font-family: ${(props) => props.theme.secondaryFont};
   font-size: ${typeScale.mobile.header2};
 
@@ -39,6 +38,11 @@ export const H1 = styled.h1`
   @media ${device.desktopL} {
     font-size: ${typeScale.desktop.xxl};
   }
+`
+
+export const H1 = styled.h1`
+  ${headerStyle}
+  ${h1Style}
 `
 
 export const H2 = styled.h2`

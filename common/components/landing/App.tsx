@@ -51,9 +51,9 @@ const Container = styled(motion.div)`
   }
 `
 const LandingWrapper = styled(motion.div)`
+  pointer-events: none;
   height: 100%;
   position: relative;
-  pointer-events: none;
   padding: 56px 0 32px 0;
 
   @media ${device.tablet} {

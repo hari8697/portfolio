@@ -10,7 +10,7 @@ import {
   Title_wrap,
   Footer_wrap,
 } from "./Landing.style"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
 import { useWindowSize } from "@/common/utils/"
 
@@ -75,18 +75,28 @@ const footerSwipe = (vW, vH) => {
 
 export default function Landing({ animatedX }) {
   const { width: vW, height: vH } = useWindowSize()
+  const scrollBarWidth = useTransform(
+    animatedX,
+    [0, -21],
+    [vW * 0.05, vW * 0.2]
+  )
+  const title_wrapper = useRef(null)
+  let titleWrapperHeight
+  const textWrapperY = useTransform(animatedX, [-31.5, 0], [-269, 0])
 
-  const x = useSpring(0)
-  const xRange = [-200, -100, 100, 200]
-  const opacityRange = [0, 1, 1, 0]
-  const opacity = useTransform(x, xRange, opacityRange)
-  const width = useTransform(animatedX, [0, -21], [vW * 0.05, vW * 0.2])
+  // 269 = 75 - 344
+  // 31.5 = 21 + 10.5
 
   // const width = useTransform(animatedX, [-21, 0], [350, 30])
   // useEffect(() => {
   //   console.log(vW, vH);
 
   // }, [useWindowSize()])
+
+  useEffect(() => {
+    titleWrapperHeight = title_wrapper.current.offsetHeight
+    console.log(titleWrapperHeight)
+  }, [])
 
   return (
     <GridContainer
@@ -118,7 +128,28 @@ export default function Landing({ animatedX }) {
           <Image src={`/landing/album/1.png`} width={1354} height={761}></Image>
         </div>
       )}
-      <Title_wrap className="noselect">{portItems}</Title_wrap>
+      <Title_wrap className="noselect">
+        <div className="filters_wrapper">
+          <span className="selected_filter">
+            <motion.div
+              ref={title_wrapper}
+              style={{ y: textWrapperY }}
+              className="text_wrapper"
+            >
+              {portItems}
+            </motion.div>
+          </span>
+          <div className="unselected_filter">
+            <motion.div
+              ref={title_wrapper}
+              style={{ y: textWrapperY }}
+              className="text_wrapper"
+            >
+              {portItems}
+            </motion.div>
+          </div>
+        </div>
+      </Title_wrap>
       {vW > 1023 && vW / vH > 1 && (
         <>
           <div className="noselect scroll_wrapper">
@@ -130,7 +161,10 @@ export default function Landing({ animatedX }) {
               ></Image>
             </div>
             <div className="scrollProgressBar">
-              <motion.span style={{ width }} className="fg"></motion.span>
+              <motion.span
+                style={{ width: scrollBarWidth }}
+                className="fg"
+              ></motion.span>
               <span className="bg"></span>
             </div>
           </div>
