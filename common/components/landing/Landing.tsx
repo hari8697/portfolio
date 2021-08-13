@@ -82,8 +82,9 @@ export default function Landing({ animatedX }) {
   )
   const title_wrapper = useRef(null)
   let titleWrapperHeight
-  const textWrapperY = useTransform(animatedX, [-31.5, 0], [-269, 0])
+  const textWrapperY = useTransform(animatedX, [-31.5, 0], [-417, 0])
 
+  // 417 = 75 - 492
   // 269 = 75 - 344
   // 31.5 = 21 + 10.5
 
