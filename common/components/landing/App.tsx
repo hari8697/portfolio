@@ -26,6 +26,10 @@ function App() {
     stiffness: 800,
     damping: 100,
   })
+
+  let imagesArr = Array.from({ length: 4 }, (_, i) => i + 1)
+  const moveByFactor = 10.5
+
   return (
     <Container
       variants={ContainerVariants}
@@ -33,9 +37,19 @@ function App() {
       animate="animate"
       exit="exit"
     >
-      {vW >= 1024 && <VanillaHover animatedX={animatedX} />}
+      {vW >= 1024 && (
+        <VanillaHover
+          animatedX={animatedX}
+          imagesArr={imagesArr}
+          moveByFactor={moveByFactor}
+        />
+      )}
       <LandingWrapper>
-        <Landing animatedX={animatedX}></Landing>
+        <Landing
+          animatedX={animatedX}
+          imagesArr={imagesArr}
+          moveByFactor={moveByFactor}
+        ></Landing>
       </LandingWrapper>
     </Container>
   )

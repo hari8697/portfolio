@@ -73,20 +73,23 @@ const footerSwipe = (vW, vH) => {
   }
 }
 
-export default function Landing({ animatedX }) {
+export default function Landing({ animatedX, imagesArr, moveByFactor }) {
+  const [maxDragX, setMaxDragX] = useState(0)
+  // const [titleDragX, setTitleDragX] = useState(0)
+  const [titleWrapperMoveByHeight, setTitleWrapperMoveByHeight] = useState(0)
   const { width: vW, height: vH } = useWindowSize()
   const scrollBarWidth = useTransform(
     animatedX,
-    [0, -21],
-    [vW * 0.05, vW * 0.2]
+    [0, -maxDragX],
+    [vW * 0.04, vW * 0.2]
   )
   const title_wrapper = useRef(null)
   let titleWrapperHeight
-  const textWrapperY = useTransform(animatedX, [-31.5, 0], [-417, 0])
-
-  // 417 = 75 - 492
-  // 269 = 75 - 344
-  // 31.5 = 21 + 10.5
+  const textWrapperY = useTransform(
+    animatedX,
+    [-maxDragX, 0],
+    [-titleWrapperMoveByHeight, 0]
+  )
 
   // const width = useTransform(animatedX, [-21, 0], [350, 30])
   // useEffect(() => {
@@ -94,9 +97,50 @@ export default function Landing({ animatedX }) {
 
   // }, [useWindowSize()])
 
+  const calcAnimHelperValues = () => {
+    // Images anim Values
+    // console.log(imagesArr.length)
+
+    setMaxDragX((imagesArr.length - 1) * moveByFactor)
+    // setTitleDragX(imagesArr.length * moveByFactor)
+    // Title anim Values
+
+    if (title_wrapper != null || undefined) {
+      titleWrapperHeight = title_wrapper.current.offsetHeight
+
+      // setTitleWrapperMoveByHeight(titleWrapperHeight)
+
+      // Get height of element without margin
+      // Of no use now lol
+
+      let element = title_wrapper.current.firstChild
+      var computedStyle = getComputedStyle(element)
+
+      let elementHeight = element.clientHeight // height with padding
+      let elementWidth = element.clientWidth // width with padding
+
+      elementHeight -=
+        parseFloat(computedStyle.marginTop) +
+        parseFloat(computedStyle.marginBottom)
+      elementWidth -=
+        parseFloat(computedStyle.marginLeft) +
+        parseFloat(computedStyle.marginRight)
+
+      setTitleWrapperMoveByHeight(titleWrapperHeight - elementHeight)
+    }
+
+    // console.log(elementHeight)
+    // console.log(titleWrapperHeight, elementHeight)
+    // console.log(titleWrapperMoveByHeight)
+  }
+
   useEffect(() => {
-    titleWrapperHeight = title_wrapper.current.offsetHeight
-    console.log(titleWrapperHeight)
+    calcAnimHelperValues()
+    console.log(titleWrapperMoveByHeight)
+
+    window.addEventListener("resize", () => {
+      calcAnimHelperValues()
+    })
   }, [])
 
   return (

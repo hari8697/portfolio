@@ -3,7 +3,7 @@ import { device, typeScale } from "@/common/utils"
 
 const headerStyle = css`
   font-weight: 700;
-  line-height: 122%;
+  line-height: 1.22em;
 `
 
 const textStyle = css`

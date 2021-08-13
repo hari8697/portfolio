@@ -48,7 +48,7 @@ export const GridContainer = styled.div`
 
       .bg {
         position: relative;
-        width: 30vw;
+        width: 20vw;
         background: #f3efff;
         opacity: 0.1;
       }
@@ -138,11 +138,18 @@ export const Title_wrap = styled.div`
 
   .filters_wrapper {
     position: relative;
+
+    .text_wrapper {
+      /* display: flex;
+      flex-direction: column; */
+      /* grid-gap: 0.25rem; */
+    }
     .selected_filter {
       ${h1Style}
       display: block;
       position: absolute;
       top: -0.25rem;
+      /* padding: 0.11em 0; */
       height: 1.22em;
 
       z-index: 2;
@@ -281,6 +288,7 @@ export const Paragraph = styled(Para)`
 export const Title = styled(H1)`
   text-transform: capitalize;
   opacity: 1;
+  /* margin: 0; */
   margin: 0.25rem 0;
   width: max-content;
 

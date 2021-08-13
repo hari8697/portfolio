@@ -14,7 +14,7 @@ import {
   useTransform,
 } from "framer-motion"
 
-const VanillaHover = ({ animatedX }) => {
+const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
   const canvasEl = useRef(null)
 
   let camera, scene, renderer, composer, renderPass, customPass, canvasNode
@@ -26,9 +26,7 @@ const VanillaHover = ({ animatedX }) => {
 
   const raycaster = new THREE.Raycaster()
   const mouse = new THREE.Vector2()
-  const moveByFactor = 10.5
 
-  let imagesArr = Array.from({ length: 3 }, (_, i) => i + 1)
   let meshArr
 
   // const ease = [0.6, 0.05, -0.01, 0.99]
@@ -64,7 +62,9 @@ const VanillaHover = ({ animatedX }) => {
           id: i - 1,
           material,
           geometry: new THREE.PlaneGeometry(8, 4.5),
-          texture: new THREE.TextureLoader().load(`image${i}.png`),
+          texture: new THREE.TextureLoader().load(
+            `/landing/album/image${i}.png`
+          ),
           mesh,
         }
 
