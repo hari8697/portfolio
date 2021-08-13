@@ -1,6 +1,6 @@
 import Image from "next/image"
 // import styled from "styled-components"
-import { motion } from "framer-motion"
+import { motion, useTransform, useSpring } from "framer-motion"
 import {
   Title,
   GridContainer,
@@ -73,16 +73,28 @@ const footerSwipe = (vW, vH) => {
   }
 }
 
-export default function index() {
+export default function Landing({ animatedX }) {
   const { width: vW, height: vH } = useWindowSize()
 
+  const x = useSpring(0)
+  const xRange = [-200, -100, 100, 200]
+  const opacityRange = [0, 1, 1, 0]
+  const opacity = useTransform(x, xRange, opacityRange)
+  const width = useTransform(animatedX, [0, -21], [vW * 0.05, vW * 0.2])
+
+  // const width = useTransform(animatedX, [-21, 0], [350, 30])
   // useEffect(() => {
   //   console.log(vW, vH);
 
   // }, [useWindowSize()])
 
   return (
-    <GridContainer>
+    <GridContainer
+      variants={ContainerVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <Header_wrap className="noselect">
         <div className="logo">
           <Image
@@ -118,7 +130,7 @@ export default function index() {
               ></Image>
             </div>
             <div className="scrollProgressBar">
-              <span className="fg"></span>
+              <motion.span style={{ width }} className="fg"></motion.span>
               <span className="bg"></span>
             </div>
           </div>

@@ -1,10 +1,11 @@
 import styled, { ThemeProvider } from "styled-components"
 import Landing from "@/components/landing/Landing"
 import { defaultTheme, darkTheme } from "@/utils/index"
-import { motion } from "framer-motion"
+
 import VanillaHover from "./threejs/VanillaHover"
 import { useWindowSize } from "@/common/utils/"
 import { device } from "@/common/utils"
+import { motion, useSpring } from "framer-motion"
 
 const ContainerVariants = {
   initial: {
@@ -20,6 +21,11 @@ const ContainerVariants = {
 
 function App() {
   const { width: vW, height: vH } = useWindowSize()
+
+  let animatedX = useSpring(0, {
+    stiffness: 800,
+    damping: 100,
+  })
   return (
     <Container
       variants={ContainerVariants}
@@ -27,9 +33,9 @@ function App() {
       animate="animate"
       exit="exit"
     >
-      {vW >= 1024 && <VanillaHover canvasNo="1" />}
+      {vW >= 1024 && <VanillaHover animatedX={animatedX} />}
       <LandingWrapper>
-        <Landing></Landing>
+        <Landing animatedX={animatedX}></Landing>
       </LandingWrapper>
     </Container>
   )

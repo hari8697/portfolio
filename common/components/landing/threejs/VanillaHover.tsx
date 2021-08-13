@@ -14,28 +14,12 @@ import {
   useTransform,
 } from "framer-motion"
 
-const VanillaHover = (props) => {
+const VanillaHover = ({ animatedX }) => {
   const canvasEl = useRef(null)
-  const canvasContainer = useRef(null)
 
-  let controls,
-    camera,
-    scene,
-    renderer,
-    composer,
-    renderPass,
-    customPass,
-    canvasNode
-  let geometry,
-    material,
-    material2,
-    material3,
+  let camera, scene, renderer, composer, renderPass, customPass, canvasNode
+  let material,
     mesh,
-    mesh2,
-    mesh3,
-    texture,
-    texture2,
-    texture3,
     uMouse = new THREE.Vector2(0, 0)
 
   const snapArr = []
@@ -49,10 +33,6 @@ const VanillaHover = (props) => {
 
   // const ease = [0.6, 0.05, -0.01, 0.99]
   // const easeVal = [0.65, 0, 0.35, 1]
-  let animatedX = useSpring(0, {
-    stiffness: 800,
-    damping: 100,
-  })
   let animatedXVelocity = useVelocity(animatedX)
 
   let initialX = 0,
@@ -245,12 +225,8 @@ const VanillaHover = (props) => {
 
   useEffect(() => {
     ogFunc()
-
-    // nativeDragger()
-
     animatedX.onChange(() => {
       // console.log(animatedX.get())
-
       if (!panPressed) {
         snapFunc()
       }
@@ -379,9 +355,9 @@ const VanillaHover = (props) => {
         //   ? (positiveAnimatedX = animatedX.get() * -1)
         //   : (positiveAnimatedX = animatedX.get())
 
-        console.log(animatedX.get(), positiveAnimatedX)
+        // console.log(animatedX.get(), positiveAnimatedX)
 
-        console.log(movingX)
+        // console.log(movingX)
 
         if (
           positiveAnimatedX < element.object.position.x + 0.1 &&
@@ -391,10 +367,10 @@ const VanillaHover = (props) => {
         ) {
           // Open artwork page / portfolio piece
           console.log("success!")
-          console.log(animatedXVelocity.get())
+          // console.log(animatedXVelocity.get())
           meshArr.forEach((el) => {
             if (element.object.position === el.mesh.position) {
-              console.log(el.id)
+              // console.log(el.id)
             }
           })
         } else {
