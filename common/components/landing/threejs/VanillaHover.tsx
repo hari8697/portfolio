@@ -4,7 +4,7 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass"
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import {
   motion,
@@ -17,6 +17,7 @@ import {
 const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
   const canvasEl = useRef(null)
 
+  // const [panPressed, setPanPressed] = useState(false)
   let camera, scene, renderer, composer, renderPass, customPass, canvasNode
   let material,
     mesh,
@@ -35,9 +36,9 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
 
   let initialX = 0,
     currX = 0,
-    panPressed,
     movingX,
-    calcX
+    calcX,
+    panPressed
 
   const ogFunc = () => {
     canvasNode = canvasEl.current
@@ -179,22 +180,6 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
       // }, 1000 / 165)
     }
 
-    window.addEventListener("resize", () => {
-      // console.log("updated!")
-      // console.log(2 * Math.atan(8 / camera.aspect / (2 * 5)) * (180 / Math.PI)) // in degrees
-      // camera.fov = 2 * Math.atan(12 / camera.aspect / (2 * 5)) * (180 / Math.PI)
-
-      canvasNode = canvasEl.current
-
-      if (canvasNode) {
-        panPressed = false
-        camera.aspect = canvasNode.offsetWidth / canvasNode.offsetHeight
-        camera.updateProjectionMatrix()
-        renderer.setSize(canvasNode.offsetWidth, canvasNode.offsetHeight)
-        composer.setSize(canvasNode.offsetWidth, canvasNode.offsetHeight)
-      }
-    })
-
     canvasEl.current.addEventListener("mousemove", (e) => {
       mouse.x = (e.clientX / window.innerWidth) * 2 - 1
       mouse.y = -(e.clientY / window.innerHeight) * 2 + 1
@@ -217,6 +202,12 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
       //   ()
     })
 
+    canvasNode.onwheel = (event) => {
+      console.log(event.deltaY)
+
+      // animatedX.set(animatedX.get() - event.deltaY * 0.03175)
+    }
+
     canvasNode.addEventListener("click", onMouseClick, false)
 
     init()
@@ -226,9 +217,37 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
   useEffect(() => {
     ogFunc()
     animatedX.onChange(() => {
-      // console.log(animatedX.get())
+      // console.log(panPressed)
       if (!panPressed) {
         snapFunc()
+
+        // setTimeout(() => {
+        //   snapFunc()
+        // }, 250)
+      }
+    })
+
+    setInterval(() => {
+      // console.log(animatedX.get())
+    }, 50)
+
+    canvasNode.addEventListener("mouseup", onMouseUp, false)
+
+    canvasNode.addEventListener("mousedown", onMouseDown, false)
+
+    window.addEventListener("resize", () => {
+      // console.log("updated!")
+      // console.log(2 * Math.atan(8 / camera.aspect / (2 * 5)) * (180 / Math.PI)) // in degrees
+      // camera.fov = 2 * Math.atan(12 / camera.aspect / (2 * 5)) * (180 / Math.PI)
+
+      canvasNode = canvasEl.current
+
+      if (canvasNode) {
+        // panPressed = false
+        camera.aspect = canvasNode.offsetWidth / canvasNode.offsetHeight
+        camera.updateProjectionMatrix()
+        renderer.setSize(canvasNode.offsetWidth, canvasNode.offsetHeight)
+        composer.setSize(canvasNode.offsetWidth, canvasNode.offsetHeight)
       }
     })
 
@@ -258,13 +277,6 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
     // else if (animatedX.get() <= snapArr[1]) animatedX.set(-9)
     // else if (animatedX.get() <= snapArr[2]) animatedX.set(0)
 
-    // const snapArr = meshArr.forEach((el) => {
-    //   return {
-    //     id: el.id,
-    //     val: el.id * (moveByFactor / 2),
-    //   }
-    // })
-
     // console.log(snapArr)
     // const snapArr = [
     //   { id: 0, val: 0 },
@@ -272,16 +284,11 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
     //   { id: 2, val: -15.75 },
     // ]
 
-    // [
-    //   { id: 0, val: 0 },
-    //   { id: 1, val: -5.25 },
-    //   { id: 2, val: -15.75 },
-    // ]
-
-    // console.log(animatedX.get())
-
     snapArr.forEach((el) => {
-      if (animatedX.get() <= el.val) {
+      if (el.id == 0 && !panPressed) {
+        animatedX.set(0)
+      }
+      if (animatedX.get() <= el.val && !panPressed) {
         animatedX.set(-(el.id * moveByFactor))
       }
     })
@@ -290,6 +297,7 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
   function onPan(event, info) {
     canvasNode = canvasEl.current
 
+    // console.log(panPressed)
     // const relativeX = info.point.x / canvasNode.offsetWidth - 0.5
 
     // let calcX = animatedX.get() + relativeX * 0.02
@@ -307,8 +315,12 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
     movingX = currX - initialX
 
     // Move the images by manipulating animatedX
-    calcX = animatedX.get() + movingX * 10.5
-    if (calcX <= 0 && panPressed) animatedX.set(calcX)
+    if (animatedX.get() <= 0) {
+      calcX = animatedX.get() + movingX * 10.5
+      console.log(calcX)
+
+      if (panPressed) animatedX.set(calcX)
+    }
 
     // console.log("currX" + currX)
 
@@ -316,9 +328,12 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
   }
 
   function onPanStart(event, info) {
+    // setPanPressed(true)
+    panPressed = true
     canvasNode = canvasEl.current
 
-    panPressed = true
+    // console.log("press start")
+
     canvasNode = canvasEl.current
     initialX = info.point.x / canvasNode.offsetWidth
 
@@ -326,11 +341,13 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
   }
 
   function onPanEnd(event, info) {
+    // setPanPressed(false)
+    panPressed = false
+    // console.log("press end")
     canvasNode = canvasEl.current
     // currX = info.point.x / canvasNode.offsetWidth
 
-    panPressed = false
-    snapFunc()
+    // snapFunc()
   }
 
   function onMouseClick(event) {
@@ -375,12 +392,19 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
           })
         } else {
           // Do nothing
-          console.log("lol")
+          // console.log("lol")
         }
       })
 
       // console.log(intersects)
     }
+  }
+
+  const onMouseDown = () => {
+    // console.log(panPressed)
+  }
+  const onMouseUp = () => {
+    snapFunc()
   }
 
   return (
