@@ -294,6 +294,14 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
     })
   }
 
+  const moveCanvas = () => {
+    // Move the images and all moving parts by manipulating animatedX
+    calcX = animatedX.get() + movingX * 10.5
+    console.log(calcX)
+
+    if (panPressed) animatedX.set(calcX)
+  }
+
   function onPan(event, info) {
     canvasNode = canvasEl.current
 
@@ -314,12 +322,10 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
 
     movingX = currX - initialX
 
-    // Move the images by manipulating animatedX
-    if (animatedX.get() <= 0) {
-      calcX = animatedX.get() + movingX * 10.5
-      console.log(calcX)
-
-      if (panPressed) animatedX.set(calcX)
+    if (animatedX.get() < 0) {
+      moveCanvas()
+    } else if (animatedX.get() == 0 && movingX < 0) {
+      moveCanvas()
     }
 
     // console.log("currX" + currX)
