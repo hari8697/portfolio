@@ -289,6 +289,8 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
         animatedX.set(0)
       }
       if (animatedX.get() <= el.val && !panPressed) {
+        // console.log(el.id * moveByFactor)
+
         animatedX.set(-(el.id * moveByFactor))
       }
     })
@@ -297,7 +299,7 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
   const moveCanvas = () => {
     // Move the images and all moving parts by manipulating animatedX
     calcX = animatedX.get() + movingX * 10.5
-    console.log(calcX)
+    // console.log(animatedX.get())
 
     if (panPressed) animatedX.set(calcX)
   }
@@ -326,6 +328,8 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
       moveCanvas()
     } else if (animatedX.get() == 0 && movingX < 0) {
       moveCanvas()
+    } else if (movingX > 0) {
+      animatedX.set(0)
     }
 
     // console.log("currX" + currX)
@@ -353,7 +357,7 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
     canvasNode = canvasEl.current
     // currX = info.point.x / canvasNode.offsetWidth
 
-    // snapFunc()
+    snapFunc()
   }
 
   function onMouseClick(event) {
@@ -366,9 +370,6 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
     var intersects = raycaster.intersectObjects(scene.children, true)
     if (intersects.length > 0) {
       // Check if still
-
-      // console.log(animatedX.get())
-
       // Do stuff
 
       intersects.forEach((element) => {
