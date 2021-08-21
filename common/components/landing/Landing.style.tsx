@@ -21,47 +21,6 @@ export const GridContainer = styled.div`
     opacity: 0.8;
   }
 
-  .scroll_wrapper {
-    display: flex;
-    .scroll_arrow {
-      display: grid;
-      place-items: center;
-      width: 30px;
-      opacity: 0.4;
-      margin-right: 60px;
-      margin-top: 2px;
-    }
-    grid-column-start: 20;
-    /* grid-row: 4 / 5; */
-    /* align-self: flex-end; */
-    bottom: 0;
-    position: absolute;
-
-    .scrollProgressBar {
-      bottom: 0;
-      padding: 14px 0;
-      .bg,
-      .fg {
-        display: block;
-        height: 2.5px;
-      }
-
-      .bg {
-        position: relative;
-        width: 20vw;
-        background: #f3efff;
-        opacity: 0.1;
-      }
-
-      .fg {
-        position: absolute;
-        width: 10vw;
-        background: #5f2eea;
-        opacity: 1;
-      }
-    }
-  }
-
   @media ${device.tablet} {
     margin: 0 48px;
     gap: 0px 24px;
@@ -139,17 +98,11 @@ export const Title_wrap = styled.div`
   .filters_wrapper {
     position: relative;
 
-    .text_wrapper {
-      /* display: flex;
-      flex-direction: column; */
-      /* grid-gap: 0.25rem; */
-    }
     .selected_filter {
       ${h1Style}
       display: block;
       position: absolute;
       top: -0.25rem;
-      /* padding: 0.11em 0; */
       height: 1.22em;
 
       z-index: 2;
@@ -252,7 +205,6 @@ export const Footer_wrap = styled.div`
     }
   }
 `
-
 export const Header5 = styled(H5)`
   opacity: ${(props) => (props.highlighted ? 0.5 : 0.3)};
   transition: opacity 100ms ease-out, border-bottom 100ms ease-out;
@@ -288,20 +240,11 @@ export const Paragraph = styled(Para)`
 export const Title = styled(H1)`
   text-transform: capitalize;
   opacity: 1;
-  /* margin: 0; */
   margin: 0.25rem 0;
   width: max-content;
-
-  &.sel {
-    /* opacity: 1; */
-  }
 `
 
 export const Subtitle = styled(H2)`
   opacity: 0.5;
   margin: 0.25rem 0;
-
-  &.sel {
-    opacity: 1;
-  }
 `

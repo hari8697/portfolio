@@ -58,7 +58,8 @@ const VanillaHover = ({ animatedX, imagesArr, moveByFactor }) => {
 
       scene = new THREE.Scene()
 
-      meshArr = imagesArr.map((i) => {
+      meshArr = imagesArr.map((el) => {
+        const i = el.id
         var obj = {
           id: i - 1,
           material,

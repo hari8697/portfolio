@@ -36,7 +36,7 @@ const Layout = ({ children, title = "DeathSpace LMAO" }: Props) => {
 const StyledLayout = styled.div`
   min-height: 100vh;
   max-height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: grid;
   place-items: center;
   /* grid-template-rows: max-content 1fr; */

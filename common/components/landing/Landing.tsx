@@ -26,23 +26,8 @@ const ContainerVariants = {
   },
 }
 
-const portArray = [
-  { id: 1, name: "Nike SB", selected: true },
-  { id: 2, name: "Rhoncus urna", selected: false },
-  { id: 3, name: "Amet facilisis", selected: false },
-  { id: 4, name: "Magna ac placerat", selected: false },
-]
-
-const portItems = portArray.map((item) => {
-  return (
-    <Title key={item.id} className={item.selected ? "sel" : ""}>
-      {item.name}
-    </Title>
-  )
-})
-
 const socialItemsArr = Array.from(Array(4).keys())
-let iconSize = 18
+// let iconSize = 18
 const socialItems = socialItemsArr.map((item) => {
   return (
     <div className="icon_wrapper" key={item}>
@@ -73,16 +58,17 @@ const footerSwipe = (vW, vH) => {
   }
 }
 
-export default function Landing({ animatedX, imagesArr, moveByFactor }) {
-  const [maxDragX, setMaxDragX] = useState(0)
+export default function Landing({
+  animatedX,
+  imagesArr,
+  moveByFactor,
+  maxDragX,
+  setMaxDragX,
+}) {
   // const [titleDragX, setTitleDragX] = useState(0)
   const [titleWrapperMoveByHeight, setTitleWrapperMoveByHeight] = useState(0)
   const { width: vW, height: vH } = useWindowSize()
-  const scrollBarWidth = useTransform(
-    animatedX,
-    [0, -maxDragX],
-    [vW * 0.04, vW * 0.2]
-  )
+
   const title_wrapper = useRef(null)
   let titleWrapperHeight
   const textWrapperY = useTransform(
@@ -91,27 +77,26 @@ export default function Landing({ animatedX, imagesArr, moveByFactor }) {
     [-titleWrapperMoveByHeight, 0]
   )
 
-  // const width = useTransform(animatedX, [-21, 0], [350, 30])
   // useEffect(() => {
   //   console.log(vW, vH);
 
   // }, [useWindowSize()])
 
+  const portItems = imagesArr.map((item, key) => {
+    // const item = portArray[key]
+    return <Title key={item.id}>{item.name}</Title>
+  })
+
   const calcAnimHelperValues = () => {
     // Images anim Values
-    // console.log(imagesArr.length)
-
     setMaxDragX((imagesArr.length - 1) * moveByFactor)
-    // setTitleDragX(imagesArr.length * moveByFactor)
+
     // Title anim Values
 
     if (title_wrapper != null || undefined) {
       titleWrapperHeight = title_wrapper.current.offsetHeight
 
-      // setTitleWrapperMoveByHeight(titleWrapperHeight)
-
       // Get height of element without margin
-      // Of no use now lol
 
       let element = title_wrapper.current.firstChild
       var computedStyle = getComputedStyle(element)
@@ -128,15 +113,11 @@ export default function Landing({ animatedX, imagesArr, moveByFactor }) {
 
       setTitleWrapperMoveByHeight(titleWrapperHeight - elementHeight)
     }
-
-    // console.log(elementHeight)
-    // console.log(titleWrapperHeight, elementHeight)
-    // console.log(titleWrapperMoveByHeight)
   }
 
   useEffect(() => {
     calcAnimHelperValues()
-    console.log(titleWrapperMoveByHeight)
+    // console.log(titleWrapperMoveByHeight)
 
     window.addEventListener("resize", () => {
       calcAnimHelperValues()
@@ -195,26 +176,6 @@ export default function Landing({ animatedX, imagesArr, moveByFactor }) {
           </div>
         </div>
       </Title_wrap>
-      {vW > 1023 && vW / vH > 1 && (
-        <>
-          <div className="noselect scroll_wrapper">
-            <div className="scroll_arrow">
-              <Image
-                src="/landing/scrollHorizontal.svg"
-                width={31}
-                height={22}
-              ></Image>
-            </div>
-            <div className="scrollProgressBar">
-              <motion.span
-                style={{ width: scrollBarWidth }}
-                className="fg"
-              ></motion.span>
-              <span className="bg"></span>
-            </div>
-          </div>
-        </>
-      )}
       <Footer_wrap className="noselect">
         <div className="social_wrap ">{socialItems}</div>
         {footerSwipe(vW, vH)}
