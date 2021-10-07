@@ -30,7 +30,7 @@ const ContainerVariants = {
 function App() {
   const { width: vW, height: vH } = useWindowSize()
 
-  const pageExtraHeight = 3.5
+  const pageExtraHeight = 3.2
   const { scrollYProgress } = useViewportScroll()
 
   useEffect(() => {
@@ -44,11 +44,6 @@ function App() {
     }
   }, [])
 
-  let animatedX = useSpring(0, {
-    stiffness: 800,
-    damping: 100,
-  })
-
   const imagesArr = [
     { id: 1, name: "Nike SB" },
     { id: 2, name: "Rhoncus urna" },
@@ -60,6 +55,10 @@ function App() {
   const moveByFactor = 10.5
   const [maxDragX, setMaxDragX] = useState(0)
 
+  let animatedX = useSpring(0, {
+    stiffness: 800,
+    damping: 100,
+  })
   return (
     <Container
       variants={ContainerVariants}

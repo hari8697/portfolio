@@ -233,7 +233,6 @@ const VanillaHover = ({
 
   useEffect(() => {
     ogFunc()
-
     const unsubscribeY = scrollValueY_animatedX.onChange(() => {
       let tempScrollVal = scrollValueY_animatedX.get()
       isScrollingY = true
@@ -256,15 +255,8 @@ const VanillaHover = ({
         // }, 250)
       }
     })
-
-    setInterval(() => {
-      // console.log(animatedX.get())
-    }, 50)
-
     canvasNode.addEventListener("mouseup", onMouseUp, false)
-
     canvasNode.addEventListener("mousedown", onMouseDown, false)
-
     window.addEventListener("resize", () => {
       // console.log("updated!")
       // console.log(2 * Math.atan(8 / camera.aspect / (2 * 5)) * (180 / Math.PI)) // in degrees
@@ -342,10 +334,10 @@ const VanillaHover = ({
   }
 
   const scrollOnSnap = () => {
-    let currAnimX = animatedX.get()
+    // let currAnimX = animatedX.get()
     let currSelectedElement
     snapArr.map((el) => {
-      if (currAnimX <= el.val) {
+      if (animatedX.get() <= el.val) {
         currSelectedElement = el.id
       }
     })
@@ -353,7 +345,7 @@ const VanillaHover = ({
     const totalPageHeight = pageExtraHeight * vH
     const singleSliceOfPage = totalPageHeight / snapArr.length
     let scrollToValue = singleSliceOfPage * currSelectedElement
-    console.log(scrollToValue)
+    // console.log(scrollToValue)
 
     /**
      * TODO: Implement smooth scrolling if possible
