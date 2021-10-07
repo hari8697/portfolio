@@ -6,8 +6,14 @@ import VanillaHover from "./threejs/VanillaHover"
 import ScrollProgress from "./molecules/ScrollProgress"
 import { useWindowSize } from "@/common/utils/"
 import { device } from "@/common/utils"
-import { motion, useSpring, useTransform } from "framer-motion"
-import React, { useState } from "react"
+import {
+  motion,
+  useSpring,
+  useTransform,
+  useElementScroll,
+  useViewportScroll,
+} from "framer-motion"
+import React, { useEffect, useState, useRef } from "react"
 
 const ContainerVariants = {
   initial: {
@@ -23,6 +29,20 @@ const ContainerVariants = {
 
 function App() {
   const { width: vW, height: vH } = useWindowSize()
+
+  const pageExtraHeight = 3.5
+  const { scrollYProgress } = useViewportScroll()
+
+  useEffect(() => {
+    // const unsubscribeY = y.onChange(() => {
+    //   // console.log("SCROLL!")
+    //   console.log(y.get())
+    // })
+
+    return () => {
+      // unsubscribeY()
+    }
+  }, [])
 
   let animatedX = useSpring(0, {
     stiffness: 800,
@@ -46,13 +66,17 @@ function App() {
       initial="initial"
       animate="animate"
       exit="exit"
+      pageExtraHeight={pageExtraHeight}
     >
-      <BlackScrollSpace></BlackScrollSpace>
       {vW >= 1024 && (
         <VanillaHover
           animatedX={animatedX}
           imagesArr={imagesArr}
           moveByFactor={moveByFactor}
+          scrollValueY={scrollYProgress}
+          vW={vW}
+          vH={vH}
+          pageExtraHeight={pageExtraHeight}
         />
       )}
       <LandingWrapper>
@@ -70,19 +94,14 @@ function App() {
 }
 
 const Container = styled(motion.div)`
-  height: 100%;
+  /* height: 100%; */
+  height: ${(props) => props.pageExtraHeight * 100}vh;
   position: relative;
 
   .threejsCover {
     position: fixed;
     z-index: 0;
   }
-`
-const BlackScrollSpace = styled.div`
-  height: 300vh;
-  width: 100%;
-  position: absolute;
-  top: 0;
 `
 
 const LandingWrapper = styled(motion.div)`

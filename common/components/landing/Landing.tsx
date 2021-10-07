@@ -10,9 +10,10 @@ import {
   Title_wrap,
   Footer_wrap,
 } from "./Landing.style"
-import { useEffect, useState, useRef } from "react"
+import React, { useEffect, useState, useRef } from "react"
 
 import { useWindowSize } from "@/common/utils/"
+import SocialItems from "./molecules/SocialItems"
 
 const ContainerVariants = {
   initial: {
@@ -25,22 +26,6 @@ const ContainerVariants = {
     opacity: 0,
   },
 }
-
-const socialItemsArr = Array.from(Array(4).keys())
-// let iconSize = 18
-const socialItems = socialItemsArr.map((item) => {
-  return (
-    <div className="icon_wrapper" key={item}>
-      <div className="social_icon">
-        <Image
-          src={`/landing/social/${item + 1}.svg`}
-          layout="fill"
-          objectFit="contain"
-        ></Image>
-      </div>
-    </div>
-  )
-})
 
 const footerSwipe = (vW, vH) => {
   if (vW < 768) {
@@ -79,7 +64,6 @@ export default function Landing({
 
   // useEffect(() => {
   //   console.log(vW, vH);
-
   // }, [useWindowSize()])
 
   const portItems = imagesArr.map((item, key) => {
@@ -149,7 +133,7 @@ export default function Landing({
           </Header5>
         )}
       </Header_wrap>
-      {vW < 1023 && (
+      {vW < 1024 && (
         <div className="hero_image">
           <Image src={`/landing/album/1.png`} width={1354} height={761}></Image>
         </div>
@@ -177,7 +161,7 @@ export default function Landing({
         </div>
       </Title_wrap>
       <Footer_wrap className="noselect">
-        <div className="social_wrap ">{socialItems}</div>
+        <SocialItems />
         {footerSwipe(vW, vH)}
       </Footer_wrap>
     </GridContainer>
