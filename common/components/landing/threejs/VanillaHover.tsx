@@ -248,8 +248,13 @@ const VanillaHover = ({
     })
     animatedX.onChange(() => {
       // console.log(panPressed)
+
+      /**
+       * TODO Find a way to scroll without triggering this function, since it breaks the animation
+       */
+
       if (!panPressed && !isScrollingY) {
-        // snapFunc()
+        snapFunc()
         // setTimeout(() => {
         //   snapFunc()
         // }, 250)

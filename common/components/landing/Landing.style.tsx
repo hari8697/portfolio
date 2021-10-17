@@ -110,7 +110,7 @@ export const Title_wrap = styled.div`
       /* clip-path: inset(0px); */
     }
     .unselected_filter {
-      opacity: 0.1;
+      opacity: 0.05;
     }
   }
 `
