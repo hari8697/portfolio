@@ -326,7 +326,7 @@ const VanillaHover = ({
     //   // scrollOnSnap()
     // }
     /**
-     * TODO: Trial without snapping when scrolled
+     * TODO: Move scroll position when dragged/panned
      */
 
     // scrollOnSnap()
