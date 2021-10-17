@@ -35,4 +35,6 @@ export const darkTheme = {
   disabled: neutral[500],
   primaryFont: primaryFont,
   secondaryFont: secondaryFont,
+  scrollThumb: neutral[210],
+  scrollThumbHover: neutral[220],
 }

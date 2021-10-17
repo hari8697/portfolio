@@ -241,15 +241,15 @@ const VanillaHover = ({
         if (scrollValueY_animatedX.get() == tempScrollVal) {
           // Stopped scrolling
           isScrollingY = false
-          snapFunc()
+          // snapFunc()
           // console.log(isScrollingY)
         }
-      }, 120)
+      }, 250)
     })
     animatedX.onChange(() => {
       // console.log(panPressed)
       if (!panPressed && !isScrollingY) {
-        snapFunc()
+        // snapFunc()
         // setTimeout(() => {
         //   snapFunc()
         // }, 250)
@@ -322,7 +322,14 @@ const VanillaHover = ({
       // }
     })
 
-    scrollOnSnap()
+    // if (!isScrollingY) {
+    //   // scrollOnSnap()
+    // }
+    /**
+     * TODO: Trial without snapping when scrolled
+     */
+
+    // scrollOnSnap()
   }
 
   const moveCanvas = () => {
