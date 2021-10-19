@@ -58,6 +58,6 @@ a {
 /* hide scrollbar */
 
 ::-webkit-scrollbar {
-  width: 0px;
+    display: none;  /* Safari and Chrome */
 }
 `

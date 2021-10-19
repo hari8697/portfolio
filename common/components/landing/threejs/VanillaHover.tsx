@@ -336,7 +336,9 @@ const VanillaHover = ({
 
     let currSelectedElement
     snapArr.map((el) => {
-      if (animatedX.get() <= el.val && !panPressed) {
+      if (animatedX.get() >= 0 && !panPressed) {
+        currSelectedElement = 0
+      } else if (animatedX.get() <= el.val && !panPressed) {
         currSelectedElement = el.id
       }
     })
@@ -348,7 +350,7 @@ const VanillaHover = ({
       isSnapping = false
     }
     // console.log(el.id * moveByFactor)
-    // console.log(animatedX.get())
+    console.log(animatedX.get())
     /**
      * ? Don't know why this code exists, probably as a default snap for 0th element?
      */
@@ -373,7 +375,9 @@ const VanillaHover = ({
     let currAnimX = animatedX.get()
     let currSelectedElement
     snapArr.map((el) => {
-      if (animatedX.get() <= el.val) {
+      if (animatedX.get() > 0) {
+        currSelectedElement = 0
+      } else if (animatedX.get() <= el.val) {
         currSelectedElement = el.id
       }
     })
@@ -393,7 +397,7 @@ const VanillaHover = ({
     // //     }, 10)
     // //   }
     // // }
-    console.log(scrollToValue)
+    // console.log(scrollToValue)
     window.scrollTo(0, scrollToValue)
 
     // console.log(scrollVal.get())
