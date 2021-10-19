@@ -33,6 +33,7 @@ a {
   text-decoration: none;
 }
 
+
 /* custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -51,5 +52,12 @@ a {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: ${(props) => props.theme.scrollThumbHover};
+}
+
+
+/* hide scrollbar */
+
+::-webkit-scrollbar {
+  width: 0px;
 }
 `
