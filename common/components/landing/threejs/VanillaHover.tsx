@@ -32,14 +32,23 @@ const VanillaHover = ({
     uMouse = new THREE.Vector2(0, 0)
 
   const snapArr = []
+
+  const totalPageHeight = pageExtraHeight * vH
+
   const maxAnimatedXValue = (imagesArr.length - 1) * moveByFactor
   const scrollValueY_animatedX = useTransform(
     scrollValueY,
     [0, 1],
     [0, -maxAnimatedXValue]
   )
+  let scrollVal = useTransform(
+    animatedX,
+    [0, -maxAnimatedXValue],
+    [0, totalPageHeight]
+  )
 
   let isScrollingY = false
+  let isSnapping = false
 
   const raycaster = new THREE.Raycaster()
   const mouse = new THREE.Vector2()
@@ -232,21 +241,30 @@ const VanillaHover = ({
   }
 
   useEffect(() => {
+    window.onunload = function () {
+      window.scrollTo(0, 0)
+    }
+
     ogFunc()
+
+    const unsubscribeSnap = scrollVal.onChange(() => {})
+
     const unsubscribeY = scrollValueY_animatedX.onChange(() => {
-      let tempScrollVal = scrollValueY_animatedX.get()
-      isScrollingY = true
-      animatedX.set(scrollValueY_animatedX.get())
-      setTimeout(() => {
-        if (scrollValueY_animatedX.get() == tempScrollVal) {
-          // Stopped scrolling
-          isScrollingY = false
-          // snapFunc()
-          // console.log(isScrollingY)
-        }
-      }, 250)
+      if (!isSnapping) {
+        let tempScrollVal = scrollValueY_animatedX.get()
+        isScrollingY = true
+        animatedX.set(scrollValueY_animatedX.get())
+        // setTimeout(() => {
+        //   if (scrollValueY_animatedX.get() == tempScrollVal) {
+        //     // Stopped scrolling
+        //     // isScrollingY = false
+        //     // snapFunc()
+        //     // console.log(isScrollingY)
+        //   }
+        // }, 250)
+      }
     })
-    animatedX.onChange(() => {
+    const unsubscribeAnimX = animatedX.onChange(() => {
       // console.log(panPressed)
 
       /**
@@ -279,7 +297,9 @@ const VanillaHover = ({
     })
 
     return () => {
+      unsubscribeSnap()
       unsubscribeY()
+      unsubscribeAnimX()
       var myNode = canvasEl.current
       if (myNode) {
         while (myNode.firstChild) {
@@ -299,6 +319,7 @@ const VanillaHover = ({
   //   }
   // }
   const snapFunc = () => {
+    isSnapping = true
     // OG DRY implementation
     // const snapArr = [-13, -5, 0]
     // if (animatedX.get() <= snapArr[0]) animatedX.set(-18)
@@ -311,30 +332,33 @@ const VanillaHover = ({
     //   { id: 1, val: -5.25 },
     //   { id: 2, val: -15.75 },
     // ]
+    // console.log(isScrollingY)
 
-    snapArr.forEach((el) => {
+    let currSelectedElement
+    snapArr.map((el) => {
       if (animatedX.get() <= el.val && !panPressed) {
-        animatedX.set(-(el.id * moveByFactor))
-        // console.log(el.id * moveByFactor)
-        // console.log(animatedX.get())
+        currSelectedElement = el.id
       }
-
-      /**
-       * ? Don't know why this code exists, probably as a default snap for 0th element?
-       */
-      // if (el.id == 0 && !panPressed) {
-      //   animatedX.set(0)
-      // }
     })
+
+    animatedX.set(-(currSelectedElement * moveByFactor))
+    scrollOnSnap()
+
+    if (animatedX.get() == -(currSelectedElement * moveByFactor)) {
+      isSnapping = false
+    }
+    // console.log(el.id * moveByFactor)
+    // console.log(animatedX.get())
+    /**
+     * ? Don't know why this code exists, probably as a default snap for 0th element?
+     */
+    // if (el.id == 0 && !panPressed) {
+    //   animatedX.set(0)
+    // }
 
     // if (!isScrollingY) {
     //   // scrollOnSnap()
     // }
-    /**
-     * TODO: Move scroll position when dragged/panned
-     */
-
-    // scrollOnSnap()
   }
 
   const moveCanvas = () => {
@@ -346,34 +370,35 @@ const VanillaHover = ({
   }
 
   const scrollOnSnap = () => {
-    // let currAnimX = animatedX.get()
+    let currAnimX = animatedX.get()
     let currSelectedElement
     snapArr.map((el) => {
       if (animatedX.get() <= el.val) {
         currSelectedElement = el.id
       }
     })
-
     const totalPageHeight = pageExtraHeight * vH
     const singleSliceOfPage = totalPageHeight / snapArr.length
     let scrollToValue = singleSliceOfPage * currSelectedElement
-    // console.log(scrollToValue)
-
+    // // console.log(scrollToValue)
     /**
      * TODO: Implement smooth scrolling if possible
      */
-
-    // const smoothScroll = (h) => {
-    //   let i = h || 0
-    //   if (i < scrollToValue) {
-    //     setTimeout(() => {
-    //       window.scrollTo(0, i)
-    //       smoothScroll(i + 10)
-    //     }, 10)
-    //   }
-    // }
-
+    // // const smoothScroll = (h) => {
+    // //   let i = h || 0
+    // //   if (i < scrollToValue) {
+    // //     setTimeout(() => {
+    // //       window.scrollTo(0, i)
+    // //       smoothScroll(i + 10)
+    // //     }, 10)
+    // //   }
+    // // }
+    console.log(scrollToValue)
     window.scrollTo(0, scrollToValue)
+
+    // console.log(scrollVal.get())
+
+    // window.scrollTo(0, scrollVal.get())
   }
 
   function onPan(event, info) {
@@ -480,6 +505,7 @@ const VanillaHover = ({
   }
 
   const onMouseDown = () => {
+    isScrollingY = false
     // console.log(panPressed)
   }
   const onMouseUp = () => {
