@@ -4,12 +4,7 @@ import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 import { GlobalStyle, defaultTheme, darkTheme } from "@/utils/index"
 import Head from "next/head"
 
-type Props = {
-  children?: ReactNode
-  title?: string
-}
-
-const Layout = ({ children, title = "DeathSpace LMAO" }: Props) => {
+const Layout = ({ children, title = "DeathSpace Design" }) => {
   const [useDarkTheme, useDarkThemeSet] = useState(true)
   return (
     <StyledLayout>

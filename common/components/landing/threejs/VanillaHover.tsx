@@ -350,10 +350,13 @@ const VanillaHover = ({
       isSnapping = false
     }
     // console.log(el.id * moveByFactor)
-    console.log(animatedX.get())
+    // console.log(animatedX.get())
+
     /**
      * ? Don't know why this code exists, probably as a default snap for 0th element?
+     * * Yup, this was a default snap for the first (0th) element
      */
+
     // if (el.id == 0 && !panPressed) {
     //   animatedX.set(0)
     // }

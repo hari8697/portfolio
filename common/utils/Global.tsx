@@ -54,10 +54,9 @@ a {
   background-color: ${(props) => props.theme.scrollThumbHover};
 }
 
-
 /* hide scrollbar */
 
 ::-webkit-scrollbar {
-    display: none;  /* Safari and Chrome */
-}
+      display: none; /* Safari and Chrome */
+    }
 `

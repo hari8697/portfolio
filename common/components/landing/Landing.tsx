@@ -14,6 +14,7 @@ import React, { useEffect, useState, useRef } from "react"
 
 import { useWindowSize } from "@/common/utils/"
 import SocialItems from "./molecules/SocialItems"
+import Link from "next/link"
 
 const ContainerVariants = {
   initial: {
@@ -77,7 +78,7 @@ export default function Landing({
 
     // Title anim Values
 
-    if (title_wrapper != null || undefined) {
+    if (title_wrapper.current != null || undefined) {
       titleWrapperHeight = title_wrapper.current.offsetHeight
 
       // Get height of element without margin
@@ -124,13 +125,17 @@ export default function Landing({
           ></Image>
         </div>
         {vW < 768 ? (
-          <Paragraph className="link_about clickable" highlighted capsON>
-            About
-          </Paragraph>
+          <Link href="/about">
+            <Paragraph className="link_about clickable" highlighted capsON>
+              About
+            </Paragraph>
+          </Link>
         ) : (
-          <Header5 highlighted capsON className="link_about clickable">
-            About
-          </Header5>
+          <Link href="/about">
+            <Header5 highlighted capsON className="link_about clickable">
+              About
+            </Header5>
+          </Link>
         )}
       </Header_wrap>
       {vW < 1024 && (
