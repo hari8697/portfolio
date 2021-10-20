@@ -51,9 +51,11 @@ export const red: Props = {
   500: "#C30052", // Dark
 }
 
-export const neutral: Props = {
+export const neutral = {
   100: "#F7F7FC", // Background
   200: "#fcfcfc", // Off-white
+  210: "#fcfcfc22", // Scroll Thumb
+  220: "#fcfcfc63", // Scroll Thumb Hover
   300: "#EFF0F6", // Input Background
   400: "#D9DBE9", // Line
   500: "#A0A3BD", // Placeholder

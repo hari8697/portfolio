@@ -3,14 +3,8 @@ import styled, { ThemeProvider } from "styled-components"
 import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 import { GlobalStyle, defaultTheme, darkTheme } from "@/utils/index"
 import Head from "next/head"
-import { device } from "@/common/utils"
 
-type Props = {
-  children?: ReactNode
-  title?: string
-}
-
-const Layout = ({ children, title = "DeathSpace LMAO" }: Props) => {
+const Layout = ({ children, title = "DeathSpace Design" }) => {
   const [useDarkTheme, useDarkThemeSet] = useState(true)
   return (
     <StyledLayout>
@@ -36,9 +30,8 @@ const Layout = ({ children, title = "DeathSpace LMAO" }: Props) => {
 
 const StyledLayout = styled.div`
   min-height: 100vh;
-  max-height: 100vh;
-  overflow: hidden;
-  padding: 56px 0 32px 0;
+  /* max-height: 100vh; */
+  /* overflow: hidden; */
   display: grid;
   place-items: center;
   /* grid-template-rows: max-content 1fr; */
@@ -50,14 +43,6 @@ const StyledLayout = styled.div`
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
-  }
-
-  @media ${device.tablet} {
-    padding: 72px 0 50px 0;
-  }
-
-  @media ${device.laptopL} {
-    padding: 96px 0 70px 0;
   }
 `
 

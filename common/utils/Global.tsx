@@ -32,4 +32,31 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: ${(props) => props.theme.scrollThumb};
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: ${(props) => props.theme.scrollThumbHover};
+}
+
+/* hide scrollbar */
+
+::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
 `
