@@ -71,7 +71,7 @@ export const SwooshContain = styled.div`
 `
 export const SwooshWrap = styled.div`
   position: absolute;
-  top: 50%;
+  top: 47%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
