@@ -71,7 +71,7 @@ export const SwooshContain = styled.div`
 `
 export const SwooshWrap = styled.div`
   position: absolute;
-  top: 52%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
@@ -81,7 +81,7 @@ export const SwooshWrap = styled.div`
   /* min-height: 100vh; */
 
   @media ${device.mobileM} {
-    top: 58%;
+    top: 52%;
   }
 
   @media ${device.tablet} {
