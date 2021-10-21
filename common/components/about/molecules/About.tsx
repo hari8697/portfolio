@@ -17,7 +17,7 @@ const ContainerVariants = {
   animate: {
     opacity: 1,
     transition: {
-      delay: 0.8,
+      delay: 0.5,
     },
   },
   exit: {
@@ -33,7 +33,7 @@ const About = () => {
       animate="animate"
       exit="exit"
     >
-      <GridContainer>
+      <AboutGrid>
         <NavBar>
           <Link href="/">
             <PaddingWrap>
@@ -48,7 +48,7 @@ const About = () => {
             <Image src="/common/DeathSpace_Logo.svg" layout="fill"></Image>
           </Logo_ImgWrap>
         </LogoContainer>
-      </GridContainer>
+      </AboutGrid>
     </AboutWrap>
   )
 }
@@ -56,9 +56,12 @@ const AboutWrap = styled(motion.div)`
   width: 100%;
   height: 100%;
 `
+const AboutGrid = styled(GridContainer)`
+  position: relative;
+`
 const NavBar = styled.div`
-  /* height: 10vh; */
-  /* margin-top: 4vh; */
+  /* position: sticky;
+  top: 5%; */
   width: 100%;
   display: grid;
   align-items: center;

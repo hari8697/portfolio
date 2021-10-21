@@ -7,6 +7,7 @@ export const PaddingWrap = styled.div`
   justify-self: flex-end;
   /* margin: 0 auto; */
   /* margin-left: auto; */
+  transition: opacity 0.1s ease-in-out;
 
   @media ${device.tablet} {
     justify-self: center;
@@ -47,7 +48,7 @@ export const LogoContainer = styled.div`
   margin: 0 10%;
 
   @media ${device.tablet} {
-    height: 85vh;
+    height: 80vh;
     margin: 0;
     grid-column: 3 / 7;
   }
@@ -76,6 +77,7 @@ export const SwooshWrap = styled.div`
   z-index: -1;
   width: 100%;
   height: 100%;
+  min-height: 50vw;
   /* overflow: hidden; */
   /* min-height: 100vh; */
 
@@ -87,6 +89,12 @@ export const SwooshWrap = styled.div`
   }
 
   @media ${device.laptopL} and (orientation: landscape) {
+    top: 12%;
+  }
+  @media ${device.desktop} and (orientation: landscape) {
+    top: 15%;
+  }
+  @media ${device.desktopL} and (orientation: landscape) {
     top: 12%;
   }
 
