@@ -71,37 +71,23 @@ export const SwooshContain = styled.div`
 `
 export const SwooshWrap = styled.div`
   position: absolute;
-  top: 47%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 6%;
+  /* left: 50%; */
   z-index: -1;
-  width: 300%;
-  height: 300%;
+  width: 100%;
+  height: 100%;
   /* overflow: hidden; */
   /* min-height: 100vh; */
 
   @media ${device.mobileM} {
-    top: 52%;
+    top: 9%;
   }
 
   @media ${device.tablet} {
-    width: 150%;
-    top: 60vh;
   }
 
   @media ${device.laptopL} and (orientation: landscape) {
-    width: 100%;
-  }
-
-  .lmao {
-    stroke: linear-gradient(
-      255.43deg,
-      #fa00ff 2.2%,
-      #8f00ff 24.37%,
-      #2400ff 55.66%,
-      rgba(36, 0, 255, 0.37) 60.85%,
-      rgba(0, 0, 0, 0) 92.5%
-    );
+    top: 12%;
   }
 
   .line {

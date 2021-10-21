@@ -25,6 +25,8 @@ const VanillaHover = ({
 }) => {
   const canvasEl = useRef(null)
 
+  let reqAnimFrame
+
   // const [panPressed, setPanPressed] = useState(false)
   let camera, scene, renderer, composer, renderPass, customPass, canvasNode
   let material,
@@ -194,7 +196,7 @@ const VanillaHover = ({
       // renderer.render( scene, camera );
       composer.render()
 
-      requestAnimationFrame(animate)
+      reqAnimFrame = requestAnimationFrame(animate)
 
       // 165 fps limiter
 
@@ -242,7 +244,7 @@ const VanillaHover = ({
 
   useEffect(() => {
     window.onunload = function () {
-      window.scrollTo(0, 0)
+      // window.scrollTo(0, 0)
     }
 
     ogFunc()
@@ -280,32 +282,32 @@ const VanillaHover = ({
     })
     canvasNode.addEventListener("mouseup", onMouseUp, false)
     canvasNode.addEventListener("mousedown", onMouseDown, false)
-    window.addEventListener("resize", () => {
-      // console.log("updated!")
-      // console.log(2 * Math.atan(8 / camera.aspect / (2 * 5)) * (180 / Math.PI)) // in degrees
-      // camera.fov = 2 * Math.atan(12 / camera.aspect / (2 * 5)) * (180 / Math.PI)
+    window.addEventListener("resize", onResize)
 
-      canvasNode = canvasEl.current
-
-      if (canvasNode) {
-        // panPressed = false
-        camera.aspect = canvasNode.offsetWidth / canvasNode.offsetHeight
-        camera.updateProjectionMatrix()
-        renderer.setSize(canvasNode.offsetWidth, canvasNode.offsetHeight)
-        composer.setSize(canvasNode.offsetWidth, canvasNode.offsetHeight)
-      }
-    })
-
+    /**
+     * TODO: Cleanup all GPU intensive stuff.
+     */
     return () => {
-      unsubscribeSnap()
-      unsubscribeY()
-      unsubscribeAnimX()
       var myNode = canvasEl.current
       if (myNode) {
         while (myNode.firstChild) {
           myNode.removeChild(myNode.lastChild)
         }
       }
+
+      window.removeEventListener("resize", onResize)
+
+      /**
+       * * Clear all framer motion onChange listeners
+       */
+      unsubscribeSnap()
+      unsubscribeY()
+      unsubscribeAnimX()
+
+      /**
+       * * Clear the animation loop when unmounted
+       */
+      cancelAnimationFrame(reqAnimFrame)
     }
   }, [])
 
@@ -318,6 +320,23 @@ const VanillaHover = ({
   //     return i
   //   }
   // }
+
+  const onResize = () => {
+    // console.log("updated!")
+    // console.log(2 * Math.atan(8 / camera.aspect / (2 * 5)) * (180 / Math.PI)) // in degrees
+    // camera.fov = 2 * Math.atan(12 / camera.aspect / (2 * 5)) * (180 / Math.PI)
+
+    canvasNode = canvasEl.current
+
+    if (canvasNode) {
+      // panPressed = false
+      camera.aspect = canvasNode.offsetWidth / canvasNode.offsetHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(canvasNode.offsetWidth, canvasNode.offsetHeight)
+      composer.setSize(canvasNode.offsetWidth, canvasNode.offsetHeight)
+    }
+  }
+
   const snapFunc = () => {
     isSnapping = true
     // OG DRY implementation
