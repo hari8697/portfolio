@@ -1,19 +1,31 @@
-import { SwooshContain, SwooshWrap } from "../molecules/About.style"
-
 import Lottie from "react-lottie"
-import animationData from "@/public/json/about/data3.json"
+import animData from "@/public/json/about/data.json"
+import animData_mobile from "@/public/json/about/data_mobile.json"
 import { useEffect, useState } from "react"
+import { SwooshContain, SwooshWrap } from "../molecules/About.style"
+import { useWindowSize } from "@/common/utils/"
+
 const Swoosh = () => {
   const defaultOptions = {
     loop: false,
     autoplay: false,
-    animationData,
+    animationData: animData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  }
+  const mobileOptions = {
+    loop: false,
+    autoplay: false,
+    animationData: animData_mobile,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
   }
 
   const [isPaused, setIsPaused] = useState(true)
+  const { width: vW, height: vH } = useWindowSize()
+
   useEffect(() => {
     // setTimeout(() => {
     //   setIsPaused(false)
@@ -21,13 +33,18 @@ const Swoosh = () => {
     setIsPaused(false)
     return () => {}
   }, [])
+
+  /**
+   * * Dynamic lottie json for responsiveness
+   */
+
   return (
     <SwooshContain>
       <SwooshWrap>
         <Lottie
-          options={defaultOptions}
+          options={vW / vH < 1 && vW <= 1024 ? mobileOptions : defaultOptions}
           isStopped={false}
-          isPaused={isPaused}
+          isPaused={false}
         />
       </SwooshWrap>
     </SwooshContain>

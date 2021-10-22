@@ -39,6 +39,7 @@ export const Logo_ImgWrap = styled.div`
   height: 100%;
   max-height: 20vh;
 `
+
 export const LogoContainer = styled.div`
   height: 80vh;
   display: flex;
@@ -61,6 +62,7 @@ export const LogoContainer = styled.div`
 /*=============================================
 =            Swoosh Component            =
 =============================================*/
+
 export const SwooshContain = styled.div`
   width: 100%;
   height: 110%;
@@ -70,9 +72,10 @@ export const SwooshContain = styled.div`
   left: 0;
   pointer-events: none;
 `
+
 export const SwooshWrap = styled.div`
   position: absolute;
-  top: 6%;
+  top: 1%;
   /* left: 50%; */
   z-index: -1;
   width: 100%;
@@ -82,12 +85,15 @@ export const SwooshWrap = styled.div`
   /* min-height: 100vh; */
 
   @media ${device.mobileM} {
-    top: 9%;
+    top: 3%;
   }
 
   @media ${device.tablet} {
   }
 
+  @media ${device.laptop} and (orientation: landscape) {
+    top: 10%;
+  }
   @media ${device.laptopL} and (orientation: landscape) {
     top: 12%;
   }

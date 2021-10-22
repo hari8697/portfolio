@@ -17,7 +17,7 @@ const ContainerVariants = {
   animate: {
     opacity: 1,
     transition: {
-      delay: 1.5,
+      delay: 0.5,
     },
   },
   exit: {
