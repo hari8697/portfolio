@@ -17,14 +17,9 @@ const ContainerVariants = {
 }
 const App = () => {
   return (
-    <AppWrap
-      variants={ContainerVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
+    <AppWrap>
+      <Swoosh></Swoosh>
       <About></About>
-      <Swoosh />
     </AppWrap>
   )
 }
