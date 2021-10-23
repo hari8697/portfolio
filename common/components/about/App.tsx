@@ -3,6 +3,7 @@ import About from "./molecules/About"
 import styled from "styled-components"
 import { device } from "@/common/utils"
 import Swoosh from "@/components/about/atoms/Swoosh"
+import { padding_for_pages } from "../styled/BaseStyles"
 
 const ContainerVariants = {
   initial: {
@@ -32,14 +33,9 @@ const App = () => {
 const AppWrap = styled(motion.div)`
   width: 100%;
   height: 100%;
-  padding: 56px 0 32px 0;
 
-  @media ${device.tablet} {
-    padding: 72px 0 50px 0;
-  }
+  position: relative;
 
-  @media ${device.desktop} {
-    padding: 96px 0 70px 0;
-  }
+  ${padding_for_pages}
 `
 export default App

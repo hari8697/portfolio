@@ -1,7 +1,6 @@
 import Image from "next/image"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import Link from "next/link"
-import { GridContainer } from "@/components/landing/Landing.style"
 import {
   CloseBtn_ImgWrap,
   LogoContainer,
@@ -9,6 +8,8 @@ import {
   PaddingWrap,
 } from "./About.style"
 import { motion } from "framer-motion"
+import { device, typeScale } from "@/common/utils"
+import { GridContainer, full_W_H, padding_for_pages } from "../../styled"
 
 const ContainerVariants = {
   initial: {
@@ -33,16 +34,16 @@ const About = () => {
       animate="animate"
       exit="exit"
     >
+      <NavBar>
+        <Link href="/">
+          <PaddingWrap>
+            <CloseBtn_ImgWrap>
+              <Image src="/about/close_btn.svg" layout="fill"></Image>
+            </CloseBtn_ImgWrap>
+          </PaddingWrap>
+        </Link>
+      </NavBar>
       <AboutGrid>
-        <NavBar>
-          <Link href="/">
-            <PaddingWrap>
-              <CloseBtn_ImgWrap>
-                <Image src="/about/close_btn.svg" layout="fill"></Image>
-              </CloseBtn_ImgWrap>
-            </PaddingWrap>
-          </Link>
-        </NavBar>
         <LogoContainer>
           <Logo_ImgWrap>
             <Image src="/common/DeathSpace_Logo.svg" layout="fill"></Image>
@@ -52,23 +53,22 @@ const About = () => {
     </AboutWrap>
   )
 }
+
 const AboutWrap = styled(motion.div)`
-  width: 100%;
-  height: 100%;
+  ${full_W_H}
 `
 const AboutGrid = styled(GridContainer)`
   position: relative;
 `
-const NavBar = styled.div`
-  /* position: sticky;
-  top: 5%; */
+const NavBar = styled(GridContainer)`
+  position: fixed;
   width: 100%;
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  grid-template-columns: inherit;
-  gap: inherit;
-  grid-column: 1 / -1;
+  height: auto;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  ${padding_for_pages}
 
   ${PaddingWrap} {
     grid-column: -2 / -1;
