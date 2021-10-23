@@ -4,6 +4,11 @@ import { Bio, ContentWrap, LogoContainer, Logo_ImgWrap } from "./About.style"
 import { motion } from "framer-motion"
 import { GridContainer, full_W_H } from "../../styled"
 
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { fab } from "@fortawesome/free-brands-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
+library.add(fab)
 const ContainerVariants = {
   initial: {
     opacity: 0,
@@ -46,6 +51,7 @@ const About = () => {
             amet aliquam. Quisque id diam vel quam elementum. In ornare quam
             viverra orci sagittis eu volutpat odio.
           </Bio>
+          <FontAwesomeIcon icon={["fab", "github"]} />
         </ContentWrap>
       </AboutGrid>
     </AboutWrap>

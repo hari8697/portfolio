@@ -99,7 +99,6 @@ export const Para = styled.p`
   font-family: ${(props) => props.theme.primaryFont};
   font-size: ${typeScale.mobile.paragraph};
 
-
   @media ${device.tablet} {
     font-size: ${typeScale.tablet.paragraph};
   }

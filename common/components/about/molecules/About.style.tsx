@@ -1,7 +1,18 @@
 import { device, typeScale } from "@/common/utils"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { full_W_H } from "@/components/styled"
 import Div100vh from "react-div-100vh"
+
+export const default_grid_col = css`
+  grid-column: 1 / -1;
+  @media ${device.tablet} {
+    grid-column: 3 / 7;
+  }
+
+  @media ${device.laptop} and (orientation: landscape) {
+    grid-column: 7 / 19;
+  }
+`
 
 export const PaddingWrap = styled.div`
   padding: 0.75rem;
@@ -61,15 +72,7 @@ export const Logo_ImgWrap = styled.div`
   max-height: 20vh;
 
   grid-template-columns: inherit;
-  grid-column: 1 / -1;
-
-  @media ${device.tablet} {
-    grid-column: 3 / 7;
-  }
-
-  @media ${device.laptop} and (orientation: landscape) {
-    grid-column: 7 / 19;
-  }
+  ${default_grid_col}
 `
 
 /*=====  End of Main Logo  ======*/
@@ -141,7 +144,12 @@ export const SwooshWrap = styled.div`
 =            Content Wrap            =
 =============================================*/
 
-export const ContentWrap = styled.div``
-export const Bio = styled.div``
+export const ContentWrap = styled.div`
+  ${default_grid_col}
+  padding: 100px 0;
+`
+export const Bio = styled.p`
+  font-weight: normal;
+`
 
 /*=====  End of Content Wrap  ======*/
