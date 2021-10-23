@@ -5,10 +5,29 @@ import { motion } from "framer-motion"
 import { GridContainer, full_W_H } from "../../styled"
 
 import { library } from "@fortawesome/fontawesome-svg-core"
-import { fab } from "@fortawesome/free-brands-svg-icons"
+import {
+  fab,
+  faJsSquare,
+  faHtml5,
+  faCss3Alt,
+  faNode,
+  faGithub,
+  faReact,
+  faVuejs,
+  faGitlab,
+  faDocker,
+  faFigma,
+  faSass,
+  faNpm,
+  faUnity,
+  faSourcetree,
+} from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
+import {} from "@fortawesome/free-solid-svg-icons"
+
 library.add(fab)
+
 const ContainerVariants = {
   initial: {
     opacity: 0,
@@ -25,6 +44,26 @@ const ContainerVariants = {
 }
 
 const About = () => {
+  const iconsArr = [
+    faJsSquare,
+    faHtml5,
+    faCss3Alt,
+    faNode,
+    faGithub,
+    faReact,
+    faVuejs,
+    faGitlab,
+    faDocker,
+    faFigma,
+    faSass,
+    faNpm,
+    faUnity,
+    faSourcetree,
+  ]
+
+  const icons = iconsArr.map((item) => {
+    return <FontAwesomeIcon icon={item} className="icon" />
+  })
   return (
     <AboutWrap
       variants={ContainerVariants}
@@ -51,13 +90,43 @@ const About = () => {
             amet aliquam. Quisque id diam vel quam elementum. In ornare quam
             viverra orci sagittis eu volutpat odio.
           </Bio>
-          <FontAwesomeIcon icon={["fab", "github"]} />
+          <IconWrap>
+            {/* <FontAwesomeIcon icon={["fab", "github"]} />
+            <FontAwesomeIcon icon={["fab", "react"]} />
+            <FontAwesomeIcon icon={["fab", "vuejs"]} /> */}
+            {icons}
+          </IconWrap>
         </ContentWrap>
       </AboutGrid>
     </AboutWrap>
   )
 }
+const IconWrap = styled.div`
+  width: 100%;
+  height: 45px;
+  display: flex;
 
+  /* justify-content: space-evenly; */
+  grid-gap: 3%;
+
+  margin: 120px 0;
+
+  .icon {
+    opacity: 0.5;
+    /* margin: 0.5rem 0.25rem; */
+    width: min-content;
+    height: min-content;
+    /* width: auto; */
+    /* height: 70%; */
+    max-height: 80%;
+    padding: 2px 1px;
+    transition: opacity 0.25s ease-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+`
 const AboutWrap = styled(motion.div)`
   ${full_W_H}
 `
