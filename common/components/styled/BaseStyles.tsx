@@ -19,7 +19,7 @@ export const full_W_H = css`
   height: 100%;
 `
 
-export const GridContainer = styled.div`
+export const GridContainer = css`
   /* height: 100%; */
   position: relative;
   display: grid;

@@ -1,15 +1,8 @@
 import Image from "next/image"
-import styled, { css } from "styled-components"
-import Link from "next/link"
-import {
-  CloseBtn_ImgWrap,
-  LogoContainer,
-  Logo_ImgWrap,
-  PaddingWrap,
-} from "./About.style"
+import styled from "styled-components"
+import { Bio, ContentWrap, LogoContainer, Logo_ImgWrap } from "./About.style"
 import { motion } from "framer-motion"
-import { device, typeScale } from "@/common/utils"
-import { GridContainer, full_W_H, padding_for_pages } from "../../styled"
+import { GridContainer, full_W_H } from "../../styled"
 
 const ContainerVariants = {
   initial: {
@@ -34,21 +27,26 @@ const About = () => {
       animate="animate"
       exit="exit"
     >
-      <NavBar>
-        <Link href="/">
-          <PaddingWrap>
-            <CloseBtn_ImgWrap>
-              <Image src="/about/close_btn.svg" layout="fill"></Image>
-            </CloseBtn_ImgWrap>
-          </PaddingWrap>
-        </Link>
-      </NavBar>
       <AboutGrid>
         <LogoContainer>
           <Logo_ImgWrap>
             <Image src="/common/DeathSpace_Logo.svg" layout="fill"></Image>
           </Logo_ImgWrap>
         </LogoContainer>
+        <ContentWrap>
+          <Bio>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia
+            quis vel eros donec ac odio. Nulla facilisi cras fermentum odio eu
+            feugiat. Massa enim nec dui nunc mattis enim ut. Malesuada fames ac
+            turpis egestas. Varius quam quisque id diam vel quam elementum. Quis
+            viverra nibh cras pulvinar mattis nunc sed blandit libero. Ac
+            placerat vestibulum lectus mauris ultrices eros. Mauris commodo quis
+            imperdiet massa tincidunt nunc pulvinar sapien et. Ut pharetra sit
+            amet aliquam. Quisque id diam vel quam elementum. In ornare quam
+            viverra orci sagittis eu volutpat odio.
+          </Bio>
+        </ContentWrap>
       </AboutGrid>
     </AboutWrap>
   )
@@ -57,22 +55,9 @@ const About = () => {
 const AboutWrap = styled(motion.div)`
   ${full_W_H}
 `
-const AboutGrid = styled(GridContainer)`
+const AboutGrid = styled.div`
   position: relative;
-`
-const NavBar = styled(GridContainer)`
-  position: fixed;
-  width: 100%;
-  height: auto;
-  top: 0;
-  left: 0;
-  z-index: 10;
-
-  ${padding_for_pages}
-
-  ${PaddingWrap} {
-    grid-column: -2 / -1;
-  }
+  ${GridContainer}
 `
 
 export default About

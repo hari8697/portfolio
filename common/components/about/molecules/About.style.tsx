@@ -1,5 +1,7 @@
 import { device, typeScale } from "@/common/utils"
 import styled from "styled-components"
+import { full_W_H } from "@/components/styled"
+import Div100vh from "react-div-100vh"
 
 export const PaddingWrap = styled.div`
   padding: 0.75rem;
@@ -33,24 +35,35 @@ export const CloseBtn_ImgWrap = styled.div`
   }
 `
 
-export const Logo_ImgWrap = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  max-height: 20vh;
-`
+/*=============================================
+=            Main Logo            =
+=============================================*/
 
-export const LogoContainer = styled.div`
-  height: 75vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const LogoContainer = styled(Div100vh)`
+  height: 100%;
+  display: grid;
+  place-items: center;
+  position: relative;
+
+  grid-template-columns: inherit;
   grid-column: 1 / -1;
   margin: 0 10%;
 
   @media ${device.tablet} {
-    height: 80vh;
     margin: 0;
+    /* height: 100vh; */
+  }
+`
+
+export const Logo_ImgWrap = styled.div`
+  position: relative;
+  ${full_W_H}
+  max-height: 20vh;
+
+  grid-template-columns: inherit;
+  grid-column: 1 / -1;
+
+  @media ${device.tablet} {
     grid-column: 3 / 7;
   }
 
@@ -59,6 +72,8 @@ export const LogoContainer = styled.div`
   }
 `
 
+/*=====  End of Main Logo  ======*/
+
 /*=============================================
 =            Swoosh Component            =
 =============================================*/
@@ -66,9 +81,10 @@ export const LogoContainer = styled.div`
 export const SwooshContain = styled.div`
   width: 100%;
   height: 110%;
-  overflow: hidden;
+  max-height: 120vh;
+  overflow-x: hidden;
   position: absolute;
-  top: -2%;
+  top: 0%;
   left: 0;
   pointer-events: none;
 `
@@ -84,27 +100,48 @@ export const SwooshWrap = styled.div`
   /* overflow: hidden; */
   /* min-height: 100vh; */
 
+  /**
+   *
+   * TODO Broke the swoosh positioning, fix soon
+   *
+   */
+
   @media ${device.mobileM} {
     top: 0%;
   }
 
   @media ${device.tablet} {
+    top: 0%;
   }
 
   @media ${device.tablet} and (orientation: landscape) {
-    top: 9%;
+    top: 5%;
   }
 
   @media ${device.laptop} and (orientation: landscape) {
-    top: 9%;
+    top: 5%;
   }
+
   @media ${device.laptopL} and (orientation: landscape) {
-    top: 10%;
+    top: 5%;
   }
+
   @media ${device.desktop} and (orientation: landscape) {
-    top: 15%;
+    top: 8%;
   }
+
   @media ${device.desktopL} and (orientation: landscape) {
-    top: 11%;
+    top: 8%;
   }
 `
+
+/*=====  End of Swoosh Component  ======*/
+
+/*=============================================
+=            Content Wrap            =
+=============================================*/
+
+export const ContentWrap = styled.div``
+export const Bio = styled.div``
+
+/*=====  End of Content Wrap  ======*/
