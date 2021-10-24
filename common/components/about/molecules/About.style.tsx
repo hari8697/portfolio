@@ -1,6 +1,6 @@
 import { device, typeScale } from "@/common/utils"
 import styled, { css } from "styled-components"
-import { full_W_H } from "@/components/styled"
+import { full_W_H, GridContainer } from "@/components/styled"
 import Div100vh from "react-div-100vh"
 
 export const default_grid_col = css`
@@ -11,6 +11,20 @@ export const default_grid_col = css`
 
   @media ${device.laptop} and (orientation: landscape) {
     grid-column: 7 / 19;
+  }
+`
+export const about_grid_col = css`
+  grid-column: 1 / -1;
+
+  @media ${device.tablet} {
+    grid-column: 2 / -2;
+  }
+  @media ${device.laptop} and (orientation: landscape) {
+    grid-column: 4 / -4;
+  }
+
+  @media ${device.laptopL} and (orientation: landscape) {
+    grid-column: 7 / -7;
   }
 `
 
@@ -49,7 +63,10 @@ export const CloseBtn_ImgWrap = styled.div`
 /*=============================================
 =            Main Logo            =
 =============================================*/
-
+export const LogoGrid = styled.div`
+  width: 100%;
+  ${GridContainer}
+`
 export const LogoContainer = styled(Div100vh)`
   height: 100%;
   display: grid;
@@ -144,11 +161,12 @@ export const SwooshWrap = styled.div`
 =            Content Wrap            =
 =============================================*/
 
-export const ContentWrap = styled.div`
-  ${default_grid_col}
-  padding: 100px 0;
+export const BioGrid = styled.div`
+  ${GridContainer}
 `
 export const Bio = styled.p`
+  padding: 100px 0;
+  ${about_grid_col}
   font-weight: normal;
 `
 

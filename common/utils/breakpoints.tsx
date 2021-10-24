@@ -17,6 +17,17 @@ const size = {
   desktopL: "2560px",
 }
 
+export const devicePX = {
+  mobileS: 320,
+  mobileM: 375,
+  mobileL: 425,
+  tablet: 768,
+  laptop: 1024,
+  laptopL: 1440,
+  desktop: 1920,
+  desktopL: 2560,
+}
+
 export const device = {
   mobileS: `(min-width: ${size.mobileS})`,
   mobileM: `(min-width: ${size.mobileM})`,
