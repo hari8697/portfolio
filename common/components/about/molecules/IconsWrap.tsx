@@ -9,6 +9,7 @@ import { full_W_H } from "@/components/styled"
 
 const IconsWrap = (props) => {
   const controls = useAnimation()
+  const controls2 = useAnimation()
   const animation_duration = 30
   const { constraintsRef } = props
   const { width: vW, height: vH } = useWindowSize()
@@ -16,7 +17,7 @@ const IconsWrap = (props) => {
   const iconsArr = Array.from({ length: 14 }, (_, i) => i + 1)
 
   const icons = iconsArr.map((item, index) => {
-    return <Icon key={index} icon={`/about/tech_icons/${item}.svg`} />
+    return <Icon key={index} icon={`/about/tech_icons/${index + 1}.svg`} />
   })
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const IconsWrap = (props) => {
   }, [])
 
   const sequence = async () => {
+    sequence2()
     await controls.start({
       x: ["0%", "-100%"],
       transition: {
@@ -48,46 +50,31 @@ const IconsWrap = (props) => {
     })
   }
 
-  const sequence2 = async () => {}
-
-  const onResize = () => {
-    x = 0
-  }
-
-  const IconWrapVariants = {
-    initial: {
-      x: 0,
-    },
-    animate: {
+  const sequence2 = async () => {
+    controls2.start({
       x: ["0%", "-200%"],
       transition: {
         duration: animation_duration,
         repeat: Infinity,
         ease: "linear",
       },
-    },
+    })
   }
-  function onComplete() {
-    console.log("Animation completed")
+
+  const onResize = () => {
+    x = 0
   }
   return (
     <>
       <IconsWrapper
-        // style={{ x }}
-        // drag={vW < devicePX.tablet && "x"}
+        style={{ x }}
+        drag={vW < devicePX.tablet && "x"}
         dragConstraints={constraintsRef}
-        onAnimationComplete={onComplete}
       >
-        <IconsSet
-          variants={IconWrapVariants}
-          initial="initial"
-          animate={controls}
-        >
+        <IconsSet initial="initial" animate={controls}>
           {icons}
         </IconsSet>
-        <IconsSet variants={IconWrapVariants} animate="animate">
-          {icons}
-        </IconsSet>
+        <IconsSet animate={controls2}>{icons}</IconsSet>
       </IconsWrapper>
     </>
   )

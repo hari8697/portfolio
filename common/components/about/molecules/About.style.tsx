@@ -1,6 +1,7 @@
 import { device, typeScale } from "@/common/utils"
 import styled, { css } from "styled-components"
-import { full_W_H, GridContainer } from "@/components/styled"
+
+import { full_W_H, GridContainer, ParaLarge } from "@/components/styled"
 import Div100vh from "react-div-100vh"
 
 export const default_grid_col = css`
@@ -171,7 +172,7 @@ export const SwooshWrap = styled.div`
 export const BioGrid = styled.div`
   ${GridContainer}
 `
-export const Bio = styled.p`
+export const Bio = styled(ParaLarge)`
   padding: 100px 0;
   ${about_grid_col}
   font-weight: normal;

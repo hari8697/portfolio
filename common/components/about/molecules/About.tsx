@@ -15,7 +15,7 @@ import { motion } from "framer-motion"
 import { GridContainer, full_W_H } from "../../styled"
 import IconsWrap from "./IconsWrap"
 import { useRef } from "react"
-import { H5, ParaLarge } from "@/components/styled/index"
+import { H5, ParaLarge } from "@/components/styled"
 
 const ContainerVariants = {
   initial: {
@@ -51,18 +51,16 @@ const About = () => {
       </LogoGrid>
       <BioGrid>
         <Bio>
-          <ParaLarge>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia
-            quis vel eros donec ac odio. Nulla facilisi cras fermentum odio eu
-            feugiat. Massa enim nec dui nunc mattis enim ut. Malesuada fames ac
-            turpis egestas. Varius quam quisque id diam vel quam elementum. Quis
-            viverra nibh cras pulvinar mattis nunc sed blandit libero. Ac
-            placerat vestibulum lectus mauris ultrices eros. Mauris commodo quis
-            imperdiet massa tincidunt nunc pulvinar sapien et. Ut pharetra sit
-            amet aliquam. Quisque id diam vel quam elementum. In ornare quam
-            viverra orci sagittis eu volutpat odio.
-          </ParaLarge>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia
+          quis vel eros donec ac odio. Nulla facilisi cras fermentum odio eu
+          feugiat. Massa enim nec dui nunc mattis enim ut. Malesuada fames ac
+          turpis egestas. Varius quam quisque id diam vel quam elementum. Quis
+          viverra nibh cras pulvinar mattis nunc sed blandit libero. Ac placerat
+          vestibulum lectus mauris ultrices eros. Mauris commodo quis imperdiet
+          massa tincidunt nunc pulvinar sapien et. Ut pharetra sit amet aliquam.
+          Quisque id diam vel quam elementum. In ornare quam viverra orci
+          sagittis eu volutpat odio.
         </Bio>
       </BioGrid>
       <IconSizingContain ref={constraintsRef}>
