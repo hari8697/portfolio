@@ -14,10 +14,32 @@ const IconsWrap = (props) => {
   const { constraintsRef } = props
   const { width: vW, height: vH } = useWindowSize()
   let x
-  const iconsArr = Array.from({ length: 14 }, (_, i) => i + 1)
+  // const iconsArr = Array.from({ length: 14 }, (_, i) => i + 1)
+  const iconsArr = [
+    "Javascript",
+    "HTML",
+    "CSS",
+    "Node.js",
+    "GitHub",
+    "React",
+    "Vue",
+    "GitLab",
+    "Docker",
+    "Figma",
+    "Sass/Scss",
+    "NPM",
+    "Unity",
+    "Sourcetree",
+  ]
 
   const icons = iconsArr.map((item, index) => {
-    return <Icon key={index} icon={`/about/tech_icons/${index + 1}.svg`} />
+    return (
+      <Icon
+        key={index}
+        icon={`/about/tech_icons/${index + 1}.svg`}
+        name={item}
+      />
+    )
   })
 
   useEffect(() => {
@@ -65,18 +87,16 @@ const IconsWrap = (props) => {
     x = 0
   }
   return (
-    <>
-      <IconsWrapper
-        style={{ x }}
-        drag={vW < devicePX.tablet && "x"}
-        dragConstraints={constraintsRef}
-      >
-        <IconsSet initial="initial" animate={controls}>
-          {icons}
-        </IconsSet>
-        <IconsSet animate={controls2}>{icons}</IconsSet>
-      </IconsWrapper>
-    </>
+    <IconsWrapper
+      style={{ x }}
+      drag={vW < devicePX.tablet && "x"}
+      dragConstraints={constraintsRef}
+    >
+      <IconsSet initial="initial" animate={controls}>
+        {icons}
+      </IconsSet>
+      <IconsSet animate={controls2}>{icons}</IconsSet>
+    </IconsWrapper>
   )
 }
 const IconsSet = styled(motion.div)`
@@ -86,6 +106,9 @@ const IconsSet = styled(motion.div)`
   align-items: center;
   justify-content: space-between;
   margin-left: -8px;
+  padding-bottom: 60px;
+
+  /* padding: 2rem 0; */
 `
 const IconsWrapper = styled(motion.div)`
   ${about_grid_col}
@@ -94,10 +117,10 @@ const IconsWrapper = styled(motion.div)`
   top: 0;
   left: 0;
   min-width: 150vw;
-  height: 50px;
   grid-gap: 8px;
   margin-top: 2rem;
   padding: inherit;
+  /* padding-bottom: 2rem; */
   display: flex;
   align-items: center;
   /* justify-content: space-between; */
@@ -105,12 +128,6 @@ const IconsWrapper = styled(motion.div)`
 
   @media ${device.mobileL} {
     min-width: 120vw;
-  }
-  .icon_wrap {
-    width: 100%;
-    min-width: 50px;
-    height: 100%;
-    position: relative;
   }
 
   @media ${device.tablet} {
@@ -120,10 +137,6 @@ const IconsWrapper = styled(motion.div)`
 
     grid-gap: 1%;
     margin: 2rem 0;
-
-    .icon_wrap {
-      min-width: initial;
-    }
   }
 
   img {
@@ -132,15 +145,6 @@ const IconsWrapper = styled(motion.div)`
     -moz-user-drag: none;
     -o-user-drag: none;
     user-drag: none;
-  }
-  .icon {
-    opacity: 0.5;
-    cursor: pointer;
-    transition: opacity 0.25s ease-out;
-
-    &:hover {
-      opacity: 1;
-    }
   }
 `
 

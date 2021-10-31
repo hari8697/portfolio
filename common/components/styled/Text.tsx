@@ -22,7 +22,7 @@ interface text_size_template_props {
   desktopL?: string
 }
 
-const text_size_template = ({
+export const text_size_template = ({
   mobile,
   mobileM,
   mobileL,
