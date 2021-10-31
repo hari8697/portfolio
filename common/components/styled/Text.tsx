@@ -11,119 +11,158 @@ const textStyle = css`
   line-height: 122%;
 `
 
-export const h1Style = css`
-  font-family: ${(props) => props.theme.secondaryFont};
-  font-size: ${typeScale.mobile.header2};
+interface text_size_template_props {
+  mobile?: string
+  mobileM?: string
+  mobileL?: string
+  tablet?: string
+  laptop?: string
+  laptopL?: string
+  desktop?: string
+  desktopL?: string
+}
+
+const text_size_template = ({
+  mobile,
+  mobileM,
+  mobileL,
+  tablet,
+  laptop,
+  laptopL,
+  desktop,
+  desktopL,
+}: text_size_template_props) => css`
+  font-size: ${typeScale.mobile[mobile]};
 
   @media ${device.mobileM} {
-    font-size: ${typeScale.mobile.header1};
+    font-size: ${typeScale.mobile[mobileM]};
   }
-
   @media ${device.mobileL} {
-    font-size: ${typeScale.mobile.large};
+    font-size: ${typeScale.mobile[mobileL]};
   }
-
   @media ${device.tablet} {
-    font-size: ${typeScale.tablet.xl};
+    font-size: ${typeScale.tablet[tablet]};
   }
-
   @media ${device.laptop} {
-    font-size: ${typeScale.desktop.header1};
+    font-size: ${typeScale.desktop[laptop]};
   }
-
+  @media ${device.laptopL} {
+    font-size: ${typeScale.desktop[laptopL]};
+  }
   @media ${device.desktop} {
-    font-size: ${typeScale.desktop.xl};
+    font-size: ${typeScale.desktop[desktop]};
   }
-
   @media ${device.desktopL} {
-    font-size: ${typeScale.desktop.xxl};
+    font-size: ${typeScale.desktop[desktopL]};
   }
+`
+
+export const h1Style = css`
+  ${text_size_template({
+    mobile: "header2",
+    mobileM: "header1",
+    mobileL: "large",
+    tablet: "xl",
+    laptop: "header1",
+    desktop: "xl",
+    desktopL: "xxl",
+  })};
 `
 
 export const H1 = styled.h1`
   ${headerStyle}
+  
+  font-family: ${(props) => props.theme.secondaryFont};
   ${h1Style}
+
 `
 
 export const H2 = styled.h2`
   ${headerStyle}
   font-family: ${(props) => props.theme.secondaryFont};
-  font-size: ${typeScale.mobile.header2};
-
-
-  @media ${device.tablet} {
-    font-size: ${typeScale.tablet.header2};
-  }
-
-  @media ${device.laptop} {
-    font-size: ${typeScale.desktop.header2};
-  }
+  ${text_size_template({
+    mobile: "header2",
+    laptop: "header2",
+    desktop: "header2",
+  })};
 `
 
 export const H3 = styled.h3`
   ${headerStyle}
   font-family: ${(props) => props.theme.secondaryFont};
-  font-size: ${typeScale.mobile.header3};
-
-  @media ${device.laptop} {
-    font-size: ${typeScale.desktop.header3};
-  }
+  
+  ${text_size_template({
+    mobile: "header3",
+    laptop: "header3",
+  })};
 `
 
 export const H4 = styled.h4`
   ${headerStyle}
   font-family: ${(props) => props.theme.secondaryFont};
-  font-size: ${typeScale.mobile.header4};
 
-  @media ${device.laptop} {
-    font-size: ${typeScale.desktop.header4};
-  }
+  ${text_size_template({
+    mobile: "header4",
+    laptop: "header4",
+  })};
 `
 
 export const H5 = styled.h5`
   ${textStyle}
   font-family: ${(props) => props.theme.primaryFont};
-  font-size: ${typeScale.mobile.header5};
+  text-transform: ${(props) => props.capsON && "uppercase"};
 
-  @media ${device.laptop} {
-    font-size: ${typeScale.desktop.header5};
-  }
+  ${text_size_template({
+    mobile: "header5",
+    laptopL: "header5",
+    desktopL: "header5L",
+  })};
+`
 
-  @media ${device.desktopL} {
-    font-size: ${typeScale.desktop.header5L};
-  }
+export const H5Large = styled(H5)`
+  ${text_size_template({
+    mobile: "header5L",
+    laptop: "header5L",
+    desktopL: "header5L",
+  })};
 `
 
 export const Para = styled.p`
   ${textStyle}
   font-family: ${(props) => props.theme.primaryFont};
-  font-size: ${typeScale.mobile.paragraph};
 
-  @media ${device.tablet} {
-    font-size: ${typeScale.tablet.paragraph};
-  }
+  ${text_size_template({
+    mobile: "paragraph",
+    tablet: "paragraph",
+    laptop: "paragraph",
+  })};
+`
 
-  @media ${device.laptop} {
-    font-size: ${typeScale.desktop.paragraph};
-  }
+export const ParaLarge = styled(Para)`
+  ${text_size_template({
+    mobile: "paragraphL",
+    tablet: "paragraphL",
+    laptop: "paragraphL",
+    desktop: "paragraphL",
+  })};
 `
 
 export const HelperText = styled.p`
   ${textStyle}
   font-family: ${(props) => props.theme.primaryFont};
-  font-size: ${typeScale.mobile.helperText};
 
-  @media ${device.laptop} {
-    font-size: ${typeScale.desktop.helperText};
-  }
+  ${text_size_template({
+    mobile: "helperText",
+    laptop: "helperText",
+  })};
 `
 
 export const CopyrightText = styled.p`
   ${textStyle}
   font-family: ${(props) => props.theme.primaryFont};
-  font-size: ${typeScale.mobile.copyrightText};
 
-  @media ${device.laptop} {
-    font-size: ${typeScale.desktop.copyrightText};
-  }
+  ${text_size_template({
+    mobile: "copyrightText",
+    laptop: "copyrightText",
+  })};
 `

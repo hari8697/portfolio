@@ -15,6 +15,7 @@ import { motion } from "framer-motion"
 import { GridContainer, full_W_H } from "../../styled"
 import IconsWrap from "./IconsWrap"
 import { useRef } from "react"
+import { H5, ParaLarge } from "@/components/styled/index"
 
 const ContainerVariants = {
   initial: {
@@ -34,19 +35,6 @@ const ContainerVariants = {
 const About = () => {
   const constraintsRef = useRef(null)
 
-  const iconsArr = Array.from({ length: 14 }, (_, i) => i + 1)
-
-  const icons = iconsArr.map((item) => {
-    return (
-      <div className="icon_wrap">
-        <Image
-          src={`/about/tech_icons/${item}.svg`}
-          className="icon"
-          layout="fill"
-        />
-      </div>
-    )
-  })
   return (
     <AboutWrap
       variants={ContainerVariants}
@@ -57,26 +45,28 @@ const About = () => {
       <LogoGrid>
         <LogoContainer>
           <Logo_ImgWrap>
-            <Image src="/common/DeathSpace_Logo.svg" layout="fill"></Image>
+            <img src="/common/DeathSpace_Logo.svg"></img>
           </Logo_ImgWrap>
         </LogoContainer>
       </LogoGrid>
       <BioGrid>
         <Bio>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia
-          quis vel eros donec ac odio. Nulla facilisi cras fermentum odio eu
-          feugiat. Massa enim nec dui nunc mattis enim ut. Malesuada fames ac
-          turpis egestas. Varius quam quisque id diam vel quam elementum. Quis
-          viverra nibh cras pulvinar mattis nunc sed blandit libero. Ac placerat
-          vestibulum lectus mauris ultrices eros. Mauris commodo quis imperdiet
-          massa tincidunt nunc pulvinar sapien et. Ut pharetra sit amet aliquam.
-          Quisque id diam vel quam elementum. In ornare quam viverra orci
-          sagittis eu volutpat odio.
+          <ParaLarge>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia
+            quis vel eros donec ac odio. Nulla facilisi cras fermentum odio eu
+            feugiat. Massa enim nec dui nunc mattis enim ut. Malesuada fames ac
+            turpis egestas. Varius quam quisque id diam vel quam elementum. Quis
+            viverra nibh cras pulvinar mattis nunc sed blandit libero. Ac
+            placerat vestibulum lectus mauris ultrices eros. Mauris commodo quis
+            imperdiet massa tincidunt nunc pulvinar sapien et. Ut pharetra sit
+            amet aliquam. Quisque id diam vel quam elementum. In ornare quam
+            viverra orci sagittis eu volutpat odio.
+          </ParaLarge>
         </Bio>
       </BioGrid>
       <IconSizingContain ref={constraintsRef}>
-        <h5>Tech I’ve worked with</h5>
+        <H5 capsON>Tech I’ve worked with</H5>
         <IconsWrap constraintsRef={constraintsRef} />
       </IconSizingContain>
     </AboutWrap>
@@ -87,8 +77,9 @@ const IconSizingContain = styled.div`
   ${GridContainer}
 
   grid-template-rows: max-content 1fr;
-  h5 {
+  ${H5} {
     ${about_grid_col}
+    opacity: 0.7;
   }
   position: relative;
   width: 100%;

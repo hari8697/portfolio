@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components"
-import { H1, H2, H5, Para } from "@/components/styled/index"
+import { H1, H2, H5, H5Large, Para, h1Style } from "@/components/styled/index"
 import { device, typeScale } from "@/common/utils"
-import { h1Style } from "../styled/Text"
 
 export const GridContainer = styled.div`
   height: 100%;

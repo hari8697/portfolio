@@ -20,10 +20,13 @@ export const about_grid_col = css`
     grid-column: 2 / -2;
   }
   @media ${device.laptop} and (orientation: landscape) {
-    grid-column: 4 / -4;
+    grid-column: 1 / -1;
+  }
+  @media ${device.laptopL} and (orientation: landscape) {
+    grid-column: 2 / -2;
   }
 
-  @media ${device.laptopL} and (orientation: landscape) {
+  @media ${device.desktop} and (orientation: landscape) {
     grid-column: 7 / -7;
   }
 `
@@ -90,6 +93,10 @@ export const Logo_ImgWrap = styled.div`
 
   grid-template-columns: inherit;
   ${default_grid_col}
+
+  img {
+    ${full_W_H}
+  }
 `
 
 /*=====  End of Main Logo  ======*/

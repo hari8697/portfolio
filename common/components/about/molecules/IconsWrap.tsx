@@ -2,40 +2,104 @@ import Icon from "../atoms/Icon"
 import styled from "styled-components"
 import { device, devicePX } from "@/common/utils"
 import { about_grid_col, default_grid_col } from "./About.style"
-import { motion } from "framer-motion"
+import { motion, useAnimation } from "framer-motion"
 import { useWindowSize } from "@/common/utils/"
 import { useEffect } from "react"
+import { full_W_H } from "@/components/styled"
 
 const IconsWrap = (props) => {
+  const controls = useAnimation()
+  const animation_duration = 10
   const { constraintsRef } = props
   const { width: vW, height: vH } = useWindowSize()
   let x
   const iconsArr = Array.from({ length: 14 }, (_, i) => i + 1)
 
-  const icons = iconsArr.map((item) => {
-    return <Icon icon={`/about/tech_icons/${item}.svg`} />
+  const icons = iconsArr.map((item, index) => {
+    return <Icon key={index} icon={`/about/tech_icons/${item}.svg`} />
   })
 
   useEffect(() => {
     const resizeListen = document.addEventListener("resize", onResize)
-    return () => {}
+
+    sequence()
+
+    return () => {
+      document.removeEventListener("resize", onResize)
+      controls.stop()
+    }
   }, [])
+
+  const sequence = async () => {
+    await controls.start({
+      x: ["0%", "-100%"],
+      transition: {
+        duration: animation_duration / 2,
+        ease: "linear",
+      },
+    })
+    return await controls.start({
+      x: ["100%", "-100%"],
+      transition: {
+        duration: animation_duration,
+        repeat: Infinity,
+        ease: "linear",
+      },
+    })
+  }
+
+  const sequence2 = async () => {}
 
   const onResize = () => {
     x = 0
   }
 
+  const IconWrapVariants = {
+    initial: {
+      x: 0,
+    },
+    animate: {
+      x: ["0%", "-200%"],
+      transition: {
+        duration: animation_duration,
+        repeat: Infinity,
+        ease: "linear",
+      },
+    },
+  }
+  function onComplete() {
+    console.log("Animation completed")
+  }
   return (
-    <IconsWrapper
-      style={{ x }}
-      drag={vW < devicePX.tablet && "x"}
-      dragConstraints={constraintsRef}
-    >
-      {icons}
-    </IconsWrapper>
+    <>
+      <IconsWrapper
+        // style={{ x }}
+        // drag={vW < devicePX.tablet && "x"}
+        dragConstraints={constraintsRef}
+        onAnimationComplete={onComplete}
+      >
+        <IconsSet
+          variants={IconWrapVariants}
+          initial="initial"
+          animate={controls}
+        >
+          {icons}
+        </IconsSet>
+        <IconsSet variants={IconWrapVariants} animate="animate">
+          {icons}
+        </IconsSet>
+      </IconsWrapper>
+    </>
   )
 }
-
+const IconsSet = styled(motion.div)`
+  ${full_W_H}
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: -8px;
+`
 const IconsWrapper = styled(motion.div)`
   ${about_grid_col}
   grid-column: initial;
@@ -44,13 +108,13 @@ const IconsWrapper = styled(motion.div)`
   left: 0;
   min-width: 150vw;
   height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   grid-gap: 8px;
   margin-top: 2rem;
   padding: inherit;
-  margin-left: -8px;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  overflow-x: hidden;
 
   @media ${device.mobileL} {
     min-width: 120vw;
@@ -68,7 +132,7 @@ const IconsWrapper = styled(motion.div)`
     position: relative;
 
     grid-gap: 1%;
-    margin: 0 -12px;
+    margin: 2rem 0;
 
     .icon_wrap {
       min-width: initial;
