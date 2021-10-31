@@ -9,7 +9,7 @@ import { full_W_H } from "@/components/styled"
 
 const IconsWrap = (props) => {
   const controls = useAnimation()
-  const animation_duration = 10
+  const animation_duration = 30
   const { constraintsRef } = props
   const { width: vW, height: vH } = useWindowSize()
   let x
