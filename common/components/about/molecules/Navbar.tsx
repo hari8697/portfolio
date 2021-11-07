@@ -11,7 +11,7 @@ import Image from "next/image"
 const Navbar = () => {
   return (
     <NavBar>
-      <Link href="/">
+      <Link href="/" scroll={false}>
         <PaddingWrap>
           <CloseBtn_ImgWrap>
             <Image src="/about/close_btn.svg" layout="fill"></Image>

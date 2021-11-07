@@ -124,7 +124,7 @@ export default function Landing({
           ></Image>
         </div>
         {vW < 768 ? (
-          <Link href="/about">
+          <Link href="/about" scroll={false}>
             <Paragraph
               className="link_about clickable"
               click
@@ -135,7 +135,7 @@ export default function Landing({
             </Paragraph>
           </Link>
         ) : (
-          <Link href="/about">
+          <Link href="/about" scroll={false}>
             <H5Link
               capsON
               click
