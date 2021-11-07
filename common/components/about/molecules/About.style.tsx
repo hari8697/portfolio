@@ -155,7 +155,7 @@ export const SwooshWrap = styled.div`
   }
 
   @media ${device.desktop} and (orientation: landscape) {
-    top: 8%;
+    top: 9%;
   }
 
   @media ${device.desktopL} and (orientation: landscape) {
