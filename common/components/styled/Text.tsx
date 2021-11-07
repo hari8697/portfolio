@@ -181,7 +181,9 @@ const clickable = css`
     border-bottom: 3px solid ${(props) => props.theme.primaryColor};
   }
 `
-
+const noHoverClick = css`
+  pointer-events: none;
+`
 export const H5Link = styled(H5).attrs((props) => {
   return { grab: props.grab || false }
 })`
@@ -189,6 +191,7 @@ export const H5Link = styled(H5).attrs((props) => {
   transition: opacity 100ms ease-out, border-bottom 100ms ease-out;
 
   ${(props) => props.click && clickable}
+  ${(props) => props.noclick && noHoverClick}
 `
 
 /*=====  End of Custom Shared Comps  ======*/

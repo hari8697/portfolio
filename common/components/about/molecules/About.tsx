@@ -84,7 +84,11 @@ const IconSizingContain = styled.div`
   position: relative;
   width: 100%;
 
-  margin: 120px 0;
+  margin-top: 50px;
+  margin-bottom: 160px;
+  @media ${device.tablet} {
+    margin-bottom: 0;
+  }
 `
 const AboutWrap = styled(motion.div)`
   ${full_W_H}

@@ -126,7 +126,7 @@ const IconsWrapper = styled(motion.div)`
     min-width: initial;
     position: relative;
 
-    margin: 2rem 0;
+    margin-top: 2rem;
   }
 `
 
