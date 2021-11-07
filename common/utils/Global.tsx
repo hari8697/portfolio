@@ -33,7 +33,6 @@ a {
   text-decoration: none;
 }
 
-
 /* custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -57,6 +56,6 @@ a {
 /* hide scrollbar */
 
 ::-webkit-scrollbar {
-      display: none; /* Safari and Chrome */
-    }
+  display: none; 
+}
 `

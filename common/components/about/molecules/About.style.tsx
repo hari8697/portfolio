@@ -110,7 +110,7 @@ export const SwooshContain = styled.div`
   width: 100%;
   height: 110%;
   max-height: 120vh;
-  overflow-x: hidden;
+  overflow: hidden;
   position: absolute;
   top: 0%;
   left: 0;

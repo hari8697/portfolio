@@ -48,7 +48,7 @@ const desktop = {
   paragraphL: "1.44rem",
   paragraph: "1rem",
   helperText: "0.833rem",
-  copyrightText: "0.694rem",
+  copyrightText: "0.833rem",
 }
 
 export const typeScale = {

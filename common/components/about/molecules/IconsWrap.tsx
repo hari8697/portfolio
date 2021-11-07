@@ -92,24 +92,15 @@ const IconsWrap = (props) => {
       drag={vW < devicePX.tablet && "x"}
       dragConstraints={constraintsRef}
     >
-      <IconsSet initial="initial" animate={controls}>
+      <IconsSet iconsArr={iconsArr} initial="initial" animate={controls}>
         {icons}
       </IconsSet>
-      <IconsSet animate={controls2}>{icons}</IconsSet>
+      <IconsSet iconsArr={iconsArr} animate={controls2}>
+        {icons}
+      </IconsSet>
     </IconsWrapper>
   )
 }
-const IconsSet = styled(motion.div)`
-  ${full_W_H}
-  min-width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-left: -8px;
-  padding-bottom: 60px;
-
-  /* padding: 2rem 0; */
-`
 const IconsWrapper = styled(motion.div)`
   ${about_grid_col}
   grid-column: initial;
@@ -117,7 +108,7 @@ const IconsWrapper = styled(motion.div)`
   top: 0;
   left: 0;
   min-width: 150vw;
-  grid-gap: 8px;
+
   margin-top: 2rem;
   padding: inherit;
   /* padding-bottom: 2rem; */
@@ -135,17 +126,25 @@ const IconsWrapper = styled(motion.div)`
     min-width: initial;
     position: relative;
 
-    grid-gap: 1%;
     margin: 2rem 0;
-  }
-
-  img {
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    user-drag: none;
   }
 `
 
+const IconsSet = styled(motion.div)`
+  ${full_W_H}
+  min-width: ${(props) => props.iconsArr.length * 62}px;
+  grid-gap: 0.75rem;
+  
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  /* margin: 0 8px; */
+  padding-bottom: 60px;
+
+  @media ${device.laptop} {
+    min-width: 100%;
+  }
+
+  /* padding: 2rem 0; */
+`
 export default IconsWrap

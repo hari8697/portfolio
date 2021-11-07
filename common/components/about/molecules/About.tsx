@@ -15,7 +15,8 @@ import { motion } from "framer-motion"
 import { GridContainer, full_W_H } from "../../styled"
 import IconsWrap from "./IconsWrap"
 import { useRef } from "react"
-import { H5, ParaLarge } from "@/components/styled"
+import { H5, ParaLarge, H5Large } from "@/components/styled"
+import Footer from "./Footer"
 
 const ContainerVariants = {
   initial: {
@@ -67,6 +68,7 @@ const About = () => {
         <H5 capsON>Tech I’ve worked with</H5>
         <IconsWrap constraintsRef={constraintsRef} />
       </IconSizingContain>
+      <Footer />
     </AboutWrap>
   )
 }

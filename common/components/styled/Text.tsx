@@ -114,7 +114,7 @@ export const H5 = styled.h5`
 
   ${text_size_template({
     mobile: "header5",
-    laptopL: "header5",
+    laptop: "header5",
     desktopL: "header5L",
   })};
 `
@@ -164,5 +164,6 @@ export const CopyrightText = styled.p`
   ${text_size_template({
     mobile: "copyrightText",
     laptop: "copyrightText",
+    desktop: "copyrightText",
   })};
 `

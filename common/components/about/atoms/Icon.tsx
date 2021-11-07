@@ -24,12 +24,14 @@ const Icon = (props) => {
 
 const IconWrap = styled.div`
   width: 100%;
-  min-width: 50px;
-  min-height: 50px;
+  height: 50px;
   position: relative;
 
-  @media ${device.tablet} {
-    min-width: initial;
+  @media ${device.laptop} {
+    height: 65px;
+  }
+  @media ${device.desktopL} {
+    height: 70px;
   }
 
   &:hover,
@@ -47,6 +49,14 @@ const IconWrap = styled.div`
     &:hover {
       opacity: 1;
     }
+  }
+
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
   }
 `
 export default Icon
