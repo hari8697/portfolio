@@ -10,7 +10,7 @@ import { full_W_H } from "@/components/styled"
 const IconsWrap = (props) => {
   const controls = useAnimation()
   const controls2 = useAnimation()
-  const animation_duration = 30
+  const animation_duration = 40
   const { constraintsRef } = props
   const { width: vW, height: vH } = useWindowSize()
   let x
@@ -140,6 +140,7 @@ const IconsSet = styled(motion.div)`
   /* justify-content: space-between; */
   /* margin: 0 8px; */
   padding-bottom: 60px;
+  padding-right: 12px;
 
   @media ${device.laptop} {
     min-width: 100%;
