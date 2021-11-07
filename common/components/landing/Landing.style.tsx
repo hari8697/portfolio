@@ -204,22 +204,6 @@ export const Footer_wrap = styled.div`
     }
   }
 `
-export const Header5 = styled(H5)`
-  opacity: ${(props) => (props.highlighted ? 0.5 : 0.3)};
-  transition: opacity 100ms ease-out, border-bottom 100ms ease-out;
-  /* padding: 2px 0; */
-  text-transform: ${(props) => props.capsON && "uppercase"};
-
-  &.clickable {
-    border-bottom: 3px solid transparent;
-    &:focus,
-    &:hover {
-      cursor: grab;
-      opacity: 1;
-      border-bottom: 3px solid ${(props) => props.theme.primaryColor};
-    }
-  }
-`
 
 export const Paragraph = styled(Para)`
   opacity: ${(props) => (props.highlighted ? 0.5 : 0.3)};

@@ -5,16 +5,15 @@ import {
   Title,
   GridContainer,
   Header_wrap,
-  Header5,
   Paragraph,
   Title_wrap,
   Footer_wrap,
 } from "./Landing.style"
 import React, { useEffect, useState, useRef } from "react"
-
 import { useWindowSize } from "@/common/utils/"
 import SocialItems from "./molecules/SocialItems"
 import Link from "next/link"
+import { H5Link } from "@/components/styled/"
 
 const ContainerVariants = {
   initial: {
@@ -37,9 +36,9 @@ const footerSwipe = (vW, vH) => {
     )
   } else if (vW / vH < 1) {
     return (
-      <Header5 capsON className="text_wrap">
+      <H5Link capsON className="text_wrap">
         Swipe/Tap
-      </Header5>
+      </H5Link>
     )
   }
 }
@@ -126,15 +125,26 @@ export default function Landing({
         </div>
         {vW < 768 ? (
           <Link href="/about">
-            <Paragraph className="link_about clickable" highlighted capsON>
+            <Paragraph
+              className="link_about clickable"
+              click
+              highlighted
+              capsON
+            >
               About
             </Paragraph>
           </Link>
         ) : (
           <Link href="/about">
-            <Header5 highlighted capsON className="link_about clickable">
+            <H5Link
+              capsON
+              click
+              highlighted
+              grab
+              className="link_about clickable"
+            >
               About
-            </Header5>
+            </H5Link>
           </Link>
         )}
       </Header_wrap>

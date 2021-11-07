@@ -167,3 +167,28 @@ export const CopyrightText = styled.p`
     desktop: "copyrightText",
   })};
 `
+
+/*=============================================
+=            Custom Shared Comps              =
+=============================================*/
+
+const clickable = css`
+  border-bottom: 3px solid transparent;
+  cursor: ${(props) => (props.grab ? "grab" : "pointer")};
+  &:focus,
+  &:hover {
+    opacity: 1;
+    border-bottom: 3px solid ${(props) => props.theme.primaryColor};
+  }
+`
+
+export const H5Link = styled(H5).attrs((props) => {
+  return { grab: props.grab || false }
+})`
+  opacity: ${(props) => (props.highlighted ? 0.5 : 0.3)};
+  transition: opacity 100ms ease-out, border-bottom 100ms ease-out;
+
+  ${(props) => props.click && clickable}
+`
+
+/*=====  End of Custom Shared Comps  ======*/
