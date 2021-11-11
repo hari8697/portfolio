@@ -51,6 +51,10 @@ function App() {
     { id: 4, name: "Magna ac placerat" },
   ]
 
+  const onTextureLoad = () => {
+    console.log("loaded")
+  }
+
   // let imagesArr = Array.from({ length: 4 }, (_, i) => i + 1)
   const moveByFactor = 10.5
   const [maxDragX, setMaxDragX] = useState(0)
@@ -71,6 +75,7 @@ function App() {
         <VanillaHover
           animatedX={animatedX}
           imagesArr={imagesArr}
+          onTextureLoad={onTextureLoad}
           moveByFactor={moveByFactor}
           scrollValueY={scrollYProgress}
           vW={vW}

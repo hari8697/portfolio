@@ -25,6 +25,7 @@ const VanillaHover = ({
   vW,
   vH,
   pageExtraHeight,
+  onTextureLoad,
 }) => {
   const canvasEl = useRef(null)
 
@@ -95,7 +96,8 @@ const VanillaHover = ({
           material,
           geometry: new THREE.PlaneGeometry(8, 4.5),
           texture: new THREE.TextureLoader().load(
-            `/landing/album/image${i}.png`
+            `/landing/album/image${i}.png`,
+            onTextureLoad
           ),
           mesh,
         }

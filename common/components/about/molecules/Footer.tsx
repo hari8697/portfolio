@@ -3,12 +3,29 @@ import Copyright from "../atoms/Copyright"
 import styled from "styled-components"
 import { about_grid_col } from "./About.style"
 import { GridContainer } from "../../styled"
+import { useResponsiveHelper } from "@/common/utils/"
+import { useEffect, useState } from "react"
 
 const Footer = () => {
+  const { isMobile, isTablet } = useResponsiveHelper()
+
+  // const [mobileCheck, setMobileCheck] = useState(isMobile(vW, vH))
+
+  useEffect(() => {
+    console.log("isMobile", isMobile, "isTablet", isTablet)
+  }, [isMobile, isTablet])
+
+  // useEffect(() => {
+  //   setMobileCheck(isMobile(vW, vH))
+  // }, [vW, vH])
+
   const LinksArr = ["Email", "Twitter", "Instagram"]
   const linksComponent = LinksArr.map((item, index) => {
     return (
-      <TextLink addComma={index == LinksArr.length - 1 ? false : true}>
+      <TextLink
+        addComma={index == LinksArr.length - 1 ? false : true}
+        key={index}
+      >
         {item}
       </TextLink>
     )
