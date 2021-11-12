@@ -50,6 +50,9 @@ const StyledFooter = styled.footer`
   margin: 35px 0;
 
   @media ${device.tablet} {
+    margin: 100px 0;
+  }
+  @media ${device.laptop} and (orientation: landscape) {
     margin: 50px 0;
   }
 `
@@ -71,9 +74,14 @@ const MobileLinksWrap = styled.div`
   height: max-content;
   margin-top: 120px;
 
+  @media ${device.tablet} {
+    margin-top: 0px;
+  }
+
   .line {
     display: block;
     width: 80%;
+    max-width: 210px;
     height: 1px;
     background: ${(props) => props.theme.textColor};
 

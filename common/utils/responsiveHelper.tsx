@@ -18,9 +18,9 @@ export const useResponsiveHelper = () => {
 
   const tabletCheckFunc = (width, height) => {
     const minWidthTrue = width >= devicePX.tablet
-    const maxWidthTrue = width < devicePX.laptop
-
-    return minWidthTrue && maxWidthTrue
+    const maxWidthTrue = width <= devicePX.laptop
+    const isLandscape = width / height < 1
+    return minWidthTrue && maxWidthTrue && isLandscape
   }
 
   // Run once initially

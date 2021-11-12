@@ -6,7 +6,7 @@ const Text = styled(CopyrightText)`
   opacity: 0.3;
   line-height: 100%;
 
-  @media ${device.laptop} {
+  @media ${device.laptop} and (orientation: landscape) {
     opacity: 0.5;
   }
 `
