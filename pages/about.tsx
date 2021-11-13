@@ -1,16 +1,16 @@
+import App from "../common/components/about/App"
 import styled from "styled-components"
-import { motion } from "framer-motion"
 
-const Box = styled(motion.div)`
-  min-width: 100px;
-  min-height: 100px;
-  background: blue;
-`
-
-export default function Home() {
+const About = () => {
   return (
-    <motion.div>
-      <Box layoutId="box"></Box>
-    </motion.div>
+    <AboutPage>
+      <App />
+    </AboutPage>
   )
 }
+
+const AboutPage = styled.div`
+  width: 100%;
+  height: 100%;
+`
+export default About
