@@ -1,5 +1,36 @@
 import { device, typeScale } from "@/common/utils"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
+
+import { full_W_H, GridContainer, ParaLarge } from "@/components/styled"
+import Div100vh from "react-div-100vh"
+
+export const default_grid_col = css`
+  grid-column: 1 / -1;
+  @media ${device.tablet} {
+    grid-column: 3 / 7;
+  }
+
+  @media ${device.laptop} and (orientation: landscape) {
+    grid-column: 7 / 19;
+  }
+`
+export const about_grid_col = css`
+  grid-column: 1 / -1;
+
+  @media ${device.tablet} {
+    grid-column: 2 / -2;
+  }
+  @media ${device.laptop} and (orientation: landscape) {
+    grid-column: 1 / -1;
+  }
+  @media ${device.laptopL} and (orientation: landscape) {
+    grid-column: 2 / -2;
+  }
+
+  @media ${device.desktop} and (orientation: landscape) {
+    grid-column: 7 / -7;
+  }
+`
 
 export const PaddingWrap = styled.div`
   padding: 0.75rem;
@@ -33,31 +64,43 @@ export const CloseBtn_ImgWrap = styled.div`
   }
 `
 
-export const Logo_ImgWrap = styled.div`
-  position: relative;
+/*=============================================
+=            Main Logo            =
+=============================================*/
+export const LogoGrid = styled.div`
   width: 100%;
-  height: 100%;
-  max-height: 20vh;
+  ${GridContainer}
 `
+export const LogoContainer = styled(Div100vh)`
+  height: 100%;
+  display: grid;
+  place-items: center;
+  position: relative;
 
-export const LogoContainer = styled.div`
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  grid-template-columns: inherit;
   grid-column: 1 / -1;
   margin: 0 10%;
 
   @media ${device.tablet} {
-    height: 80vh;
     margin: 0;
-    grid-column: 3 / 7;
-  }
-
-  @media ${device.laptop} and (orientation: landscape) {
-    grid-column: 7 / 19;
+    /* height: 100vh; */
   }
 `
+
+export const Logo_ImgWrap = styled.div`
+  position: relative;
+  ${full_W_H}
+  max-height: 20vh;
+
+  grid-template-columns: inherit;
+  ${default_grid_col}
+
+  img {
+    ${full_W_H}
+  }
+`
+
+/*=====  End of Main Logo  ======*/
 
 /*=============================================
 =            Swoosh Component            =
@@ -66,16 +109,17 @@ export const LogoContainer = styled.div`
 export const SwooshContain = styled.div`
   width: 100%;
   height: 110%;
+  max-height: 120vh;
   overflow: hidden;
   position: absolute;
-  top: 0;
+  top: 0%;
   left: 0;
   pointer-events: none;
 `
 
 export const SwooshWrap = styled.div`
   position: absolute;
-  top: 1%;
+  top: 0%;
   /* left: 50%; */
   z-index: -1;
   width: 100%;
@@ -84,23 +128,54 @@ export const SwooshWrap = styled.div`
   /* overflow: hidden; */
   /* min-height: 100vh; */
 
+  /**
+   *
+   * TODO Broke the swoosh positioning, fix soon
+   *
+   */
+
   @media ${device.mobileM} {
-    top: 3%;
+    top: 0%;
   }
 
   @media ${device.tablet} {
+    top: 0%;
+  }
+
+  @media ${device.tablet} and (orientation: landscape) {
+    top: 5%;
   }
 
   @media ${device.laptop} and (orientation: landscape) {
-    top: 10%;
+    top: 5%;
   }
+
   @media ${device.laptopL} and (orientation: landscape) {
-    top: 12%;
+    top: 5%;
   }
+
   @media ${device.desktop} and (orientation: landscape) {
-    top: 15%;
+    top: 9%;
   }
+
   @media ${device.desktopL} and (orientation: landscape) {
-    top: 12%;
+    top: 8%;
   }
 `
+
+/*=====  End of Swoosh Component  ======*/
+
+/*=============================================
+=            Content Wrap            =
+=============================================*/
+
+export const BioGrid = styled.div`
+  ${GridContainer}
+`
+export const Bio = styled(ParaLarge)`
+  padding: 100px 0;
+  ${about_grid_col}
+  font-weight: normal;
+`
+
+/*=====  End of Content Wrap  ======*/

@@ -1,14 +1,22 @@
 import Image from "next/image"
-import styled from "styled-components"
-import Link from "next/link"
-import { GridContainer } from "@/components/landing/Landing.style"
+import styled, { css } from "styled-components"
+
 import {
-  CloseBtn_ImgWrap,
+  about_grid_col,
+  Bio,
+  BioGrid,
+  default_grid_col,
   LogoContainer,
+  LogoGrid,
   Logo_ImgWrap,
-  PaddingWrap,
 } from "./About.style"
+import { device, typeScale } from "@/common/utils"
 import { motion } from "framer-motion"
+import { GridContainer, full_W_H } from "../../styled"
+import IconsWrap from "./IconsWrap"
+import { useRef } from "react"
+import { H5, ParaLarge, H5Large } from "@/components/styled"
+import Footer from "./Footer"
 
 const ContainerVariants = {
   initial: {
@@ -26,6 +34,8 @@ const ContainerVariants = {
 }
 
 const About = () => {
+  const constraintsRef = useRef(null)
+
   return (
     <AboutWrap
       variants={ContainerVariants}
@@ -33,46 +43,61 @@ const About = () => {
       animate="animate"
       exit="exit"
     >
-      <AboutGrid>
-        <NavBar>
-          <Link href="/">
-            <PaddingWrap>
-              <CloseBtn_ImgWrap>
-                <Image src="/about/close_btn.svg" layout="fill"></Image>
-              </CloseBtn_ImgWrap>
-            </PaddingWrap>
-          </Link>
-        </NavBar>
+      <LogoGrid>
         <LogoContainer>
           <Logo_ImgWrap>
-            <Image src="/common/DeathSpace_Logo.svg" layout="fill"></Image>
+            <img src="/common/DeathSpace_Logo.svg"></img>
           </Logo_ImgWrap>
         </LogoContainer>
-      </AboutGrid>
+      </LogoGrid>
+      <BioGrid>
+        <Bio>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia
+          quis vel eros donec ac odio. Nulla facilisi cras fermentum odio eu
+          feugiat. Massa enim nec dui nunc mattis enim ut. Malesuada fames ac
+          turpis egestas. Varius quam quisque id diam vel quam elementum. Quis
+          viverra nibh cras pulvinar mattis nunc sed blandit libero. Ac placerat
+          vestibulum lectus mauris ultrices eros. Mauris commodo quis imperdiet
+          massa tincidunt nunc pulvinar sapien et. Ut pharetra sit amet aliquam.
+          Quisque id diam vel quam elementum. In ornare quam viverra orci
+          sagittis eu volutpat odio.
+        </Bio>
+      </BioGrid>
+      <IconSizingContain ref={constraintsRef}>
+        <H5 capsON>Tech I’ve worked with</H5>
+        <IconsWrap constraintsRef={constraintsRef} />
+      </IconSizingContain>
+      <Footer />
     </AboutWrap>
   )
 }
-const AboutWrap = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-`
-const AboutGrid = styled(GridContainer)`
-  position: relative;
-`
-const NavBar = styled.div`
-  /* position: sticky;
-  top: 5%; */
-  width: 100%;
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  grid-template-columns: inherit;
-  gap: inherit;
-  grid-column: 1 / -1;
 
-  ${PaddingWrap} {
-    grid-column: -2 / -1;
+const IconSizingContain = styled.div`
+  ${GridContainer}
+
+  grid-template-rows: max-content 1fr;
+  ${H5} {
+    ${about_grid_col}
+    opacity: 0.7;
   }
+  position: relative;
+  width: 100%;
+
+  margin-top: 50px;
+  margin-bottom: 160px;
+  @media ${device.tablet} {
+    margin-bottom: 0;
+  }
+`
+const AboutWrap = styled(motion.div)`
+  ${full_W_H}
+  max-width: 100vw;
+  overflow: hidden;
+`
+const AboutGrid = styled.div`
+  position: relative;
+  ${GridContainer}
 `
 
 export default About

@@ -11,7 +11,9 @@ const mobile = {
   header2: "1.728rem",
   header3: "1.44rem",
   header4: "1.2rem",
+  header5L: "1rem",
   header5: "1rem",
+  paragraphL: "1rem",
   paragraph: "0.833rem",
   helperText: "0.694rem",
   copyrightText: "0.694rem",
@@ -25,7 +27,9 @@ const tablet = {
   header2: "1.728rem",
   header3: "1.44rem",
   header4: "1.2rem",
+  header5L: "1rem",
   header5: "1rem",
+  paragraphL: "1.2rem",
   paragraph: "0.833rem",
   helperText: "0.694rem",
   copyrightText: "0.694rem",
@@ -41,9 +45,10 @@ const desktop = {
   header4: "2.488rem",
   header5L: "1.44rem",
   header5: "1.2rem",
+  paragraphL: "1.44rem",
   paragraph: "1rem",
   helperText: "0.833rem",
-  copyrightText: "0.694rem",
+  copyrightText: "0.833rem",
 }
 
 export const typeScale = {

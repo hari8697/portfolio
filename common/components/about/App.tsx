@@ -1,8 +1,9 @@
 import { motion } from "framer-motion"
 import About from "./molecules/About"
 import styled from "styled-components"
-import { device } from "@/common/utils"
 import Swoosh from "@/components/about/atoms/Swoosh"
+import { padding_for_pages } from "../styled/BaseStyles"
+import Navbar from "@/components/about/molecules/Navbar"
 
 const ContainerVariants = {
   initial: {
@@ -15,6 +16,7 @@ const ContainerVariants = {
     opacity: 0,
   },
 }
+
 const App = () => {
   return (
     <AppWrap
@@ -24,6 +26,7 @@ const App = () => {
       exit="exit"
     >
       <Swoosh></Swoosh>
+      <Navbar></Navbar>
       <About></About>
     </AppWrap>
   )
@@ -32,14 +35,7 @@ const App = () => {
 const AppWrap = styled(motion.div)`
   width: 100%;
   height: 100%;
-  padding: 56px 0 32px 0;
 
-  @media ${device.tablet} {
-    padding: 72px 0 50px 0;
-  }
-
-  @media ${device.desktop} {
-    padding: 96px 0 70px 0;
-  }
+  position: relative;
 `
 export default App

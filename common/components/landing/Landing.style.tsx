@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components"
-import { H1, H2, H5, Para } from "@/components/styled/index"
+import { H1, H2, H5, H5Large, Para, h1Style } from "@/components/styled/index"
 import { device, typeScale } from "@/common/utils"
-import { h1Style } from "../styled/Text"
 
 export const GridContainer = styled.div`
   height: 100%;
@@ -202,22 +201,6 @@ export const Footer_wrap = styled.div`
         width: 24px;
         height: 24px;
       }
-    }
-  }
-`
-export const Header5 = styled(H5)`
-  opacity: ${(props) => (props.highlighted ? 0.5 : 0.3)};
-  transition: opacity 100ms ease-out, border-bottom 100ms ease-out;
-  /* padding: 2px 0; */
-  text-transform: ${(props) => props.capsON && "uppercase"};
-
-  &.clickable {
-    border-bottom: 3px solid transparent;
-    &:focus,
-    &:hover {
-      cursor: grab;
-      opacity: 1;
-      border-bottom: 3px solid ${(props) => props.theme.primaryColor};
     }
   }
 `

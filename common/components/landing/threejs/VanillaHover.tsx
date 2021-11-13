@@ -4,6 +4,9 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass"
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass"
 
+import { vertex } from "./shader/vertex.js"
+import { fragment } from "./shader/fragment.js"
+
 import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import {
@@ -22,6 +25,7 @@ const VanillaHover = ({
   vW,
   vH,
   pageExtraHeight,
+  onTextureLoad,
 }) => {
   const canvasEl = useRef(null)
 
@@ -92,7 +96,8 @@ const VanillaHover = ({
           material,
           geometry: new THREE.PlaneGeometry(8, 4.5),
           texture: new THREE.TextureLoader().load(
-            `/landing/album/image${i}.png`
+            `/landing/album/image${i}.png`,
+            onTextureLoad
           ),
           mesh,
         }
@@ -142,28 +147,12 @@ const VanillaHover = ({
           },
           uMouse: { value: new THREE.Vector2(-10, -10) },
           uVelo: { value: 0 },
+          uScale: { value: 0 },
+          uType: { value: 0 },
+          time: { value: 0 },
         },
-        vertexShader: `varying vec2 vUv;void main() {vUv = uv;gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 );}`,
-        fragmentShader: `uniform float time;
-          uniform sampler2D tDiffuse;
-          uniform vec2 resolution;
-          varying vec2 vUv;
-          uniform vec2 uMouse;
-          float circle(vec2 uv, vec2 disc_center, float disc_radius, float border_size) {
-            uv -= disc_center;
-            uv*=resolution;
-            float dist = sqrt(dot(uv, uv));
-            return smoothstep(disc_radius+border_size, disc_radius-border_size, dist);
-          }
-          void main()  {
-              vec2 newUV = vUv;
-              float c = circle(vUv, uMouse, 0.0, 0.2);
-              float r = texture2D(tDiffuse, newUV.xy += c * (0.1 * .5)).x;
-              float g = texture2D(tDiffuse, newUV.xy += c * (0.1 * .525)).y;
-              float b = texture2D(tDiffuse, newUV.xy += c * (0.1 * .55)).z;
-              vec4 color = vec4(r, g, b, 1.);
-              gl_FragColor = color;
-          }`,
+        vertexShader: vertex,
+        fragmentShader: fragment,
       }
 
       customPass = new ShaderPass(myEffect)
@@ -171,7 +160,7 @@ const VanillaHover = ({
       composer.addPass(customPass)
     }
 
-    var animate = function () {
+    const animate = function () {
       // console.log(animatedX.get())
 
       // let calcX = animatedX.get() + (currX - initialX) * 10
@@ -180,7 +169,6 @@ const VanillaHover = ({
       // console.log("currX" + currX + "initialX" + initialX)
 
       // console.log(movingX)
-
       camera.position.x = -animatedX.get()
 
       // meshArr.forEach((el) => {
@@ -194,7 +182,7 @@ const VanillaHover = ({
       customPass.uniforms.uMouse.value = uMouse
 
       // renderer.render( scene, camera );
-      composer.render()
+      composer && composer.render()
 
       reqAnimFrame = requestAnimationFrame(animate)
 
@@ -219,9 +207,7 @@ const VanillaHover = ({
       // Original code
       // uMouse.x = e.clientX / window.innerWidth
       // uMouse.y = 1 - e.clientY / window.innerHeight
-
       // console.log(uMouse.x, uMouse.y)
-
       // console
       //   .log
       //   // "e.clientX " +
