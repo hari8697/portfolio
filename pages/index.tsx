@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import App from "../common/components/landing/App"
 
+import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 import Preloader from "@/components/shared/Preloader"
 import React, { useEffect, useState } from "react"
 
@@ -13,7 +14,13 @@ function Home() {
     }, 2000)
   }, [])
 
-  return <IndexPage>{!preloaderBool ? <Preloader /> : <App />}</IndexPage>
+  return (
+    <IndexPage>
+      <AnimatePresence exitBeforeEnter>
+        {!preloaderBool ? <Preloader key={1} /> : <App key={2} />}
+      </AnimatePresence>
+    </IndexPage>
+  )
 }
 
 const IndexPage = styled.div`
