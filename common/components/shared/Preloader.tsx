@@ -8,6 +8,9 @@ const Preloader = () => {
     initial: {
       opacity: 0,
     },
+    initialVisible: {
+      opacity: 1,
+    },
     animate: {
       opacity: 1,
     },
@@ -19,12 +22,21 @@ const Preloader = () => {
   return (
     <motion.div
       variants={ContainerVariants}
-      initial="initial"
+      initial="initialVisible"
       animate="animate"
       exit="exit"
     >
       <StyledPreloader>
-        <img className="logo" src="/common/DeathSpace_Logo.svg" alt="" />
+        <motion.img
+          variants={ContainerVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          className="logo"
+          src="/common/DeathSpace_Logo.svg"
+          alt="Loading DeathSpace Design"
+          data-testid="preloader"
+        />
       </StyledPreloader>
     </motion.div>
   )

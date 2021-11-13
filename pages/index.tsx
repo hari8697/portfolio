@@ -11,13 +11,14 @@ function Home() {
   useEffect(() => {
     setTimeout(() => {
       setPreloaderBool(true)
-    }, 2000)
+    }, 2500)
   }, [])
 
   return (
     <IndexPage>
       <AnimatePresence exitBeforeEnter>
-        {!preloaderBool ? <Preloader key={1} /> : <App key={2} />}
+        {!preloaderBool && <Preloader key={1} />}
+        <App key={2} />
       </AnimatePresence>
     </IndexPage>
   )

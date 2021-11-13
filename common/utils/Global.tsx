@@ -9,7 +9,6 @@ html,
 body {
   font-family: "Lato", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-
   box-sizing: border-box;
   font-size: 16px;
 }
