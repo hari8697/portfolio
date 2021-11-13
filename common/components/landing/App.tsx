@@ -14,7 +14,6 @@ import {
   useViewportScroll,
 } from "framer-motion"
 import React, { useEffect, useState, useRef } from "react"
-import Preloader from "../shared/Preloader"
 
 const ContainerVariants = {
   initial: {
@@ -22,6 +21,9 @@ const ContainerVariants = {
   },
   animate: {
     opacity: 1,
+    transition: {
+      delay: 0.15,
+    },
   },
   exit: {
     opacity: 0,
@@ -35,7 +37,7 @@ function App() {
   const { scrollYProgress } = useViewportScroll()
 
   useEffect(() => {
-    return () => {}
+    setTimeout(() => {}, 10000)
   }, [])
 
   const imagesArr = [
@@ -65,7 +67,6 @@ function App() {
       exit="exit"
       pageExtraHeight={pageExtraHeight}
     >
-      <Preloader />
       {vW >= 1024 && (
         <VanillaHover
           animatedX={animatedX}

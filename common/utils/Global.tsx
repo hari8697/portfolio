@@ -23,7 +23,7 @@ body {
 body {
   margin: 0;
   font-family: ${primaryFont};
-  background-color: ${(props) => props.theme.bgColor};
+  background: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.textColor};
   -moz-osx-font-smoothing: grayscale;
 }
