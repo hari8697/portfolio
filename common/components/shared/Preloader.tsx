@@ -2,8 +2,9 @@ import { device } from "@/common/utils"
 import Div100vh from "react-div-100vh"
 import styled from "styled-components"
 import { motion } from "framer-motion"
+import { useEffect } from "react"
 
-const Preloader = () => {
+const Preloader = ({ threeImagesBools, setPreloaderBool }) => {
   const ContainerVariants = {
     initial: {
       opacity: 0,
@@ -18,6 +19,19 @@ const Preloader = () => {
       opacity: 0,
     },
   }
+
+  useEffect(() => {
+    let allThreeLoaded = true
+    threeImagesBools.map((item) => {
+      if (item === false) {
+        allThreeLoaded = false
+      }
+    })
+
+    if (allThreeLoaded) {
+      setPreloaderBool(false)
+    }
+  }, [threeImagesBools])
 
   return (
     <motion.div

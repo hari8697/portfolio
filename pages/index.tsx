@@ -6,18 +6,26 @@ import Preloader from "@/components/shared/Preloader"
 import React, { useEffect, useState } from "react"
 
 function Home() {
-  const [preloaderBool, setPreloaderBool] = useState(false)
+  const [preloaderBool, setPreloaderBool] = useState(true)
 
-  useEffect(() => {
-    setTimeout(() => {
-      setPreloaderBool(true)
-    }, 2500)
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPreloaderBool(true)
+  //   }, 2500)
+  // }, [])
+
+  const [threeImagesBools, setThreeImagesBools] = useState([])
 
   return (
     <IndexPage>
       <AnimatePresence exitBeforeEnter>
-        {!preloaderBool && <Preloader key={1} />}
+        {preloaderBool && (
+          <Preloader
+            setPreloaderBool={setPreloaderBool}
+            threeImagesBools={threeImagesBools}
+            key={1}
+          />
+        )}
         <App key={2} />
       </AnimatePresence>
     </IndexPage>
