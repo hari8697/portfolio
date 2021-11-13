@@ -52,7 +52,7 @@ function App() {
   ]
 
   const onTextureLoad = () => {
-    console.log("loaded")
+    // console.log("loaded")
   }
 
   // let imagesArr = Array.from({ length: 4 }, (_, i) => i + 1)
