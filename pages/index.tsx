@@ -3,6 +3,7 @@ import App from "../common/components/landing/App"
 
 import Preloader from "@/components/shared/Preloader"
 import React, { useEffect, useState } from "react"
+import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
 
 function Home() {
   const [preloaderBool, setPreloaderBool] = useState(true)
@@ -17,12 +18,17 @@ function Home() {
 
   return (
     <IndexPage>
-      <Preloader
-        preloaderBool={preloaderBool}
-        setPreloaderBool={setPreloaderBool}
-        threeImagesBools={threeImagesBools}
-      />
-      <App setThreeImagesBools={setThreeImagesBools} />
+      <AnimatePresence exitBeforeEnter>
+        {preloaderBool && (
+          <Preloader
+            preloaderBool={preloaderBool}
+            setPreloaderBool={setPreloaderBool}
+            threeImagesBools={threeImagesBools}
+            key={"preloader"}
+          />
+        )}
+        <App setThreeImagesBools={setThreeImagesBools} />
+      </AnimatePresence>
     </IndexPage>
   )
 }

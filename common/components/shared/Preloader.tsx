@@ -41,40 +41,29 @@ const Preloader = ({ threeImagesBools, setPreloaderBool, preloaderBool }) => {
   }, [threeImagesBools])
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      {preloaderBool ? (
-        <motion.div
+    // <AnimatePresence exitBeforeEnter>
+    //   {preloaderBool && (
+    <motion.div
+      variants={ContainerVariants}
+      initial="initialVisible"
+      animate="animate"
+      exit="exit"
+    >
+      <StyledPreloader>
+        <motion.img
           variants={ContainerVariants}
-          initial="initialVisible"
+          initial="initial"
           animate="animate"
           exit="exit"
-          key={1}
-        >
-          <StyledPreloader>
-            <motion.img
-              variants={ContainerVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              className="logo"
-              src="/common/DeathSpace_Logo.svg"
-              alt="Loading DeathSpace Design"
-              data-testid="preloader"
-            />
-          </StyledPreloader>
-        </motion.div>
-      ) : (
-        <motion.span
-          variants={ContainerVariants}
-          initial="initialVisible"
-          animate="animate"
-          exit="exit"
-          key={2}
-        >
-          1
-        </motion.span>
-      )}
-    </AnimatePresence>
+          className="logo"
+          src="/common/DeathSpace_Logo.svg"
+          alt="Loading DeathSpace Design"
+          data-testid="preloader"
+        />
+      </StyledPreloader>
+    </motion.div>
+    // )}
+    /* </AnimatePresence> */
   )
 }
 
