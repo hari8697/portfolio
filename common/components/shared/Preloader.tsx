@@ -36,7 +36,7 @@ const Preloader = ({ threeImagesBools, setPreloaderBool, preloaderBool }) => {
     if (allThreeLoaded) {
       setTimeout(() => {
         setPreloaderBool(false)
-      }, 1500)
+      }, 500)
     }
   }, [threeImagesBools])
 
