@@ -1,6 +1,5 @@
 import styled, { ThemeProvider } from "styled-components"
 import Landing from "@/components/landing/Landing"
-import { defaultTheme, darkTheme } from "@/utils/index"
 
 import VanillaHover from "./threejs/VanillaHover"
 import ScrollProgress from "./molecules/ScrollProgress"
@@ -30,7 +29,7 @@ const ContainerVariants = {
   },
 }
 
-function App() {
+function App({ setThreeImagesBools }) {
   const { width: vW, height: vH } = useWindowSize()
 
   const pageExtraHeight = 3.2
@@ -47,8 +46,22 @@ function App() {
     { id: 4, name: "Magna ac placerat" },
   ]
 
-  const onTextureLoad = () => {
-    // console.log("loaded")
+  const onTextureLoad = (id) => {
+    // console.log("loaded", id)
+
+    setThreeImagesBools((prevValue) => {
+      let newVal = prevValue.map((item) => {
+        if (item.id == id && item.loaded == false) {
+          console.log("loaded", id)
+          return { id: item.id, loaded: true }
+          // return item
+        } else {
+          return item
+        }
+      })
+
+      return newVal
+    })
   }
 
   // let imagesArr = Array.from({ length: 4 }, (_, i) => i + 1)
@@ -77,6 +90,7 @@ function App() {
           vW={vW}
           vH={vH}
           pageExtraHeight={pageExtraHeight}
+          setThreeImagesBools={setThreeImagesBools}
         />
       )}
       <LandingWrapper>

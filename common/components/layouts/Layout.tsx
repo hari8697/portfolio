@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react"
 import styled, { ThemeProvider } from "styled-components"
 import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
-import { GlobalStyle, defaultTheme, darkTheme } from "@/utils/index"
+import { GlobalStyle, defaultTheme, darkTheme } from "@/common/utils"
 import Head from "next/head"
 
 const Layout = ({ children, title = "DeathSpace Design" }) => {

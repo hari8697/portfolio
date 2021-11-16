@@ -26,7 +26,7 @@ function Home() {
             key={1}
           />
         )}
-        <App key={2} />
+        <App key={2} setThreeImagesBools={setThreeImagesBools} />
       </AnimatePresence>
     </IndexPage>
   )

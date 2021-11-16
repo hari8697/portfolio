@@ -22,11 +22,15 @@ const Preloader = ({ threeImagesBools, setPreloaderBool }) => {
 
   useEffect(() => {
     let allThreeLoaded = true
-    threeImagesBools.map((item) => {
-      if (item === false) {
-        allThreeLoaded = false
-      }
-    })
+    if (threeImagesBools.length > 0){
+      threeImagesBools.map((item) => {
+        if (item.loaded === false) {
+          allThreeLoaded = false
+        }
+      })
+    } else {
+      allThreeLoaded = false
+    }
 
     if (allThreeLoaded) {
       setPreloaderBool(false)
