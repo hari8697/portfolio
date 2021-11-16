@@ -103,7 +103,21 @@ const VanillaHover = ({
           geometry: new THREE.PlaneGeometry(8, 4.5),
           texture: new THREE.TextureLoader().load(
             `/landing/album/image${i}.png`,
-            onTextureLoad(i)
+            () => {
+              setThreeImagesBools((prevValue) => {
+                let newVal = prevValue.map((item) => {
+                  if (item.id == i && item.loaded == false) {
+                    console.log("loaded", i)
+                    return { id: item.id, loaded: true }
+                    // return item
+                  } else {
+                    return item
+                  }
+                })
+
+                return newVal
+              })
+            }
           ),
           mesh,
         }

@@ -48,20 +48,6 @@ function App({ setThreeImagesBools }) {
 
   const onTextureLoad = (id) => {
     // console.log("loaded", id)
-
-    setThreeImagesBools((prevValue) => {
-      let newVal = prevValue.map((item) => {
-        if (item.id == id && item.loaded == false) {
-          console.log("loaded", id)
-          return { id: item.id, loaded: true }
-          // return item
-        } else {
-          return item
-        }
-      })
-
-      return newVal
-    })
   }
 
   // let imagesArr = Array.from({ length: 4 }, (_, i) => i + 1)

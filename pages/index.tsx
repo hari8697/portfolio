@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import App from "../common/components/landing/App"
 
-import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 import Preloader from "@/components/shared/Preloader"
 import React, { useEffect, useState } from "react"
 
@@ -18,16 +17,12 @@ function Home() {
 
   return (
     <IndexPage>
-      <AnimatePresence exitBeforeEnter>
-        {preloaderBool && (
-          <Preloader
-            setPreloaderBool={setPreloaderBool}
-            threeImagesBools={threeImagesBools}
-            key={1}
-          />
-        )}
-        <App key={2} setThreeImagesBools={setThreeImagesBools} />
-      </AnimatePresence>
+      <Preloader
+        preloaderBool={preloaderBool}
+        setPreloaderBool={setPreloaderBool}
+        threeImagesBools={threeImagesBools}
+      />
+      <App setThreeImagesBools={setThreeImagesBools} />
     </IndexPage>
   )
 }

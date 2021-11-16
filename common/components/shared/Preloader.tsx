@@ -3,8 +3,9 @@ import Div100vh from "react-div-100vh"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 import { useEffect } from "react"
+import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 
-const Preloader = ({ threeImagesBools, setPreloaderBool }) => {
+const Preloader = ({ threeImagesBools, setPreloaderBool, preloaderBool }) => {
   const ContainerVariants = {
     initial: {
       opacity: 0,
@@ -22,7 +23,7 @@ const Preloader = ({ threeImagesBools, setPreloaderBool }) => {
 
   useEffect(() => {
     let allThreeLoaded = true
-    if (threeImagesBools.length > 0){
+    if (threeImagesBools.length > 0) {
       threeImagesBools.map((item) => {
         if (item.loaded === false) {
           allThreeLoaded = false
@@ -33,30 +34,47 @@ const Preloader = ({ threeImagesBools, setPreloaderBool }) => {
     }
 
     if (allThreeLoaded) {
-      setPreloaderBool(false)
+      setTimeout(() => {
+        setPreloaderBool(false)
+      }, 1500)
     }
   }, [threeImagesBools])
 
   return (
-    <motion.div
-      variants={ContainerVariants}
-      initial="initialVisible"
-      animate="animate"
-      exit="exit"
-    >
-      <StyledPreloader>
-        <motion.img
+    <AnimatePresence exitBeforeEnter>
+      {preloaderBool ? (
+        <motion.div
           variants={ContainerVariants}
-          initial="initial"
+          initial="initialVisible"
           animate="animate"
           exit="exit"
-          className="logo"
-          src="/common/DeathSpace_Logo.svg"
-          alt="Loading DeathSpace Design"
-          data-testid="preloader"
-        />
-      </StyledPreloader>
-    </motion.div>
+          key={1}
+        >
+          <StyledPreloader>
+            <motion.img
+              variants={ContainerVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="logo"
+              src="/common/DeathSpace_Logo.svg"
+              alt="Loading DeathSpace Design"
+              data-testid="preloader"
+            />
+          </StyledPreloader>
+        </motion.div>
+      ) : (
+        <motion.span
+          variants={ContainerVariants}
+          initial="initialVisible"
+          animate="animate"
+          exit="exit"
+          key={2}
+        >
+          1
+        </motion.span>
+      )}
+    </AnimatePresence>
   )
 }
 
