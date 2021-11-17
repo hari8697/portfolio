@@ -18,7 +18,7 @@ function Home() {
 
   return (
     <IndexPage>
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence>
         {preloaderBool && (
           <Preloader
             preloaderBool={preloaderBool}
@@ -27,7 +27,11 @@ function Home() {
             key={"preloader"}
           />
         )}
-        <App setThreeImagesBools={setThreeImagesBools} />
+        <App
+          preloaderBool={preloaderBool}
+          setThreeImagesBools={setThreeImagesBools}
+          key={"app"}
+        />
       </AnimatePresence>
     </IndexPage>
   )

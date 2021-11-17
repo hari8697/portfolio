@@ -21,7 +21,7 @@ const ContainerVariants = {
   animate: {
     opacity: 1,
     transition: {
-      delay: 0.15,
+      delay: 0.1,
     },
   },
   exit: {
@@ -29,7 +29,7 @@ const ContainerVariants = {
   },
 }
 
-function App({ setThreeImagesBools }) {
+function App({ setThreeImagesBools, preloaderBool }) {
   const { width: vW, height: vH } = useWindowSize()
 
   const pageExtraHeight = 3.2
@@ -62,7 +62,7 @@ function App({ setThreeImagesBools }) {
     <Container
       variants={ContainerVariants}
       initial="initial"
-      animate="animate"
+      animate={!preloaderBool && "animate"}
       exit="exit"
       pageExtraHeight={pageExtraHeight}
     >
