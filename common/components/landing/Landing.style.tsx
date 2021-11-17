@@ -1,5 +1,13 @@
 import styled, { css } from "styled-components"
-import { H1, H2, H5, H5Large, Para, h1Style } from "@/components/styled/index"
+import {
+  H1,
+  H2,
+  H5,
+  H5Large,
+  Para,
+  h1Style,
+  full_W_H,
+} from "@/components/styled/index"
 import { device, typeScale } from "@/common/utils"
 
 export const GridContainer = styled.div`
@@ -55,6 +63,10 @@ export const Header_wrap = styled.div`
     width: 27vw;
     min-width: 100px;
     max-width: 235px;
+
+    img {
+      ${full_W_H}
+    }
   }
 
   .link_about {
@@ -148,7 +160,8 @@ export const Footer_wrap = styled.div`
     height: 18px;
     position: relative;
 
-    div {
+    img {
+      ${full_W_H}
     }
   }
 

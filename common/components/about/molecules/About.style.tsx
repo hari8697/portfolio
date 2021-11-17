@@ -55,6 +55,10 @@ export const CloseBtn_ImgWrap = styled.div`
   width: 15px;
   height: 15px;
 
+  img {
+    ${full_W_H}
+  }
+
   @media ${device.tablet} {
     width: 20px;
     height: 20px;

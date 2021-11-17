@@ -117,11 +117,7 @@ export default function Landing({
     >
       <Header_wrap className="noselect">
         <div className="logo">
-          <Image
-            src="/common/DeathSpace_Logo.svg"
-            width={303}
-            height={56}
-          ></Image>
+          <img src="/common/DeathSpace_Logo.svg"></img>
         </div>
         {vW < 768 ? (
           <Link href="/about" scroll={false}>

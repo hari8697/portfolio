@@ -1,8 +1,9 @@
 import { device } from "@/common/utils"
-import Image from "next/image"
+
 import { useState } from "react"
 import styled from "styled-components"
 import Tooltip from "./Tooltip"
+import { full_W_H } from "@/components/styled"
 
 const Icon = (props) => {
   const [hovering, setHovering] = useState(false)
@@ -13,7 +14,7 @@ const Icon = (props) => {
     // onMouseOver={() => setHovering(true)}
     // onMouseOut={() => setHovering(false)}
     >
-      <Image src={icon} className="icon noselect" layout="fill" />
+      <img src={icon} className="icon noselect" />
       <Tooltip
         tooltipText={name}
         // hovering={hovering}
@@ -45,6 +46,7 @@ const IconWrap = styled.div`
     opacity: 0.5;
     cursor: pointer;
     transition: opacity 0.25s ease-out;
+    ${full_W_H}
 
     &:hover {
       opacity: 1;

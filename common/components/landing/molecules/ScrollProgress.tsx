@@ -1,6 +1,5 @@
 import { useWindowSize } from "@/common/utils"
 import { motion, useTransform } from "framer-motion"
-import Image from "next/image"
 
 const ScrollProgress = ({ animatedX, maxDragX }) => {
   const { width: vW, height: vH } = useWindowSize()
@@ -15,11 +14,7 @@ const ScrollProgress = ({ animatedX, maxDragX }) => {
         <>
           <div className="noselect scroll_wrapper">
             <div className="scroll_arrow">
-              <Image
-                src="/landing/scrollHorizontal.svg"
-                width={31}
-                height={22}
-              ></Image>
+              <img src="/landing/scrollHorizontal.svg"></img>
             </div>
             <div className="scrollProgressBar">
               <motion.span
