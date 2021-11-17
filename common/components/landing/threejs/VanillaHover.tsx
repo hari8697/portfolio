@@ -104,10 +104,11 @@ const VanillaHover = ({
           texture: new THREE.TextureLoader().load(
             `/landing/album/image${i}.png`,
             () => {
+              // Call this on texture load
               setThreeImagesBools((prevValue) => {
                 let newVal = prevValue.map((item) => {
                   if (item.id == i && item.loaded == false) {
-                    console.log("loaded", i)
+                    // console.log("loaded", i)
                     return { id: item.id, loaded: true }
                     // return item
                   } else {

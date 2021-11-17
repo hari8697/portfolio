@@ -41,8 +41,8 @@ const Preloader = ({
   }, [threeImagesBools])
 
   useEffect(() => {
-    console.log("imagesarr changed")
-    console.log(checkAllStaticImagesLoaded(loadImagesArr))
+    // console.log("imagesarr changed")
+    // console.log(checkAllStaticImagesLoaded(loadImagesArr))
     setAllImagesLoaded(checkAllStaticImagesLoaded(loadImagesArr))
   }, [loadImagesArr])
 
@@ -152,16 +152,16 @@ const loadImage = async (arr, updateFunc) => {
         await img.decode()
         // img is ready to used
 
-        console.log("Image " + name + " has been loaded")
-        console.log(
-          "Image " +
-            name +
-            " [x: " +
-            img.naturalWidth +
-            ", y: " +
-            img.naturalHeight +
-            "]"
-        )
+        // console.log("Image " + name + " has been loaded")
+        // console.log(
+        //   "Image " +
+        //     name +
+        //     " [x: " +
+        //     img.naturalWidth +
+        //     ", y: " +
+        //     img.naturalHeight +
+        //     "]"
+        // )
 
         item.imgObject = img
         item.loaded_bool = true
