@@ -15,15 +15,32 @@ function Home() {
   // }, [])
 
   const [threeImagesBools, setThreeImagesBools] = useState([])
+  const [loadImagesArr, setLoadImagesArr] = useState([
+    ...social_images_arr,
+    ...tech_icons_arr,
+    {
+      url: "/landing/scrollHorizontal.svg",
+      name: "scrollHorizontal",
+      loaded_bool: false,
+      imgObject: {},
+    },
+    {
+      url: "/common/DeathSpace_Logo.svg",
+      name: "DeathSpace_Logo",
+      loaded_bool: false,
+      imgObject: {},
+    },
+  ])
 
   return (
     <IndexPage>
       <AnimatePresence>
         {preloaderBool && (
           <Preloader
-            preloaderBool={preloaderBool}
             setPreloaderBool={setPreloaderBool}
             threeImagesBools={threeImagesBools}
+            loadImagesArr={loadImagesArr}
+            setLoadImagesArr={setLoadImagesArr}
             key={"preloader"}
           />
         )}
@@ -41,5 +58,37 @@ const IndexPage = styled.div`
   width: 100%;
   height: 100%;
 `
+const social_images_arr = Array.from({ length: 4 }, (_, i) => {
+  return {
+    url: `/landing/social/${i + 1}.svg`,
+    name: `social_icon_${i + 1}`,
+    loaded_bool: false,
+    imgObject: {},
+  }
+})
+const tech_icons_arr = Array.from({ length: 14 }, (_, i) => {
+  return {
+    url: `/about/tech_icons/${i + 1}.svg`,
+    name: `tech_icons${i + 1}`,
+    loaded_bool: false,
+    imgObject: {},
+  }
+})
 
+// const load_images_arr = [
+//   ...social_images_arr,
+//   ...tech_icons_arr,
+//   {
+//     url: "/landing/scrollHorizontal.svg",
+//     name: "scrollHorizontal",
+//     loaded_bool: false,
+//     imgObject: {},
+//   },
+//   {
+//     url: "/common/DeathSpace_Logo.svg",
+//     name: "DeathSpace_Logo",
+//     loaded_bool: false,
+//     imgObject: {},
+//   },
+// ]
 export default Home
