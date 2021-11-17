@@ -261,7 +261,7 @@ const VanillaHover = ({
     })
 
     const unsubscribeY = scrollValueY_animatedX.onChange(() => {
-      console.log("scrollValue", scrollValueY_animatedX.get())
+      // console.log("scrollValue", scrollValueY_animatedX.get())
       if (!isSnapping) {
         let tempScrollVal = scrollValueY_animatedX.get()
         isScrollingY = true
@@ -279,7 +279,7 @@ const VanillaHover = ({
     })
     const unsubscribeAnimX = animatedX.onChange(() => {
       // console.log(panPressed)
-      console.log("animatedX", animatedX.get())
+      // console.log("animatedX", animatedX.get())
 
       if (!panPressed && !isScrollingY) {
         snapFunc()
