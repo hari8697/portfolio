@@ -256,13 +256,17 @@ const VanillaHover = ({
 
     ogFunc()
 
-    const unsubscribeSnap = scrollVal.onChange(() => {})
+    const unsubscribeSnap = scrollVal.onChange(() => {
+      // console.log(scrollVal.get())
+    })
 
     const unsubscribeY = scrollValueY_animatedX.onChange(() => {
+      console.log("scrollValue", scrollValueY_animatedX.get())
       if (!isSnapping) {
         let tempScrollVal = scrollValueY_animatedX.get()
         isScrollingY = true
-        animatedX.set(scrollValueY_animatedX.get())
+        animatedX.set(tempScrollVal)
+
         // setTimeout(() => {
         //   if (scrollValueY_animatedX.get() == tempScrollVal) {
         //     // Stopped scrolling
@@ -275,10 +279,7 @@ const VanillaHover = ({
     })
     const unsubscribeAnimX = animatedX.onChange(() => {
       // console.log(panPressed)
-
-      /**
-       * TODO Find a way to scroll without triggering this function, since it breaks the animation
-       */
+      console.log("animatedX", animatedX.get())
 
       if (!panPressed && !isScrollingY) {
         snapFunc()
@@ -291,9 +292,6 @@ const VanillaHover = ({
     canvasNode.addEventListener("mousedown", onMouseDown, false)
     window.addEventListener("resize", onResize)
 
-    /**
-     * TODO: Cleanup all GPU intensive stuff.
-     */
     return () => {
       var myNode = canvasEl.current
       if (myNode) {

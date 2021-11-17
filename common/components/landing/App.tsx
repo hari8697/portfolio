@@ -56,7 +56,7 @@ function App({ setThreeImagesBools, preloaderBool }) {
 
   let animatedX = useSpring(0, {
     stiffness: 800,
-    damping: 100,
+    damping: 68,
   })
   return (
     <Container
