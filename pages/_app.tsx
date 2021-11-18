@@ -1,5 +1,6 @@
 import Layout from "../common/components/layouts/Layout"
 
+import { ToastContainer, toast } from "react-toastify"
 function MyApp({ Component, pageProps, router }) {
   return (
     <Layout title="DeathSpace Design">

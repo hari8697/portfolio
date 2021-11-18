@@ -4,6 +4,9 @@ import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 import { GlobalStyle, defaultTheme, darkTheme } from "@/common/utils"
 import Head from "next/head"
 
+import { ToastContainer, toast } from "react-toastify"
+import { Slide } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 const Layout = ({ children, title = "DeathSpace Design" }) => {
   const [useDarkTheme, useDarkThemeSet] = useState(true)
   return (
@@ -22,6 +25,19 @@ const Layout = ({ children, title = "DeathSpace Design" }) => {
         <AnimateSharedLayout>
           <AnimatePresence exitBeforeEnter>{children}</AnimatePresence>
         </AnimateSharedLayout>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          transition={Slide}
+        />
         <GlobalStyle />
       </ThemeProvider>
     </StyledLayout>

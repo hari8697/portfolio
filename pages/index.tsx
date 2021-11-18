@@ -1,9 +1,11 @@
 import styled from "styled-components"
 import App from "../common/components/landing/App"
-
 import Preloader from "@/components/shared/Preloader"
 import React, { useEffect, useState } from "react"
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
+
+// minified version is also included
+// import 'react-toastify/dist/ReactToastify.min.css';
 
 function Home() {
   const [preloaderBool, setPreloaderBool] = useState(true)
