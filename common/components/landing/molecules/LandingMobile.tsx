@@ -67,9 +67,26 @@ export default function Landing({ imagesArr }) {
           <img src="/common/DeathSpace_Logo.svg"></img>
         </div>
         <Link href="/about" scroll={false}>
-          <Paragraph className="link_about clickable" click highlighted capsON>
-            About
-          </Paragraph>
+          {isMobile ? (
+            <Paragraph
+              className="link_about clickable"
+              click
+              highlighted
+              capsON
+            >
+              About
+            </Paragraph>
+          ) : (
+            <H5Link
+              capsON
+              click
+              highlighted
+              grab
+              className="link_about clickable"
+            >
+              About
+            </H5Link>
+          )}
         </Link>
       </Header_wrap>
 
