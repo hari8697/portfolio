@@ -1,9 +1,10 @@
 import styled, { ThemeProvider } from "styled-components"
-import Landing from "@/components/landing/Landing"
+import Landing from "@/components/landing/molecules/Landing"
+import LandingMobile from "@/components/landing/molecules/LandingMobile"
 
 import VanillaHover from "./threejs/VanillaHover"
 import ScrollProgress from "./molecules/ScrollProgress"
-import { useWindowSize } from "@/common/utils/"
+import { useResponsiveHelper, useWindowSize } from "@/common/utils/"
 import { device } from "@/common/utils"
 import {
   motion,
@@ -30,6 +31,8 @@ const ContainerVariants = {
 }
 
 function App({ setThreeImagesBools, preloaderBool }) {
+  const { isMobile, isTablet } = useResponsiveHelper()
+
   const { width: vW, height: vH } = useWindowSize()
 
   const pageExtraHeight = 3.2
@@ -66,7 +69,7 @@ function App({ setThreeImagesBools, preloaderBool }) {
       exit="exit"
       pageExtraHeight={pageExtraHeight}
     >
-      {vW >= 1024 && (
+      {!isMobile && !isTablet && (
         <VanillaHover
           animatedX={animatedX}
           imagesArr={imagesArr}
@@ -79,16 +82,28 @@ function App({ setThreeImagesBools, preloaderBool }) {
           setThreeImagesBools={setThreeImagesBools}
         />
       )}
-      <LandingWrapper>
-        <Landing
-          animatedX={animatedX}
-          imagesArr={imagesArr}
-          moveByFactor={moveByFactor}
-          maxDragX={maxDragX}
-          setMaxDragX={setMaxDragX}
-        ></Landing>
-        <ScrollProgress animatedX={animatedX} maxDragX={maxDragX} />
-      </LandingWrapper>
+      {isMobile || isTablet ? (
+        <LandingWrapper>
+          <LandingMobile
+            animatedX={animatedX}
+            imagesArr={imagesArr}
+            moveByFactor={moveByFactor}
+            maxDragX={maxDragX}
+            setMaxDragX={setMaxDragX}
+          ></LandingMobile>
+        </LandingWrapper>
+      ) : (
+        <LandingWrapper>
+          <Landing
+            animatedX={animatedX}
+            imagesArr={imagesArr}
+            moveByFactor={moveByFactor}
+            maxDragX={maxDragX}
+            setMaxDragX={setMaxDragX}
+          ></Landing>
+          <ScrollProgress animatedX={animatedX} maxDragX={maxDragX} />
+        </LandingWrapper>
+      )}
     </Container>
   )
 }

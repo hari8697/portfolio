@@ -11,7 +11,7 @@ import {
 } from "./Landing.style"
 import React, { useEffect, useState, useRef } from "react"
 import { useWindowSize } from "@/common/utils/"
-import SocialItems from "./molecules/SocialItems"
+import SocialItems from "./SocialItems"
 import Link from "next/link"
 import { H5Link } from "@/components/styled/"
 
