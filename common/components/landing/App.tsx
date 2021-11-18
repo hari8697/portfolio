@@ -84,13 +84,7 @@ function App({ setThreeImagesBools, preloaderBool }) {
       )}
       {isMobile || isTablet ? (
         <LandingWrapper>
-          <LandingMobile
-            animatedX={animatedX}
-            imagesArr={imagesArr}
-            moveByFactor={moveByFactor}
-            maxDragX={maxDragX}
-            setMaxDragX={setMaxDragX}
-          ></LandingMobile>
+          <LandingMobile imagesArr={imagesArr}></LandingMobile>
         </LandingWrapper>
       ) : (
         <LandingWrapper>
