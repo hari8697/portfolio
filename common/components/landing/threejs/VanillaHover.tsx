@@ -369,7 +369,7 @@ const VanillaHover = ({
       }
     })
 
-    console.log("currSelectedElement", currSelectedElement)
+    // console.log("currSelectedElement", currSelectedElement)
 
     if (
       currSelectedElement != 0 &&
