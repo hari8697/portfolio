@@ -263,9 +263,9 @@ const VanillaHover = ({
     const unsubscribeY = scrollValueY_animatedX.onChange(() => {
       // console.log("scrollValue", scrollValueY_animatedX.get())
       if (!isSnapping) {
-        let tempScrollVal = scrollValueY_animatedX.get()
+        // let tempScrollVal = scrollValueY_animatedX.get()
         isScrollingY = true
-        animatedX.set(tempScrollVal)
+        animatedX.set(scrollValueY_animatedX.get())
 
         // setTimeout(() => {
         //   if (scrollValueY_animatedX.get() == tempScrollVal) {
@@ -279,7 +279,6 @@ const VanillaHover = ({
     })
     const unsubscribeAnimX = animatedX.onChange(() => {
       // console.log(panPressed)
-      // console.log("animatedX", animatedX.get())
 
       if (!panPressed && !isScrollingY) {
         snapFunc()
@@ -344,6 +343,7 @@ const VanillaHover = ({
 
   const snapFunc = () => {
     isSnapping = true
+    // console.log("animatedX", animatedX.get())
     // OG DRY implementation
     // const snapArr = [-13, -5, 0]
     // if (animatedX.get() <= snapArr[0]) animatedX.set(-18)
@@ -358,16 +358,28 @@ const VanillaHover = ({
     // ]
     // console.log(isScrollingY)
 
-    let currSelectedElement
+    let currSelectedElement = 0
     snapArr.map((el) => {
-      if (animatedX.get() >= 0 && !panPressed) {
-        currSelectedElement = 0
-      } else if (animatedX.get() <= el.val && !panPressed) {
+      // if (animatedX.get() >= 0 && !panPressed) {
+      //   currSelectedElement = 0
+      //   animatedX.set(0)
+      // } else
+      if (animatedX.get() <= el.val && !panPressed) {
         currSelectedElement = el.id
       }
     })
 
-    animatedX.set(-(currSelectedElement * moveByFactor))
+    console.log("currSelectedElement", currSelectedElement)
+
+    if (
+      currSelectedElement != 0 &&
+      (currSelectedElement != null || undefined)
+    ) {
+      animatedX.set(-(currSelectedElement * moveByFactor))
+    } else {
+      animatedX.set(0)
+    }
+
     scrollOnSnap()
 
     if (animatedX.get() == -(currSelectedElement * moveByFactor)) {
