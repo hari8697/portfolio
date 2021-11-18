@@ -44,12 +44,12 @@ function Home() {
             key={"preloader"}
           />
         )}
-        <App
-          preloaderBool={preloaderBool}
-          setThreeImagesBools={setThreeImagesBools}
-          key={"app"}
-        />
       </AnimatePresence>
+      <App
+        preloaderBool={preloaderBool}
+        setThreeImagesBools={setThreeImagesBools}
+        key={"app"}
+      />
     </IndexPage>
   )
 }

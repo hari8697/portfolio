@@ -119,36 +119,18 @@ export default function Landing({
         <div className="logo">
           <img src="/common/DeathSpace_Logo.svg"></img>
         </div>
-        {vW < 768 ? (
-          <Link href="/about" scroll={false}>
-            <Paragraph
-              className="link_about clickable"
-              click
-              highlighted
-              capsON
-            >
-              About
-            </Paragraph>
-          </Link>
-        ) : (
-          <Link href="/about" scroll={false}>
-            <H5Link
-              capsON
-              click
-              highlighted
-              grab
-              className="link_about clickable"
-            >
-              About
-            </H5Link>
-          </Link>
-        )}
+        <Link href="/about" scroll={false}>
+          <H5Link
+            capsON
+            click
+            highlighted
+            grab
+            className="link_about clickable"
+          >
+            About
+          </H5Link>
+        </Link>
       </Header_wrap>
-      {vW < 1024 && (
-        <div className="hero_image">
-          <Image src={`/landing/album/1.png`} width={1354} height={761}></Image>
-        </div>
-      )}
       <Title_wrap className="noselect">
         <div className="filters_wrapper">
           <span className="selected_filter">
