@@ -88,6 +88,18 @@ export const Header_wrap = styled.div`
   }
 `
 
+export const Title = styled(H1)`
+  text-transform: capitalize;
+  opacity: 1;
+  margin: 0.25rem 0;
+  width: max-content;
+`
+
+export const Subtitle = styled(H2)`
+  opacity: 0.5;
+  margin: 0.25rem 0;
+`
+
 export const Title_wrap = styled.div`
   grid-column: 1 / -1;
   margin-top: 40vh;
@@ -122,6 +134,21 @@ export const Title_wrap = styled.div`
     }
     .unselected_filter {
       opacity: 0.05;
+    }
+
+    .mobile_filter {
+      pointer-events: all;
+      display: block;
+
+      ${Title} {
+        cursor: pointer;
+        opacity: 0.05;
+        transition: opacity 0.2s ease-out;
+
+        &.selected {
+          opacity: 1;
+        }
+      }
     }
   }
 `
@@ -231,16 +258,4 @@ export const Paragraph = styled(Para)`
       border-bottom: 3px solid ${(props) => props.theme.primaryColor};
     }
   }
-`
-
-export const Title = styled(H1)`
-  text-transform: capitalize;
-  opacity: 1;
-  margin: 0.25rem 0;
-  width: max-content;
-`
-
-export const Subtitle = styled(H2)`
-  opacity: 0.5;
-  margin: 0.25rem 0;
 `

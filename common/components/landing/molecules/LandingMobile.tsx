@@ -1,6 +1,6 @@
 import Image from "next/image"
 // import styled from "styled-components"
-import { motion, useTransform, useSpring } from "framer-motion"
+import { motion, useTransform, useSpring, useMotionValue } from "framer-motion"
 import {
   Title,
   GridContainer,
@@ -28,6 +28,8 @@ const ContainerVariants = {
 }
 
 export default function Landing({ imagesArr }) {
+  const selectedTitleAnimated = useSpring(1)
+  const [selectedTitle, setSelectedTitle] = useState(1)
   const { isMobile, isTablet } = useResponsiveHelper()
 
   const footerSwipe = (vW, vH) => {
@@ -47,13 +49,64 @@ export default function Landing({ imagesArr }) {
   }
   const { width: vW, height: vH } = useWindowSize()
 
-  const title_wrapper = useRef(null)
-  let titleWrapperHeight
-
   const portItems = imagesArr.map((item, key) => {
     // const item = portArray[key]
-    return <Title key={item.id}>{item.name}</Title>
+    return (
+      <Title
+        key={item.id}
+        onClick={() => {
+          setSelectedTitle(item.id)
+          selectedTitleAnimated.set(item.id)
+        }}
+        className={item.id == selectedTitle && "selected"}
+      >
+        {item.name}
+      </Title>
+    )
   })
+
+  const title_wrapper = useRef(null)
+  const [titleWrapperMoveByHeight, setTitleWrapperMoveByHeight] = useState(0)
+  let titleWrapperHeight
+  const textWrapperY = useTransform(
+    selectedTitleAnimated,
+    [4, 1],
+    [-titleWrapperMoveByHeight, 0]
+  )
+
+  const calcAnimHelperValues = () => {
+    // Title anim Values
+
+    if (title_wrapper.current != null || undefined) {
+      titleWrapperHeight = title_wrapper.current.offsetHeight
+
+      // Get height of element without margin
+
+      let element = title_wrapper.current.firstChild
+      var computedStyle = getComputedStyle(element)
+
+      let elementHeight = element.clientHeight // height with padding
+      let elementWidth = element.clientWidth // width with padding
+
+      elementHeight -=
+        parseFloat(computedStyle.marginTop) +
+        parseFloat(computedStyle.marginBottom)
+      elementWidth -=
+        parseFloat(computedStyle.marginLeft) +
+        parseFloat(computedStyle.marginRight)
+
+      setTitleWrapperMoveByHeight(titleWrapperHeight - elementHeight)
+    }
+  }
+
+  useEffect(() => {
+    calcAnimHelperValues()
+    // console.log(titleWrapperMoveByHeight)
+
+    window.addEventListener("resize", () => {
+      calcAnimHelperValues()
+    })
+  }, [])
 
   return (
     <GridContainer
@@ -96,16 +149,15 @@ export default function Landing({ imagesArr }) {
 
       <Title_wrap className="noselect">
         <div className="filters_wrapper">
-          <span className="selected_filter">
-            <motion.div ref={title_wrapper} className="text_wrapper">
+          <span className="mobile_filter">
+            <motion.div
+              ref={title_wrapper}
+              className="text_wrapper"
+              style={{ y: textWrapperY }}
+            >
               {portItems}
             </motion.div>
           </span>
-          <div className="unselected_filter">
-            <motion.div ref={title_wrapper} className="text_wrapper">
-              {portItems}
-            </motion.div>
-          </div>
         </div>
       </Title_wrap>
       <Footer_wrap className="noselect">
