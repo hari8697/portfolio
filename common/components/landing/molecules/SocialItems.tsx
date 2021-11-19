@@ -1,12 +1,22 @@
 import { ToastContainer, toast } from "react-toastify"
+import { device, useResponsiveHelper } from "@/common/utils/"
 const SocialItems = ({}) => {
+  const { isMobile, isTablet } = useResponsiveHelper()
   // const socialItemsArr = Array.from(Array(4).keys())
-  const socialItemsArr = [
-    "email",
-    "https://twitter.com/deathspace_",
-    "https://www.instagram.com/deathspace.design/",
-    "discord",
-  ]
+  const socialItemsArr =
+    isTablet || isMobile
+      ? [
+          "mailto:deathspacedesign@gmail.com",
+          "https://twitter.com/deathspace_",
+          "https://www.instagram.com/deathspace.design/",
+          "discord",
+        ]
+      : [
+          "email",
+          "https://twitter.com/deathspace_",
+          "https://www.instagram.com/deathspace.design/",
+          "discord",
+        ]
 
   const handleClick = (item: string) => {
     console.log("clicked!", item)
