@@ -19,7 +19,6 @@ function Home() {
   const [threeImagesBools, setThreeImagesBools] = useState([])
   const [loadImagesArr, setLoadImagesArr] = useState([
     ...social_images_arr,
-    ...tech_icons_arr,
     {
       url: "/landing/scrollHorizontal.svg",
       name: "scrollHorizontal",

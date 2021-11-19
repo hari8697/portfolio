@@ -42,7 +42,7 @@ const SocialItems = ({}) => {
     if (textToBeCopied != null || undefined) {
       navigator.clipboard.writeText(textToBeCopied).then(
         function () {
-          console.log("Async: Copying to clipboard was successful!")
+          // console.log("Async: Copying to clipboard was successful!")
           toast(message, {
             toastId: message,
           })
