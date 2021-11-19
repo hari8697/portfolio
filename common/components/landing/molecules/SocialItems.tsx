@@ -69,7 +69,13 @@ const SocialItems = ({}) => {
     }
 
     return (
-      <a {...attributes()} className="icon_wrapper" key={index}>
+      <a
+        {...attributes()}
+        className="icon_wrapper"
+        key={index}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <div className="social_icon">
           <img src={`/landing/social/${index + 1}.svg`}></img>
         </div>
