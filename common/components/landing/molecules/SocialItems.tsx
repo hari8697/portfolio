@@ -1,5 +1,5 @@
 import { ToastContainer, toast } from "react-toastify"
-const SocialItems = ({ notify }) => {
+const SocialItems = ({}) => {
   // const socialItemsArr = Array.from(Array(4).keys())
   const socialItemsArr = [
     "email",
