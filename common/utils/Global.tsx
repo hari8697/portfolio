@@ -13,6 +13,16 @@ body {
   font-size: 16px;
 }
 
+// Toastify colors
+html {
+  :root {
+    --toastify-color-dark: ${(props) => props.theme.toastColor};
+    --toastify-text-color-dark: ${(props) => props.theme.placeHolderTextColor};
+    --toastify-color-progress-dark: ${(props) => props.theme.primaryColor};
+   
+  }
+}
+
 *, *:before, *:after {
   margin: 0;
   padding: 0;

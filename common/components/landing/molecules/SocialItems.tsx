@@ -8,17 +8,40 @@ const SocialItems = ({ notify }) => {
     "discord",
   ]
 
-  const toastNotification = (item: string) => {
+  const handleClick = (item: string) => {
     console.log("clicked!", item)
-    toast("🦄 Wow so easy!", {
-      position: "bottom-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
+    let message, textToBeCopied
+    switch (item) {
+      case "email":
+        message = "Email address copied!"
+        textToBeCopied = "deathspacedesign@gmail.com"
+        copyToClipboard(textToBeCopied, message)
+        break
+      case "discord":
+        message = "Discord username copied!"
+        textToBeCopied = "DeathSpace#0538"
+        copyToClipboard(textToBeCopied, message)
+        break
+      default:
+        message = "Wow so easy!"
+        break
+    }
+  }
+
+  const copyToClipboard = (textToBeCopied, message) => {
+    if (textToBeCopied != null || undefined) {
+      navigator.clipboard.writeText(textToBeCopied).then(
+        function () {
+          console.log("Async: Copying to clipboard was successful!")
+          toast(message, {
+            toastId: message,
+          })
+        },
+        function (err) {
+          console.error("Async: Could not copy text: ", err)
+        }
+      )
+    }
   }
 
   // let iconSize = 18
@@ -28,7 +51,7 @@ const SocialItems = ({ notify }) => {
         case "email":
         case "discord":
           return {
-            onClick: () => toastNotification(item),
+            onClick: () => handleClick(item),
           }
         default:
           return { href: item }

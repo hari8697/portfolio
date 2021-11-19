@@ -62,6 +62,7 @@ export const neutral = {
   600: "#6E7191", // Label
   700: "#4E4B66", // Body
   800: "#14142B", // Title-Active
+  850: "#120F14", // Toast Notification
   900: "#0E0C10", // Background Dark
   1000: "#000000", // Pure Black
 }
