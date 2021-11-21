@@ -14,6 +14,7 @@ import {
   useViewportScroll,
 } from "framer-motion"
 import React, { useEffect, useState, useRef } from "react"
+// import MobileHover from "./threejs/MobileHover"
 
 const ContainerVariants = {
   initial: {

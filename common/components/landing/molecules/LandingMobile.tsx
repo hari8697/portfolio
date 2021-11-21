@@ -14,7 +14,7 @@ import { useResponsiveHelper, useWindowSize } from "@/common/utils/"
 import SocialItems from "./SocialItems"
 import Link from "next/link"
 import { H5Link } from "@/components/styled/"
-
+import MobileHover from "../threejs/MobileHover"
 const ContainerVariants = {
   initial: {
     opacity: 0,
@@ -144,7 +144,7 @@ export default function Landing({ imagesArr }) {
       </Header_wrap>
 
       <div className="hero_image">
-        <Image src={`/landing/album/1.png`} width={1354} height={761}></Image>
+        <MobileHover activeImage={1}></MobileHover>
       </div>
 
       <Title_wrap className="noselect">

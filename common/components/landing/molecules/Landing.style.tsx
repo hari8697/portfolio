@@ -23,9 +23,17 @@ export const GridContainer = styled.div`
   .hero_image {
     position: absolute;
     top: 26%;
+    width: 100%;
     grid-column: 1 / -1;
     z-index: -1;
     opacity: 0.8;
+
+    .image {
+      object-fit: cover; /* Cover  means that the img will fill the box and preserve its aspect ratio  */
+      object-position: center; /* Position of the image in it's parent */
+      width: 100%;
+      height: 100%;
+    }
   }
 
   @media ${device.tablet} {
