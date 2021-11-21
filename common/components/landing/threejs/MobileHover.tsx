@@ -55,7 +55,15 @@ const MobileHover = ({ activeImage }) => {
 
         myAnimation.image1 = currImage
         myAnimation.image2 = nextImage
-        myAnimation.changeTextures(currImage, nextImage)
+        myAnimation.changeTextures(
+          currImage,
+          nextImage,
+          (loaded_1, loaded_2) => {
+            if (loaded_1 && loaded_2) {
+              myAnimation.next()
+            }
+          }
+        )
         myAnimation.render()
         //   // setAnimatedFwd(false)
         //   console.log(myAnimation)
@@ -76,8 +84,6 @@ const MobileHover = ({ activeImage }) => {
         //       hover: false,
         //     })
         //   )
-
-        myAnimation.next()
       } else {
         setAnimatedFwd(true)
         console.log("previous")
@@ -85,10 +91,16 @@ const MobileHover = ({ activeImage }) => {
 
         myAnimation.image2 = currImage
         myAnimation.image1 = nextImage
-        myAnimation.changeTextures(nextImage, currImage)
+        myAnimation.changeTextures(
+          nextImage,
+          currImage,
+          (loaded_1, loaded_2) => {
+            if (loaded_1 && loaded_2) {
+              myAnimation.previous()
+            }
+          }
+        )
         myAnimation.render()
-
-        myAnimation.previous()
       }
 
       console.log(myAnimation.image1)

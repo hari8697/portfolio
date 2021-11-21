@@ -193,16 +193,21 @@ void main() {
     a2 = 1
   }
 
-  function changeTextures(img1, img2) {
-    var newTexture1 = loader.load(img1, () => {
-      newTexture1.needsUpdate = true
+  function changeTextures(img1, img2, callback) {
+    let image1Loaded = false
+    let image2Loaded = false
 
+    var newTexture1 = loader.load(img1, () => {
+      image1Loaded = true
+      newTexture1.needsUpdate = true
       render()
+      callback(image1Loaded, image2Loaded)
     })
     var newTexture2 = loader.load(img2, () => {
+      image2Loaded = true
       newTexture2.needsUpdate = true
-
       render()
+      callback(image1Loaded, image2Loaded)
     })
 
     // mat.uniforms.texture1.value.needsUpdate = true
