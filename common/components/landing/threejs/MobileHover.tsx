@@ -49,7 +49,6 @@ const MobileHover = ({ activeImage }) => {
       let currImage
 
       if (animatedFwd) {
-        setAnimatedFwd(false)
         console.log("next")
         currImage = myAnimation.image1
 
@@ -60,13 +59,13 @@ const MobileHover = ({ activeImage }) => {
           nextImage,
           (loaded_1, loaded_2) => {
             if (loaded_1 && loaded_2) {
-              setTimeout(() => {
-                myAnimation.next()
-              }, 150)
+              myAnimation.next()
             }
-          }
+          },
+          animatedFwd
         )
-        myAnimation.render()
+        // myAnimation.render()
+        setAnimatedFwd(false)
         //   // setAnimatedFwd(false)
         //   console.log(myAnimation)
         //   let myNode = imageEl.current
@@ -87,7 +86,6 @@ const MobileHover = ({ activeImage }) => {
         //     })
         //   )
       } else {
-        setAnimatedFwd(true)
         console.log("previous")
         currImage = myAnimation.image2
 
@@ -98,13 +96,13 @@ const MobileHover = ({ activeImage }) => {
           currImage,
           (loaded_1, loaded_2) => {
             if (loaded_1 && loaded_2) {
-              setTimeout(() => {
-                myAnimation.previous()
-              }, 100)
+              myAnimation.previous()
             }
-          }
+          },
+          animatedFwd
         )
         myAnimation.render()
+        setAnimatedFwd(true)
       }
 
       console.log(myAnimation.image1)

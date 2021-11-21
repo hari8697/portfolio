@@ -193,7 +193,7 @@ void main() {
     a2 = 1
   }
 
-  function changeTextures(img1, img2, callback) {
+  function changeTextures(img1, img2, callback, goFwd) {
     let image1Loaded = false
     let image2Loaded = false
 
@@ -218,8 +218,11 @@ void main() {
     newTexture1.magFilter = newTexture2.magFilter = THREE.LinearFilter
     newTexture1.minFilter = newTexture2.minFilter = THREE.LinearFilter
 
-    mat.uniforms.texture1.value = newTexture1
-    mat.uniforms.texture2.value = newTexture2
+    if (goFwd) {
+      mat.uniforms.texture2.value = newTexture2
+    } else {
+      mat.uniforms.texture1.value = newTexture1
+    }
     // render()
   }
   var mat = new THREE.ShaderMaterial({
