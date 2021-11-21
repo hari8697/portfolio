@@ -180,6 +180,14 @@ void main() {
     texture1.minFilter = texture2.minFilter = THREE.LinearFilter
   }
 
+  function reloadImageTextures() {
+    var texture1 = loader.load(image1, render)
+    var texture2 = loader.load(image2, render)
+
+    texture1.magFilter = texture2.magFilter = THREE.LinearFilter
+    texture1.minFilter = texture2.minFilter = THREE.LinearFilter
+  }
+
   let a1, a2
   var imageAspect = imagesRatio
   if (parent.offsetHeight / parent.offsetWidth < imageAspect) {
@@ -254,7 +262,6 @@ void main() {
   scene.add(object)
 
   function transitionIn() {
-    console.log("lmao")
     TweenMax.to(mat.uniforms.dispFactor, speedIn, {
       value: 1,
       ease: easing,
@@ -300,4 +307,8 @@ void main() {
 
   this.next = transitionIn
   this.previous = transitionOut
+  this.image1 = image1
+  this.image2 = image2
+  this.render = render
+  this.reloadImageTextures = reloadImageTextures
 }
