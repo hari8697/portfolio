@@ -73,7 +73,7 @@ void main() {
   var speedIn = firstDefined(opts.speedIn, opts.speed, 1.6)
   var speedOut = firstDefined(opts.speedOut, opts.speed, 1.2)
   var userHover = firstDefined(opts.hover, true)
-  var easing = firstDefined(opts.easing, Expo.easeOut)
+  var easing = firstDefined(opts.easing, "expo.out")
   var video = firstDefined(opts.video, false)
 
   if (!parent) {
