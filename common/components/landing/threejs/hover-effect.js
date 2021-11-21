@@ -196,14 +196,11 @@ void main() {
   function changeTextures(img1, img2) {
     var newTexture1 = loader.load(img1, () => {
       newTexture1.needsUpdate = true
-      mat.uniforms.texture1.value = newTexture1
-      console.log("lmao")
-      console.log(newTexture1)
+
       render()
     })
     var newTexture2 = loader.load(img2, () => {
       newTexture2.needsUpdate = true
-      mat.uniforms.texture2.value = newTexture2
 
       render()
     })
@@ -213,8 +210,11 @@ void main() {
     // // mat.uniforms.needsUpdate = true
     // mat.needsUpdate = true
 
-    texture1.magFilter = texture2.magFilter = THREE.LinearFilter
-    texture1.minFilter = texture2.minFilter = THREE.LinearFilter
+    newTexture1.magFilter = newTexture2.magFilter = THREE.LinearFilter
+    newTexture1.minFilter = newTexture2.minFilter = THREE.LinearFilter
+
+    mat.uniforms.texture1.value = newTexture1
+    mat.uniforms.texture2.value = newTexture2
     // render()
   }
   var mat = new THREE.ShaderMaterial({
