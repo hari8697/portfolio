@@ -176,13 +176,8 @@ void main() {
     var texture1 = loader.load(image1, render)
     var texture2 = loader.load(image2, render)
 
-    texture1.magFilter = texture2.magFilter = THREE.LinearFilter
-    texture1.minFilter = texture2.minFilter = THREE.LinearFilter
-  }
-
-  function reloadImageTextures() {
-    var texture1 = loader.load(image1, render)
-    var texture2 = loader.load(image2, render)
+    texture1.needsUpdate = true
+    texture2.needsUpdate = true
 
     texture1.magFilter = texture2.magFilter = THREE.LinearFilter
     texture1.minFilter = texture2.minFilter = THREE.LinearFilter
@@ -198,6 +193,30 @@ void main() {
     a2 = 1
   }
 
+  function changeTextures(img1, img2) {
+    var newTexture1 = loader.load(img1, () => {
+      newTexture1.needsUpdate = true
+      mat.uniforms.texture1.value = newTexture1
+      console.log("lmao")
+      console.log(newTexture1)
+      render()
+    })
+    var newTexture2 = loader.load(img2, () => {
+      newTexture2.needsUpdate = true
+      mat.uniforms.texture2.value = newTexture2
+
+      render()
+    })
+
+    // mat.uniforms.texture1.value.needsUpdate = true
+    // mat.uniforms.texture2.value.needsUpdate = true
+    // // mat.uniforms.needsUpdate = true
+    // mat.needsUpdate = true
+
+    texture1.magFilter = texture2.magFilter = THREE.LinearFilter
+    texture1.minFilter = texture2.minFilter = THREE.LinearFilter
+    // render()
+  }
   var mat = new THREE.ShaderMaterial({
     uniforms: {
       intensity1: {
@@ -252,6 +271,13 @@ void main() {
     transparent: true,
     opacity: 1.0,
   })
+
+  // mat.uniforms.texture1.needsUpdate = true
+  // mat.uniforms.texture2.needsUpdate = true
+  // mat.uniforms.needsUpdate = true
+  // mat.uniforms.fragmentShader = true
+  // mat.uniforms.vertexShader = true
+  // mat.needsUpdate = true
 
   var geometry = new THREE.PlaneBufferGeometry(
     parent.offsetWidth,
@@ -309,6 +335,9 @@ void main() {
   this.previous = transitionOut
   this.image1 = image1
   this.image2 = image2
+  // this.image1 = mat.uniforms.texture1
+  // this.image2 = mat.uniforms.texture2
+
+  this.changeTextures = changeTextures
   this.render = render
-  this.reloadImageTextures = reloadImageTextures
 }

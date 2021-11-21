@@ -13,6 +13,7 @@ const MobileHover = ({ activeImage }) => {
         intensity: 0.3,
         image1: "/landing/album/image1.png",
         image2: "/landing/album/image2.png",
+        image3: "/landing/album/image3.png",
         displacementImage: "/landing/album/image3.png",
         imagesRatio: 0.5621815718157182,
         hover: false,
@@ -41,40 +42,57 @@ const MobileHover = ({ activeImage }) => {
     console.log(activeImage)
 
     if (myAnimation) {
-      let currImage = myAnimation.image1
+      // let currImage = myAnimation.image1
+      // let nextImage = `/landing/album/image${activeImage}.png`
+
       let nextImage = `/landing/album/image${activeImage}.png`
+      let currImage
 
       if (animatedFwd) {
-        console.log("next")
         setAnimatedFwd(false)
+        console.log("next")
+        currImage = myAnimation.image1
+
         myAnimation.image1 = currImage
         myAnimation.image2 = nextImage
-        console.log(myAnimation)
+        myAnimation.changeTextures(currImage, nextImage)
         myAnimation.render()
-        myAnimation.reloadImageTextures()
+        //   // setAnimatedFwd(false)
+        //   console.log(myAnimation)
+        //   let myNode = imageEl.current
+        //   if (myNode) {
+        //     while (myNode.firstChild) {
+        //       myNode.removeChild(myNode.lastChild)
+        //     }
+        //   }
+        //   setMyAnimation(
+        //     new hoverEffect({
+        //       parent: imageEl.current,
+        //       intensity: 0.3,
+        //       image1: currImage,
+        //       image2: nextImage,
+        //       displacementImage: "/landing/album/image3.png",
+        //       imagesRatio: 0.5621815718157182,
+        //       hover: false,
+        //     })
+        //   )
+
         myAnimation.next()
       } else {
         setAnimatedFwd(true)
         console.log("previous")
+        currImage = myAnimation.image2
 
         myAnimation.image2 = currImage
         myAnimation.image1 = nextImage
+        myAnimation.changeTextures(nextImage, currImage)
         myAnimation.render()
-        myAnimation.reloadImageTextures()
+
         myAnimation.previous()
       }
 
       console.log(myAnimation.image1)
       console.log(myAnimation.image2)
-      // myAnimation = new hoverEffect({
-      //   parent: imageEl.current,
-      //   intensity: 0.3,
-      //   image1: currImage,
-      //   image2: nextImage,
-      //   displacementImage: "/landing/album/image3.png",
-      //   imagesRatio: 0.5621815718157182,
-      //   hover: false,
-      // })
     }
   }, [activeImage])
 
