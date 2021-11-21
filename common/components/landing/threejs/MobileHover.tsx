@@ -60,7 +60,9 @@ const MobileHover = ({ activeImage }) => {
           nextImage,
           (loaded_1, loaded_2) => {
             if (loaded_1 && loaded_2) {
-              myAnimation.next()
+              setTimeout(() => {
+                myAnimation.next()
+              }, 150)
             }
           }
         )
@@ -96,7 +98,9 @@ const MobileHover = ({ activeImage }) => {
           currImage,
           (loaded_1, loaded_2) => {
             if (loaded_1 && loaded_2) {
-              myAnimation.previous()
+              setTimeout(() => {
+                myAnimation.previous()
+              }, 100)
             }
           }
         )
