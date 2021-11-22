@@ -7,7 +7,6 @@ const MobileHover = ({ activeImage }) => {
   const [myAnimation, setMyAnimation] = useState(null)
   const [animatedFwd, setAnimatedFwd] = useState(true)
 
-  // let animatedFwd = true
   useEffect(() => {
     setMyAnimation(
       new hoverEffect({
@@ -62,7 +61,7 @@ const MobileHover = ({ activeImage }) => {
           },
           animatedFwd
         )
-        // myAnimation.render()
+
         setAnimatedFwd(false)
       } else {
         // console.log("previous")
@@ -81,7 +80,6 @@ const MobileHover = ({ activeImage }) => {
           animatedFwd
         )
         setAnimatedFwd(true)
-        // myAnimation.render()
       }
 
       // console.log(myAnimation.image1)

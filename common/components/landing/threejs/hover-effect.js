@@ -316,7 +316,11 @@ void main() {
   var object = new THREE.Mesh(geometry, mat)
   scene.add(object)
 
+  /**
+   * ! Issue #16 was happening due to the duration of transitionIn and transitionOut being different durations. Setting it to the same duration fixed it, but adding the killTwwnsOf function in here just to be safe.
+   */
   function transitionIn() {
+    gsap.killTweensOf(mat.uniforms.dispFactor)
     gsap.to(mat.uniforms.dispFactor, {
       duration: speedOut,
       value: 1,
@@ -331,6 +335,7 @@ void main() {
   }
 
   function transitionOut() {
+    gsap.killTweensOf(mat.uniforms.dispFactor)
     gsap.to(mat.uniforms.dispFactor, {
       duration: speedOut,
       value: 0,
