@@ -6,6 +6,8 @@ const MobileHover = ({ activeImage }) => {
   const imageEl = useRef(null)
   const [myAnimation, setMyAnimation] = useState(null)
   const [animatedFwd, setAnimatedFwd] = useState(true)
+
+  // let animatedFwd = true
   useEffect(() => {
     setMyAnimation(
       new hoverEffect({
@@ -39,74 +41,51 @@ const MobileHover = ({ activeImage }) => {
   }, [])
 
   useEffect(() => {
-    console.log(activeImage)
-
+    // console.log(activeImage)
     if (myAnimation) {
-      // let currImage = myAnimation.image1
-      // let nextImage = `/landing/album/image${activeImage}.png`
-
       let nextImage = `/landing/album/image${activeImage}.png`
       let currImage
 
       if (animatedFwd) {
-        console.log("next")
+        // console.log("next")
         currImage = myAnimation.image1
 
+        // Set images for info, no real funtionality by the following 2 lines
         myAnimation.image1 = currImage
         myAnimation.image2 = nextImage
+
         myAnimation.changeTextures(
           currImage,
           nextImage,
-          (loaded_1, loaded_2) => {
-            if (loaded_1 && loaded_2) {
-              myAnimation.next()
-            }
+          () => {
+            myAnimation.next()
           },
           animatedFwd
         )
         // myAnimation.render()
         setAnimatedFwd(false)
-        //   // setAnimatedFwd(false)
-        //   console.log(myAnimation)
-        //   let myNode = imageEl.current
-        //   if (myNode) {
-        //     while (myNode.firstChild) {
-        //       myNode.removeChild(myNode.lastChild)
-        //     }
-        //   }
-        //   setMyAnimation(
-        //     new hoverEffect({
-        //       parent: imageEl.current,
-        //       intensity: 0.3,
-        //       image1: currImage,
-        //       image2: nextImage,
-        //       displacementImage: "/landing/album/image3.png",
-        //       imagesRatio: 0.5621815718157182,
-        //       hover: false,
-        //     })
-        //   )
       } else {
-        console.log("previous")
+        // console.log("previous")
         currImage = myAnimation.image2
 
-        myAnimation.image2 = currImage
+        // Set images for info, no real funtionality by the following 2 lines
         myAnimation.image1 = nextImage
+        myAnimation.image2 = currImage
+
         myAnimation.changeTextures(
           nextImage,
           currImage,
-          (loaded_1, loaded_2) => {
-            if (loaded_1 && loaded_2) {
-              myAnimation.previous()
-            }
+          () => {
+            myAnimation.previous()
           },
           animatedFwd
         )
-        myAnimation.render()
         setAnimatedFwd(true)
+        // myAnimation.render()
       }
 
-      console.log(myAnimation.image1)
-      console.log(myAnimation.image2)
+      // console.log(myAnimation.image1)
+      // console.log(myAnimation.image2)
     }
   }, [activeImage])
 

@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import { TweenMax } from "gsap"
+import { gsap } from "gsap"
 
 export default function hover_effect(opts) {
   var vertex = `
@@ -47,12 +47,6 @@ void main() {
   gl_FragColor = mix(_texture1, _texture2, dispFactor);
 }
 `
-
-  // please respect authorship and do not remove
-  console.log(
-    "%c Hover effect by Robin Delaporte: https://github.com/robin-dela/hover-effect ",
-    "color: #bada55; font-size: 0.8rem"
-  )
 
   function firstDefined() {
     for (var i = 0; i < arguments.length; i++) {
@@ -173,11 +167,14 @@ void main() {
       false
     )
   } else {
-    var texture1 = loader.load(image1, render)
-    var texture2 = loader.load(image2, render)
-
-    texture1.needsUpdate = true
-    texture2.needsUpdate = true
+    var texture1 = loader.load(image1, () => {
+      texture1.needsUpdate = true
+      render()
+    })
+    var texture2 = loader.load(image2, () => {
+      texture2.needsUpdate = true
+      render()
+    })
 
     texture1.magFilter = texture2.magFilter = THREE.LinearFilter
     texture1.minFilter = texture2.minFilter = THREE.LinearFilter
@@ -192,39 +189,63 @@ void main() {
     a1 = (parent.offsetWidth / parent.offsetHeight) * imageAspect
     a2 = 1
   }
-
   function changeTextures(img1, img2, callback, goFwd) {
-    let image1Loaded = false
-    let image2Loaded = false
+    var newTexture
+    let imageLoaded = false
+    let curr_texture1 = mat.uniforms.texture1.value
+    let curr_texture2 = mat.uniforms.texture2.value
+    // let image2Loaded = false
 
-    var newTexture1 = loader.load(img1, () => {
-      image1Loaded = true
-      newTexture1.needsUpdate = true
-      render()
-      callback(image1Loaded, image2Loaded)
-    })
-    var newTexture2 = loader.load(img2, () => {
-      image2Loaded = true
-      newTexture2.needsUpdate = true
-      render()
-      callback(image1Loaded, image2Loaded)
-    })
+    if (goFwd) {
+      // Load second image and replace before calling this.next()
+      newTexture = loader.load(img2, () => {
+        let tempClone = newTexture.clone()
+        tempClone.needsUpdate = true
+        // console.log("updating")
+        if (curr_texture2 == mat.uniforms.texture2.value) {
+          mat.uniforms.texture2.value = newTexture
+          render()
+          callback()
+        }
+      })
+    } else {
+      // Load first image and replace before calling this.previous()
+      newTexture = loader.load(img1, () => {
+        let tempClone = newTexture.clone()
+        tempClone.needsUpdate = true
+        // console.log("updating")
+        if (curr_texture1 == mat.uniforms.texture1.value) {
+          mat.uniforms.texture1.value = newTexture
+          render()
+          callback()
+        }
+      })
+    }
+
+    newTexture.magFilter = THREE.LinearFilter
+    newTexture.minFilter = THREE.LinearFilter
+
+    if (goFwd) {
+    } else {
+    }
+    mat.uniforms.texture2.value.needsUpdate = true
+    mat.uniforms.texture1.value.needsUpdate = true
+
+    // var newTexture2 = loader.load(img2, () => {
+    //   image2Loaded = true
+    //   newTexture2.needsUpdate = true
+    //   render()
+    //   callback(image1Loaded, image2Loaded)
+    // })
 
     // mat.uniforms.texture1.value.needsUpdate = true
     // mat.uniforms.texture2.value.needsUpdate = true
     // // mat.uniforms.needsUpdate = true
     // mat.needsUpdate = true
 
-    newTexture1.magFilter = newTexture2.magFilter = THREE.LinearFilter
-    newTexture1.minFilter = newTexture2.minFilter = THREE.LinearFilter
-
-    if (goFwd) {
-      mat.uniforms.texture2.value = newTexture2
-    } else {
-      mat.uniforms.texture1.value = newTexture1
-    }
     // render()
   }
+
   var mat = new THREE.ShaderMaterial({
     uniforms: {
       intensity1: {
@@ -280,12 +301,12 @@ void main() {
     opacity: 1.0,
   })
 
-  // mat.uniforms.texture1.needsUpdate = true
-  // mat.uniforms.texture2.needsUpdate = true
+  mat.uniforms.texture1.value.needsUpdate = true
+  mat.uniforms.texture2.value.needsUpdate = true
   // mat.uniforms.needsUpdate = true
   // mat.uniforms.fragmentShader = true
   // mat.uniforms.vertexShader = true
-  // mat.needsUpdate = true
+  mat.needsUpdate = true
 
   var geometry = new THREE.PlaneBufferGeometry(
     parent.offsetWidth,
@@ -296,20 +317,32 @@ void main() {
   scene.add(object)
 
   function transitionIn() {
-    TweenMax.to(mat.uniforms.dispFactor, speedIn, {
+    gsap.to(mat.uniforms.dispFactor, {
+      duration: speedOut,
       value: 1,
       ease: easing,
-      onUpdate: render,
-      onComplete: render,
+      onUpdate: () => {
+        render()
+      },
+      onComplete: () => {
+        render()
+      },
     })
   }
 
   function transitionOut() {
-    TweenMax.to(mat.uniforms.dispFactor, speedOut, {
+    gsap.to(mat.uniforms.dispFactor, {
+      duration: speedOut,
       value: 0,
       ease: easing,
-      onUpdate: render,
-      onComplete: render,
+      onUpdate: () => {
+        render()
+      },
+      onComplete: () => {
+        // console.log(mat.uniforms.texture2.value.image.src)
+        render()
+        // console.log(mat.uniforms.dispFactor.value)
+      },
     })
   }
 
@@ -343,8 +376,8 @@ void main() {
   this.previous = transitionOut
   this.image1 = image1
   this.image2 = image2
-  // this.image1 = mat.uniforms.texture1
-  // this.image2 = mat.uniforms.texture2
+  // this.image1 = mat.uniforms.texture1.value
+  // this.image2 = mat.uniforms.texture2.value
 
   this.changeTextures = changeTextures
   this.render = render
