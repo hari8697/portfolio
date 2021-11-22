@@ -198,16 +198,14 @@ void main() {
     if (goFwd) {
       // Load second image and replace before calling this.next()
       newTexture = loader.load(img2, () => {
-        let tempClone = newTexture.clone()
-        // tempClone.needsUpdate = true
+        newTexture.needsUpdate = true
         render()
         callback()
       })
     } else {
       // Load first image and replace before calling this.previous()
       newTexture = loader.load(img1, () => {
-        let tempClone = newTexture.clone()
-        // tempClone.needsUpdate = true
+        newTexture.needsUpdate = true
         render()
         callback()
       })
