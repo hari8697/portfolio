@@ -194,31 +194,22 @@ void main() {
     let imageLoaded = false
     let curr_texture1 = mat.uniforms.texture1.value
     let curr_texture2 = mat.uniforms.texture2.value
-    // let image2Loaded = false
 
     if (goFwd) {
       // Load second image and replace before calling this.next()
       newTexture = loader.load(img2, () => {
         let tempClone = newTexture.clone()
-        tempClone.needsUpdate = true
-        // console.log("updating")
-        if (curr_texture2 == mat.uniforms.texture2.value) {
-          mat.uniforms.texture2.value = newTexture
-          render()
-          callback()
-        }
+        // tempClone.needsUpdate = true
+        render()
+        callback()
       })
     } else {
       // Load first image and replace before calling this.previous()
       newTexture = loader.load(img1, () => {
         let tempClone = newTexture.clone()
-        tempClone.needsUpdate = true
-        // console.log("updating")
-        if (curr_texture1 == mat.uniforms.texture1.value) {
-          mat.uniforms.texture1.value = newTexture
-          render()
-          callback()
-        }
+        // tempClone.needsUpdate = true
+        render()
+        callback()
       })
     }
 
@@ -226,10 +217,12 @@ void main() {
     newTexture.minFilter = THREE.LinearFilter
 
     if (goFwd) {
+      mat.uniforms.texture2.value = newTexture
     } else {
+      mat.uniforms.texture1.value = newTexture
     }
-    mat.uniforms.texture2.value.needsUpdate = true
-    mat.uniforms.texture1.value.needsUpdate = true
+    // mat.uniforms.texture2.value.needsUpdate = true
+    // mat.uniforms.texture1.value.needsUpdate = true
 
     // var newTexture2 = loader.load(img2, () => {
     //   image2Loaded = true
@@ -301,12 +294,12 @@ void main() {
     opacity: 1.0,
   })
 
-  mat.uniforms.texture1.value.needsUpdate = true
-  mat.uniforms.texture2.value.needsUpdate = true
+  // mat.uniforms.texture1.value.needsUpdate = true
+  // mat.uniforms.texture2.value.needsUpdate = true
   // mat.uniforms.needsUpdate = true
   // mat.uniforms.fragmentShader = true
   // mat.uniforms.vertexShader = true
-  mat.needsUpdate = true
+  // mat.needsUpdate = true
 
   var geometry = new THREE.PlaneBufferGeometry(
     parent.offsetWidth,
@@ -317,8 +310,9 @@ void main() {
   scene.add(object)
 
   /**
-   * ! Issue #16 was happening due to the duration of transitionIn and transitionOut being different durations. Setting it to the same duration fixed it, but adding the killTwwnsOf function in here just to be safe.
+   * * Issue #16 was happening due to the duration of transitionIn and transitionOut being different durations. Setting it to the same duration fixed it, but adding the killTwwnsOf function in here just to be safe. Now with the killTweensOf function, we can safely use different durations too.
    */
+
   function transitionIn() {
     gsap.killTweensOf(mat.uniforms.dispFactor)
     gsap.to(mat.uniforms.dispFactor, {
