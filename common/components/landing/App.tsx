@@ -68,7 +68,7 @@ function App({ setThreeImagesBools, preloaderBool }) {
       initial="initial"
       animate={!preloaderBool && "animate"}
       exit="exit"
-      pageExtraHeight={pageExtraHeight}
+      pageExtraHeight={isMobile || isTablet ? 1 : pageExtraHeight}
     >
       {!isMobile && !isTablet && (
         <VanillaHover
