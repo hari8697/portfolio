@@ -27,11 +27,17 @@ const ContainerVariants = {
   },
 }
 
-export default function Landing({ imagesArr }) {
+export default function Landing({
+  imagesArr,
+  selectedTitle,
+  setSelectedTitle,
+}) {
   const selectedTitleAnimated = useSpring(1)
-  const [selectedTitle, setSelectedTitle] = useState(1)
   const { isMobile, isTablet } = useResponsiveHelper()
 
+  useEffect(() => {
+    selectedTitleAnimated.set(selectedTitle)
+  }, [selectedTitle])
   const footerSwipe = (vW, vH) => {
     if (isMobile) {
       return (
