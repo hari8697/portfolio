@@ -95,12 +95,12 @@ function App({ setThreeImagesBools, preloaderBool }) {
         /*most significant*/
         if (xDiff > 0) {
           /* right swipe */
-          console.log("swiped right!")
+          // console.log("swiped right!")
 
           updateSelectedItem(true)
         } else {
           /* left swipe */
-          console.log("swiped left!")
+          // console.log("swiped left!")
           updateSelectedItem(false)
         }
       } else {
