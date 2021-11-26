@@ -163,8 +163,6 @@ function App({ setThreeImagesBools, preloaderBool }) {
           onTextureLoad={onTextureLoad}
           moveByFactor={moveByFactor}
           scrollValueY={scrollYProgress}
-          vW={vW}
-          vH={vH}
           pageExtraHeight={pageExtraHeight}
           setThreeImagesBools={setThreeImagesBools}
         />
