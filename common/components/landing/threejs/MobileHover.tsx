@@ -41,7 +41,7 @@ const MobileHover = ({ activeImage }) => {
   useEffect(() => {
     // console.log(activeImage)
     if (myAnimation) {
-      let nextImage = `/landing/album/image${activeImage}.png`
+      let nextImage = `/landing/album/image${activeImage}.webp`
       let currImage
 
       if (animatedFwd) {
