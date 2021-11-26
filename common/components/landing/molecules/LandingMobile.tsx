@@ -150,7 +150,10 @@ export default function Landing({
       </Header_wrap>
 
       <div className="hero_image">
-        <MobileHover activeImage={selectedTitle}></MobileHover>
+        <MobileHover
+          imagesArr={imagesArr}
+          activeImage={selectedTitle}
+        ></MobileHover>
       </div>
 
       <Title_wrap className="noselect">

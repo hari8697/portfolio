@@ -189,52 +189,62 @@ void main() {
     a1 = (parent.offsetWidth / parent.offsetHeight) * imageAspect
     a2 = 1
   }
-  function changeTextures(img1, img2, callback, goFwd) {
-    var newTexture
-    let imageLoaded = false
-    let curr_texture1 = mat.uniforms.texture1.value
-    let curr_texture2 = mat.uniforms.texture2.value
+  // function changeTextures(img1, img2, callback, goFwd) {
+  //   var newTexture
+  //   let imageLoaded = false
+  //   let curr_texture1 = mat.uniforms.texture1.value
+  //   let curr_texture2 = mat.uniforms.texture2.value
 
-    if (goFwd) {
-      // Load second image and replace before calling this.next()
-      newTexture = loader.load(img2, () => {
-        newTexture.needsUpdate = true
-        render()
-        callback()
-      })
-    } else {
-      // Load first image and replace before calling this.previous()
-      newTexture = loader.load(img1, () => {
-        newTexture.needsUpdate = true
-        render()
-        callback()
-      })
-    }
+  //   if (goFwd) {
+  //     // Load second image and replace before calling this.next()
+  //     newTexture = loader.load(img2, () => {
+  //       newTexture.needsUpdate = true
+  //       render()
+  //       callback()
+  //     })
+  //   } else {
+  //     // Load first image and replace before calling this.previous()
+  //     newTexture = loader.load(img1, () => {
+  //       newTexture.needsUpdate = true
+  //       render()
+  //       callback()
+  //     })
+  //   }
 
-    newTexture.magFilter = THREE.LinearFilter
-    newTexture.minFilter = THREE.LinearFilter
+  //   newTexture.magFilter = THREE.LinearFilter
+  //   newTexture.minFilter = THREE.LinearFilter
 
+  //   if (goFwd) {
+  //     mat.uniforms.texture2.value = newTexture
+  //   } else {
+  //     mat.uniforms.texture1.value = newTexture
+  //   }
+  //   // mat.uniforms.texture2.value.needsUpdate = true
+  //   // mat.uniforms.texture1.value.needsUpdate = true
+
+  //   // var newTexture2 = loader.load(img2, () => {
+  //   //   image2Loaded = true
+  //   //   newTexture2.needsUpdate = true
+  //   //   render()
+  //   //   callback(image1Loaded, image2Loaded)
+  //   // })
+
+  //   // mat.uniforms.texture1.value.needsUpdate = true
+  //   // mat.uniforms.texture2.value.needsUpdate = true
+  //   // // mat.uniforms.needsUpdate = true
+  //   // mat.needsUpdate = true
+
+  //   // render()
+  // }
+
+  function changeTextures(newTexture, callback, goFwd) {
     if (goFwd) {
       mat.uniforms.texture2.value = newTexture
     } else {
       mat.uniforms.texture1.value = newTexture
     }
-    // mat.uniforms.texture2.value.needsUpdate = true
-    // mat.uniforms.texture1.value.needsUpdate = true
-
-    // var newTexture2 = loader.load(img2, () => {
-    //   image2Loaded = true
-    //   newTexture2.needsUpdate = true
-    //   render()
-    //   callback(image1Loaded, image2Loaded)
-    // })
-
-    // mat.uniforms.texture1.value.needsUpdate = true
-    // mat.uniforms.texture2.value.needsUpdate = true
-    // // mat.uniforms.needsUpdate = true
-    // mat.needsUpdate = true
-
-    // render()
+    render()
+    callback()
   }
 
   var mat = new THREE.ShaderMaterial({

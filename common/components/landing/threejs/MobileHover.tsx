@@ -1,13 +1,37 @@
 import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import hoverEffect from "@/components/landing/threejs/hover-effect"
+import * as THREE from "three"
 
-const MobileHover = ({ activeImage }) => {
+const MobileHover = ({ imagesArr, activeImage }) => {
   const imageEl = useRef(null)
   const [myAnimation, setMyAnimation] = useState(null)
   const [animatedFwd, setAnimatedFwd] = useState(true)
 
+  let [preloadedTextures, setPreloadedTextures] = useState([])
+  var loader = new THREE.TextureLoader()
+
+  const populateTextures = () => {
+    setPreloadedTextures(
+      imagesArr.map((image) => {
+        let newTexture = loader.load(
+          `/landing/album/image${image.id}.webp`,
+          () => {
+            newTexture.needsUpdate = true
+          }
+        )
+
+        newTexture.magFilter = THREE.LinearFilter
+        newTexture.minFilter = THREE.LinearFilter
+        return newTexture
+      })
+    )
+  }
+
   useEffect(() => {
+    populateTextures()
+    console.log(preloadedTextures)
+
     setMyAnimation(
       new hoverEffect({
         parent: imageEl.current,
@@ -44,6 +68,11 @@ const MobileHover = ({ activeImage }) => {
       let nextImage = `/landing/album/image${activeImage}.webp`
       let currImage
 
+      console.log(activeImage - 1)
+      console.log(preloadedTextures[activeImage - 1])
+
+      console.log(preloadedTextures)
+
       if (animatedFwd) {
         // console.log("next")
         currImage = myAnimation.image1
@@ -53,14 +82,12 @@ const MobileHover = ({ activeImage }) => {
         myAnimation.image2 = nextImage
 
         myAnimation.changeTextures(
-          currImage,
-          nextImage,
+          preloadedTextures[activeImage - 1],
           () => {
             myAnimation.next()
           },
           animatedFwd
         )
-
         setAnimatedFwd(false)
       } else {
         // console.log("previous")
@@ -71,8 +98,7 @@ const MobileHover = ({ activeImage }) => {
         myAnimation.image2 = currImage
 
         myAnimation.changeTextures(
-          nextImage,
-          currImage,
+          preloadedTextures[activeImage - 1],
           () => {
             myAnimation.previous()
           },
