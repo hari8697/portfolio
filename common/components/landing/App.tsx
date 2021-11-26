@@ -42,9 +42,9 @@ function App({ setThreeImagesBools, preloaderBool }) {
 
   // Mobile selected Titles
   const [selectedTitle, setSelectedTitle] = useState(1)
-  useEffect(() => {
-    console.log(selectedTitle)
-  }, [selectedTitle])
+  // useEffect(() => {
+  //   console.log(selectedTitle)
+  // }, [selectedTitle])
 
   const setupSwipes = () => {
     const slider = appContainer.current
