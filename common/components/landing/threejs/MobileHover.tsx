@@ -12,9 +12,9 @@ const MobileHover = ({ activeImage }) => {
       new hoverEffect({
         parent: imageEl.current,
         intensity: 0.3,
-        image1: "/landing/album/image1.png",
-        image2: "/landing/album/image2.png",
-        displacementImage: "/landing/textures/8.jpg",
+        image1: "/landing/album/image1.webp",
+        image2: "/landing/album/image2.webp",
+        displacementImage: "/landing/textures/8.webp",
         imagesRatio: 0.5621815718157182,
         hover: false,
       })
