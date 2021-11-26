@@ -14,8 +14,7 @@ const MobileHover = ({ activeImage }) => {
         intensity: 0.3,
         image1: "/landing/album/image1.png",
         image2: "/landing/album/image2.png",
-        image3: "/landing/album/image3.png",
-        displacementImage: "/landing/album/image3.png",
+        displacementImage: "/landing/textures/8.jpg",
         imagesRatio: 0.5621815718157182,
         hover: false,
       })
