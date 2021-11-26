@@ -31,10 +31,6 @@ const VanillaHover = ({
 
   const { width: vW, height: vH } = useWindowSize()
 
-  useEffect(() => {
-    console.log("vw:", vW, "vh:", vH)
-  }, [vW, vH])
-
   let reqAnimFrame
 
   // const [panPressed, setPanPressed] = useState(false)
@@ -275,7 +271,7 @@ const VanillaHover = ({
 
     const unsubscribeY = scrollValueY_animatedX.onChange(() => {
       if (!isSnapping) {
-        console.log("scrollValue", scrollValueY_animatedX.get())
+        // console.log("scrollValue", scrollValueY_animatedX.get())
         // let tempScrollVal = scrollValueY_animatedX.get()
         isScrollingY = true
         animatedX.set(scrollValueY_animatedX.get())
