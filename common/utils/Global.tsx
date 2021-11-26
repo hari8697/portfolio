@@ -65,6 +65,6 @@ a {
 /* hide scrollbar */
 
 ::-webkit-scrollbar {
-  display: none; 
+  /* display: none;  */
 }
 `

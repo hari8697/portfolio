@@ -6,15 +6,8 @@ import VanillaHover from "./threejs/VanillaHover"
 import ScrollProgress from "./molecules/ScrollProgress"
 import { useResponsiveHelper, useWindowSize } from "@/common/utils/"
 import { device } from "@/common/utils"
-import {
-  motion,
-  useSpring,
-  useTransform,
-  useElementScroll,
-  useViewportScroll,
-} from "framer-motion"
+import { motion, useSpring, useViewportScroll } from "framer-motion"
 import React, { useEffect, useState, useRef } from "react"
-// import MobileHover from "./threejs/MobileHover"
 
 const ContainerVariants = {
   initial: {
@@ -42,11 +35,9 @@ function App({ setThreeImagesBools, preloaderBool }) {
 
   useEffect(() => {
     setTimeout(() => {}, 10000)
-    setupSwipes(false)
+    setupSwipes()
 
-    return () => {
-      setupSwipes(true)
-    }
+    return () => {}
   }, [])
 
   // Mobile selected Titles
@@ -55,7 +46,7 @@ function App({ setThreeImagesBools, preloaderBool }) {
     console.log(selectedTitle)
   }, [selectedTitle])
 
-  const setupSwipes = (clear) => {
+  const setupSwipes = () => {
     const slider = appContainer.current
 
     const updateSelectedItem = (shouldIncrement) => {
@@ -133,20 +124,15 @@ function App({ setThreeImagesBools, preloaderBool }) {
       ) // jQuery
     }
 
-    if (clear) {
-      slider.removeEventListener("touchstart", handleTouchStart, false)
-      slider.removeEventListener("touchmove", handleTouchMove, false)
-    } else {
-      slider.addEventListener("touchstart", handleTouchStart, false)
-      slider.addEventListener("touchmove", handleTouchMove, false)
-    }
+    slider.addEventListener("touchstart", handleTouchStart, false)
+    slider.addEventListener("touchmove", handleTouchMove, false)
   }
 
   const imagesArr = [
-    { id: 1, name: "Nike SB" },
-    { id: 2, name: "Rhoncus urna" },
-    { id: 3, name: "Amet facilisis" },
-    { id: 4, name: "Magna ac placerat" },
+    { id: 1, name: "UI / UX" },
+    { id: 2, name: "CS:GO Artwork" },
+    { id: 3, name: "Lamborghini" },
+    { id: 4, name: "Nike SB" },
   ]
 
   const onTextureLoad = (id) => {
