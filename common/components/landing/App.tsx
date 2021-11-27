@@ -124,14 +124,14 @@ function App({ setThreeImagesBools, preloaderBool }) {
       ) // jQuery
     }
 
-    slider.addEventListener("touchstart", handleTouchStart, false)
-    slider.addEventListener("touchmove", handleTouchMove, false)
+    slider.addEventListener("touchstart", handleTouchStart, { passive: true })
+    slider.addEventListener("touchmove", handleTouchMove, { passive: true })
   }
 
   const imagesArr = [
     { id: 1, name: "UI / UX" },
     { id: 2, name: "CS:GO Artwork" },
-    { id: 3, name: "Lamborghini" },
+    { id: 3, name: "Aventador SVJ" },
     { id: 4, name: "Nike SB" },
   ]
 
