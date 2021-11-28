@@ -3,7 +3,7 @@ import styled from "styled-components"
 import hoverEffect from "@/components/landing/threejs/hover-effect"
 import * as THREE from "three"
 
-const MobileHover = ({ imagesArr, activeImage }) => {
+const MobileHover = ({ imagesArr, activeImage, setThreeImagesBools }) => {
   const imageEl = useRef(null)
   const [myAnimation, setMyAnimation] = useState(null)
   const [animatedFwd, setAnimatedFwd] = useState(true)
@@ -14,10 +14,30 @@ const MobileHover = ({ imagesArr, activeImage }) => {
   const populateTextures = () => {
     setPreloadedTextures(
       imagesArr.map((image) => {
+        const i = image.id
+
+        setThreeImagesBools((prevVal) => {
+          return [...prevVal, { id: i, loaded: false }]
+        })
+
         let newTexture = loader.load(
           `/landing/album/image${image.id}.webp`,
           () => {
             newTexture.needsUpdate = true
+
+            setThreeImagesBools((prevValue) => {
+              let newVal = prevValue.map((el) => {
+                if (el.id == i && el.loaded == false) {
+                  // console.log("loaded", i)
+                  return { id: el.id, loaded: true }
+                  // return el
+                } else {
+                  return el
+                }
+              })
+
+              return newVal
+            })
           }
         )
 
@@ -30,7 +50,7 @@ const MobileHover = ({ imagesArr, activeImage }) => {
 
   useEffect(() => {
     populateTextures()
-    console.log(preloadedTextures)
+    // console.log(preloadedTextures)
 
     setMyAnimation(
       new hoverEffect({
@@ -68,10 +88,10 @@ const MobileHover = ({ imagesArr, activeImage }) => {
       let nextImage = `/landing/album/image${activeImage}.webp`
       let currImage
 
-      console.log(activeImage - 1)
-      console.log(preloadedTextures[activeImage - 1])
+      // console.log(activeImage - 1)
+      // console.log(preloadedTextures[activeImage - 1])
 
-      console.log(preloadedTextures)
+      // console.log(preloadedTextures)
 
       if (animatedFwd) {
         // console.log("next")

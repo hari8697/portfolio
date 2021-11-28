@@ -173,6 +173,7 @@ function App({ setThreeImagesBools, preloaderBool }) {
             imagesArr={imagesArr}
             selectedTitle={selectedTitle}
             setSelectedTitle={setSelectedTitle}
+            setThreeImagesBools={setThreeImagesBools}
           ></LandingMobile>
         </LandingWrapper>
       ) : (

@@ -17,6 +17,10 @@ function Home() {
   // }, [])
 
   const [threeImagesBools, setThreeImagesBools] = useState([])
+  // useEffect(() => {
+  //   console.log(threeImagesBools)
+  // }, [threeImagesBools])
+
   const [loadImagesArr, setLoadImagesArr] = useState([
     ...social_images_arr,
     {

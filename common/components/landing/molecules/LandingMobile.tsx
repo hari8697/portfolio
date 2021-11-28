@@ -31,6 +31,7 @@ export default function Landing({
   imagesArr,
   selectedTitle,
   setSelectedTitle,
+  setThreeImagesBools,
 }) {
   const selectedTitleAnimated = useSpring(1)
   const { isMobile, isTablet } = useResponsiveHelper()
@@ -153,6 +154,7 @@ export default function Landing({
         <MobileHover
           imagesArr={imagesArr}
           activeImage={selectedTitle}
+          setThreeImagesBools={setThreeImagesBools}
         ></MobileHover>
       </div>
 
