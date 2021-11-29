@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "id": "ui-ux",
+      "title": "UI / UX",
+      "hero_image": "/landing/album/image1.webp",
+      "presentation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam sit amet nisl suscipit adipiscing bibendum est ultricies. Integer eget aliquet nibh praesent tristique magna. Non arcu risus quis varius quam quisque id. Viverra orci sagittis eu volutpat odio facilisis mauris sit. Lobortis feugiat vivamus at augue eget.",
+      "role": ["UI", "UX", "Design"],
+      "tech_used": ["Figma", "Adobe Photoshop", "Adobe Illustrator"],
+      "type": "Concepts",
+      "year": "2020",
+      "links": [
+        {
+          "id": 1,
+          "title": "Figma",
+          "icon": true,
+          "icon_src": "/work/1.svg"
+        }
+      ]
+    },
+    {
+      "id": "csgo",
+      "title": "CS:GO Artwork",
+      "hero_image": "public/landing/album/image2.webp",
+      "presentation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam sit amet nisl suscipit adipiscing bibendum est ultricies. Integer eget aliquet nibh praesent tristique magna. Non arcu risus quis varius quam quisque id. Viverra orci sagittis eu volutpat odio facilisis mauris sit. Lobortis feugiat vivamus at augue eget.",
+      "role": ["UX", "Design", "Frontend"],
+      "tech_used": ["React", "framer", "Next", "git", "vercel"],
+      "type": "Landing Page",
+      "year": "2017",
+      "links": [
+        {
+          "id": 1,
+          "title": "Live Site",
+          "icon": false,
+          "icon_src": ""
+        },
+        {
+          "id": 2,
+          "title": "Code",
+          "icon": true,
+          "icon_src": "/work/1.svg"
+        }
+      ]
+    }
+  ]
+}
