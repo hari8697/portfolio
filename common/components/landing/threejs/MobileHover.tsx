@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import hoverEffect from "@/components/landing/threejs/hover-effect"
 import * as THREE from "three"
+import { device } from "@/common/utils"
 
 const MobileHover = ({ imagesArr, activeImage, setThreeImagesBools }) => {
   const imageEl = useRef(null)
@@ -149,5 +150,9 @@ const ImageTrial = styled.div`
   z-index: 999; */
   width: 100%;
   height: 25vh;
+
+  @media ${device.tablet} {
+    height: 35vh;
+  }
 `
 export default MobileHover

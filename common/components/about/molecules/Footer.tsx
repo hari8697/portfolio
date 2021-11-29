@@ -5,7 +5,7 @@ import { about_grid_col } from "./About.style"
 import { full_W_H, GridContainer } from "@/components/styled"
 import { device, useResponsiveHelper } from "@/common/utils/"
 import { useEffect } from "react"
-import SocialItems from "@/components/landing/molecules/SocialItems"
+import SocialItems from "@/components/shared/SocialItems"
 
 const Footer = () => {
   const { isMobile, isTablet } = useResponsiveHelper()

@@ -11,7 +11,7 @@ import {
 } from "./Landing.style"
 import React, { useEffect, useState, useRef } from "react"
 import { useResponsiveHelper, useWindowSize } from "@/common/utils/"
-import SocialItems from "./SocialItems"
+import SocialItems from "@/components/shared/SocialItems"
 import Link from "next/link"
 import { H5Link } from "@/components/styled/"
 import MobileHover from "../threejs/MobileHover"
