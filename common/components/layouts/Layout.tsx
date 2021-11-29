@@ -43,6 +43,7 @@ const Layout = ({ children, title = "DeathSpace Design" }) => {
           theme="dark"
           transition={Slide}
           limit={1}
+          draggablePercent={30}
         />
         <GlobalStyle />
       </ThemeProvider>
