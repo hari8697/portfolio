@@ -4,7 +4,12 @@ import hoverEffect from "@/components/landing/threejs/hover-effect"
 import * as THREE from "three"
 import { device } from "@/common/utils"
 
-const MobileHover = ({ imagesArr, activeImage, setThreeImagesBools }) => {
+const MobileHover = ({
+  imagesArr,
+  activeImage,
+  setThreeImagesBools,
+  preloaderBool,
+}) => {
   const imageEl = useRef(null)
   const [myAnimation, setMyAnimation] = useState(null)
   const [animatedFwd, setAnimatedFwd] = useState(true)
@@ -25,7 +30,6 @@ const MobileHover = ({ imagesArr, activeImage, setThreeImagesBools }) => {
           `/landing/album/image${image.id}.webp`,
           () => {
             newTexture.needsUpdate = true
-
             setThreeImagesBools((prevValue) => {
               let newVal = prevValue.map((el) => {
                 if (el.id == i && el.loaded == false) {
@@ -52,7 +56,6 @@ const MobileHover = ({ imagesArr, activeImage, setThreeImagesBools }) => {
   useEffect(() => {
     populateTextures()
     // console.log(preloadedTextures)
-
     setMyAnimation(
       new hoverEffect({
         parent: imageEl.current,
@@ -64,14 +67,13 @@ const MobileHover = ({ imagesArr, activeImage, setThreeImagesBools }) => {
         hover: false,
       })
     )
-
-    setInterval(() => {
-      if (myAnimation) {
-        setTimeout(() => {
-          myAnimation.previous()
-        }, 1000)
-      }
-    }, 2000)
+    // setInterval(() => {
+    //   if (myAnimation) {
+    //     setTimeout(() => {
+    //       myAnimation.previous()
+    //     }, 1000)
+    //   }
+    // }, 2000)
 
     return () => {
       let myNode = imageEl.current

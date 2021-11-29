@@ -150,7 +150,7 @@ export const Title_wrap = styled.div`
 
       ${Title} {
         cursor: pointer;
-        opacity: 0.05;
+        opacity: 0.1;
         transition: opacity 0.2s ease-out;
 
         &.selected {

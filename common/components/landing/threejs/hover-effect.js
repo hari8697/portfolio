@@ -58,6 +58,7 @@ void main() {
   var dispImage = opts.displacementImage
   var image1 = opts.image1
   var image2 = opts.image2
+  var texturesObj = opts.texturesObj
   var imagesRatio = firstDefined(opts.imagesRatio, 1.0)
   var intensity1 = firstDefined(opts.intensity1, opts.intensity, 1)
   var intensity2 = firstDefined(opts.intensity2, opts.intensity, 1)
@@ -76,6 +77,7 @@ void main() {
   }
 
   if (!(image1 && image2 && dispImage)) {
+    // if (!(texturesObj && dispImage)) {
     console.warn("One or more images are missing")
     return
   }
@@ -176,9 +178,18 @@ void main() {
       texture2.needsUpdate = true
       render()
     })
-
     texture1.magFilter = texture2.magFilter = THREE.LinearFilter
     texture1.minFilter = texture2.minFilter = THREE.LinearFilter
+
+    // else {
+    //   texture1 = texturesObj[0]
+    //   texture1.needsUpdate = true
+    //   texture2 = texturesObj[1]
+    //   texture2.needsUpdate = true
+    //   render()
+    //   texture1.magFilter = texture2.magFilter = THREE.LinearFilter
+    //   texture1.minFilter = texture2.minFilter = THREE.LinearFilter
+    // }
   }
 
   let a1, a2

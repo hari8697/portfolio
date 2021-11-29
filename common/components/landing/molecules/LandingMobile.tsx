@@ -32,6 +32,7 @@ export default function Landing({
   selectedTitle,
   setSelectedTitle,
   setThreeImagesBools,
+  preloaderBool,
 }) {
   const selectedTitleAnimated = useSpring(1)
   const { isMobile, isTablet } = useResponsiveHelper()
@@ -152,6 +153,7 @@ export default function Landing({
 
       <div className="hero_image">
         <MobileHover
+          preloaderBool={preloaderBool}
           imagesArr={imagesArr}
           activeImage={selectedTitle}
           setThreeImagesBools={setThreeImagesBools}

@@ -170,6 +170,7 @@ function App({ setThreeImagesBools, preloaderBool }) {
       {isMobile || isTablet ? (
         <LandingWrapper>
           <LandingMobile
+            preloaderBool={preloaderBool}
             imagesArr={imagesArr}
             selectedTitle={selectedTitle}
             setSelectedTitle={setSelectedTitle}

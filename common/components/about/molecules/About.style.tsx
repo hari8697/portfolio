@@ -139,11 +139,11 @@ export const SwooshWrap = styled.div`
    */
 
   @media ${device.mobileM} {
-    top: 0%;
+    top: -2%;
   }
 
   @media ${device.tablet} {
-    top: 0%;
+    top: -2%;
   }
 
   @media ${device.tablet} and (orientation: landscape) {
