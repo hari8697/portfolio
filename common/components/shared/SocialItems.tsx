@@ -25,32 +25,41 @@ const SocialItems = ({}) => {
       case "email":
         message = "Email address copied!"
         textToBeCopied = "deathspacedesign@gmail.com"
-        copyToClipboard(textToBeCopied, message)
+        copyToClipboard(textToBeCopied, message, "email")
         break
       case "discord":
         message = "Discord username copied!"
         textToBeCopied = "DeathSpace#0538"
-        copyToClipboard(textToBeCopied, message)
+        copyToClipboard(textToBeCopied, message, "discord")
         break
       default:
-        message = "Wow so easy!"
         break
     }
   }
 
-  const copyToClipboard = (textToBeCopied, message) => {
+  const copyToClipboard = (textToBeCopied, message, item) => {
+    const errorMessage = `Copying to clipboard failed. Here's my ${item}: ${textToBeCopied}`
     if (textToBeCopied != null || undefined) {
-      navigator.clipboard.writeText(textToBeCopied).then(
-        function () {
-          // console.log("Async: Copying to clipboard was successful!")
-          toast(message, {
-            toastId: message,
-          })
-        },
-        function (err) {
-          console.error("Async: Could not copy text: ", err)
-        }
-      )
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(textToBeCopied).then(
+          function () {
+            // console.log("Async: Copying to clipboard was successful!")
+            // toast(message, {
+            //   toastId: message,
+            // })
+            toast(errorMessage, {
+              toastId: errorMessage,
+            })
+          },
+          function (err) {
+            console.error("Async: Could not copy text: ", err)
+          }
+        )
+      } else {
+        toast(errorMessage, {
+          toastId: errorMessage,
+        })
+      }
     }
   }
 
