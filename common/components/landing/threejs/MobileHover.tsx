@@ -153,6 +153,9 @@ const ImageTrial = styled.div`
   width: 100%;
   height: 25vh;
 
+  @media ${device.mobileL} {
+    height: 30vh;
+  }
   @media ${device.tablet} {
     height: 35vh;
   }

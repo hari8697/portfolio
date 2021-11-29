@@ -26,7 +26,7 @@ export const GridContainer = styled.div`
     width: 100%;
     grid-column: 1 / -1;
     z-index: -1;
-    opacity: 0.8;
+    /* opacity: 0.8; */
 
     .image {
       object-fit: cover; /* Cover  means that the img will fill the box and preserve its aspect ratio  */
