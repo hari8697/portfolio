@@ -81,6 +81,7 @@ void main() {
   }
 
   var scene = new THREE.Scene()
+  scene.background = new THREE.Color(0x0e0c10)
   var camera = new THREE.OrthographicCamera(
     parent.offsetWidth / -2,
     parent.offsetWidth / 2,
@@ -93,7 +94,7 @@ void main() {
   camera.position.z = 1
 
   var renderer = new THREE.WebGLRenderer({
-    antialias: false,
+    antialias: true,
     alpha: true,
   })
 

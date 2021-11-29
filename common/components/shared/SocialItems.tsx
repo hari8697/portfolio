@@ -25,12 +25,12 @@ const SocialItems = ({}) => {
       case "email":
         message = "Email address copied!"
         textToBeCopied = "deathspacedesign@gmail.com"
-        copyToClipboard(textToBeCopied, message, "email")
+        copyToClipboard(textToBeCopied, message, item)
         break
       case "discord":
         message = "Discord username copied!"
         textToBeCopied = "DeathSpace#0538"
-        copyToClipboard(textToBeCopied, message, "discord")
+        copyToClipboard(textToBeCopied, message, item)
         break
       default:
         break
