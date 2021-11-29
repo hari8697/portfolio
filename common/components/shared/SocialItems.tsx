@@ -44,11 +44,8 @@ const SocialItems = ({}) => {
         navigator.clipboard.writeText(textToBeCopied).then(
           function () {
             // console.log("Async: Copying to clipboard was successful!")
-            // toast(message, {
-            //   toastId: message,
-            // })
-            toast(errorMessage, {
-              toastId: errorMessage,
+            toast(message, {
+              toastId: message,
             })
           },
           function (err) {
