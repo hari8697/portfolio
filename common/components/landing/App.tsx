@@ -1,18 +1,12 @@
 import styled, { ThemeProvider } from "styled-components"
-import Landing from "@/components/landing/Landing"
-import { defaultTheme, darkTheme } from "@/utils/index"
+import Landing from "@/components/landing/molecules/Landing"
+import LandingMobile from "@/components/landing/molecules/LandingMobile"
 
 import VanillaHover from "./threejs/VanillaHover"
 import ScrollProgress from "./molecules/ScrollProgress"
-import { useWindowSize } from "@/common/utils/"
+import { useResponsiveHelper, useWindowSize } from "@/common/utils/"
 import { device } from "@/common/utils"
-import {
-  motion,
-  useSpring,
-  useTransform,
-  useElementScroll,
-  useViewportScroll,
-} from "framer-motion"
+import { motion, useSpring, useViewportScroll } from "framer-motion"
 import React, { useEffect, useState, useRef } from "react"
 
 const ContainerVariants = {
@@ -21,38 +15,128 @@ const ContainerVariants = {
   },
   animate: {
     opacity: 1,
+    transition: {
+      delay: 0.1,
+    },
   },
   exit: {
     opacity: 0,
   },
 }
 
-function App() {
+function App({ setThreeImagesBools, preloaderBool }) {
+  const appContainer = useRef(null)
+  const { isMobile, isTablet } = useResponsiveHelper()
+
   const { width: vW, height: vH } = useWindowSize()
 
   const pageExtraHeight = 3.2
   const { scrollYProgress } = useViewportScroll()
 
   useEffect(() => {
-    // const unsubscribeY = y.onChange(() => {
-    //   // console.log("SCROLL!")
-    //   console.log(y.get())
-    // })
+    setTimeout(() => {}, 10000)
+    setupSwipes()
 
-    return () => {
-      // unsubscribeY()
-    }
+    return () => {}
   }, [])
 
+  // Mobile selected Titles
+  const [selectedTitle, setSelectedTitle] = useState(1)
+  // useEffect(() => {
+  //   console.log(selectedTitle)
+  // }, [selectedTitle])
+
+  const setupSwipes = () => {
+    const slider = appContainer.current
+
+    const updateSelectedItem = (shouldIncrement) => {
+      setSelectedTitle((state) => {
+        switch (shouldIncrement) {
+          case true:
+            if (state < imagesArr.length) {
+              return state + 1
+            } else {
+              return state
+            }
+
+          case false:
+            if (state > 1) {
+              return state - 1
+            } else {
+              return state
+            }
+
+          default:
+            break
+        }
+      })
+    }
+    var xDown = null
+    var yDown = null
+
+    const handleTouchStart = (evt) => {
+      const firstTouch = getTouches(evt)[0]
+      xDown = firstTouch.clientX
+      yDown = firstTouch.clientY
+    }
+
+    const handleTouchMove = (evt) => {
+      if (!xDown || !yDown) {
+        return
+      }
+
+      var xUp = evt.touches[0].clientX
+      var yUp = evt.touches[0].clientY
+
+      var xDiff = xDown - xUp
+      var yDiff = yDown - yUp
+
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        /*most significant*/
+        if (xDiff > 0) {
+          /* right swipe */
+          // console.log("swiped right!")
+
+          updateSelectedItem(true)
+        } else {
+          /* left swipe */
+          // console.log("swiped left!")
+          updateSelectedItem(false)
+        }
+      } else {
+        if (yDiff > 0) {
+          /* down swipe */
+          // alert("swiped down!")
+          updateSelectedItem(true)
+        } else {
+          /* up swipe */
+          // alert("swiped up!")
+          updateSelectedItem(false)
+        }
+      }
+      /* reset values */
+      xDown = null
+      yDown = null
+    }
+    const getTouches = (evt) => {
+      return (
+        evt.touches || evt.originalEvent.touches // browser API
+      ) // jQuery
+    }
+
+    slider.addEventListener("touchstart", handleTouchStart, { passive: true })
+    slider.addEventListener("touchmove", handleTouchMove, { passive: true })
+  }
+
   const imagesArr = [
-    { id: 1, name: "Nike SB" },
-    { id: 2, name: "Rhoncus urna" },
-    { id: 3, name: "Amet facilisis" },
-    { id: 4, name: "Magna ac placerat" },
+    { id: 1, name: "UI / UX" },
+    { id: 2, name: "CS:GO Artwork" },
+    { id: 3, name: "Aventador SVJ" },
+    { id: 4, name: "Nike SB" },
   ]
 
-  const onTextureLoad = () => {
-    // console.log("loaded")
+  const onTextureLoad = (id) => {
+    // console.log("loaded", id)
   }
 
   // let imagesArr = Array.from({ length: 4 }, (_, i) => i + 1)
@@ -61,38 +145,50 @@ function App() {
 
   let animatedX = useSpring(0, {
     stiffness: 800,
-    damping: 100,
+    damping: 68,
   })
   return (
     <Container
       variants={ContainerVariants}
       initial="initial"
-      animate="animate"
+      animate={!preloaderBool && "animate"}
       exit="exit"
-      pageExtraHeight={pageExtraHeight}
+      pageExtraHeight={isMobile || isTablet ? 1 : pageExtraHeight}
+      ref={appContainer}
     >
-      {vW >= 1024 && (
+      {!isMobile && !isTablet && (
         <VanillaHover
           animatedX={animatedX}
           imagesArr={imagesArr}
           onTextureLoad={onTextureLoad}
           moveByFactor={moveByFactor}
           scrollValueY={scrollYProgress}
-          vW={vW}
-          vH={vH}
           pageExtraHeight={pageExtraHeight}
+          setThreeImagesBools={setThreeImagesBools}
         />
       )}
-      <LandingWrapper>
-        <Landing
-          animatedX={animatedX}
-          imagesArr={imagesArr}
-          moveByFactor={moveByFactor}
-          maxDragX={maxDragX}
-          setMaxDragX={setMaxDragX}
-        ></Landing>
-        <ScrollProgress animatedX={animatedX} maxDragX={maxDragX} />
-      </LandingWrapper>
+      {isMobile || isTablet ? (
+        <LandingWrapper>
+          <LandingMobile
+            preloaderBool={preloaderBool}
+            imagesArr={imagesArr}
+            selectedTitle={selectedTitle}
+            setSelectedTitle={setSelectedTitle}
+            setThreeImagesBools={setThreeImagesBools}
+          ></LandingMobile>
+        </LandingWrapper>
+      ) : (
+        <LandingWrapper>
+          <Landing
+            animatedX={animatedX}
+            imagesArr={imagesArr}
+            moveByFactor={moveByFactor}
+            maxDragX={maxDragX}
+            setMaxDragX={setMaxDragX}
+          ></Landing>
+          <ScrollProgress animatedX={animatedX} maxDragX={maxDragX} />
+        </LandingWrapper>
+      )}
     </Container>
   )
 }

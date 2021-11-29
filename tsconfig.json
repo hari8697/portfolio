@@ -4,9 +4,6 @@
     "paths": {
       "@/*": ["*"],
       "@/components/*": ["common/components/*"],
-      "@/hooks/*": ["common/hooks/*"],
-      "@/types/*": ["common/types/*"],
-      "@/utils/*": ["common/utils/*"],
     },
     "target": "es5",
     "lib": [

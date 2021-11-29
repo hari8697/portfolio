@@ -1,9 +1,17 @@
 import { ReactNode, useState } from "react"
 import styled, { ThemeProvider } from "styled-components"
 import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
-import { GlobalStyle, defaultTheme, darkTheme } from "@/utils/index"
+import {
+  GlobalStyle,
+  defaultTheme,
+  darkTheme,
+  primaryFont,
+} from "@/common/utils"
 import Head from "next/head"
 
+import { ToastContainer, toast } from "react-toastify"
+import { Slide, Zoom } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 const Layout = ({ children, title = "DeathSpace Design" }) => {
   const [useDarkTheme, useDarkThemeSet] = useState(true)
   return (
@@ -22,6 +30,21 @@ const Layout = ({ children, title = "DeathSpace Design" }) => {
         <AnimateSharedLayout>
           <AnimatePresence exitBeforeEnter>{children}</AnimatePresence>
         </AnimateSharedLayout>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          transition={Slide}
+          limit={1}
+          draggablePercent={30}
+        />
         <GlobalStyle />
       </ThemeProvider>
     </StyledLayout>
@@ -35,6 +58,24 @@ const StyledLayout = styled.div`
   display: grid;
   place-items: center;
   /* grid-template-rows: max-content 1fr; */
+
+  .Toastify {
+    * {
+      font-family: ${primaryFont};
+    }
+
+    .Toastify__progress-bar {
+      height: 2.5px;
+    }
+
+    .Toastify__toast-body {
+      text-align: center;
+    }
+
+    .Toastify__close-button {
+      display: none;
+    }
+  }
 
   .noselect {
     -webkit-touch-callout: none; /* iOS Safari */

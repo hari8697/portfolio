@@ -1,12 +1,7 @@
-import {
-  GridContainer,
-  full_W_H,
-  padding_for_pages,
-} from "@/components/styled/"
+import { GridContainer, padding_for_pages } from "@/components/styled/"
 import Link from "next/link"
 import styled from "styled-components"
 import { CloseBtn_ImgWrap, PaddingWrap } from "./About.style"
-import Image from "next/image"
 
 const Navbar = () => {
   return (
@@ -14,7 +9,7 @@ const Navbar = () => {
       <Link href="/" scroll={false}>
         <PaddingWrap>
           <CloseBtn_ImgWrap>
-            <Image src="/about/close_btn.svg" layout="fill"></Image>
+            <img src="/about/close_btn.svg"></img>
           </CloseBtn_ImgWrap>
         </PaddingWrap>
       </Link>

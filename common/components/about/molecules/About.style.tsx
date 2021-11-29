@@ -55,6 +55,10 @@ export const CloseBtn_ImgWrap = styled.div`
   width: 15px;
   height: 15px;
 
+  img {
+    ${full_W_H}
+  }
+
   @media ${device.tablet} {
     width: 20px;
     height: 20px;
@@ -135,11 +139,11 @@ export const SwooshWrap = styled.div`
    */
 
   @media ${device.mobileM} {
-    top: 0%;
+    top: -2%;
   }
 
   @media ${device.tablet} {
-    top: 0%;
+    top: -2%;
   }
 
   @media ${device.tablet} and (orientation: landscape) {

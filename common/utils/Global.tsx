@@ -9,9 +9,18 @@ html,
 body {
   font-family: "Lato", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-
   box-sizing: border-box;
   font-size: 16px;
+}
+
+// Toastify colors
+html {
+  :root {
+    --toastify-color-dark: ${(props) => props.theme.toastColor};
+    --toastify-text-color-dark: ${(props) => props.theme.placeHolderTextColor};
+    --toastify-color-progress-dark: ${(props) => props.theme.primaryColor};
+   
+  }
 }
 
 *, *:before, *:after {
@@ -23,7 +32,7 @@ body {
 body {
   margin: 0;
   font-family: ${primaryFont};
-  background-color: ${(props) => props.theme.bgColor};
+  background: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.textColor};
   -moz-osx-font-smoothing: grayscale;
 }

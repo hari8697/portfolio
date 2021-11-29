@@ -2,10 +2,10 @@ import TextLink from "../atoms/TextLink"
 import Copyright from "../atoms/Copyright"
 import styled from "styled-components"
 import { about_grid_col } from "./About.style"
-import { GridContainer } from "../../styled"
+import { full_W_H, GridContainer } from "@/components/styled"
 import { device, useResponsiveHelper } from "@/common/utils/"
 import { useEffect } from "react"
-import SocialItems from "../../landing/molecules/SocialItems"
+import SocialItems from "@/components/shared/SocialItems"
 
 const Footer = () => {
   const { isMobile, isTablet } = useResponsiveHelper()
@@ -115,6 +115,10 @@ const MobileLinksWrap = styled.div`
     position: relative;
     height: 100%;
     width: 1.18rem;
+
+    img {
+      ${full_W_H}
+    }
   }
 `
 export default Footer

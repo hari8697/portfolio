@@ -32,6 +32,8 @@ export const darkTheme = {
   primaryColor: purple[400],
   bgColor: neutral[900],
   textColor: neutral[200],
+  toastColor: neutral[850],
+  placeHolderTextColor: neutral[500],
   disabled: neutral[500],
   primaryFont: primaryFont,
   secondaryFont: secondaryFont,

@@ -88,9 +88,9 @@ const IconsWrap = (props) => {
   }
   return (
     <IconsWrapper
-      style={{ x }}
-      drag={vW < devicePX.tablet && "x"}
-      dragConstraints={constraintsRef}
+    // style={{ x }}
+    // drag={vW < devicePX.tablet && "x"}
+    // dragConstraints={constraintsRef}
     >
       <IconsSet iconsArr={iconsArr} initial="initial" animate={controls}>
         {icons}
