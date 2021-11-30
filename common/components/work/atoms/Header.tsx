@@ -14,11 +14,12 @@ const HeaderComp = styled.div`
 `
 
 const Header = ({ data }) => {
+  const { title, hero_image } = data
   return (
     <HeaderComp>
-      <img src={data.hero_image} alt="" className="hero_image" />
+      <img src={hero_image} alt="" className="hero_image" />
       <div className="title_wrap">
-        <h1>{data.title}</h1>
+        <h1>{title}</h1>
         <img className="close_btn" src="/about/close_btn.svg" alt="" />
       </div>
     </HeaderComp>
