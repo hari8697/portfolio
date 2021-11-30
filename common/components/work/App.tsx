@@ -11,7 +11,7 @@ import {
 } from "./atoms/index"
 import Presentation from "./molecules/Presentation"
 
-const App = ({ data }) => {
+const App = ({ data }: DataProp) => {
   const {
     id,
     presentation,
@@ -22,7 +22,7 @@ const App = ({ data }) => {
     links,
     album,
     next,
-  }: DataProp = data
+  } = data
 
   const ContainerVariants = {
     initial: {
@@ -88,26 +88,28 @@ const Container = styled(motion.div)`
 `
 
 interface DataProp {
-  id: string
-  presentation: string
-  role: string[]
-  tech_used: string[]
-  type: string
-  year: string
-  links: [
-    {
-      id: number
-      title: string
-      icon: boolean
-      icon_src: string
-    }
-  ]
-  album: {
-    count: number
-  }
-  next: {
-    title: string
+  data: {
     id: string
+    presentation: string
+    role: string[]
+    tech_used: string[]
+    type: string
+    year: string
+    links: [
+      {
+        id: number
+        title: string
+        icon: boolean
+        icon_src: string
+      }
+    ]
+    album: {
+      count: number
+    }
+    next: {
+      title: string
+      id: string
+    }
   }
 }
 export default App
