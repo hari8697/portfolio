@@ -70,7 +70,8 @@ export const HeroImage = styled.div`
   transform: translateX(-50%);
   width: 105%;
   height: 30vh;
-  img {
+  .img_wrap {
+    position: relative;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -120,7 +121,8 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
  */
 
 const contentBlockShared = css`
-  margin-bottom: 1rem;
+  margin-bottom: ${(props) => (props.lastBlock ? "50px" : "1rem")};
+
   ${ParaLarge},
   ${ButtonLinkStyled} {
     margin-top: 0.5rem;
@@ -150,6 +152,12 @@ export const AlbumListStyled = styled.div`
   display: flex;
   flex-direction: column;
   grid-gap: 1rem;
+  /* margin-top: 50px; */
+
+  .img_wrapper {
+    position: relative;
+    width: 100%;
+  }
 `
 
 export const NextLinkStyled = styled.div`

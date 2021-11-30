@@ -69,7 +69,7 @@ const App = ({ data }: DataProp) => {
         <TextList data={year} />
       </SectionWrapper>
 
-      <SectionWrapper className="links">
+      <SectionWrapper className="links" lastBlock>
         <SectionTitle>Links</SectionTitle>
         <ButtonList data={links} />
       </SectionWrapper>
