@@ -6,9 +6,10 @@ import {
   NextLink,
   ButtonList,
   AlbumList,
+  SectionTitle,
 } from "./atoms/index"
 import Presentation from "./molecules/Presentation"
-import { Container, RoleStyled } from "./styles/App.styled"
+import { Container, SectionWrapper } from "./styles/App.styled"
 import { H5Link } from "../styled/Text"
 
 const App = ({ data }: DataProp) => {
@@ -46,30 +47,35 @@ const App = ({ data }: DataProp) => {
       <Header data={data} />
       <Presentation data={presentation} />
 
-      <RoleStyled>
+      <SectionWrapper>
         <H5Link capsON highlighted>
           Role
         </H5Link>
         <TextList data={role} />
-      </RoleStyled>
+      </SectionWrapper>
 
-      <ul>
-        <H5Link>Tech used</H5Link>
+      <SectionWrapper>
+        <SectionTitle>Tech used</SectionTitle>
         <TextList data={tech_used} />
-      </ul>
-      <div className="type">
-        <H5Link>Type</H5Link>
+      </SectionWrapper>
+
+      <SectionWrapper className="type">
+        <SectionTitle>Type</SectionTitle>
         <TextList data={type} />
-      </div>
-      <div className="year">
-        <H5Link>Year</H5Link>
+      </SectionWrapper>
+
+      <SectionWrapper className="year">
+        <SectionTitle>Year</SectionTitle>
         <TextList data={year} />
-      </div>
-      <div className="links">
-        <H5Link>Links</H5Link>
+      </SectionWrapper>
+
+      <SectionWrapper className="links">
+        <SectionTitle>Links</SectionTitle>
         <ButtonList data={links} />
-      </div>
+      </SectionWrapper>
+
       <AlbumList data={album} id={id} />
+
       <NextLink next={next} />
     </Container>
   )

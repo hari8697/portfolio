@@ -1,4 +1,5 @@
 import { ParaLarge } from "@/components/styled"
+import styled from "styled-components"
 
 const TextList = ({ data }) => {
   let comps
@@ -6,8 +7,7 @@ const TextList = ({ data }) => {
     comps = data.map((el, idx) => {
       return (
         <ParaLarge key={idx}>
-          {el}
-          {idx < data.length - 1 && ","}
+          {idx < data.length - 1 ? `${el}, ` : `${el}`}
         </ParaLarge>
       )
     })
@@ -15,7 +15,15 @@ const TextList = ({ data }) => {
     comps = <ParaLarge>{data}</ParaLarge>
   }
 
-  return <>{comps}</>
+  return <TextListStyled>{comps}</TextListStyled>
 }
+
+const TextListStyled = styled.div`
+  display: flex;
+  white-space: pre-wrap;
+  ${ParaLarge} {
+    /* margin-right: 0.25rem; */
+  }
+`
 
 export default TextList

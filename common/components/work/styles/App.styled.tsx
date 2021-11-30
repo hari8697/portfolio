@@ -87,6 +87,9 @@ export const HeroImage = styled.div`
 
 const contentBlockShared = css`
   margin-bottom: 1rem;
+  ${ParaLarge} {
+    margin-top: 0.5rem;
+  }
 `
 
 /*=============================================
@@ -95,15 +98,11 @@ const contentBlockShared = css`
 
 export const PresentationStyled = styled.div`
   ${contentBlockShared}
-
-  ${ParaLarge} {
-    margin-top: 0.5rem;
-  }
 `
 
 /*=====  End of Presentation  ======*/
 
-export const RoleStyled = styled.ul`
+export const SectionWrapper = styled.div`
   list-style: none;
   ${contentBlockShared}
 `
