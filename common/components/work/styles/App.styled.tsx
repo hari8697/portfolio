@@ -7,7 +7,7 @@ import {
   padding_for_pages,
 } from "@/components/styled"
 import { device } from "@/common/utils"
-import { about_grid_col } from "../../about/molecules/About.style"
+
 export const work_grid_col = css`
   grid-column: 1 / -1;
 
@@ -37,6 +37,10 @@ export const Container = styled(motion.div)`
     }
   }
 `
+
+/*=============================================
+=            Header            =
+=============================================*/
 
 export const HeaderStyled = styled.div`
   width: 100%;
@@ -72,3 +76,40 @@ export const HeroImage = styled.div`
     object-fit: cover;
   }
 `
+
+/*=====  End of Header  ======*/
+
+/**
+ *
+ * Common shared block
+ *
+ */
+
+const contentBlockShared = css`
+  margin-bottom: 1rem;
+`
+
+/*=============================================
+=            Presentation            =
+=============================================*/
+
+export const PresentationStyled = styled.div`
+  ${contentBlockShared}
+
+  ${ParaLarge} {
+    margin-top: 0.5rem;
+  }
+`
+
+/*=====  End of Presentation  ======*/
+
+export const RoleStyled = styled.ul`
+  list-style: none;
+  ${contentBlockShared}
+`
+
+/*=============================================
+=            Presentation            =
+=============================================*/
+
+/*=====  End of Presentation  ======*/

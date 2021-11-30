@@ -1,16 +1,18 @@
+import { ParaLarge } from "@/components/styled"
+
 const TextList = ({ data }) => {
   let comps
   if (Array.isArray(data)) {
     comps = data.map((el, idx) => {
       return (
-        <li key={idx}>
+        <ParaLarge key={idx}>
           {el}
           {idx < data.length - 1 && ","}
-        </li>
+        </ParaLarge>
       )
     })
   } else {
-    comps = <p>{data}</p>
+    comps = <ParaLarge>{data}</ParaLarge>
   }
 
   return <>{comps}</>

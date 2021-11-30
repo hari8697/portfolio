@@ -8,7 +8,8 @@ import {
   AlbumList,
 } from "./atoms/index"
 import Presentation from "./molecules/Presentation"
-import { Container } from "./styles/App.styled"
+import { Container, RoleStyled } from "./styles/App.styled"
+import { H5Link } from "../styled/Text"
 
 const App = ({ data }: DataProp) => {
   const {
@@ -45,24 +46,27 @@ const App = ({ data }: DataProp) => {
       <Header data={data} />
       <Presentation data={presentation} />
 
-      <ul>
-        <h5>Role</h5>
+      <RoleStyled>
+        <H5Link capsON highlighted>
+          Role
+        </H5Link>
         <TextList data={role} />
-      </ul>
+      </RoleStyled>
+
       <ul>
-        <h5>Tech used</h5>
+        <H5Link>Tech used</H5Link>
         <TextList data={tech_used} />
       </ul>
       <div className="type">
-        <h5>Type</h5>
+        <H5Link>Type</H5Link>
         <TextList data={type} />
       </div>
       <div className="year">
-        <h5>Year</h5>
+        <H5Link>Year</H5Link>
         <TextList data={year} />
       </div>
       <div className="links">
-        <h5>Links</h5>
+        <H5Link>Links</H5Link>
         <ButtonList data={links} />
       </div>
       <AlbumList data={album} id={id} />
