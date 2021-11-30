@@ -1,7 +1,5 @@
 import styled from "styled-components"
 import { full_W_H } from "@/components/styled"
-import { motion } from "framer-motion"
-// import Header from "./atoms/index"
 import {
   Header,
   TextList,
@@ -10,6 +8,7 @@ import {
   AlbumList,
 } from "./atoms/index"
 import Presentation from "./molecules/Presentation"
+import { Container } from "./styles/App.styled"
 
 const App = ({ data }: DataProp) => {
   const {
@@ -71,21 +70,6 @@ const App = ({ data }: DataProp) => {
     </Container>
   )
 }
-
-const Container = styled(motion.div)`
-  ${full_W_H}
-  min-height: 100vh;
-
-  .hero_image {
-    width: 100%;
-  }
-
-  .album {
-    img {
-      width: 90%;
-    }
-  }
-`
 
 interface DataProp {
   data: {

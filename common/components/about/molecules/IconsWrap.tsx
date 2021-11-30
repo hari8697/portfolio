@@ -1,7 +1,7 @@
 import Icon from "../atoms/Icon"
 import styled from "styled-components"
 import { device, devicePX } from "@/common/utils"
-import { about_grid_col, default_grid_col } from "./About.style"
+import { about_grid_col } from "./About.style"
 import { motion, useAnimation } from "framer-motion"
 import { useWindowSize } from "@/common/utils/"
 import { useEffect } from "react"
