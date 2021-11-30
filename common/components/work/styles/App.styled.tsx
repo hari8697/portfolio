@@ -100,6 +100,10 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
   align-items: center;
   grid-gap: 6px;
 
+  && ${ParaLarge} {
+    margin-top: 0;
+  }
+
   .img_wrap {
     width: 1.2rem;
     height: 1.2rem;

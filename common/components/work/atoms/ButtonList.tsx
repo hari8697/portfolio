@@ -1,5 +1,7 @@
 import { ButtonListStyled } from "../styles/App.styled"
 import ButtonLink from "./ButtonLink"
+
+import { ParaLarge } from "@/components/styled"
 interface Props {
   data: [
     {
@@ -15,7 +17,7 @@ const ButtonList = ({ data }: Props) => {
   let comps = data.map((el, idx) => {
     return (
       <ButtonLink key={idx} withIcon={el.icon}>
-        {el.title}
+        <ParaLarge>{el.title}</ParaLarge>
 
         {el.icon && (
           <div className="img_wrap">
