@@ -15,7 +15,7 @@ function AlbumList({ data, id }: Props) {
       <img
         className="album_image"
         key={idx}
-        src={`/work/${id}/${item}.png`}
+        src={`/work/${id}/${item}.webp`}
         alt=""
       />
     )

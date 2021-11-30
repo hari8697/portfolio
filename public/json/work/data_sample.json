@@ -17,7 +17,7 @@
           "icon_src": "/work/icons/github.svg"
         }
       ],
-      "album": { "count": 3 },
+      "album": { "count": 6 },
       "next": {
         "title": "CS:GO Artwork",
         "id": "csgo"
@@ -46,9 +46,9 @@
           "icon_src": "/work/icons/github.svg"
         }
       ],
-      "album": { "count": 3 },
+      "album": { "count": 10 },
       "next": {
-        "title": "CS:GO Artwork",
+        "title": "UI / UX",
         "id": "ui-ux"
       }
     }
