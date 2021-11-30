@@ -180,9 +180,12 @@ export const NextLinkStyled = styled.div`
   margin-top: 50px;
 
   .title_wrap {
+    /* transition: all 200ms ease-out; */
+    /* border-radius: 5px; */
     &:hover,
     :focus {
       cursor: pointer;
+      /* background: ${(props) => props.theme.primaryColor}; */
     }
     /* width: max-content; */
     display: flex;
