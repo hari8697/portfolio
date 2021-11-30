@@ -60,6 +60,11 @@ export const HeaderStyled = styled.div`
     max-width: 16px;
     padding: 5px;
     padding-right: 0;
+
+    &:hover,
+    :focus {
+      cursor: pointer;
+    }
   }
 `
 
@@ -100,6 +105,8 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
   align-items: center;
   grid-gap: 6px;
 
+  transition: all 200ms ease-out;
+
   && ${ParaLarge} {
     margin-top: 0;
   }
@@ -112,7 +119,9 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
     }
   }
 
-  &:hover {
+  &:hover,
+  :focus {
+    cursor: pointer;
     background: #5f2eea;
     border: 1px solid #2a00a2;
   }
@@ -171,6 +180,11 @@ export const NextLinkStyled = styled.div`
   margin-top: 50px;
 
   .title_wrap {
+    &:hover,
+    :focus {
+      cursor: pointer;
+    }
+    /* width: max-content; */
     display: flex;
     align-items: center;
     grid-gap: 0.5rem;
@@ -179,9 +193,3 @@ export const NextLinkStyled = styled.div`
     }
   }
 `
-
-/*=============================================
-=            Presentation            =
-=============================================*/
-
-/*=====  End of Presentation  ======*/

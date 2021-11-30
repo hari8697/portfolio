@@ -10,7 +10,13 @@ const Header = ({ data }) => {
     <HeaderStyled>
       <HeroImage className="hero_image">
         <div className="img_wrap">
-          <Image src={hero_image} alt="" layout="fill" priority={true} />
+          <Image
+            src={hero_image}
+            alt=""
+            layout="fill"
+            priority={true}
+            objectFit="cover"
+          />
         </div>
       </HeroImage>
       <div className="title_wrap">
