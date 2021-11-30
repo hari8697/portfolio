@@ -1,4 +1,7 @@
 import Link from "next/link"
+import { NextLinkStyled } from "../styles/App.styled"
+import SectionTitle from "./SectionTitle"
+import { H3 } from "../../styled/Text"
 
 interface Props {
   next: {
@@ -9,15 +12,15 @@ interface Props {
 
 const NextLink = ({ next }: Props) => {
   return (
-    <div className="next">
-      <h5>Next</h5>
+    <NextLinkStyled className="next">
+      <SectionTitle>Next</SectionTitle>
       <Link href={`/work/${next.id}`}>
-        <>
-          <h3>{next.title}</h3>
+        <div className="title_wrap">
+          <H3>{next.title}</H3>
           <img src="/work/icons/next_arrow.svg" alt="" />
-        </>
+        </div>
       </Link>
-    </div>
+    </NextLinkStyled>
   )
 }
 

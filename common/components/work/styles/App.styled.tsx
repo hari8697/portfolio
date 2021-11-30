@@ -146,6 +146,28 @@ export const ButtonListStyled = styled.div`
   grid-gap: 1rem;
 `
 
+export const AlbumListStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1rem;
+`
+
+export const NextLinkStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.5rem;
+  margin-top: 50px;
+
+  .title_wrap {
+    display: flex;
+    align-items: center;
+    grid-gap: 0.5rem;
+    img {
+      height: 10px;
+    }
+  }
+`
+
 /*=============================================
 =            Presentation            =
 =============================================*/
