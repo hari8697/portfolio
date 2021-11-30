@@ -14,7 +14,7 @@
           "id": 1,
           "title": "Figma",
           "icon": true,
-          "icon_src": "/work/icons/1.svg"
+          "icon_src": "/work/icons/github.svg"
         }
       ],
       "album": { "count": 3 },
@@ -29,7 +29,7 @@
       "hero_image": "/landing/album/image2.webp",
       "presentation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam sit amet nisl suscipit adipiscing bibendum est ultricies. Integer eget aliquet nibh praesent tristique magna. Non arcu risus quis varius quam quisque id. Viverra orci sagittis eu volutpat odio facilisis mauris sit. Lobortis feugiat vivamus at augue eget.",
       "role": ["UX", "Design", "Frontend"],
-      "tech_used": ["React", "framer", "Next", "git", "vercel"],
+      "tech_used": ["React", "Framer Motion", "Next", "Git", "Vercel"],
       "type": "Landing Page",
       "year": "2017",
       "links": [
@@ -43,7 +43,7 @@
           "id": 2,
           "title": "Code",
           "icon": true,
-          "icon_src": "/work/icons/1.svg"
+          "icon_src": "/work/icons/github.svg"
         }
       ],
       "album": { "count": 3 },

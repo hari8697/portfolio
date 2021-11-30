@@ -21,9 +21,6 @@ const TextList = ({ data }) => {
 const TextListStyled = styled.div`
   display: flex;
   white-space: pre-wrap;
-  ${ParaLarge} {
-    /* margin-right: 0.25rem; */
-  }
 `
 
 export default TextList

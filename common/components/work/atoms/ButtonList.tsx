@@ -1,3 +1,5 @@
+import { ButtonListStyled } from "../styles/App.styled"
+import ButtonLink from "./ButtonLink"
 interface Props {
   data: [
     {
@@ -9,16 +11,21 @@ interface Props {
   ]
 }
 
-const TextList = ({ data }: Props) => {
+const ButtonList = ({ data }: Props) => {
   let comps = data.map((el, idx) => {
     return (
-      <button key={idx}>
+      <ButtonLink key={idx} withIcon={el.icon}>
         {el.title}
-        {el.icon && <img src={el.icon_src} alt="" />}
-      </button>
+
+        {el.icon && (
+          <div className="img_wrap">
+            <img src={el.icon_src} alt="" />
+          </div>
+        )}
+      </ButtonLink>
     )
   })
 
-  return <>{comps}</>
+  return <ButtonListStyled>{comps}</ButtonListStyled>
 }
-export default TextList
+export default ButtonList
