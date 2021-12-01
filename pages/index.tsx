@@ -3,11 +3,29 @@ import App from "../common/components/landing/App"
 import Preloader from "@/components/shared/Preloader"
 import React, { useEffect, useState } from "react"
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
+import { createClient } from "contentful"
 
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
 
-function Home() {
+export async function getStaticProps() {
+  const client = createClient({
+    space: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_ACCESS_KEY,
+  })
+
+  const res = await client.getEntries({
+    content_type: "project",
+  })
+
+  return {
+    props: {
+      projects: res.items,
+    },
+  }
+}
+
+function Home({ projects }) {
   const [preloaderBool, setPreloaderBool] = useState(true)
 
   // useEffect(() => {
@@ -15,6 +33,8 @@ function Home() {
   //     setPreloaderBool(true)
   //   }, 2500)
   // }, [])
+
+  console.log(projects)
 
   const [threeImagesBools, setThreeImagesBools] = useState([])
   // useEffect(() => {
