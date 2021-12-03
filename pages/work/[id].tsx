@@ -30,6 +30,7 @@ export async function getStaticPaths() {
 
   const res = await client.getEntries({
     content_type: "project",
+    revalidate: 2,
   })
 
   type fieldsType = {
@@ -46,7 +47,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   }
 }
 

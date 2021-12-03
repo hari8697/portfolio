@@ -16,6 +16,7 @@ export async function getStaticProps() {
 
   const res = await client.getEntries({
     content_type: "project",
+    revalidate: 2,
   })
 
   return {
