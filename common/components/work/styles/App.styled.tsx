@@ -114,8 +114,11 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
   .img_wrap {
     width: 1.2rem;
     height: 1.2rem;
+    display: flex;
+    align-items: center;
     img {
-      width: 100%;
+      /* width: 100%; */
+      height: 100%;
     }
   }
 

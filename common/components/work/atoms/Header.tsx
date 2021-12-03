@@ -4,14 +4,14 @@ import Image from "next/image"
 import { H1 } from "../../styled/Text"
 
 const Header = ({ data }) => {
-  const { title, hero_image } = data
+  const { title, heroImage } = data.fields
 
   return (
     <HeaderStyled>
       <HeroImage className="hero_image">
         <div className="img_wrap">
           <Image
-            src={hero_image}
+            src={`https:${heroImage.fields.file.url}`}
             alt=""
             layout="fill"
             priority={true}

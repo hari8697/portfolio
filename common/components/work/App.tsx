@@ -12,18 +12,19 @@ import Presentation from "./molecules/Presentation"
 import { Container, SectionWrapper } from "./styles/App.styled"
 import { H5Link } from "../styled/Text"
 
-const App = ({ data }: DataProp) => {
+const App = ({ data }) => {
+  const fields: DataProp = data.fields
   const {
     id,
     presentation,
     role,
-    tech_used,
+    techUsed,
     type,
     year,
     links,
     album,
     next,
-  } = data
+  } = fields
 
   const ContainerVariants = {
     initial: {
@@ -56,7 +57,7 @@ const App = ({ data }: DataProp) => {
 
       <SectionWrapper>
         <SectionTitle>Tech used</SectionTitle>
-        <TextList data={tech_used} />
+        <TextList data={techUsed} />
       </SectionWrapper>
 
       <SectionWrapper className="type">
@@ -82,28 +83,26 @@ const App = ({ data }: DataProp) => {
 }
 
 interface DataProp {
-  data: {
-    id: string
-    presentation: string
-    role: string[]
-    tech_used: string[]
-    type: string
-    year: string
-    links: [
-      {
-        id: number
-        title: string
-        icon: boolean
-        icon_src: string
-      }
-    ]
-    album: {
-      count: number
-    }
-    next: {
+  id: string
+  presentation: string
+  role: string[]
+  techUsed: string[]
+  type: string
+  year: string
+  links: [
+    {
+      id: number
       title: string
-      id: string
+      icon: boolean
+      icon_src: string
     }
+  ]
+  album: {
+    count: number
+  }
+  next: {
+    title: string
+    id: string
   }
 }
 export default App
