@@ -30,7 +30,6 @@ export async function getStaticPaths() {
 
   const res = await client.getEntries({
     content_type: "project",
-    revalidate: 2,
   })
 
   type fieldsType = {
@@ -67,6 +66,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       projects: items[0],
+      revalidate: 2,
     },
   }
 }
