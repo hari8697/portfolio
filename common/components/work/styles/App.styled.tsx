@@ -174,6 +174,9 @@ export const AlbumListStyled = styled.div`
   .img_wrapper {
     position: relative;
     width: 100%;
+    img {
+      border-radius: 3px;
+    }
   }
 `
 
