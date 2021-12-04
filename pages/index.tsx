@@ -4,6 +4,7 @@ import Preloader from "@/components/shared/Preloader"
 import React, { useEffect, useState } from "react"
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
 import { createClient } from "contentful"
+import safeJsonStringify from "safe-json-stringify"
 
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
@@ -18,30 +19,23 @@ export async function getStaticProps() {
     content_type: "project",
   })
 
+  // * Fix for circular reference error
+  const stringifiedData = safeJsonStringify(res)
+  const data = JSON.parse(stringifiedData)
+
   return {
     props: {
-      projects: res.items,
+      projects: data.items,
       revalidate: 2,
     },
   }
 }
 
 function Home({ projects }) {
-  const [preloaderBool, setPreloaderBool] = useState(true)
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setPreloaderBool(true)
-  //   }, 2500)
-  // }, [])
-
   console.log(projects)
 
+  const [preloaderBool, setPreloaderBool] = useState(true)
   const [threeImagesBools, setThreeImagesBools] = useState([])
-  // useEffect(() => {
-  //   console.log(threeImagesBools)
-  // }, [threeImagesBools])
-
   const [loadImagesArr, setLoadImagesArr] = useState([
     ...social_images_arr,
     {
@@ -101,20 +95,4 @@ const tech_icons_arr = Array.from({ length: 14 }, (_, i) => {
   }
 })
 
-// const load_images_arr = [
-//   ...social_images_arr,
-//   ...tech_icons_arr,
-//   {
-//     url: "/landing/scrollHorizontal.svg",
-//     name: "scrollHorizontal",
-//     loaded_bool: false,
-//     imgObject: {},
-//   },
-//   {
-//     url: "/common/DeathSpace_Logo.svg",
-//     name: "DeathSpace_Logo",
-//     loaded_bool: false,
-//     imgObject: {},
-//   },
-// ]
 export default Home
