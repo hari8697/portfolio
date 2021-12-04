@@ -10,18 +10,20 @@ interface Props {
   }
 }
 
-const NextLink = ({ next }: Props) => {
-  return (
-    <NextLinkStyled className="next">
-      <SectionTitle>Next</SectionTitle>
-      <Link href={`/work/${next.id}`}>
-        <div className="title_wrap">
-          <H3>{next.title}</H3>
-          <img src="/work/icons/next_arrow.svg" alt="" />
-        </div>
-      </Link>
-    </NextLinkStyled>
-  )
+const NextLink = ({ next }) => {
+  if (next != null || undefined) {
+    return (
+      <NextLinkStyled className="next">
+        <SectionTitle>Next</SectionTitle>
+        <Link href={`/work/${next.fields.id}`}>
+          <div className="title_wrap">
+            <H3>{next.fields.title}</H3>
+            <img src="/work/icons/next_arrow.svg" alt="" />
+          </div>
+        </Link>
+      </NextLinkStyled>
+    )
+  } else return <NextLinkStyled className="next"></NextLinkStyled>
 }
 
 export default NextLink

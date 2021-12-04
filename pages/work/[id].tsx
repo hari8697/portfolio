@@ -1,8 +1,10 @@
-import pageData from "@/public/json/work/data_sample.json"
+// import pageData from "@/public/json/work/data_sample.json"
 import App from "../../common/components/work/App"
 import { createClient } from "contentful"
+import safeJsonStringify from "safe-json-stringify"
 
 const Work = ({ projects }) => {
+  // const parsedProjects = JSON.parse(projects)
   console.log(projects)
   // return <></>
   return <App data={projects} />
@@ -30,7 +32,10 @@ export async function getStaticPaths() {
 
   const res = await client.getEntries({
     content_type: "project",
+    include: 10,
   })
+
+  // const stringifiedData = safeJsonStringify(res)
 
   type fieldsType = {
     id: string
@@ -62,11 +67,16 @@ export async function getStaticProps({ params }) {
   const { items } = await client.getEntries({
     content_type: "project",
     "fields.id": params.id,
+    include: 10,
   })
+
+  const stringifiedData = safeJsonStringify(items)
+  const data = JSON.parse(stringifiedData)
   return {
     props: {
-      projects: items[0],
+      projects: data[0],
       revalidate: 2,
+      key: params.id,
     },
   }
 }
