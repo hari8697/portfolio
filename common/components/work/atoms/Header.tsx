@@ -4,7 +4,7 @@ import Image from "next/image"
 import { H1 } from "../../styled/Text"
 import Link from "next/link"
 
-const Header = ({ data }) => {
+const Header = ({ data, setIsExiting }) => {
   const { title, heroImage } = data.fields
 
   return (
@@ -23,7 +23,14 @@ const Header = ({ data }) => {
       <div className="title_wrap">
         <H1 className="title">{title}</H1>
         <Link href="/">
-          <img className="close_btn" src="/about/close_btn.svg" alt="" />
+          <img
+            className="close_btn"
+            src="/about/close_btn.svg"
+            alt=""
+            onClick={() => {
+              setIsExiting(true)
+            }}
+          />
         </Link>
       </div>
     </HeaderStyled>

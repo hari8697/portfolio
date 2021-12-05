@@ -49,6 +49,7 @@ const App = ({ data }) => {
     },
   }
 
+  // Using state for exit animations
   const [isExiting, setIsExiting] = useState(false)
 
   return (
@@ -57,7 +58,7 @@ const App = ({ data }) => {
       initial="initial"
       animate={isExiting ? "exit" : "animate"}
     >
-      <Header data={data} />
+      <Header data={data} setIsExiting={setIsExiting} />
       <Presentation data={presentation} />
 
       <SectionWrapper>
