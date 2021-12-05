@@ -7,9 +7,9 @@ import { useEffect } from "react"
 const Work = ({ projects, compKey }) => {
   console.log(projects)
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0)
-  // }, [])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <AnimatePresence exitBeforeEnter>

@@ -563,7 +563,7 @@ const VanillaHover = ({
           console.log(currSelectedElement)
 
           const goToUrl = "work/" + imagesArr[currSelectedElement].slug
-          router.push(goToUrl, undefined, { shallow: true })
+          router.push(goToUrl, undefined, { scroll: false, shallow: true })
 
           // console.log(animatedXVelocity.get())
           meshArr.forEach((el) => {
