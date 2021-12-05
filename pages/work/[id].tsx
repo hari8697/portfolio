@@ -2,9 +2,14 @@ import App from "../../common/components/work/App"
 import { createClient } from "contentful"
 import safeJsonStringify from "safe-json-stringify"
 
-const Work = ({ projects }) => {
+import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
+const Work = ({ projects, compKey }) => {
   console.log(projects)
-  return <App data={projects} />
+  return (
+    <AnimatePresence exitBeforeEnter>
+      <App data={projects} key={compKey} />
+    </AnimatePresence>
+  )
 }
 
 const client = createClient({
@@ -51,7 +56,7 @@ export async function getStaticProps({ params }) {
     props: {
       projects: data[0],
       revalidate: 2,
-      key: params.id,
+      compKey: params.id,
     },
   }
 }

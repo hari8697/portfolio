@@ -11,6 +11,7 @@ import {
 import Presentation from "./molecules/Presentation"
 import { Container, SectionWrapper } from "./styles/App.styled"
 import { H5Link } from "../styled/Text"
+import { useState } from "react"
 
 const App = ({ data }) => {
   const fields: DataProp = data.fields
@@ -32,18 +33,29 @@ const App = ({ data }) => {
     },
     animate: {
       opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 500,
+        damping: 50,
+      },
     },
     exit: {
       opacity: 0,
+      transition: {
+        type: "spring",
+        stiffness: 500,
+        damping: 50,
+      },
     },
   }
+
+  const [isExiting, setIsExiting] = useState(false)
 
   return (
     <Container
       variants={ContainerVariants}
       initial="initial"
-      animate="animate"
-      exit="exit"
+      animate={isExiting ? "exit" : "animate"}
     >
       <Header data={data} />
       <Presentation data={presentation} />
@@ -77,7 +89,7 @@ const App = ({ data }) => {
 
       <AlbumList data={album} id={id} />
 
-      <NextLink next={next} />
+      <NextLink setIsExiting={setIsExiting} next={next} />
     </Container>
   )
 }
