@@ -17,6 +17,7 @@ export async function getStaticProps() {
 
   const res = await client.getEntries({
     content_type: "project",
+    order: "sys.createdAt",
   })
 
   // * Fix for circular reference error
@@ -66,6 +67,7 @@ function Home({ projects }) {
         )}
       </AnimatePresence>
       <App
+        projects={projects}
         preloaderBool={preloaderBool}
         setThreeImagesBools={setThreeImagesBools}
         key={"app"}

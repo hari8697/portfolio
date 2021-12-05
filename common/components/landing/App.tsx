@@ -24,7 +24,7 @@ const ContainerVariants = {
   },
 }
 
-function App({ setThreeImagesBools, preloaderBool }) {
+function App({ setThreeImagesBools, preloaderBool, projects }) {
   const appContainer = useRef(null)
   const { isMobile, isTablet } = useResponsiveHelper()
 
@@ -128,12 +128,20 @@ function App({ setThreeImagesBools, preloaderBool }) {
     slider.addEventListener("touchmove", handleTouchMove, { passive: true })
   }
 
-  const imagesArr = [
-    { id: 1, name: "UI / UX" },
-    { id: 2, name: "CS:GO Artwork" },
-    { id: 3, name: "Aventador SVJ" },
-    { id: 4, name: "Nike SB" },
-  ]
+  // const imagesArr = [
+  //   { id: 1, name: "UI / UX" },
+  //   { id: 2, name: "CS:GO Artwork" },
+  //   { id: 3, name: "Aventador SVJ" },
+  //   { id: 4, name: "Nike SB" },
+  // ]
+
+  const imagesArr = projects.map((item, idx) => {
+    return {
+      id: idx + 1,
+      name: item.fields.title,
+      slug: item.fields.id,
+    }
+  })
 
   const onTextureLoad = (id) => {
     // console.log("loaded", id)

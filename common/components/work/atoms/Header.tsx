@@ -15,7 +15,7 @@ const Header = ({ data }) => {
             src={`https:${heroImage.fields.file.url}`}
             alt=""
             layout="fill"
-            priority={true}
+            priority
             objectFit="cover"
           />
         </div>

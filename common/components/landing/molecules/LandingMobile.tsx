@@ -67,8 +67,7 @@ export default function Landing({
         key={item.id}
         onClick={() => {
           if (item.id === selectedTitle) {
-            const goToUrl =
-              item.id % 2 == 0 ? "work/cs-go-artwork" : "work/ui-ux"
+            const goToUrl = "work/" + item.slug
             router.push(goToUrl)
           } else {
             setSelectedTitle(item.id)
