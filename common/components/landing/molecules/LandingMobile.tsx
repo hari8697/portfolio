@@ -65,7 +65,8 @@ export default function Landing({
     return (
       <Title
         key={item.id}
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault()
           if (item.id === selectedTitle) {
             const goToUrl = "work/" + item.slug
             router.push(goToUrl)
