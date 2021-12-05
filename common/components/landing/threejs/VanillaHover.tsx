@@ -17,6 +17,7 @@ import {
   useTransform,
 } from "framer-motion"
 import { useWindowSize } from "@/common/utils/"
+import { useRouter } from "next/router"
 
 const VanillaHover = ({
   animatedX,
@@ -27,6 +28,7 @@ const VanillaHover = ({
   onTextureLoad,
   setThreeImagesBools,
 }) => {
+  const router = useRouter()
   const canvasEl = useRef(null)
 
   const { width: vW, height: vH } = useWindowSize()
@@ -485,9 +487,11 @@ const VanillaHover = ({
     setTimeout(() => {
       initialX = info.point.x / canvasNode.offsetWidth
     }, 250)
-    currX = info.point.x / canvasNode.offsetWidth
 
-    movingX = currX - initialX
+    if (canvasNode != null || undefined) {
+      currX = info.point.x / canvasNode.offsetWidth
+      movingX = currX - initialX
+    }
 
     if (animatedX.get() < 0) {
       moveCanvas()
@@ -556,6 +560,11 @@ const VanillaHover = ({
         ) {
           // Open artwork page / portfolio piece
           console.log("success!")
+          console.log(currSelectedElement)
+
+          const goToUrl = "work/" + imagesArr[currSelectedElement].slug
+          router.push(goToUrl, undefined, { shallow: true })
+
           // console.log(animatedXVelocity.get())
           meshArr.forEach((el) => {
             if (element.object.position === el.mesh.position) {

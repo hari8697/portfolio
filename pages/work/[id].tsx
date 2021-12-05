@@ -3,8 +3,14 @@ import { createClient } from "contentful"
 import safeJsonStringify from "safe-json-stringify"
 
 import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
+import { useEffect } from "react"
 const Work = ({ projects, compKey }) => {
   console.log(projects)
+
+  // useEffect(() => {
+  //   window.scrollTo(0, 0)
+  // }, [])
+
   return (
     <AnimatePresence exitBeforeEnter>
       <App data={projects} key={compKey} />
