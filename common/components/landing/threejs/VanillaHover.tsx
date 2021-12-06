@@ -528,6 +528,7 @@ const VanillaHover = ({
   }
 
   function onMouseClick(event) {
+    event.preventDefault()
     movingX = currX - initialX
     var bounds = canvasNode.getBoundingClientRect()
     mouse.x = ((event.clientX - bounds.left) / canvasNode.clientWidth) * 2 - 1
@@ -560,12 +561,16 @@ const VanillaHover = ({
           console.log("success!")
           console.log(currSelectedElement)
 
-          const goToUrl = "work/" + imagesArr[currSelectedElement].slug
-
-          if (!isExiting) {
-            router.push(goToUrl, undefined, { scroll: false, shallow: true })
-            setIsExiting(true)
-          }
+          // console.log("pushing")
+          setIsExiting((prev) => {
+            if (!prev) {
+              const goToUrl = `work/${imagesArr[currSelectedElement].slug}`
+              router.push(goToUrl)
+              // console.log(prev)
+            }
+            // console.log(prev)
+            return true
+          })
 
           // console.log(animatedXVelocity.get())
           meshArr.forEach((el) => {

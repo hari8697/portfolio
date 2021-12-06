@@ -69,11 +69,16 @@ export default function Landing({
         onClick={(e) => {
           e.preventDefault()
           if (item.id === selectedTitle) {
-            const goToUrl = "work/" + item.slug
-            if (!isExiting) {
-              router.push(goToUrl)
-              setIsExiting(true)
-            }
+            // setIsExiting(true)
+            setIsExiting((prev) => {
+              if (!prev) {
+                const goToUrl = `work/${item.slug}`
+                router.push(goToUrl)
+                // console.log(prev)
+              }
+              // console.log(prev)
+              return true
+            })
           } else {
             setSelectedTitle(item.id)
             selectedTitleAnimated.set(item.id)
