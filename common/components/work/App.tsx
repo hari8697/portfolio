@@ -90,7 +90,7 @@ const App = ({ data }) => {
 
       <AlbumList data={album} id={id} />
 
-      <NextLink setIsExiting={setIsExiting} next={next} />
+      <NextLink isExiting={isExiting} setIsExiting={setIsExiting} next={next} />
     </Container>
   )
 }

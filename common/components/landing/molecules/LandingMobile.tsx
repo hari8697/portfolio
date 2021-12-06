@@ -39,6 +39,7 @@ export default function Landing({
   const router = useRouter()
   const selectedTitleAnimated = useSpring(1)
   const { isMobile, isTablet } = useResponsiveHelper()
+  const [isExiting, setIsExiting] = useState(false)
 
   useEffect(() => {
     selectedTitleAnimated.set(selectedTitle)
@@ -69,7 +70,10 @@ export default function Landing({
           e.preventDefault()
           if (item.id === selectedTitle) {
             const goToUrl = "work/" + item.slug
-            router.push(goToUrl)
+            if (!isExiting) {
+              router.push(goToUrl)
+              setIsExiting(true)
+            }
           } else {
             setSelectedTitle(item.id)
             selectedTitleAnimated.set(item.id)

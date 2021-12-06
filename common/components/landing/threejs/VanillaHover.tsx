@@ -24,6 +24,7 @@ const VanillaHover = ({
 }) => {
   const router = useRouter()
   const canvasEl = useRef(null)
+  const [isExiting, setIsExiting] = useState(false)
 
   const { width: vW, height: vH } = useWindowSize()
 
@@ -557,7 +558,11 @@ const VanillaHover = ({
           console.log(currSelectedElement)
 
           const goToUrl = "work/" + imagesArr[currSelectedElement].slug
-          router.push(goToUrl, undefined, { scroll: false, shallow: true })
+
+          if (!isExiting) {
+            router.push(goToUrl, undefined, { scroll: false, shallow: true })
+            setIsExiting(true)
+          }
 
           // console.log(animatedXVelocity.get())
           meshArr.forEach((el) => {

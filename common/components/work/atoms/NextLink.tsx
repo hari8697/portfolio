@@ -11,8 +11,9 @@ interface Props {
   }
 }
 
-const NextLink = ({ next, setIsExiting }) => {
+const NextLink = ({ next, isExiting, setIsExiting }) => {
   const router = useRouter()
+
   if (next != null || undefined) {
     return (
       <NextLinkStyled className="next">
@@ -21,9 +22,11 @@ const NextLink = ({ next, setIsExiting }) => {
           className="title_wrap"
           onClick={(e) => {
             e.preventDefault()
-            setIsExiting(true)
             const goToUrl = `/work/${next.fields.id}`
-            router.push(goToUrl)
+            if (!isExiting) {
+              router.push(goToUrl)
+              setIsExiting(true)
+            }
           }}
         >
           <H3>{next.fields.title}</H3>
