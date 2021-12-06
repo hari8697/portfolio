@@ -57,8 +57,8 @@ export const HeaderStyled = styled.div`
   }
 
   .close_btn {
-    max-width: 16px;
-    padding: 5px;
+    max-width: 21px;
+    padding: 8px;
     padding-right: 0;
 
     &:hover,
