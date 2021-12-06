@@ -140,6 +140,8 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
       id: idx + 1,
       name: item.fields.title,
       slug: item.fields.id,
+      src: "https:" + item.fields.heroImage.fields.file.url,
+      alt: item.fields.heroImage.fields.file.title,
     }
   })
 
