@@ -28,7 +28,7 @@ const MobileHover = ({
 
         let newTexture = loader.load(
           // `/landing/album/image${image.id}.webp`,
-          image.src,
+          image.src ? image.src : `/landing/album/image${image.id}.webp`,
           () => {
             newTexture.needsUpdate = true
             setThreeImagesBools((prevValue) => {
