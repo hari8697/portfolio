@@ -9,13 +9,7 @@ import { fragment } from "./shader/fragment.js"
 
 import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useVelocity,
-  useTransform,
-} from "framer-motion"
+import { motion, useVelocity, useTransform } from "framer-motion"
 import { useWindowSize } from "@/common/utils/"
 import { useRouter } from "next/router"
 

@@ -15,6 +15,7 @@ interface Props {
 
 const ButtonList = ({ data }) => {
   let buttonsArr = data.fields.buttons
+  let urlArr = data.fields.urlArray
 
   let comps = buttonsArr.map((el, idx) => {
     const btn_title = el.fields.title
@@ -22,15 +23,16 @@ const ButtonList = ({ data }) => {
     let iconSrc
     if (hasIcon) iconSrc = "https:" + el.fields.iconImage.fields.file.url
     return (
-      <ButtonLink key={idx} withIcon={hasIcon}>
-        <ParaLarge>{btn_title}</ParaLarge>
-
-        {hasIcon && (
-          <div className="img_wrap">
-            <img src={iconSrc} alt="" />
-          </div>
-        )}
-      </ButtonLink>
+      <a href={urlArr[idx] && urlArr[idx]} key={idx}>
+        <ButtonLink withIcon={hasIcon}>
+          <ParaLarge>{btn_title}</ParaLarge>
+          {hasIcon && (
+            <div className="img_wrap">
+              <img src={iconSrc} alt="" />
+            </div>
+          )}
+        </ButtonLink>
+      </a>
     )
   })
 
