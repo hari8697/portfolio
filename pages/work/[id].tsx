@@ -63,7 +63,10 @@ export async function getStaticProps({ params }) {
       projects: data[0],
       compKey: params.id,
     },
-    revalidate: 2,
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 10 seconds
+    revalidate: 10, // In seconds
   }
 }
 
