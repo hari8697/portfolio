@@ -480,11 +480,10 @@ const VanillaHover = ({
     // let panX = info.point.x / canvasNode.offsetWidth
     // if (panX - currX == 0)
 
-    setTimeout(() => {
-      initialX = info.point.x / canvasNode.offsetWidth
-    }, 250)
-
     if (canvasNode != null || undefined) {
+      setTimeout(() => {
+        initialX = info.point.x / canvasNode.offsetWidth
+      }, 250)
       currX = info.point.x / canvasNode.offsetWidth
       movingX = currX - initialX
     }
@@ -510,7 +509,10 @@ const VanillaHover = ({
     // console.log("press start")
 
     canvasNode = canvasEl.current
-    initialX = info.point.x / canvasNode.offsetWidth
+
+    if (canvasNode != null || undefined) {
+      initialX = info.point.x / canvasNode.offsetWidth
+    }
 
     // console.log("initialX" + initialX)
   }

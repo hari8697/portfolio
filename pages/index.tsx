@@ -21,10 +21,8 @@ export async function getStaticProps() {
   })
 
   // * Fix for circular reference error
-  // const stringifiedData = safeJsonStringify(res)
-  // const data = JSON.parse(stringifiedData)
-
-  const data = res
+  const stringifiedData = safeJsonStringify(res)
+  const data = JSON.parse(stringifiedData)
 
   return {
     props: {
