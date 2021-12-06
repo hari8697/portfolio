@@ -61,9 +61,9 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       projects: data[0],
-      revalidate: 2,
       compKey: params.id,
     },
+    revalidate: 2,
   }
 }
 
