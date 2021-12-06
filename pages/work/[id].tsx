@@ -26,7 +26,6 @@ const client = createClient({
 export async function getStaticPaths() {
   const res = await client.getEntries({
     content_type: "project",
-    include: 10,
   })
 
   type fieldsType = {
