@@ -482,7 +482,9 @@ const VanillaHover = ({
 
     if (canvasNode != null || undefined) {
       setTimeout(() => {
-        initialX = info.point.x / canvasNode.offsetWidth
+        if (canvasNode != null || undefined) {
+          initialX = info.point.x / canvasNode.offsetWidth
+        }
       }, 250)
       currX = info.point.x / canvasNode.offsetWidth
       movingX = currX - initialX
@@ -565,7 +567,7 @@ const VanillaHover = ({
           setIsExiting((prev) => {
             if (!prev) {
               const goToUrl = `work/${imagesArr[currSelectedElement].slug}`
-              router.push(goToUrl)
+              router.push(goToUrl, undefined, { scroll: false })
               // console.log(prev)
             }
             // console.log(prev)
@@ -598,9 +600,9 @@ const VanillaHover = ({
 
   return (
     <CanvasElement
-      onPanStart={onPanStart}
-      onPanEnd={onPanEnd}
-      onPan={onPan}
+      onPanStart={!isExiting && onPanStart}
+      onPanEnd={!isExiting && onPanEnd}
+      onPan={!isExiting && onPan}
       ref={canvasEl}
       className="threejsCover"
     ></CanvasElement>
