@@ -51,12 +51,12 @@ const Preloader = ({
       if (allThreeLoaded && allImagesLoaded) {
         setTimeout(() => {
           setPreloaderBool(false)
-        }, 500)
+        }, 200)
       }
     } else if (allImagesLoaded) {
       setTimeout(() => {
         setPreloaderBool(false)
-      }, 500)
+      }, 200)
     }
   }, [allThreeLoaded, allImagesLoaded])
 

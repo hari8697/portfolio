@@ -1,13 +1,59 @@
 import styled from "styled-components"
 import App from "../common/components/landing/App"
 import Preloader from "@/components/shared/Preloader"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
 import { createClient } from "contentful"
 import safeJsonStringify from "safe-json-stringify"
 
+import { AppContext } from "../contexts/appContext"
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
+
+function Home({ projects }) {
+  // * Using context for persisting state of preloaderBool
+  const { isPreloading, setIsPreloading } = useContext(AppContext)
+  // console.log(isPreloading)
+  // const [preloaderBool, setPreloaderBool] = useState(true) // ? Previous local state implementation
+  const [threeImagesBools, setThreeImagesBools] = useState([])
+  const [loadImagesArr, setLoadImagesArr] = useState([
+    ...social_images_arr,
+    {
+      url: "/landing/scrollHorizontal.svg",
+      name: "scrollHorizontal",
+      loaded_bool: false,
+      imgObject: {},
+    },
+    {
+      url: "/common/DeathSpace_Logo.svg",
+      name: "DeathSpace_Logo",
+      loaded_bool: false,
+      imgObject: {},
+    },
+  ])
+
+  return (
+    <IndexPage>
+      <AnimatePresence>
+        {isPreloading && (
+          <Preloader
+            setPreloaderBool={setIsPreloading}
+            threeImagesBools={threeImagesBools}
+            loadImagesArr={loadImagesArr}
+            setLoadImagesArr={setLoadImagesArr}
+            key={"preloader"}
+          />
+        )}
+      </AnimatePresence>
+      <App
+        projects={projects}
+        preloaderBool={isPreloading}
+        setThreeImagesBools={setThreeImagesBools}
+        key={"app"}
+      />
+    </IndexPage>
+  )
+}
 
 export async function getStaticProps() {
   const client = createClient({
@@ -31,51 +77,6 @@ export async function getStaticProps() {
     revalidate: 1,
   }
 }
-
-function Home({ projects }) {
-  console.log(projects)
-
-  const [preloaderBool, setPreloaderBool] = useState(true)
-  const [threeImagesBools, setThreeImagesBools] = useState([])
-  const [loadImagesArr, setLoadImagesArr] = useState([
-    ...social_images_arr,
-    {
-      url: "/landing/scrollHorizontal.svg",
-      name: "scrollHorizontal",
-      loaded_bool: false,
-      imgObject: {},
-    },
-    {
-      url: "/common/DeathSpace_Logo.svg",
-      name: "DeathSpace_Logo",
-      loaded_bool: false,
-      imgObject: {},
-    },
-  ])
-
-  return (
-    <IndexPage>
-      <AnimatePresence>
-        {preloaderBool && (
-          <Preloader
-            setPreloaderBool={setPreloaderBool}
-            threeImagesBools={threeImagesBools}
-            loadImagesArr={loadImagesArr}
-            setLoadImagesArr={setLoadImagesArr}
-            key={"preloader"}
-          />
-        )}
-      </AnimatePresence>
-      <App
-        projects={projects}
-        preloaderBool={preloaderBool}
-        setThreeImagesBools={setThreeImagesBools}
-        key={"app"}
-      />
-    </IndexPage>
-  )
-}
-
 const IndexPage = styled.div`
   width: 100%;
   height: 100%;
