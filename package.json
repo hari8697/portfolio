@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "test": "jest --watch"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.12.0",
+    "contentful": "^9.1.4",
     "framer-motion": "^4.1.11",
     "gsap": "^3.8.0",
     "next": "12",
@@ -20,6 +21,8 @@
     "react-dom": "^17.0.2",
     "react-lottie": "^1.2.3",
     "react-toastify": "^8.1.0",
+    "safe-json-stringify": "^1.2.0",
+    "sharp": "^0.29.3",
     "styled-components": "^5.3.0",
     "three": "^0.131.3"
   },

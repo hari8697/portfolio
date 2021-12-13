@@ -6,6 +6,7 @@ import Div100vh from "react-div-100vh"
 
 export const default_grid_col = css`
   grid-column: 1 / -1;
+
   @media ${device.tablet} {
     grid-column: 3 / 7;
   }

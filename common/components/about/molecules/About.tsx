@@ -4,7 +4,6 @@ import {
   about_grid_col,
   Bio,
   BioGrid,
-  default_grid_col,
   LogoContainer,
   LogoGrid,
   Logo_ImgWrap,

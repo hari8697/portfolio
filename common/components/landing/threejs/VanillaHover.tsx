@@ -9,14 +9,9 @@ import { fragment } from "./shader/fragment.js"
 
 import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useVelocity,
-  useTransform,
-} from "framer-motion"
+import { motion, useVelocity, useTransform } from "framer-motion"
 import { useWindowSize } from "@/common/utils/"
+import { useRouter } from "next/router"
 
 const VanillaHover = ({
   animatedX,
@@ -27,7 +22,9 @@ const VanillaHover = ({
   onTextureLoad,
   setThreeImagesBools,
 }) => {
+  const router = useRouter()
   const canvasEl = useRef(null)
+  const [isExiting, setIsExiting] = useState(false)
 
   const { width: vW, height: vH } = useWindowSize()
 
@@ -110,7 +107,8 @@ const VanillaHover = ({
           material,
           geometry: new THREE.PlaneGeometry(8, 4.5),
           texture: new THREE.TextureLoader().load(
-            `/landing/album/image${i}.webp`,
+            // `/landing/album/image${i}.webp`,
+            el.src ? el.src : `/landing/album/image${i}.webp`,
             () => {
               // Call this on texture load
               setThreeImagesBools((prevValue) => {
@@ -482,12 +480,15 @@ const VanillaHover = ({
     // let panX = info.point.x / canvasNode.offsetWidth
     // if (panX - currX == 0)
 
-    setTimeout(() => {
-      initialX = info.point.x / canvasNode.offsetWidth
-    }, 250)
-    currX = info.point.x / canvasNode.offsetWidth
-
-    movingX = currX - initialX
+    if (canvasNode != null || undefined) {
+      setTimeout(() => {
+        if (canvasNode != null || undefined) {
+          initialX = info.point.x / canvasNode.offsetWidth
+        }
+      }, 250)
+      currX = info.point.x / canvasNode.offsetWidth
+      movingX = currX - initialX
+    }
 
     if (animatedX.get() < 0) {
       moveCanvas()
@@ -510,7 +511,10 @@ const VanillaHover = ({
     // console.log("press start")
 
     canvasNode = canvasEl.current
-    initialX = info.point.x / canvasNode.offsetWidth
+
+    if (canvasNode != null || undefined) {
+      initialX = info.point.x / canvasNode.offsetWidth
+    }
 
     // console.log("initialX" + initialX)
   }
@@ -526,6 +530,7 @@ const VanillaHover = ({
   }
 
   function onMouseClick(event) {
+    event.preventDefault()
     movingX = currX - initialX
     var bounds = canvasNode.getBoundingClientRect()
     mouse.x = ((event.clientX - bounds.left) / canvasNode.clientWidth) * 2 - 1
@@ -556,6 +561,19 @@ const VanillaHover = ({
         ) {
           // Open artwork page / portfolio piece
           console.log("success!")
+          console.log(currSelectedElement)
+
+          // console.log("pushing")
+          setIsExiting((prev) => {
+            if (!prev) {
+              const goToUrl = `work/${imagesArr[currSelectedElement].slug}`
+              router.push(goToUrl, undefined, { scroll: false })
+              // console.log(prev)
+            }
+            // console.log(prev)
+            return true
+          })
+
           // console.log(animatedXVelocity.get())
           meshArr.forEach((el) => {
             if (element.object.position === el.mesh.position) {
@@ -582,9 +600,9 @@ const VanillaHover = ({
 
   return (
     <CanvasElement
-      onPanStart={onPanStart}
-      onPanEnd={onPanEnd}
-      onPan={onPan}
+      onPanStart={!isExiting && onPanStart}
+      onPanEnd={!isExiting && onPanEnd}
+      onPan={!isExiting && onPan}
       ref={canvasEl}
       className="threejsCover"
     ></CanvasElement>

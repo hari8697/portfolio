@@ -15,6 +15,8 @@ import SocialItems from "@/components/shared/SocialItems"
 import Link from "next/link"
 import { H5Link } from "@/components/styled/"
 import MobileHover from "../threejs/MobileHover"
+import { useRouter } from "next/router"
+
 const ContainerVariants = {
   initial: {
     opacity: 0,
@@ -34,8 +36,10 @@ export default function Landing({
   setThreeImagesBools,
   preloaderBool,
 }) {
+  const router = useRouter()
   const selectedTitleAnimated = useSpring(1)
   const { isMobile, isTablet } = useResponsiveHelper()
+  const [isExiting, setIsExiting] = useState(false)
 
   useEffect(() => {
     selectedTitleAnimated.set(selectedTitle)
@@ -62,9 +66,23 @@ export default function Landing({
     return (
       <Title
         key={item.id}
-        onClick={() => {
-          setSelectedTitle(item.id)
-          selectedTitleAnimated.set(item.id)
+        onClick={(e) => {
+          e.preventDefault()
+          if (item.id === selectedTitle) {
+            // setIsExiting(true)
+            setIsExiting((prev) => {
+              if (!prev) {
+                const goToUrl = `work/${item.slug}`
+                router.push(goToUrl)
+                // console.log(prev)
+              }
+              // console.log(prev)
+              return true
+            })
+          } else {
+            setSelectedTitle(item.id)
+            selectedTitleAnimated.set(item.id)
+          }
         }}
         className={item.id == selectedTitle && "selected"}
       >

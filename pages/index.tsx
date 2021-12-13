@@ -1,26 +1,21 @@
 import styled from "styled-components"
 import App from "../common/components/landing/App"
 import Preloader from "@/components/shared/Preloader"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
+import { createClient } from "contentful"
+import safeJsonStringify from "safe-json-stringify"
 
+import { AppContext } from "../contexts/appContext"
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
 
-function Home() {
-  const [preloaderBool, setPreloaderBool] = useState(true)
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setPreloaderBool(true)
-  //   }, 2500)
-  // }, [])
-
+function Home({ projects }) {
+  // * Using context for persisting state of preloaderBool
+  const { isPreloading, setIsPreloading } = useContext(AppContext)
+  // console.log(isPreloading)
+  // const [preloaderBool, setPreloaderBool] = useState(true) // ? Previous local state implementation
   const [threeImagesBools, setThreeImagesBools] = useState([])
-  // useEffect(() => {
-  //   console.log(threeImagesBools)
-  // }, [threeImagesBools])
-
   const [loadImagesArr, setLoadImagesArr] = useState([
     ...social_images_arr,
     {
@@ -40,9 +35,9 @@ function Home() {
   return (
     <IndexPage>
       <AnimatePresence>
-        {preloaderBool && (
+        {isPreloading && (
           <Preloader
-            setPreloaderBool={setPreloaderBool}
+            setPreloaderBool={setIsPreloading}
             threeImagesBools={threeImagesBools}
             loadImagesArr={loadImagesArr}
             setLoadImagesArr={setLoadImagesArr}
@@ -51,7 +46,8 @@ function Home() {
         )}
       </AnimatePresence>
       <App
-        preloaderBool={preloaderBool}
+        projects={projects}
+        preloaderBool={isPreloading}
         setThreeImagesBools={setThreeImagesBools}
         key={"app"}
       />
@@ -59,6 +55,28 @@ function Home() {
   )
 }
 
+export async function getStaticProps() {
+  const client = createClient({
+    space: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_ACCESS_KEY,
+  })
+
+  const res = await client.getEntries({
+    content_type: "project",
+    order: "sys.createdAt",
+  })
+
+  // * Fix for circular reference error
+  const stringifiedData = safeJsonStringify(res)
+  const data = JSON.parse(stringifiedData)
+
+  return {
+    props: {
+      projects: data.items,
+    },
+    revalidate: 1,
+  }
+}
 const IndexPage = styled.div`
   width: 100%;
   height: 100%;
@@ -80,20 +98,4 @@ const tech_icons_arr = Array.from({ length: 14 }, (_, i) => {
   }
 })
 
-// const load_images_arr = [
-//   ...social_images_arr,
-//   ...tech_icons_arr,
-//   {
-//     url: "/landing/scrollHorizontal.svg",
-//     name: "scrollHorizontal",
-//     loaded_bool: false,
-//     imgObject: {},
-//   },
-//   {
-//     url: "/common/DeathSpace_Logo.svg",
-//     name: "DeathSpace_Logo",
-//     loaded_bool: false,
-//     imgObject: {},
-//   },
-// ]
 export default Home
