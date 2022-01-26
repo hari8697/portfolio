@@ -569,9 +569,6 @@ const VanillaHover = ({
             router.push(goToUrl, undefined, { scroll: false })
           }
           setIsExiting((prev) => {
-            if (!prev) {
-              // console.log(prev)
-            }
             // console.log(prev)
             return true
           })
