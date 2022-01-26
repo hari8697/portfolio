@@ -13,7 +13,7 @@ import { Container, SectionWrapper } from "./styles/App.styled"
 import { H5Link } from "../styled/Text"
 import { useState } from "react"
 
-const App = ({ data }) => {
+const App = ({ data, imageProps }) => {
   const fields: DataProp = data.fields
   const {
     id,
@@ -58,7 +58,7 @@ const App = ({ data }) => {
       initial="initial"
       animate={isExiting ? "exit" : "animate"}
     >
-      <Header data={data} setIsExiting={setIsExiting} />
+      <Header data={data} imageProps={imageProps} setIsExiting={setIsExiting} />
       <Presentation data={presentation} />
 
       <SectionWrapper>

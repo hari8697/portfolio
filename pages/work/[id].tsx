@@ -4,7 +4,9 @@ import safeJsonStringify from "safe-json-stringify"
 
 import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 import { useEffect } from "react"
-const Work = ({ projects, compKey }) => {
+
+import { getPlaiceholder } from "plaiceholder"
+const Work = ({ projects, compKey, imageProps }) => {
   console.log(projects)
 
   useEffect(() => {
@@ -13,7 +15,7 @@ const Work = ({ projects, compKey }) => {
 
   return (
     <AnimatePresence exitBeforeEnter>
-      <App data={projects} key={compKey} />
+      <App data={projects} imageProps={imageProps} key={compKey} />
     </AnimatePresence>
   )
 }
@@ -57,8 +59,22 @@ export async function getStaticProps({ params }) {
   const stringifiedData = safeJsonStringify(items)
   const data = JSON.parse(stringifiedData)
 
+  console.log("data[0]", data[0].fields.heroImage.fields.file.url)
+
+  const {
+    base64,
+    img,
+  } = await getPlaiceholder(
+    `https:${data[0].fields.heroImage.fields.file.url}`,
+    { size: 10 }
+  )
+
   return {
     props: {
+      imageProps: {
+        ...img,
+        blurDataURL: base64,
+      },
       projects: data[0],
       compKey: params.id,
     },
