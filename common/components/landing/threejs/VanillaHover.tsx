@@ -564,10 +564,12 @@ const VanillaHover = ({
           console.log(currSelectedElement)
 
           // console.log("pushing")
+          if (!isExiting) {
+            const goToUrl = `work/${imagesArr[currSelectedElement].slug}`
+            router.push(goToUrl, undefined, { scroll: false })
+          }
           setIsExiting((prev) => {
             if (!prev) {
-              const goToUrl = `work/${imagesArr[currSelectedElement].slug}`
-              router.push(goToUrl, undefined, { scroll: false })
               // console.log(prev)
             }
             // console.log(prev)
