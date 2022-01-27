@@ -32,6 +32,12 @@ function Home({ projects }) {
     },
   ])
 
+  useEffect(() => {
+    console.log(isPreloading)
+
+    return () => {}
+  }, [isPreloading])
+
   return (
     <IndexPage>
       <AnimatePresence>
