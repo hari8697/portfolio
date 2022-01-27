@@ -33,19 +33,9 @@ const App = ({ data, imageProps }) => {
     },
     animate: {
       opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 500,
-        damping: 50,
-      },
     },
     exit: {
       opacity: 0,
-      transition: {
-        type: "spring",
-        stiffness: 500,
-        damping: 50,
-      },
     },
   }
 
@@ -55,8 +45,8 @@ const App = ({ data, imageProps }) => {
   return (
     <Container
       variants={ContainerVariants}
-      initial="animate"
-      animate={isExiting ? "animate" : "animate"}
+      initial="initial"
+      animate={isExiting ? "exit" : "animate"}
     >
       <Header data={data} imageProps={imageProps} setIsExiting={setIsExiting} />
       <Presentation data={presentation} />

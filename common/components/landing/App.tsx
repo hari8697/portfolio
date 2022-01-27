@@ -15,9 +15,7 @@ const ContainerVariants = {
   },
   animate: {
     opacity: 1,
-    transition: {
-      delay: 0.1,
-    },
+    transition: {},
   },
   exit: {
     opacity: 0,
@@ -160,9 +158,9 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
   return (
     <Container
       variants={ContainerVariants}
-      initial="animate"
+      initial="initial"
       animate={!preloaderBool && "animate"}
-      exit="animate"
+      exit="exit"
       pageExtraHeight={isMobile || isTablet ? 1 : pageExtraHeight}
       ref={appContainer}
     >
