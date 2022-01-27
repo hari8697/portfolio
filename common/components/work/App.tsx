@@ -55,8 +55,8 @@ const App = ({ data, imageProps }) => {
   return (
     <Container
       variants={ContainerVariants}
-      initial="initial"
-      animate={isExiting ? "exit" : "animate"}
+      initial="animate"
+      animate={isExiting ? "animate" : "animate"}
     >
       <Header data={data} imageProps={imageProps} setIsExiting={setIsExiting} />
       <Presentation data={presentation} />

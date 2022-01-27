@@ -160,9 +160,9 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
   return (
     <Container
       variants={ContainerVariants}
-      initial="initial"
+      initial="animate"
       animate={!preloaderBool && "animate"}
-      exit="exit"
+      exit="animate"
       pageExtraHeight={isMobile || isTablet ? 1 : pageExtraHeight}
       ref={appContainer}
     >
