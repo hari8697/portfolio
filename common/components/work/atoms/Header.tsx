@@ -3,10 +3,12 @@ import Image from "next/image"
 
 import { H1 } from "../../styled/Text"
 import Link from "next/link"
+import { useResponsiveHelper } from "@/common/utils/"
 
 const Header = ({ data, setIsExiting, heroImageProps }) => {
   const { title, heroImage } = data.fields
 
+  const { isMobile, isTablet } = useResponsiveHelper()
   return (
     <HeaderStyled>
       <HeroImage className="hero_image">
@@ -15,9 +17,7 @@ const Header = ({ data, setIsExiting, heroImageProps }) => {
             {...heroImageProps}
             src={`https:${heroImage.fields.file.url}`}
             alt=""
-            layout="fill"
-            width={null}
-            height={null}
+            layout={isMobile || isTablet ? "fill" : "responsive"}
             priority={true}
             objectFit="cover"
             placeholder="blur"

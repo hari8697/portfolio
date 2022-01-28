@@ -22,7 +22,15 @@ export const Container = styled(motion.div)`
   ${full_W_H}
   ${GridContainer}
   ${padding_for_pages}
+  
   padding-top: 0;
+  @media ${device.tablet} {
+    padding-top: 0;
+  }
+  @media ${device.desktop} {
+    padding-top: 0;
+  }
+
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
@@ -60,10 +68,35 @@ export const HeaderStyled = styled.div`
     max-width: 21px;
     padding: 8px;
     padding-right: 0;
+    opacity: 0.8;
+    transition: opacity 100ms ease-out;
 
     &:hover,
     :focus {
       cursor: pointer;
+      opacity: 1;
+    }
+  }
+
+  @media ${device.laptop} and (orientation: landscape) {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    padding-top: 96px;
+    padding-bottom: 70px;
+
+    grid-column: 4 / 21;
+
+    .title_wrap {
+      position: relative;
+      top: 50%;
+    }
+
+    .close_btn {
+      position: absolute;
+      top: -210%;
+      right: -10vw;
     }
   }
 `
@@ -80,6 +113,18 @@ export const HeroImage = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media ${device.laptop} and (orientation: landscape) {
+    position: absolute;
+    grid-column: 4 / 22;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: auto;
+    margin: 0 auto;
+    width: 90%;
+    z-index: -1;
   }
 `
 
