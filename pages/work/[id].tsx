@@ -6,16 +6,24 @@ import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 import { useEffect } from "react"
 
 import { getPlaiceholder } from "plaiceholder"
-const Work = ({ projects, compKey, imageProps }) => {
+const Work = ({ projects, compKey, heroImageProps, albumImagesProps }) => {
   console.log(projects)
 
   useEffect(() => {
     window.scrollTo(0, 0)
+
+    console.log("heroImageProps", heroImageProps)
+    console.log("albumImagesProps", albumImagesProps)
   }, [])
 
   return (
     <AnimatePresence exitBeforeEnter>
-      <App data={projects} imageProps={imageProps} key={compKey} />
+      <App
+        data={projects}
+        heroImageProps={heroImageProps}
+        albumImagesProps={albumImagesProps}
+        key={compKey}
+      />
     </AnimatePresence>
   )
 }
@@ -61,19 +69,32 @@ export async function getStaticProps({ params }) {
 
   console.log("data[0]", data[0].fields.heroImage.fields.file.url)
 
-  const {
-    base64,
-    img,
-  } = await getPlaiceholder(
+  // * Hero image plaiceholder
+  const heroImage_attrs = await getPlaiceholder(
     `https:${data[0].fields.heroImage.fields.file.url}`,
     { size: 10 }
   )
 
+  // * Album images plaiceholders
+  let albumArr = data[0].fields.album
+  let albumImages_attrs = []
+
+  for (let index = 0; index < albumArr.length; index++) {
+    const tempObj = await getPlaiceholder(
+      `https:${albumArr[index].fields.file.url}`,
+      {
+        size: 10,
+      }
+    )
+    albumImages_attrs.push({ ...tempObj.img, blurDataURL: tempObj.base64 })
+  }
+
   return {
     props: {
-      imageProps: {
-        ...img,
-        blurDataURL: base64,
+      albumImagesProps: albumImages_attrs,
+      heroImageProps: {
+        ...heroImage_attrs.img,
+        blurDataURL: heroImage_attrs.base64,
       },
       projects: data[0],
       compKey: params.id,

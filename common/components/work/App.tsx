@@ -13,7 +13,7 @@ import { Container, SectionWrapper } from "./styles/App.styled"
 import { H5Link } from "../styled/Text"
 import { useState } from "react"
 
-const App = ({ data, imageProps }) => {
+const App = ({ data, heroImageProps, albumImagesProps }) => {
   const fields: DataProp = data.fields
   const {
     id,
@@ -48,7 +48,11 @@ const App = ({ data, imageProps }) => {
       initial="initial"
       animate={isExiting ? "exit" : "animate"}
     >
-      <Header data={data} imageProps={imageProps} setIsExiting={setIsExiting} />
+      <Header
+        data={data}
+        heroImageProps={heroImageProps}
+        setIsExiting={setIsExiting}
+      />
       <Presentation data={presentation} />
 
       <SectionWrapper>
@@ -78,7 +82,7 @@ const App = ({ data, imageProps }) => {
         <ButtonList data={links} />
       </SectionWrapper>
 
-      <AlbumList data={album} id={id} />
+      <AlbumList data={album} albumImagesProps={albumImagesProps} id={id} />
 
       <NextLink isExiting={isExiting} setIsExiting={setIsExiting} next={next} />
     </Container>

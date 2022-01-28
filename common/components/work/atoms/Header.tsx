@@ -4,7 +4,7 @@ import Image from "next/image"
 import { H1 } from "../../styled/Text"
 import Link from "next/link"
 
-const Header = ({ data, setIsExiting, imageProps }) => {
+const Header = ({ data, setIsExiting, heroImageProps }) => {
   const { title, heroImage } = data.fields
 
   return (
@@ -12,7 +12,7 @@ const Header = ({ data, setIsExiting, imageProps }) => {
       <HeroImage className="hero_image">
         <div className="img_wrap">
           <Image
-            {...imageProps}
+            {...heroImageProps}
             src={`https:${heroImage.fields.file.url}`}
             alt=""
             layout="fill"
