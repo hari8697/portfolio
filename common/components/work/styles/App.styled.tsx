@@ -79,7 +79,7 @@ export const HeaderStyled = styled.div`
   }
 
   @media ${device.laptop} and (orientation: landscape) {
-    position: relative;
+    /* position: relative; */
     width: 100%;
     height: 100vh;
 
@@ -89,13 +89,15 @@ export const HeaderStyled = styled.div`
     grid-column: 4 / 21;
 
     .title_wrap {
+      display: block;
       position: relative;
-      top: 50%;
+      top: 45.5%;
+      /* transform: translateY(-50%); */
     }
 
     .close_btn {
       position: absolute;
-      top: -210%;
+      top: -10%;
       right: -10vw;
     }
   }
@@ -112,19 +114,25 @@ export const HeroImage = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
   }
 
   @media ${device.laptop} and (orientation: landscape) {
     position: absolute;
-    grid-column: 4 / 22;
-    top: 50%;
+    /* grid-column: 1 / 22; */
+    top: 50vh;
     left: 50%;
     transform: translate(-50%, -50%);
     height: auto;
     margin: 0 auto;
-    width: 90%;
+    /* width: 66.66vw; // * 12 units in threejs for 100vw, each image is 8 units, hence 8/12 */
+    /* min-height: 58.44vh; // * 7.7 units in threejs for 100vh, each image is 4.5 units, hence 4.5/7.7 */
+    /* width: 1352.16px; */
+    width: 104vh;
+    /* height: 60vh; */
+    /* height: 763.96px; */
     z-index: -1;
+    /* overflow-y: hidden; */
   }
 `
 

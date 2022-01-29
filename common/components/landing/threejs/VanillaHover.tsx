@@ -133,6 +133,7 @@ const VanillaHover = ({
           map: obj.texture,
         })
         obj.mesh = new THREE.Mesh(obj.geometry, obj.material)
+        console.log(obj.mesh.geometry.parameters.width)
 
         return obj
       })
