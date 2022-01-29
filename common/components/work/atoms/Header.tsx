@@ -4,11 +4,17 @@ import Image from "next/image"
 import { H1 } from "../../styled/Text"
 import Link from "next/link"
 import { useResponsiveHelper } from "@/common/utils/"
+import { useEffect } from "react"
 
 const Header = ({ data, setIsExiting, heroImageProps }) => {
   const { title, heroImage } = data.fields
 
-  const { isMobile, isTablet } = useResponsiveHelper()
+  const { isMobile, isTablet, isNotLaptop } = useResponsiveHelper()
+
+  // useEffect(() => {
+  //   console.log(isNotLaptop)
+  // }, [isNotLaptop])
+
   return (
     <HeaderStyled>
       <HeroImage className="hero_image">
@@ -17,7 +23,13 @@ const Header = ({ data, setIsExiting, heroImageProps }) => {
             {...heroImageProps}
             src={`https:${heroImage.fields.file.url}`}
             alt=""
-            layout={isMobile || isTablet ? "fill" : "responsive"}
+            layout={isMobile || isTablet || isNotLaptop ? "fill" : "responsive"}
+            width={
+              isMobile || isTablet || isNotLaptop ? null : heroImageProps.width
+            }
+            height={
+              isMobile || isTablet || isNotLaptop ? null : heroImageProps.height
+            }
             priority={true}
             objectFit="cover"
             placeholder="blur"

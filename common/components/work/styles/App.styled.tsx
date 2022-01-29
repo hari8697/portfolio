@@ -114,25 +114,21 @@ export const HeroImage = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover;
   }
 
   @media ${device.laptop} and (orientation: landscape) {
     position: absolute;
-    /* grid-column: 1 / 22; */
     top: 50vh;
     left: 50%;
     transform: translate(-50%, -50%);
     height: auto;
     margin: 0 auto;
+    width: 104vh;
+    z-index: -1;
+
     /* width: 66.66vw; // * 12 units in threejs for 100vw, each image is 8 units, hence 8/12 */
     /* min-height: 58.44vh; // * 7.7 units in threejs for 100vh, each image is 4.5 units, hence 4.5/7.7 */
-    /* width: 1352.16px; */
-    width: 104vh;
-    /* height: 60vh; */
-    /* height: 763.96px; */
-    z-index: -1;
-    /* overflow-y: hidden; */
   }
 `
 

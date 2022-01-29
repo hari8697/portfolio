@@ -7,6 +7,7 @@ export const useResponsiveHelper = () => {
   const [responsiveCheck, setResponsiveCheck] = useState({
     isMobile: null,
     isTablet: null,
+    isNotLaptop: null,
   })
 
   const mobileCheckFunc = (width, height) => {
@@ -25,11 +26,19 @@ export const useResponsiveHelper = () => {
     } else return minWidthTrue && maxWidthTrue
   }
 
+  const laptopCheckFunc = (width, height) => {
+    const minWidthTrue = width >= devicePX.laptop
+    const maxWidthTrue = width <= devicePX.laptopL
+    const isLandscape = width / height > 1
+    return minWidthTrue && maxWidthTrue && !isLandscape
+  }
+
   // Run once initially
   useEffect(() => {
     setResponsiveCheck({
       isMobile: mobileCheckFunc(vW, vH),
       isTablet: tabletCheckFunc(vW, vH),
+      isNotLaptop: laptopCheckFunc(vW, vH),
     })
   }, [])
 
@@ -38,6 +47,7 @@ export const useResponsiveHelper = () => {
     setResponsiveCheck({
       isMobile: mobileCheckFunc(vW, vH),
       isTablet: tabletCheckFunc(vW, vH),
+      isNotLaptop: laptopCheckFunc(vW, vH),
     })
   }, [vW, vH])
 
