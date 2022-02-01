@@ -91,13 +91,19 @@ export const HeaderStyled = styled.div`
     .title_wrap {
       display: block;
       position: relative;
-      top: 45.5%;
+      /* top: 45.5%; */
+      /* top: calc(96px + 70px); */
+      top: 50%;
       /* transform: translateY(-50%); */
+
+      .title {
+        margin: 0;
+      }
     }
 
     .close_btn {
       position: absolute;
-      top: -10%;
+      top: -210%;
       right: -10vw;
     }
   }
