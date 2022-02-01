@@ -1,9 +1,11 @@
 import { createGlobalStyle } from "styled-components"
 import { normalize } from "polished"
 import { primaryFont } from "./typography"
+import { padding_vars } from "../components/styled"
 
 export const GlobalStyle = createGlobalStyle`
 ${normalize()}
+
 
 html,
 body {
@@ -19,7 +21,6 @@ html {
     --toastify-color-dark: ${(props) => props.theme.toastColor};
     --toastify-text-color-dark: ${(props) => props.theme.placeHolderTextColor};
     --toastify-color-progress-dark: ${(props) => props.theme.primaryColor};
-   
   }
 }
 

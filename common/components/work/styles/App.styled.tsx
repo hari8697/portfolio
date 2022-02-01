@@ -50,20 +50,11 @@ export const Container = styled(motion.div)`
 =            Header            =
 =============================================*/
 
-export const HeaderStyled = styled.div`
-  width: 100%;
-  padding-top: 30vh;
+export const NavbarStyled = styled.div`
+  position: relative;
+`
 
-  .title_wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .title {
-      margin: 40px 0;
-    }
-  }
-
+export const CloseBtnStyled = styled.div`
   .close_btn {
     max-width: 21px;
     padding: 8px;
@@ -75,6 +66,33 @@ export const HeaderStyled = styled.div`
     :focus {
       cursor: pointer;
       opacity: 1;
+    }
+  }
+
+  @media ${device.laptop} and (orientation: landscape) {
+    .close_btn {
+      position: absolute;
+      /* top: -210%; */
+      /* right: -10vw; */
+
+      top: 96px;
+      right: 8vw;
+      z-index: 999;
+    }
+  }
+`
+
+export const HeaderStyled = styled.div`
+  width: 100%;
+  padding-top: 30vh;
+
+  .title_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      margin: 40px 0;
     }
   }
 
@@ -99,12 +117,6 @@ export const HeaderStyled = styled.div`
       .title {
         margin: 0;
       }
-    }
-
-    .close_btn {
-      position: absolute;
-      top: -210%;
-      right: -10vw;
     }
   }
 `
