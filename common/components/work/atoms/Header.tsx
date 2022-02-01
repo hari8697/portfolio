@@ -29,8 +29,8 @@ const Header = ({ data, setIsExiting, heroImageProps }) => {
   return (
     <HeaderStyled>
       {!mobileVersion && (
-        <CloseBtnStyled>
-          <Link href="/">
+        <Link href="/">
+          <CloseBtnStyled>
             <img
               className="close_btn desktop"
               src="/about/close_btn.svg"
@@ -39,8 +39,8 @@ const Header = ({ data, setIsExiting, heroImageProps }) => {
                 setIsExiting(true)
               }}
             />
-          </Link>
-        </CloseBtnStyled>
+          </CloseBtnStyled>
+        </Link>
       )}
       <HeroImage className="hero_image">
         <div className="img_wrap">
@@ -60,8 +60,8 @@ const Header = ({ data, setIsExiting, heroImageProps }) => {
       <div className="title_wrap">
         <H1 className="title">{title}</H1>
         {mobileVersion && (
-          <CloseBtnStyled>
-            <Link href="/">
+          <Link href="/">
+            <CloseBtnStyled>
               <img
                 className="close_btn mobile"
                 src="/about/close_btn.svg"
@@ -70,8 +70,8 @@ const Header = ({ data, setIsExiting, heroImageProps }) => {
                   setIsExiting(true)
                 }}
               />
-            </Link>
-          </CloseBtnStyled>
+            </CloseBtnStyled>
+          </Link>
         )}
       </div>
     </HeaderStyled>

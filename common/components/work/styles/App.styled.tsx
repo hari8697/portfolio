@@ -55,29 +55,41 @@ export const NavbarStyled = styled.div`
 `
 
 export const CloseBtnStyled = styled.div`
+  z-index: 10;
+  opacity: 0.8;
+  transition: opacity 100ms ease-out;
+  &:hover,
+  :focus {
+    cursor: pointer;
+    opacity: 1;
+  }
   .close_btn {
-    max-width: 21px;
+    width: 21px;
     padding: 8px;
     padding-right: 0;
-    opacity: 0.8;
     transition: opacity 100ms ease-out;
-
     &:hover,
     :focus {
       cursor: pointer;
-      opacity: 1;
     }
   }
 
   @media ${device.laptop} and (orientation: landscape) {
+    padding: 0.75rem;
+    position: fixed;
+    top: 96px;
+    right: 8vw;
+    opacity: 0.5;
     .close_btn {
-      position: absolute;
-      /* top: -210%; */
-      /* right: -10vw; */
+      width: 16px;
+      max-width: none;
+      padding: 0;
+    }
+  }
 
-      top: 96px;
-      right: 8vw;
-      z-index: 999;
+  @media ${device.desktop} {
+    .close_btn {
+      width: 20px;
     }
   }
 `
