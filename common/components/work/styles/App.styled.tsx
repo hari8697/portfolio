@@ -18,9 +18,20 @@ export const work_grid_col = css`
   @media ${device.laptop} and (orientation: landscape) {
     grid-column: 5 / -5;
   }
-
   @media ${device.desktop} and (orientation: landscape) {
     grid-column: 7 / -7;
+  }
+  @media ${device.desktopL} and (orientation: landscape) {
+    grid-column: 9 / -9;
+  }
+`
+
+export const work_grid_col_Large = css`
+  @media ${device.desktop} and (orientation: landscape) {
+    grid-column: 3 / -3;
+  }
+  @media ${device.desktopL} and (orientation: landscape) {
+    grid-column: 5 / -5;
   }
 `
 export const Container = styled(motion.div)`
@@ -281,6 +292,7 @@ export const ButtonListStyled = styled.div`
 `
 
 export const AlbumListStyled = styled.div`
+  ${work_grid_col_Large}
   display: flex;
   flex-direction: column;
   grid-gap: 1rem;
@@ -296,6 +308,7 @@ export const AlbumListStyled = styled.div`
 `
 
 export const NextLinkStyled = styled.div`
+  ${work_grid_col_Large}
   display: flex;
   flex-direction: column;
   grid-gap: 0.5rem;
