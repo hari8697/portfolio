@@ -31,7 +31,7 @@ export const work_grid_col = css`
 
 export const work_grid_col_Large = css`
   @media ${device.desktop} {
-    grid-column: 4 / -4;
+    grid-column: 5 / -5;
   }
   @media ${device.desktopL} {
     grid-column: 5 / -5;
@@ -312,9 +312,16 @@ export const AlbumListStyled = styled.div`
       border-radius: 3px;
     }
   }
+
+  @media ${device.laptop} and (orientation: landscape) {
+    grid-gap: 3rem;
+  }
+  @media ${device.desktop} and (orientation: landscape) {
+    grid-gap: 5rem;
+  }
 `
 
-export const NextLinkStyled = styled.div`
+export const NextLinkStyled = styled(motion.div)`
   ${work_grid_col_Large}
   display: flex;
   flex-direction: column;
@@ -335,6 +342,31 @@ export const NextLinkStyled = styled.div`
     grid-gap: 0.5rem;
     img {
       height: 10px;
+    }
+  }
+
+  
+  @media ${device.laptop} {
+    margin-top: 100px;
+    .title_wrap {
+      grid-gap: 1.2rem;
+      img {
+        height: 1.2rem;
+      }
+    }
+  }
+
+  @media ${device.desktop}{
+    margin-top: 150px;
+  }
+  
+  @media ${device.desktopL}{
+    .title_wrap {
+      grid-gap: 1.5rem;
+      
+      img {
+        height: 1.5rem;
+      }
     }
   }
 `

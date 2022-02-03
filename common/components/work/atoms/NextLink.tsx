@@ -1,8 +1,10 @@
-import Link from "next/link"
 import { NextLinkStyled } from "../styles/App.styled"
 import SectionTitle from "./SectionTitle"
 import { H3 } from "../../styled/Text"
 import { useRouter } from "next/router"
+import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import { useResponsiveHelper } from "@/common/utils/"
 
 interface Props {
   next: {
@@ -13,12 +15,37 @@ interface Props {
 
 const NextLink = ({ next, isExiting, setIsExiting }) => {
   const router = useRouter()
+  const [isHover, setIsHover] = useState(false)
 
+  const { isMobile, isTablet, isNotLaptop } = useResponsiveHelper()
+  const [mobileVersion, setMobileVersion] = useState(true)
+  useEffect(() => {
+    if (isMobile || isTablet || isNotLaptop) {
+      setMobileVersion(true)
+    } else {
+      setMobileVersion(false)
+    }
+  }, [isMobile, isTablet, isNotLaptop])
+
+  const arrowVariants = {
+    initial: {
+      x: -20,
+      opacity: 0,
+    },
+    animate: {
+      x: 0,
+      opacity: 1,
+    },
+  }
   if (next != null || undefined) {
     return (
       <NextLinkStyled className="next">
         <SectionTitle>Next</SectionTitle>
-        <div
+        <motion.div
+          onHoverStart={() => {
+            setIsHover(true)
+          }}
+          onHoverEnd={() => setIsHover(false)}
           className="title_wrap"
           onClick={(e) => {
             e.preventDefault()
@@ -30,8 +57,21 @@ const NextLink = ({ next, isExiting, setIsExiting }) => {
           }}
         >
           <H3>{next.fields.title}</H3>
-          <img src="/work/icons/next_arrow.svg" alt="" />
-        </div>
+          <motion.img
+            variants={arrowVariants}
+            initial={mobileVersion ? "animate" : "initial"}
+            animate={
+              !mobileVersion ? (isHover ? "animate" : "initial") : "animate"
+            }
+            transition={{
+              duration: 0.25,
+              // ease: [0.6, 0.01, -0.05, 0.9],
+              ease: "easeOut",
+            }}
+            src="/work/icons/next_arrow.svg"
+            alt=""
+          />
+        </motion.div>
       </NextLinkStyled>
     )
   } else return <NextLinkStyled className="next"></NextLinkStyled>
