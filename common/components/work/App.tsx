@@ -58,9 +58,7 @@ const App = ({ data, heroImageProps, albumImagesProps }) => {
         <Presentation data={presentation} />
 
         <SectionWrapper>
-          <H5Link capsON highlighted>
-            Role
-          </H5Link>
+          <SectionTitle>Role</SectionTitle>
           <TextList data={role} />
         </SectionWrapper>
 

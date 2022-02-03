@@ -18,6 +18,10 @@ export const work_grid_col = css`
   @media ${device.laptop} and (orientation: landscape) {
     grid-column: 5 / -5;
   }
+
+  @media ${device.desktop} and (orientation: landscape) {
+    grid-column: 7 / -7;
+  }
 `
 export const Container = styled(motion.div)`
   ${full_W_H}
@@ -219,9 +223,24 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
 const contentBlockShared = css`
   margin-bottom: ${(props) => (props.lastBlock ? "50px" : "1rem")};
 
+  @media ${device.laptop} and (orientation: landscape) {
+    margin-bottom: ${(props) => (props.lastBlock ? "300px" : "2.4rem")};
+  }
+
+  @media ${device.desktopL} {
+    margin-bottom: ${(props) => (props.lastBlock ? "300px" : "3rem")};
+  }
+
   ${ParaLarge},
   ${ButtonLinkStyled} {
     margin-top: 0.5rem;
+
+    @media ${device.laptop} and (orientation: landscape) {
+      margin-top: 1rem;
+    }
+    @media ${device.desktopL} {
+      margin-top: 1.5rem;
+    }
   }
 `
 
@@ -231,6 +250,10 @@ const contentBlockShared = css`
 
 export const PresentationStyled = styled.div`
   ${contentBlockShared}
+
+  @media ${device.laptop} and (orientation: landscape) {
+    margin: 180px 0 100px;
+  }
 `
 
 /*=====  End of Presentation  ======*/
@@ -238,6 +261,19 @@ export const PresentationStyled = styled.div`
 export const SectionWrapper = styled.div`
   list-style: none;
   ${contentBlockShared}
+
+  
+  @media ${device.laptop} and (orientation: landscape) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    
+    ${ParaLarge},
+    ${ButtonLinkStyled} {
+        margin-top: 0;
+    }
+  }
 `
 export const ButtonListStyled = styled.div`
   display: flex;
