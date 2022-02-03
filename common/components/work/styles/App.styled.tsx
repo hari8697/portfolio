@@ -46,6 +46,11 @@ export const Container = styled(motion.div)`
   @media ${device.tablet} {
     padding-top: 0;
   }
+  
+  @media ${device.laptop} and (orientation: landscape) {
+    padding-bottom: 140px;
+  }
+
   @media ${device.desktop} {
     padding-top: 0;
   }
@@ -315,7 +320,7 @@ export const AlbumListStyled = styled.div`
   @media ${device.laptop} and (orientation: landscape) {
     grid-gap: 3rem;
   }
-  @media ${device.desktop} and (orientation: landscape) {
+  @media ${device.desktop} {
     grid-gap: 5rem;
   }
 `
