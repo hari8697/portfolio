@@ -30,7 +30,7 @@ const tablet = {
   header5L: "1rem",
   header5: "1rem",
   paragraphL: "1.2rem",
-  paragraph: "0.833rem",
+  paragraph: "1rem",
   helperText: "0.694rem",
   copyrightText: "0.694rem",
 }
