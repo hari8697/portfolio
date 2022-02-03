@@ -1,7 +1,7 @@
 import { ButtonListStyled } from "../styles/App.styled"
 import ButtonLink from "./ButtonLink"
 
-import { ParaLarge } from "@/components/styled"
+import { Para } from "@/components/styled"
 interface Props {
   data: [
     {
@@ -25,7 +25,7 @@ const ButtonList = ({ data }) => {
     return (
       <a href={urlArr[idx] && urlArr[idx]} key={idx}>
         <ButtonLink withIcon={hasIcon}>
-          <ParaLarge>{btn_title}</ParaLarge>
+          <Para>{btn_title}</Para>
           {hasIcon && (
             <div className="img_wrap">
               <img src={iconSrc} alt="" />

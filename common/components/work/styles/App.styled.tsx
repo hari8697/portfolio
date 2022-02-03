@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import {
   full_W_H,
   GridContainer,
+  Para,
   ParaLarge,
   padding_for_pages,
 } from "@/components/styled"
@@ -178,7 +179,6 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
 
   border-radius: 4px;
   padding: ${(props) => (props.withIcon ? "0.4rem 1rem" : "0.44rem 1rem")};
-  align-items: center;
 
   display: flex;
   align-items: center;
@@ -186,7 +186,7 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
 
   transition: all 200ms ease-out;
 
-  && ${ParaLarge} {
+  && ${Para} {
     margin-top: 0;
   }
 

@@ -44,14 +44,31 @@ const desktop = {
   header3: "2.986rem",
   header4: "2.488rem",
   header5L: "1.44rem",
-  header5: "1.2rem",
-  paragraphL: "1.44rem",
+  header5: "1rem",
+  paragraphL: "1.2rem",
   paragraph: "1rem",
   helperText: "0.833rem",
   copyrightText: "0.833rem",
 }
 
+const desktopL = {
+  xxl: "7.43rem",
+  xl: "6.192rem",
+  large: "5.16rem",
+  header1: "4.3rem",
+  header2: "3.583rem",
+  header3: "2.986rem",
+  header4: "2.488rem",
+  header5L: "1.44rem",
+  header5: "1.2rem",
+  paragraphL: "1.44rem",
+  paragraph: "1.2rem",
+  helperText: "0.833rem",
+  copyrightText: "0.833rem",
+}
+
 export const typeScale = {
+  desktopL,
   desktop,
   mobile,
   tablet,

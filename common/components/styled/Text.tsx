@@ -53,7 +53,7 @@ export const text_size_template = ({
     font-size: ${typeScale.desktop[desktop]};
   }
   @media ${device.desktopL} {
-    font-size: ${typeScale.desktop[desktopL]};
+    font-size: ${typeScale.desktopL[desktopL]};
   }
 `
 
@@ -135,6 +135,7 @@ export const Para = styled.p`
     mobile: "paragraph",
     tablet: "paragraph",
     laptop: "paragraph",
+    desktopL: "paragraph",
   })};
 `
 
@@ -144,6 +145,7 @@ export const ParaLarge = styled(Para)`
     tablet: "paragraphL",
     laptop: "paragraphL",
     desktop: "paragraphL",
+    desktopL: "paragraphL",
   })};
 `
 
