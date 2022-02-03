@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components"
 import { normalize } from "polished"
 import { primaryFont } from "./typography"
-import { padding_vars } from "../components/styled"
 
 export const GlobalStyle = createGlobalStyle`
 ${normalize()}
