@@ -16,21 +16,24 @@ export const work_grid_col = css`
     grid-column: 2 / -2;
   }
   @media ${device.laptop} and (orientation: landscape) {
+    grid-column: 2 / -2;
+  }
+  @media ${device.laptopL} {
     grid-column: 5 / -5;
   }
-  @media ${device.desktop} and (orientation: landscape) {
-    grid-column: 7 / -7;
+  @media ${device.desktop} {
+    grid-column: 8 / -8;
   }
-  @media ${device.desktopL} and (orientation: landscape) {
+  @media ${device.desktopL} {
     grid-column: 9 / -9;
   }
 `
 
 export const work_grid_col_Large = css`
-  @media ${device.desktop} and (orientation: landscape) {
-    grid-column: 3 / -3;
+  @media ${device.desktop} {
+    grid-column: 4 / -4;
   }
-  @media ${device.desktopL} and (orientation: landscape) {
+  @media ${device.desktopL} {
     grid-column: 5 / -5;
   }
 `
@@ -94,13 +97,17 @@ export const CloseBtnStyled = styled.div`
     padding: 0.75rem;
     position: fixed;
     top: 96px;
-    right: 8vw;
+    right: 5vw;
     opacity: 0.5;
     .close_btn {
       width: 16px;
       max-width: none;
       padding: 0;
     }
+  }
+
+  @media ${device.laptopL} {
+    right: 8vw;
   }
 
   @media ${device.desktop} {
