@@ -5,6 +5,7 @@ import { primaryFont } from "./typography"
 export const GlobalStyle = createGlobalStyle`
 ${normalize()}
 
+
 html,
 body {
   font-family: "Lato", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -19,7 +20,6 @@ html {
     --toastify-color-dark: ${(props) => props.theme.toastColor};
     --toastify-text-color-dark: ${(props) => props.theme.placeHolderTextColor};
     --toastify-color-progress-dark: ${(props) => props.theme.primaryColor};
-   
   }
 }
 

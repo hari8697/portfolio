@@ -6,7 +6,7 @@ interface Props {
   id: string
 }
 
-function AlbumList({ data, id }) {
+function AlbumList({ data, id, albumImagesProps }) {
   // const albumArr = Array.from({ length: data.count }, (_, i) => i + 1)
 
   let comps = data.map((item, idx) => {
@@ -16,6 +16,7 @@ function AlbumList({ data, id }) {
     return (
       <div className="img_wrapper" key={idx}>
         <Image
+          {...albumImagesProps[idx]}
           key={idx}
           className="album_image"
           src={`https:${item.fields.file.url}`}
@@ -24,7 +25,7 @@ function AlbumList({ data, id }) {
           layout="responsive"
           alt=""
           objectFit="cover"
-          // placeholder="blur"
+          placeholder="blur"
           lazyBoundary="500px"
         />
       </div>

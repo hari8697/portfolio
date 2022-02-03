@@ -69,13 +69,14 @@ export default function Landing({
         onClick={(e) => {
           e.preventDefault()
           if (item.id === selectedTitle) {
-            // setIsExiting(true)
+            setIsExiting(true)
+
+            if (!isExiting) {
+              const goToUrl = `work/${item.slug}`
+              router.push(goToUrl)
+            }
+
             setIsExiting((prev) => {
-              if (!prev) {
-                const goToUrl = `work/${item.slug}`
-                router.push(goToUrl)
-                // console.log(prev)
-              }
               // console.log(prev)
               return true
             })

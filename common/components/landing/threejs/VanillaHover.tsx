@@ -133,6 +133,7 @@ const VanillaHover = ({
           map: obj.texture,
         })
         obj.mesh = new THREE.Mesh(obj.geometry, obj.material)
+        console.log(obj.mesh.geometry.parameters.width)
 
         return obj
       })
@@ -564,12 +565,11 @@ const VanillaHover = ({
           console.log(currSelectedElement)
 
           // console.log("pushing")
+          if (!isExiting) {
+            const goToUrl = `work/${imagesArr[currSelectedElement].slug}`
+            router.push(goToUrl, undefined, { scroll: false })
+          }
           setIsExiting((prev) => {
-            if (!prev) {
-              const goToUrl = `work/${imagesArr[currSelectedElement].slug}`
-              router.push(goToUrl, undefined, { scroll: false })
-              // console.log(prev)
-            }
             // console.log(prev)
             return true
           })

@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import {
   full_W_H,
   GridContainer,
+  Para,
   ParaLarge,
   padding_for_pages,
 } from "@/components/styled"
@@ -15,6 +16,24 @@ export const work_grid_col = css`
     grid-column: 2 / -2;
   }
   @media ${device.laptop} and (orientation: landscape) {
+    grid-column: 2 / -2;
+  }
+  @media ${device.laptopL} {
+    grid-column: 5 / -5;
+  }
+  @media ${device.desktop} {
+    grid-column: 8 / -8;
+  }
+  @media ${device.desktopL} {
+    grid-column: 9 / -9;
+  }
+`
+
+export const work_grid_col_Large = css`
+  @media ${device.desktop} {
+    grid-column: 5 / -5;
+  }
+  @media ${device.desktopL} {
     grid-column: 5 / -5;
   }
 `
@@ -22,7 +41,20 @@ export const Container = styled(motion.div)`
   ${full_W_H}
   ${GridContainer}
   ${padding_for_pages}
+  
   padding-top: 0;
+  @media ${device.tablet} {
+    padding-top: 0;
+  }
+  
+  @media ${device.laptop} and (orientation: landscape) {
+    padding-bottom: 140px;
+  }
+
+  @media ${device.desktop} {
+    padding-top: 0;
+  }
+
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
@@ -42,6 +74,54 @@ export const Container = styled(motion.div)`
 =            Header            =
 =============================================*/
 
+export const NavbarStyled = styled.div`
+  position: relative;
+`
+
+export const CloseBtnStyled = styled.div`
+  z-index: 10;
+  opacity: 0.8;
+  transition: opacity 100ms ease-out;
+  &:hover,
+  :focus {
+    cursor: pointer;
+    opacity: 1;
+  }
+  .close_btn {
+    width: 21px;
+    padding: 8px;
+    padding-right: 0;
+    transition: opacity 100ms ease-out;
+    &:hover,
+    :focus {
+      cursor: pointer;
+    }
+  }
+
+  @media ${device.laptop} and (orientation: landscape) {
+    padding: 0.75rem;
+    position: fixed;
+    top: 96px;
+    right: 5vw;
+    opacity: 0.5;
+    .close_btn {
+      width: 16px;
+      max-width: none;
+      padding: 0;
+    }
+  }
+
+  @media ${device.laptopL} {
+    right: 8vw;
+  }
+
+  @media ${device.desktop} {
+    .close_btn {
+      width: 20px;
+    }
+  }
+`
+
 export const HeaderStyled = styled.div`
   width: 100%;
   padding-top: 30vh;
@@ -56,14 +136,27 @@ export const HeaderStyled = styled.div`
     }
   }
 
-  .close_btn {
-    max-width: 21px;
-    padding: 8px;
-    padding-right: 0;
+  @media ${device.laptop} and (orientation: landscape) {
+    /* position: relative; */
+    width: 100%;
+    height: 100vh;
 
-    &:hover,
-    :focus {
-      cursor: pointer;
+    padding-top: 96px;
+    padding-bottom: 70px;
+
+    grid-column: 4 / 21;
+
+    .title_wrap {
+      display: block;
+      position: relative;
+      /* top: 45.5%; */
+      /* top: calc(96px + 70px); */
+      top: 50%;
+      /* transform: translateY(-50%); */
+
+      .title {
+        margin: 0;
+      }
     }
   }
 `
@@ -80,6 +173,20 @@ export const HeroImage = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media ${device.laptop} and (orientation: landscape) {
+    position: absolute;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: auto;
+    margin: 0 auto;
+    width: 104vh;
+    z-index: -1;
+
+    /* width: 66.66vw; // * 12 units in threejs for 100vw, each image is 8 units, hence 8/12 */
+    /* min-height: 58.44vh; // * 7.7 units in threejs for 100vh, each image is 4.5 units, hence 4.5/7.7 */
   }
 `
 
@@ -99,7 +206,6 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
 
   border-radius: 4px;
   padding: ${(props) => (props.withIcon ? "0.4rem 1rem" : "0.44rem 1rem")};
-  align-items: center;
 
   display: flex;
   align-items: center;
@@ -107,7 +213,7 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
 
   transition: all 200ms ease-out;
 
-  && ${ParaLarge} {
+  && ${Para} {
     margin-top: 0;
   }
 
@@ -140,9 +246,23 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
 const contentBlockShared = css`
   margin-bottom: ${(props) => (props.lastBlock ? "50px" : "1rem")};
 
+  @media ${device.laptop} and (orientation: landscape) {
+    margin-bottom: ${(props) => (props.lastBlock ? "300px" : "2.4rem")};
+  }
+
+  @media ${device.desktopL} {
+    margin-bottom: ${(props) => (props.lastBlock ? "300px" : "3rem")};
+  }
+
   ${ParaLarge},
   ${ButtonLinkStyled} {
     margin-top: 0.5rem;
+    @media ${device.laptop} and (orientation: landscape) {
+      margin-top: 1rem;
+    }
+    @media ${device.desktopL} {
+      margin-top: 1.5rem;
+    }
   }
 `
 
@@ -152,6 +272,10 @@ const contentBlockShared = css`
 
 export const PresentationStyled = styled.div`
   ${contentBlockShared}
+
+  @media ${device.laptop} and (orientation: landscape) {
+    margin: 180px 0 100px;
+  }
 `
 
 /*=====  End of Presentation  ======*/
@@ -159,6 +283,19 @@ export const PresentationStyled = styled.div`
 export const SectionWrapper = styled.div`
   list-style: none;
   ${contentBlockShared}
+
+  
+  @media ${device.laptop} and (orientation: landscape) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    
+    ${ParaLarge},
+    ${ButtonLinkStyled} {
+        margin-top: 0;
+    }
+  }
 `
 export const ButtonListStyled = styled.div`
   display: flex;
@@ -166,6 +303,7 @@ export const ButtonListStyled = styled.div`
 `
 
 export const AlbumListStyled = styled.div`
+  ${work_grid_col_Large}
   display: flex;
   flex-direction: column;
   grid-gap: 1rem;
@@ -178,9 +316,17 @@ export const AlbumListStyled = styled.div`
       border-radius: 3px;
     }
   }
+
+  @media ${device.laptop} and (orientation: landscape) {
+    grid-gap: 3rem;
+  }
+  @media ${device.desktop} {
+    grid-gap: 5rem;
+  }
 `
 
-export const NextLinkStyled = styled.div`
+export const NextLinkStyled = styled(motion.div)`
+  ${work_grid_col_Large}
   display: flex;
   flex-direction: column;
   grid-gap: 0.5rem;
@@ -200,6 +346,34 @@ export const NextLinkStyled = styled.div`
     grid-gap: 0.5rem;
     img {
       height: 10px;
+    }
+  }
+
+  
+  @media ${device.laptop} {
+    margin-top: 100px;
+    .title_wrap {
+      grid-gap: 1.2rem;
+      h3{
+        cursor: pointer;
+      }
+      img {
+        height: 1.2rem;
+      }
+    }
+  }
+
+  @media ${device.desktop}{
+    margin-top: 150px;
+  }
+  
+  @media ${device.desktopL}{
+    .title_wrap {
+      grid-gap: 1.5rem;
+      
+      img {
+        height: 1.5rem;
+      }
     }
   }
 `

@@ -12,8 +12,9 @@ import Presentation from "./molecules/Presentation"
 import { Container, SectionWrapper } from "./styles/App.styled"
 import { H5Link } from "../styled/Text"
 import { useState } from "react"
+import Navbar from "./Navbar"
 
-const App = ({ data }) => {
+const App = ({ data, heroImageProps, albumImagesProps }) => {
   const fields: DataProp = data.fields
   const {
     id,
@@ -33,19 +34,9 @@ const App = ({ data }) => {
     },
     animate: {
       opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 500,
-        damping: 50,
-      },
     },
     exit: {
       opacity: 0,
-      transition: {
-        type: "spring",
-        stiffness: 500,
-        damping: 50,
-      },
     },
   }
 
@@ -53,45 +44,53 @@ const App = ({ data }) => {
   const [isExiting, setIsExiting] = useState(false)
 
   return (
-    <Container
-      variants={ContainerVariants}
-      initial="initial"
-      animate={isExiting ? "exit" : "animate"}
-    >
-      <Header data={data} setIsExiting={setIsExiting} />
-      <Presentation data={presentation} />
+    <>
+      <Container
+        variants={ContainerVariants}
+        initial="initial"
+        animate={isExiting ? "exit" : "animate"}
+      >
+        <Header
+          data={data}
+          heroImageProps={heroImageProps}
+          setIsExiting={setIsExiting}
+        />
+        <Presentation data={presentation} />
 
-      <SectionWrapper>
-        <H5Link capsON highlighted>
-          Role
-        </H5Link>
-        <TextList data={role} />
-      </SectionWrapper>
+        <SectionWrapper>
+          <SectionTitle>Role</SectionTitle>
+          <TextList data={role} />
+        </SectionWrapper>
 
-      <SectionWrapper>
-        <SectionTitle>Tech used</SectionTitle>
-        <TextList data={techUsed} />
-      </SectionWrapper>
+        <SectionWrapper>
+          <SectionTitle>Tech used</SectionTitle>
+          <TextList data={techUsed} />
+        </SectionWrapper>
 
-      <SectionWrapper className="type">
-        <SectionTitle>Type</SectionTitle>
-        <TextList data={type} />
-      </SectionWrapper>
+        <SectionWrapper className="type">
+          <SectionTitle>Type</SectionTitle>
+          <TextList data={type} />
+        </SectionWrapper>
 
-      <SectionWrapper className="year">
-        <SectionTitle>Year</SectionTitle>
-        <TextList data={year} />
-      </SectionWrapper>
+        <SectionWrapper className="year">
+          <SectionTitle>Year</SectionTitle>
+          <TextList data={year} />
+        </SectionWrapper>
 
-      <SectionWrapper className="links" lastBlock>
-        <SectionTitle>Links</SectionTitle>
-        <ButtonList data={links} />
-      </SectionWrapper>
+        <SectionWrapper className="links" lastBlock>
+          <SectionTitle>Links</SectionTitle>
+          <ButtonList data={links} />
+        </SectionWrapper>
 
-      <AlbumList data={album} id={id} />
+        <AlbumList data={album} albumImagesProps={albumImagesProps} id={id} />
 
-      <NextLink isExiting={isExiting} setIsExiting={setIsExiting} next={next} />
-    </Container>
+        <NextLink
+          isExiting={isExiting}
+          setIsExiting={setIsExiting}
+          next={next}
+        />
+      </Container>
+    </>
   )
 }
 

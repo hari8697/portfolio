@@ -32,6 +32,12 @@ function Home({ projects }) {
     },
   ])
 
+  useEffect(() => {
+    console.log(isPreloading)
+
+    return () => {}
+  }, [isPreloading])
+
   return (
     <IndexPage>
       <AnimatePresence>
@@ -74,7 +80,7 @@ export async function getStaticProps() {
     props: {
       projects: data.items,
     },
-    revalidate: 1,
+    revalidate: 30,
   }
 }
 const IndexPage = styled.div`
