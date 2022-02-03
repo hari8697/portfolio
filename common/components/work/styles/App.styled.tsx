@@ -252,7 +252,6 @@ const contentBlockShared = css`
   ${ParaLarge},
   ${ButtonLinkStyled} {
     margin-top: 0.5rem;
-
     @media ${device.laptop} and (orientation: landscape) {
       margin-top: 1rem;
     }
@@ -350,6 +349,9 @@ export const NextLinkStyled = styled(motion.div)`
     margin-top: 100px;
     .title_wrap {
       grid-gap: 1.2rem;
+      h3{
+        cursor: pointer;
+      }
       img {
         height: 1.2rem;
       }

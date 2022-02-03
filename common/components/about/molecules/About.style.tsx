@@ -27,7 +27,6 @@ export const about_grid_col = css`
   @media ${device.laptopL} and (orientation: landscape) {
     grid-column: 2 / -2;
   }
-
   @media ${device.desktop} and (orientation: landscape) {
     grid-column: 7 / -7;
   }

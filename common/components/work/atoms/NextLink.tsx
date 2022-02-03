@@ -29,11 +29,11 @@ const NextLink = ({ next, isExiting, setIsExiting }) => {
 
   const arrowVariants = {
     initial: {
-      x: -20,
-      opacity: 0,
+      x: 0,
+      opacity: 1,
     },
     animate: {
-      x: 0,
+      x: 5,
       opacity: 1,
     },
   }
