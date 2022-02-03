@@ -20,6 +20,7 @@ const TextList = ({ data }) => {
 
 const TextListStyled = styled.div`
   display: flex;
+  flex-wrap: wrap;
   white-space: pre-wrap;
 `
 
