@@ -247,6 +247,10 @@ const contentBlockShared = css`
   margin-bottom: ${(props) => (props.lastBlock ? "50px" : "1rem")};
 
   @media ${device.laptop} and (orientation: landscape) {
+    margin-bottom: ${(props) => (props.lastBlock ? "200px" : "2.4rem")};
+  }
+
+  @media ${device.desktop} {
     margin-bottom: ${(props) => (props.lastBlock ? "300px" : "2.4rem")};
   }
 
@@ -274,6 +278,9 @@ export const PresentationStyled = styled.div`
   ${contentBlockShared}
 
   @media ${device.laptop} and (orientation: landscape) {
+    margin: 100px 0 100px;
+  }
+  @media ${device.desktop} {
     margin: 180px 0 100px;
   }
 `

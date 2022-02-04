@@ -18,12 +18,7 @@ const Work = ({ projects, compKey, heroImageProps, albumImagesProps }) => {
 
   return (
     <AnimatePresence exitBeforeEnter>
-      <App
-        data={projects}
-        heroImageProps={heroImageProps}
-        albumImagesProps={albumImagesProps}
-        key={compKey}
-      />
+      <App data={projects} albumImagesProps={albumImagesProps} key={compKey} />
     </AnimatePresence>
   )
 }
