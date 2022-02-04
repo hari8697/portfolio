@@ -7,12 +7,15 @@ import { createClient } from "contentful"
 import safeJsonStringify from "safe-json-stringify"
 
 import { AppContext } from "../contexts/appContext"
+
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
 
 function Home({ projects }) {
   // * Using context for persisting state of preloaderBool
-  const { isPreloading, setIsPreloading } = useContext(AppContext)
+  const { preloader, projectsState } = useContext(AppContext)
+  const [isPreloading, setIsPreloading] = preloader
+  const [projectList, setProjectList] = projectsState
   // console.log(isPreloading)
   // const [preloaderBool, setPreloaderBool] = useState(true) // ? Previous local state implementation
   const [threeImagesBools, setThreeImagesBools] = useState([])
@@ -34,9 +37,12 @@ function Home({ projects }) {
 
   useEffect(() => {
     console.log(isPreloading)
-
     return () => {}
   }, [isPreloading])
+
+  useEffect(() => {
+    setProjectList(projects)
+  }, [])
 
   return (
     <IndexPage>
