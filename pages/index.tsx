@@ -15,7 +15,8 @@ function Home({ projects }) {
   // * Using context for persisting state of preloaderBool
   const { preloader, projectsState } = useContext(AppContext)
   const [isPreloading, setIsPreloading] = preloader
-  const [projectList, setProjectList] = projectsState
+  // const [projectList, setProjectList] = projectsState
+
   // console.log(isPreloading)
   // const [preloaderBool, setPreloaderBool] = useState(true) // ? Previous local state implementation
   const [threeImagesBools, setThreeImagesBools] = useState([])
@@ -40,9 +41,9 @@ function Home({ projects }) {
     return () => {}
   }, [isPreloading])
 
-  useEffect(() => {
-    setProjectList(projects)
-  }, [])
+  // useEffect(() => {
+  //   setProjectList(projects)
+  // }, [])
 
   return (
     <IndexPage>

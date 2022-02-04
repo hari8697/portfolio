@@ -44,7 +44,8 @@ const Header = ({ data, setIsExiting }) => {
       )}
       <HeroImage className="hero_image">
         <div className="img_wrap">
-          <Image
+          <img src={`https:${heroImage.fields.file.url}`} alt="" />
+          {/* <Image
             src={`https:${heroImage.fields.file.url}`}
             alt=""
             layout={mobileVersion ? "fill" : "responsive"}
@@ -56,7 +57,7 @@ const Header = ({ data, setIsExiting }) => {
             }
             priority={true}
             objectFit="cover"
-          />
+          /> */}
         </div>
       </HeroImage>
       <div className="title_wrap">
