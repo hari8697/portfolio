@@ -14,7 +14,7 @@ import { H5Link } from "../styled/Text"
 import { useState } from "react"
 import Navbar from "./Navbar"
 
-const App = ({ data, heroImageProps, albumImagesProps }) => {
+const App = ({ data, albumImagesProps }) => {
   const fields: DataProp = data.fields
   const {
     id,
@@ -50,11 +50,7 @@ const App = ({ data, heroImageProps, albumImagesProps }) => {
         initial="initial"
         animate={isExiting ? "exit" : "animate"}
       >
-        <Header
-          data={data}
-          heroImageProps={heroImageProps}
-          setIsExiting={setIsExiting}
-        />
+        <Header data={data} setIsExiting={setIsExiting} />
         <Presentation data={presentation} />
 
         <SectionWrapper>

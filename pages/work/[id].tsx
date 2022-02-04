@@ -70,10 +70,10 @@ export async function getStaticProps({ params }) {
   console.log("data[0]", data[0].fields.heroImage.fields.file.url)
 
   // * Hero image plaiceholder
-  const heroImage_attrs = await getPlaiceholder(
-    `https:${data[0].fields.heroImage.fields.file.url}`,
-    { size: 10 }
-  )
+  // const heroImage_attrs = await getPlaiceholder(
+  //   `https:${data[0].fields.heroImage.fields.file.url}`,
+  //   { size: 10 }
+  // )
 
   // * Album images plaiceholders
   let albumArr = data[0].fields.album
@@ -92,10 +92,10 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       albumImagesProps: albumImages_attrs,
-      heroImageProps: {
-        ...heroImage_attrs.img,
-        blurDataURL: heroImage_attrs.base64,
-      },
+      // heroImageProps: {
+      //   ...heroImage_attrs.img,
+      //   blurDataURL: heroImage_attrs.base64,
+      // },
       projects: data[0],
       compKey: params.id,
     },
