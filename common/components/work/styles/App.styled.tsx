@@ -328,6 +328,11 @@ export const AlbumListStyled = styled.div`
     img {
       border-radius: 3px;
     }
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+    }
   }
 
   @media ${device.laptop} and (orientation: landscape) {
@@ -404,6 +409,13 @@ export const SwiperContainerStyled = styled.div`
   background: #000;
   opacity: 0.9;
   z-index: 999;
+
+  ${CloseBtnStyled} {
+    position: absolute;
+    right: 100px;
+    top: 100px;
+    opacity: 0.7;
+  }
 
   .swiper,
   .swiper-slide {

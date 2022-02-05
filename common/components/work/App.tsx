@@ -10,9 +10,8 @@ import {
 } from "./atoms/index"
 import Presentation from "./molecules/Presentation"
 import { Container, SectionWrapper } from "./styles/App.styled"
-import { H5Link } from "../styled/Text"
 import { useState } from "react"
-import Navbar from "./Navbar"
+
 import SwiperContainer from "./molecules/SwiperContainer"
 
 const App = ({ data, albumImagesProps }) => {
@@ -44,9 +43,11 @@ const App = ({ data, albumImagesProps }) => {
   // Using state for exit animations
   const [isExiting, setIsExiting] = useState(false)
 
+  const [swiperOpen, setSwiperOpen] = useState(false)
+
   return (
     <>
-      {/* <SwiperContainer></SwiperContainer> */}
+      {swiperOpen && <SwiperContainer />}
       <Container
         variants={ContainerVariants}
         initial="initial"
@@ -80,7 +81,12 @@ const App = ({ data, albumImagesProps }) => {
           <ButtonList data={links} />
         </SectionWrapper>
 
-        <AlbumList data={album} albumImagesProps={albumImagesProps} id={id} />
+        <AlbumList
+          setSwiperOpen={setSwiperOpen}
+          data={album}
+          albumImagesProps={albumImagesProps}
+          id={id}
+        />
 
         <NextLink
           isExiting={isExiting}

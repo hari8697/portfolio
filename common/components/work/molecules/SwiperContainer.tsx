@@ -7,12 +7,15 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 import "swiper/css/effect-fade"
 
-import { SwiperContainerStyled } from "../styles/App.styled"
+import { CloseBtnStyled, SwiperContainerStyled } from "../styles/App.styled"
 import { useRef } from "react"
 
 const SwiperContainer = () => {
   return (
     <SwiperContainerStyled>
+      <CloseBtnStyled>
+        <img className="close_btn" src="/about/close_btn.svg" alt="" />
+      </CloseBtnStyled>
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={50}
