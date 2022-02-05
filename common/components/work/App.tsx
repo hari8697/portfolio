@@ -47,7 +47,7 @@ const App = ({ data, albumImagesProps }) => {
 
   return (
     <>
-      {swiperOpen && <SwiperContainer />}
+      {swiperOpen && <SwiperContainer setSwiperOpen={setSwiperOpen} />}
       <Container
         variants={ContainerVariants}
         initial="initial"

@@ -412,9 +412,14 @@ export const SwiperContainerStyled = styled.div`
 
   ${CloseBtnStyled} {
     position: absolute;
-    right: 100px;
-    top: 100px;
+    top: 50px;
+    right: 8vw;
     opacity: 0.7;
+
+    @media ${device.laptop} and (orientation: landscape) {
+      top: 96px;
+      right: 5vw;
+    }
   }
 
   .swiper,

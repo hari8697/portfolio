@@ -10,10 +10,14 @@ import "swiper/css/effect-fade"
 import { CloseBtnStyled, SwiperContainerStyled } from "../styles/App.styled"
 import { useRef } from "react"
 
-const SwiperContainer = () => {
+const SwiperContainer = ({ setSwiperOpen }) => {
   return (
     <SwiperContainerStyled>
-      <CloseBtnStyled>
+      <CloseBtnStyled
+        onClick={() => {
+          setSwiperOpen(false)
+        }}
+      >
         <img className="close_btn" src="/about/close_btn.svg" alt="" />
       </CloseBtnStyled>
       <Swiper
