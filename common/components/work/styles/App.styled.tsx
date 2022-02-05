@@ -390,3 +390,59 @@ export const NextLinkStyled = styled(motion.div)`
     }
   }
 `
+
+/*=============================================
+=            Presentation            =
+=============================================*/
+
+export const SwiperContainerStyled = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.9;
+  z-index: 999;
+
+  .swiper,
+  .swiper-slide {
+    height: 100%;
+  }
+
+  .swiper-slide {
+    background: blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .swiper-container {
+    position: fixed !important;
+    left: 50%;
+    top: 50%;
+    height: 92vh;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    // transform: rotate(90deg) !important;
+    img {
+      width: 100%;
+    }
+  }
+
+  .swiper-pagination {
+    bottom: 20px !important;
+  }
+
+  .swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.3;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: ${(props) => props.theme.primaryColor};
+    opacity: 0.8;
+  }
+`
+
+/*=====  End of Presentation  ======*/

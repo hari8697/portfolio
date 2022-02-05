@@ -13,6 +13,7 @@ import { Container, SectionWrapper } from "./styles/App.styled"
 import { H5Link } from "../styled/Text"
 import { useState } from "react"
 import Navbar from "./Navbar"
+import SwiperContainer from "./molecules/SwiperContainer"
 
 const App = ({ data, albumImagesProps }) => {
   const fields: DataProp = data.fields
@@ -45,6 +46,7 @@ const App = ({ data, albumImagesProps }) => {
 
   return (
     <>
+      {/* <SwiperContainer></SwiperContainer> */}
       <Container
         variants={ContainerVariants}
         initial="initial"
