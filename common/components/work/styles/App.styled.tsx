@@ -407,31 +407,36 @@ export const SwiperContainerStyled = styled.div`
   width: 100%;
   height: 100%;
   background: #000;
-  opacity: 0.9;
+
   z-index: 999;
+
+  visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
 
   ${CloseBtnStyled} {
     position: absolute;
     top: 50px;
     right: 8vw;
-    opacity: 0.7;
+    /* opacity: 0.7; */
 
     @media ${device.laptop} and (orientation: landscape) {
       top: 96px;
       right: 5vw;
     }
+
+    @media ${device.laptopL} {
+      right: 8vw;
+    }
   }
 
-  .swiper,
-  .swiper-slide {
+  .img_wrapper {
+    position: relative;
+    /* width: 100%; */
+    /* height: 80%; */
+    /* overflow: hidden; */
+  }
+
+  .swiper {
     height: 100%;
-  }
-
-  .swiper-slide {
-    background: blueviolet;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .swiper-container {
@@ -442,9 +447,9 @@ export const SwiperContainerStyled = styled.div`
     width: 100%;
     transform: translate(-50%, -50%);
     // transform: rotate(90deg) !important;
-    img {
+    /* img {
       width: 100%;
-    }
+    } */
   }
 
   .swiper-pagination {
