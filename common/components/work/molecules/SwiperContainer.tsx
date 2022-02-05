@@ -64,7 +64,7 @@ const SwiperContainer = ({
           console.log(swiper)
           setSwiperObj(swiper)
         }}
-        speed={500}
+        speed={250}
         grabCursor={true}
         onSlideChange={(swiper) => {
           console.log("slide change")

@@ -411,6 +411,8 @@ export const SwiperContainerStyled = styled.div`
   z-index: 999;
 
   visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
+  opacity: ${(props) => (props.isOpen ? 1 : 0)};
+  pointer-events: ${(props) => (props.isOpen ? "all" : "none")};
 
   ${CloseBtnStyled} {
     position: absolute;
@@ -454,17 +456,14 @@ export const SwiperContainerStyled = styled.div`
 
   .swiper-pagination {
     bottom: 20px !important;
-  }import { primaryFont } from '../../../utils/typography';
-
+  }
 
   .swiper-pagination-bullet {
-    background: #fff;
-    opacity: 0.3;
+    background: ${(props) => props.theme.disabled};
   }
 
   .swiper-pagination-bullet-active {
     background: ${(props) => props.theme.primaryColor};
-    opacity: 0.8;
   }
 `
 
