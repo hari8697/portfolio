@@ -13,6 +13,7 @@ import { Container, SectionWrapper } from "./styles/App.styled"
 import { useState } from "react"
 
 import SwiperContainer from "./molecules/SwiperContainer"
+import image from "next/image"
 
 const App = ({ data, albumImagesProps }) => {
   const fields: DataProp = data.fields
@@ -44,14 +45,15 @@ const App = ({ data, albumImagesProps }) => {
   const [isExiting, setIsExiting] = useState(false)
 
   const [swiperOpen, setSwiperOpen] = useState(false)
+  const [currSelectedSlide, setCurrSelectedSlide] = useState(1)
 
   return (
     <>
       <SwiperContainer
         isOpen={swiperOpen}
+        currSelectedSlide={currSelectedSlide}
         setSwiperOpen={setSwiperOpen}
         data={album}
-        albumImagesProps={albumImagesProps}
       />
 
       <Container
@@ -89,6 +91,7 @@ const App = ({ data, albumImagesProps }) => {
 
         <AlbumList
           setSwiperOpen={setSwiperOpen}
+          setCurrSelectedSlide={setCurrSelectedSlide}
           data={album}
           albumImagesProps={albumImagesProps}
           id={id}

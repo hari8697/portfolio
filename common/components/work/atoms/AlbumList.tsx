@@ -7,7 +7,13 @@ interface Props {
   id: string
 }
 
-function AlbumList({ data, id, albumImagesProps, setSwiperOpen }) {
+function AlbumList({
+  data,
+  id,
+  albumImagesProps,
+  setSwiperOpen,
+  setCurrSelectedSlide,
+}) {
   // const albumArr = Array.from({ length: data.count }, (_, i) => i + 1)
 
   let comps = data.map((item, idx) => {
@@ -29,6 +35,7 @@ function AlbumList({ data, id, albumImagesProps, setSwiperOpen }) {
         key={idx}
         onClick={() => {
           setSwiperOpen(true)
+          setCurrSelectedSlide(idx + 1)
         }}
       >
         <Image

@@ -9,10 +9,17 @@ import "swiper/css/effect-fade"
 import "swiper/css/zoom"
 
 import { CloseBtnStyled, SwiperContainerStyled } from "../styles/App.styled"
-import { useRef } from "react"
-import Image from "next/image"
 
-const SwiperContainer = ({ data, albumImagesProps, setSwiperOpen, isOpen }) => {
+import Image from "next/image"
+import { useEffect, useState } from "react"
+
+const SwiperContainer = ({
+  data,
+  setSwiperOpen,
+  isOpen,
+  currSelectedSlide,
+}) => {
+  const [swiperObj, setSwiperObj] = useState(null)
   let comps = data.map((item, idx) => {
     // const static_import_url = require(`https:${item.fields.file.url}`)
     const { width, height } = item.fields.file.details.image
@@ -20,7 +27,7 @@ const SwiperContainer = ({ data, albumImagesProps, setSwiperOpen, isOpen }) => {
       <SwiperSlide className="img_wrapper" key={idx} zoom={true}>
         <img
           key={idx}
-          className="album_image"
+          className="swiper_image"
           src={`https:${item.fields.file.url}`}
           width={width}
           height={height}
@@ -29,6 +36,14 @@ const SwiperContainer = ({ data, albumImagesProps, setSwiperOpen, isOpen }) => {
       </SwiperSlide>
     )
   })
+
+  useEffect(() => {
+    if (swiperObj) {
+      // swiperObj.slideToLoop(currSelectedSlide, 500, true)
+      swiperObj.activeIndex = currSelectedSlide
+      swiperObj.update()
+    }
+  }, [currSelectedSlide])
 
   return (
     <SwiperContainerStyled isOpen={isOpen}>
@@ -47,10 +62,14 @@ const SwiperContainer = ({ data, albumImagesProps, setSwiperOpen, isOpen }) => {
         pagination={{ clickable: true }}
         onSwiper={(swiper) => {
           console.log(swiper)
+          setSwiperObj(swiper)
         }}
         speed={500}
         grabCursor={true}
-        onSlideChange={() => console.log("slide change")}
+        onSlideChange={(swiper) => {
+          console.log("slide change")
+          console.log(swiper.activeIndex)
+        }}
         loop={true}
         zoom={true}
       >
