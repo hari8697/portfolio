@@ -53,7 +53,7 @@ const SwiperContainer = ({
 
   useEffect(() => {
     const handleEsc = (event) => {
-      if (event.keyCode === 27) {
+      if (event.key === "Escape") {
         closeSwiper()
       }
     }
