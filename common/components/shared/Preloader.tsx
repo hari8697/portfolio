@@ -49,12 +49,14 @@ const Preloader = ({
   useEffect(() => {
     if (threeImagesBools.length > 0) {
       if (allThreeLoaded && allImagesLoaded) {
-        setPreloaderBool(false)
-        setTimeout(() => {}, 200)
+        setTimeout(() => {
+          setPreloaderBool(false)
+        }, 500)
       }
     } else if (allImagesLoaded) {
-      setPreloaderBool(false)
-      setTimeout(() => {}, 200)
+      setTimeout(() => {
+        setPreloaderBool(false)
+      }, 500)
     }
   }, [allThreeLoaded, allImagesLoaded])
 
