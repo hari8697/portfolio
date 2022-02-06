@@ -42,6 +42,7 @@ const SwiperContainer = ({
       // swiperObj.slideToLoop(currSelectedSlide, 500, true)
       swiperObj.activeIndex = currSelectedSlide
       swiperObj.update()
+      swiperObj.pagination.update()
     }
   }, [isOpen])
 
