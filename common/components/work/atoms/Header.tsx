@@ -27,7 +27,7 @@ const Header = ({ data, setIsExiting }) => {
   }, [isMobile, isTablet, isNotLaptop])
 
   return (
-    <HeaderStyled>
+    <HeaderStyled className="nosel">
       {!mobileVersion && (
         <Link href="/">
           <CloseBtnStyled>

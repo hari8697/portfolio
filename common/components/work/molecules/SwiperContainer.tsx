@@ -24,7 +24,7 @@ const SwiperContainer = ({
     // const static_import_url = require(`https:${item.fields.file.url}`)
     const { width, height } = item.fields.file.details.image
     return (
-      <SwiperSlide className="img_wrapper" key={idx} zoom={true}>
+      <SwiperSlide className="img_wrapper nosel" key={idx} zoom={true}>
         <img
           key={idx}
           className="swiper_image"
@@ -65,7 +65,7 @@ const SwiperContainer = ({
 
   return (
     <SwiperContainerStyled isOpen={isOpen}>
-      <CloseBtnStyled onClick={closeSwiper}>
+      <CloseBtnStyled onClick={closeSwiper} className="nosel">
         <img className="close_btn" src="/about/close_btn.svg" alt="" />
       </CloseBtnStyled>
       <Swiper

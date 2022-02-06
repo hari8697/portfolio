@@ -400,7 +400,7 @@ export const NextLinkStyled = styled(motion.div)`
 =            Presentation            =
 =============================================*/
 
-export const SwiperContainerStyled = styled.div`
+export const SwiperContainerStyled = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
