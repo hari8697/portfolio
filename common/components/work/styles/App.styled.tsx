@@ -470,9 +470,11 @@ export const SwiperContainerStyled = styled(motion.div)`
   .swiper-button-next,
   .swiper-button-prev {
     opacity: 0;
+    pointer-events: none;
 
     @media ${device.laptop} and (orientation: landscape) {
       opacity: 0.2;
+      pointer-events: all;
     }
     transition: opacity 200ms ease-out;
     padding: 1rem 2rem;
