@@ -37,6 +37,11 @@ const SwiperContainer = ({
     )
   })
 
+  const closeSwiper = () => {
+    console.log("Close")
+    setSwiperOpen(false)
+  }
+
   useEffect(() => {
     if (swiperObj) {
       // swiperObj.slideToLoop(currSelectedSlide, 500, true)
@@ -46,13 +51,21 @@ const SwiperContainer = ({
     }
   }, [isOpen])
 
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.keyCode === 27) {
+        closeSwiper()
+      }
+    }
+    window.addEventListener("keydown", handleEsc)
+    return () => {
+      window.removeEventListener("keydown", handleEsc)
+    }
+  }, [])
+
   return (
     <SwiperContainerStyled isOpen={isOpen}>
-      <CloseBtnStyled
-        onClick={() => {
-          setSwiperOpen(false)
-        }}
-      >
+      <CloseBtnStyled onClick={closeSwiper}>
         <img className="close_btn" src="/about/close_btn.svg" alt="" />
       </CloseBtnStyled>
       <Swiper
@@ -60,7 +73,10 @@ const SwiperContainer = ({
         spaceBetween={50}
         slidesPerView={1}
         navigation
-        pagination={{ clickable: true }}
+        pagination={{
+          clickable: true,
+          // dynamicBullets: true,
+        }}
         onSwiper={(swiper) => {
           console.log(swiper)
           setSwiperObj(swiper)

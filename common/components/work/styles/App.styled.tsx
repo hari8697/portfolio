@@ -418,6 +418,7 @@ export const SwiperContainerStyled = styled.div`
     position: absolute;
     top: 50px;
     right: 8vw;
+
     /* opacity: 0.7; */
 
     @media ${device.laptop} and (orientation: landscape) {
@@ -464,6 +465,23 @@ export const SwiperContainerStyled = styled.div`
 
   .swiper-pagination-bullet-active {
     background: ${(props) => props.theme.primaryColor};
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    opacity: 0.2;
+    transition: opacity 200ms ease-out;
+    padding: 1rem 2rem;
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    color: white;
+    font-size: 1.44rem;
   }
 `
 
