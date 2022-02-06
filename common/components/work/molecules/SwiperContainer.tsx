@@ -43,7 +43,7 @@ const SwiperContainer = ({
       swiperObj.activeIndex = currSelectedSlide
       swiperObj.update()
     }
-  }, [currSelectedSlide])
+  }, [isOpen])
 
   return (
     <SwiperContainerStyled isOpen={isOpen}>
