@@ -10,8 +10,27 @@ import "swiper/css/zoom"
 
 import { CloseBtnStyled, SwiperContainerStyled } from "../styles/App.styled"
 
-import Image from "next/image"
 import { useEffect, useState } from "react"
+
+const ContainerVariants = {
+  initial: {
+    opacity: 0,
+    "pointer-events": "none",
+  },
+  animate: {
+    opacity: 1,
+    "pointer-events": "all",
+
+    transition: {
+      ease: "easeOut",
+      duration: 0.2,
+    },
+  },
+  exit: {
+    opacity: 0,
+    "pointer-events": "none",
+  },
+}
 
 const SwiperContainer = ({
   data,
@@ -64,7 +83,12 @@ const SwiperContainer = ({
   }, [])
 
   return (
-    <SwiperContainerStyled isOpen={isOpen}>
+    <SwiperContainerStyled
+      isOpen={isOpen}
+      variants={ContainerVariants}
+      initial="initial"
+      animate={isOpen ? "animate" : "exit"}
+    >
       <CloseBtnStyled onClick={closeSwiper} className="nosel">
         <img className="close_btn" src="/about/close_btn.svg" alt="" />
       </CloseBtnStyled>

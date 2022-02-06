@@ -14,6 +14,7 @@ import { useState } from "react"
 
 import SwiperContainer from "./molecules/SwiperContainer"
 import image from "next/image"
+import { AnimatePresence } from "framer-motion"
 
 const App = ({ data, albumImagesProps }) => {
   const fields: DataProp = data.fields
@@ -49,12 +50,15 @@ const App = ({ data, albumImagesProps }) => {
 
   return (
     <>
-      <SwiperContainer
-        isOpen={swiperOpen}
-        currSelectedSlide={currSelectedSlide}
-        setSwiperOpen={setSwiperOpen}
-        data={album}
-      />
+      <AnimatePresence>
+        <SwiperContainer
+          key={1}
+          isOpen={swiperOpen}
+          currSelectedSlide={currSelectedSlide}
+          setSwiperOpen={setSwiperOpen}
+          data={album}
+        />
+      </AnimatePresence>
 
       <Container
         variants={ContainerVariants}

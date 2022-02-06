@@ -410,9 +410,9 @@ export const SwiperContainerStyled = styled(motion.div)`
 
   z-index: 999;
 
-  visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
-  opacity: ${(props) => (props.isOpen ? 1 : 0)};
-  pointer-events: ${(props) => (props.isOpen ? "all" : "none")};
+  /* visibility: ${(props) => (props.isOpen ? "visible" : "hidden")}; */
+  /* opacity: ${(props) => (props.isOpen ? 1 : 0)}; */
+  /* pointer-events: ${(props) => (props.isOpen ? "all" : "none")}; */
 
   ${CloseBtnStyled} {
     position: absolute;
