@@ -53,6 +53,7 @@ const App = ({ data, albumImagesProps }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    console.log("scrolling up")
   }, [])
   return (
     <>
