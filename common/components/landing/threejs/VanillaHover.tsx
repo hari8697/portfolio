@@ -362,7 +362,7 @@ const VanillaHover = ({
     }
   }
 
-  let currSelectedElement
+  let currSelectedElement = 0
   const snapFunc = () => {
     isSnapping = true
     // console.log("animatedX", animatedX.get())
