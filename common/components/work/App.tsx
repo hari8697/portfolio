@@ -10,7 +10,7 @@ import {
 } from "./atoms/index"
 import Presentation from "./molecules/Presentation"
 import { Container, SectionWrapper } from "./styles/App.styled"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import SwiperContainer from "./molecules/SwiperContainer"
 import image from "next/image"
@@ -51,6 +51,9 @@ const App = ({ data, albumImagesProps }) => {
   const [swiperOpen, setSwiperOpen] = useState(false)
   const [currSelectedSlide, setCurrSelectedSlide] = useState(1)
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <>
       <AnimatePresence>
