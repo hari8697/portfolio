@@ -15,11 +15,11 @@ import { useEffect, useState } from "react"
 const ContainerVariants = {
   initial: {
     opacity: 0,
-    "pointer-events": "none",
+    pointerEvents: "none",
   },
   animate: {
     opacity: 1,
-    "pointer-events": "all",
+    pointerEvents: "all",
 
     transition: {
       ease: "easeOut",
@@ -28,7 +28,7 @@ const ContainerVariants = {
   },
   exit: {
     opacity: 0,
-    "pointer-events": "none",
+    pointerEvents: "none",
   },
 }
 
@@ -62,7 +62,7 @@ const SwiperContainer = ({
   }
 
   useEffect(() => {
-    if (swiperObj) {
+    if (isOpen && swiperObj) {
       // swiperObj.slideToLoop(currSelectedSlide, 500, true)
       swiperObj.activeIndex = currSelectedSlide
       swiperObj.update()
