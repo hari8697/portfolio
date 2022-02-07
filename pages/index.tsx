@@ -50,6 +50,7 @@ function Home({ projects }) {
       <AnimatePresence>
         {isPreloading && (
           <Preloader
+            isPreloading={isPreloading}
             setPreloaderBool={setIsPreloading}
             threeImagesBools={threeImagesBools}
             loadImagesArr={loadImagesArr}

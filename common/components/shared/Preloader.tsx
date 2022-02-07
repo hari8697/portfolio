@@ -10,6 +10,7 @@ const Preloader = ({
   setPreloaderBool,
   loadImagesArr,
   setLoadImagesArr,
+  isPreloading,
 }) => {
   const ContainerVariants = {
     initial: {
@@ -50,12 +51,12 @@ const Preloader = ({
     if (threeImagesBools.length > 0) {
       if (allThreeLoaded && allImagesLoaded) {
         setTimeout(() => {
-          setPreloaderBool(false)
+          isPreloading && setPreloaderBool(false)
         }, 500)
       }
     } else if (allImagesLoaded) {
       setTimeout(() => {
-        setPreloaderBool(false)
+        isPreloading && setPreloaderBool(false)
       }, 500)
     }
   }, [allThreeLoaded, allImagesLoaded])
@@ -72,7 +73,7 @@ const Preloader = ({
       <StyledPreloader>
         <motion.img
           variants={ContainerVariants}
-          initial="initial"
+          initial="initialVisible"
           animate="animate"
           exit="exit"
           className="logo"
@@ -89,10 +90,13 @@ const Preloader = ({
 
 const StyledPreloader = styled(Div100vh)`
   position: fixed;
+  top: 0;
+  left: 0;
   background: ${(props) => props.theme.bgColor};
   z-index: 999;
 
   width: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
