@@ -102,14 +102,14 @@ const SwiperContainer = ({
           // dynamicBullets: true,
         }}
         onSwiper={(swiper) => {
-          console.log(swiper)
+          // console.log(swiper)
           setSwiperObj(swiper)
         }}
         speed={250}
         grabCursor={true}
         onSlideChange={(swiper) => {
-          console.log("slide change")
-          console.log(swiper.activeIndex)
+          // console.log("slide change")
+          // console.log(swiper.activeIndex)
         }}
         loop={true}
         zoom={true}

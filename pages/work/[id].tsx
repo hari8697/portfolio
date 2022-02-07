@@ -6,14 +6,13 @@ import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 import { useEffect } from "react"
 
 import { getPlaiceholder } from "plaiceholder"
-const Work = ({ projects, compKey, heroImageProps, albumImagesProps }) => {
-  console.log(projects)
+const Work = ({ projects, compKey, albumImagesProps }) => {
+  // console.log(projects)
 
   useEffect(() => {
     window.scrollTo(0, 0)
-
-    console.log("heroImageProps", heroImageProps)
-    console.log("albumImagesProps", albumImagesProps)
+    // console.log("heroImageProps", heroImageProps)
+    // console.log("albumImagesProps", albumImagesProps)
   }, [])
 
   return (
