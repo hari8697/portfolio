@@ -333,6 +333,12 @@ const VanillaHover = ({
        * * Clear the animation loop when unmounted
        */
       cancelAnimationFrame(reqAnimFrame)
+
+      // * Clear out WebGL renderer
+      // renderer.forceContextLoss()
+      // renderer.context = null
+      // renderer.domElement = null
+      // renderer = null
     }
   }, [])
 
@@ -362,7 +368,7 @@ const VanillaHover = ({
     }
   }
 
-  let currSelectedElement = 0
+  let currSelectedElement
   const snapFunc = () => {
     isSnapping = true
     // console.log("animatedX", animatedX.get())
@@ -543,6 +549,7 @@ const VanillaHover = ({
   }
 
   function onMouseClick(event) {
+    snapFunc()
     event.preventDefault()
     movingX = currX - initialX
     var bounds = canvasNode.getBoundingClientRect()
