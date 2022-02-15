@@ -11,6 +11,7 @@ const Work = ({ projects, compKey, albumImagesProps }) => {
 
   useEffect(() => {
     setTimeout(function () {
+      // Issue #24
       if ("scrollRestoration" in window.history) {
         window.history.scrollRestoration = "manual"
       }
