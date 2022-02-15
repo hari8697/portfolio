@@ -10,12 +10,13 @@ const Work = ({ projects, compKey, albumImagesProps }) => {
   // console.log(projects)
 
   useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual"
-    }
     setTimeout(function () {
-      window.scrollTo(0, 300)
-    }, 200)
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual"
+      }
+      window.focus()
+      window.scrollTo(0, 0)
+    }, 2)
     // console.log("heroImageProps", heroImageProps)
     // console.log("albumImagesProps", albumImagesProps)
   }, [])
