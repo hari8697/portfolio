@@ -51,10 +51,6 @@ const App = ({ data, albumImagesProps }) => {
   const [swiperOpen, setSwiperOpen] = useState(false)
   const [currSelectedSlide, setCurrSelectedSlide] = useState(1)
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-    console.log("scrolling up")
-  }, [])
   return (
     <>
       <AnimatePresence>
