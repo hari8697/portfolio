@@ -73,7 +73,7 @@ export default function Landing({
 
             if (!isExiting) {
               const goToUrl = `work/${item.slug}`
-              router.push(goToUrl)
+              router.push(goToUrl, undefined, { scroll: false })
             }
 
             setIsExiting((prev) => {
