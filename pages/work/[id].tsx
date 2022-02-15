@@ -10,7 +10,9 @@ const Work = ({ projects, compKey, albumImagesProps }) => {
   // console.log(projects)
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    setTimeout(function () {
+      window.scrollTo(0, 300)
+    }, 2)
     // console.log("heroImageProps", heroImageProps)
     // console.log("albumImagesProps", albumImagesProps)
   }, [])
