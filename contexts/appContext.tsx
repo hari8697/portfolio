@@ -24,8 +24,15 @@ const AppConsumer = AppContext.Consumer
 // * Functional component way
 const AppContextProvider = ({ children }) => {
   const [isPreloading, setIsPreloading] = useState(true)
+  const [projectList, setProjectList] = useState(false)
+
   return (
-    <AppProvider value={{ isPreloading, setIsPreloading }}>
+    <AppProvider
+      value={{
+        preloader: [isPreloading, setIsPreloading],
+        projectsState: [projectList, setProjectList],
+      }}
+    >
       {children}
     </AppProvider>
   )

@@ -7,7 +7,7 @@ import {
   LogoContainer,
   LogoGrid,
   Logo_ImgWrap,
-} from "./About.style"
+} from "../styles/About.style"
 import { device, typeScale } from "@/common/utils"
 import { motion } from "framer-motion"
 import { GridContainer, full_W_H } from "../../styled"

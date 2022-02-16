@@ -8,7 +8,7 @@ import {
   Paragraph,
   Title_wrap,
   Footer_wrap,
-} from "./Landing.style"
+} from "../styles/Landing.style"
 import React, { useEffect, useState, useRef } from "react"
 import { useResponsiveHelper, useWindowSize } from "@/common/utils/"
 import SocialItems from "@/components/shared/SocialItems"
@@ -69,11 +69,9 @@ export default function Landing({
         onClick={(e) => {
           e.preventDefault()
           if (item.id === selectedTitle) {
-            setIsExiting(true)
-
             if (!isExiting) {
               const goToUrl = `work/${item.slug}`
-              router.push(goToUrl)
+              router.push(goToUrl, undefined, { scroll: false })
             }
 
             setIsExiting((prev) => {

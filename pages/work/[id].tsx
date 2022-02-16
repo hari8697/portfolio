@@ -6,24 +6,25 @@ import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 import { useEffect } from "react"
 
 import { getPlaiceholder } from "plaiceholder"
-const Work = ({ projects, compKey, heroImageProps, albumImagesProps }) => {
-  console.log(projects)
+const Work = ({ projects, compKey, albumImagesProps }) => {
+  // console.log(projects)
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-
-    console.log("heroImageProps", heroImageProps)
-    console.log("albumImagesProps", albumImagesProps)
+    setTimeout(function () {
+      // Issue #24
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual"
+      }
+      window.focus()
+      window.scrollTo(0, 0)
+    }, 2)
+    // console.log("heroImageProps", heroImageProps)
+    // console.log("albumImagesProps", albumImagesProps)
   }, [])
 
   return (
     <AnimatePresence exitBeforeEnter>
-      <App
-        data={projects}
-        heroImageProps={heroImageProps}
-        albumImagesProps={albumImagesProps}
-        key={compKey}
-      />
+      <App data={projects} albumImagesProps={albumImagesProps} key={compKey} />
     </AnimatePresence>
   )
 }
@@ -70,10 +71,10 @@ export async function getStaticProps({ params }) {
   console.log("data[0]", data[0].fields.heroImage.fields.file.url)
 
   // * Hero image plaiceholder
-  const heroImage_attrs = await getPlaiceholder(
-    `https:${data[0].fields.heroImage.fields.file.url}`,
-    { size: 10 }
-  )
+  // const heroImage_attrs = await getPlaiceholder(
+  //   `https:${data[0].fields.heroImage.fields.file.url}`,
+  //   { size: 10 }
+  // )
 
   // * Album images plaiceholders
   let albumArr = data[0].fields.album
@@ -92,10 +93,10 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       albumImagesProps: albumImages_attrs,
-      heroImageProps: {
-        ...heroImage_attrs.img,
-        blurDataURL: heroImage_attrs.base64,
-      },
+      // heroImageProps: {
+      //   ...heroImage_attrs.img,
+      //   blurDataURL: heroImage_attrs.base64,
+      // },
       projects: data[0],
       compKey: params.id,
     },

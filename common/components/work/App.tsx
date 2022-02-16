@@ -10,11 +10,13 @@ import {
 } from "./atoms/index"
 import Presentation from "./molecules/Presentation"
 import { Container, SectionWrapper } from "./styles/App.styled"
-import { H5Link } from "../styled/Text"
-import { useState } from "react"
-import Navbar from "./Navbar"
+import { useEffect, useState } from "react"
 
-const App = ({ data, heroImageProps, albumImagesProps }) => {
+import SwiperContainer from "./molecules/SwiperContainer"
+import image from "next/image"
+import { AnimatePresence } from "framer-motion"
+
+const App = ({ data, albumImagesProps }) => {
   const fields: DataProp = data.fields
   const {
     id,
@@ -34,6 +36,9 @@ const App = ({ data, heroImageProps, albumImagesProps }) => {
     },
     animate: {
       opacity: 1,
+      transition: {
+        delay: 0.05,
+      },
     },
     exit: {
       opacity: 0,
@@ -43,18 +48,27 @@ const App = ({ data, heroImageProps, albumImagesProps }) => {
   // Using state for exit animations
   const [isExiting, setIsExiting] = useState(false)
 
+  const [swiperOpen, setSwiperOpen] = useState(false)
+  const [currSelectedSlide, setCurrSelectedSlide] = useState(1)
+
   return (
     <>
+      <AnimatePresence>
+        <SwiperContainer
+          key={1}
+          isOpen={swiperOpen}
+          currSelectedSlide={currSelectedSlide}
+          setSwiperOpen={setSwiperOpen}
+          data={album}
+        />
+      </AnimatePresence>
+
       <Container
         variants={ContainerVariants}
         initial="initial"
         animate={isExiting ? "exit" : "animate"}
       >
-        <Header
-          data={data}
-          heroImageProps={heroImageProps}
-          setIsExiting={setIsExiting}
-        />
+        <Header data={data} setIsExiting={setIsExiting} />
         <Presentation data={presentation} />
 
         <SectionWrapper>
@@ -82,7 +96,13 @@ const App = ({ data, heroImageProps, albumImagesProps }) => {
           <ButtonList data={links} />
         </SectionWrapper>
 
-        <AlbumList data={album} albumImagesProps={albumImagesProps} id={id} />
+        <AlbumList
+          setSwiperOpen={setSwiperOpen}
+          setCurrSelectedSlide={setCurrSelectedSlide}
+          data={album}
+          albumImagesProps={albumImagesProps}
+          id={id}
+        />
 
         <NextLink
           isExiting={isExiting}

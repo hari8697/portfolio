@@ -26,6 +26,7 @@ export const GridContainer = styled.div`
     width: 100%;
     grid-column: 1 / -1;
     z-index: -1;
+    pointer-events: all;
     /* opacity: 0.8; */
 
     .image {
@@ -56,6 +57,7 @@ export const GridContainer = styled.div`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      pointer-events: none;
     }
   }
 `
@@ -100,7 +102,7 @@ export const Title = styled(H1)`
   text-transform: capitalize;
   opacity: 1;
   margin: 0.25rem 0;
-  width: max-content;
+  /* width: max-content; */
 `
 
 export const Subtitle = styled(H2)`
@@ -145,10 +147,11 @@ export const Title_wrap = styled.div`
     }
 
     .mobile_filter {
-      pointer-events: all;
+      pointer-events: none;
       display: block;
 
       ${Title} {
+        pointer-events: all;
         cursor: pointer;
         opacity: 0.1;
         transition: opacity 0.2s ease-out;

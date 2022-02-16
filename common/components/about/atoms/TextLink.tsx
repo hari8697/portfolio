@@ -16,7 +16,7 @@ const TextLink = ({ children, addComma }) => {
   )
 }
 
-const LinkWrap = styled.a`
+const LinkWrap = styled.div`
   display: flex;
   h5 {
     margin-bottom: 4px;

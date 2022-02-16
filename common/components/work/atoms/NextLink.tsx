@@ -42,16 +42,14 @@ const NextLink = ({ next, isExiting, setIsExiting }) => {
       <NextLinkStyled className="next">
         <SectionTitle>Next</SectionTitle>
         <motion.div
-          onHoverStart={() => {
-            setIsHover(true)
-          }}
+          onHoverStart={() => setIsHover(true)}
           onHoverEnd={() => setIsHover(false)}
           className="title_wrap"
           onClick={(e) => {
             e.preventDefault()
             const goToUrl = `/work/${next.fields.id}`
             if (!isExiting) {
-              router.push(goToUrl)
+              router.push(goToUrl, undefined, { scroll: true })
               setIsExiting(true)
             }
           }}

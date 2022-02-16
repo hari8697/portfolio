@@ -1,12 +1,19 @@
 import { AlbumListStyled } from "../styles/App.styled"
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 interface Props {
   data: {}[]
   id: string
 }
 
-function AlbumList({ data, id, albumImagesProps }) {
+function AlbumList({
+  data,
+  id,
+  albumImagesProps,
+  setSwiperOpen,
+  setCurrSelectedSlide,
+}) {
   // const albumArr = Array.from({ length: data.count }, (_, i) => i + 1)
 
   let comps = data.map((item, idx) => {
@@ -14,7 +21,23 @@ function AlbumList({ data, id, albumImagesProps }) {
 
     const { width, height } = item.fields.file.details.image
     return (
-      <div className="img_wrapper" key={idx}>
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{
+          // duration: 0.3,
+          // ease: [0.6, 0.01, -0.05, 0.9],
+          // ease: "easeOut",
+          stiffness: 200,
+          damping: 10,
+        }}
+        className="img_wrapper"
+        key={idx}
+        onClick={() => {
+          setSwiperOpen(true)
+          setCurrSelectedSlide(idx + 1)
+        }}
+      >
         <Image
           {...albumImagesProps[idx]}
           key={idx}
@@ -28,7 +51,7 @@ function AlbumList({ data, id, albumImagesProps }) {
           placeholder="blur"
           lazyBoundary="500px"
         />
-      </div>
+      </motion.div>
     )
   })
 

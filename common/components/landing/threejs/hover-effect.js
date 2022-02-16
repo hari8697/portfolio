@@ -400,4 +400,67 @@ void main() {
 
   this.changeTextures = changeTextures
   this.render = render
+
+  const raycaster = new THREE.Raycaster()
+  const mouse = new THREE.Vector2()
+  // function onMouseClick(event) {
+  //   event.preventDefault()
+  //   console.log("lmao")
+
+  //   var bounds = parent.getBoundingClientRect()
+  //   console.log(bounds)
+  //   mouse.x = ((event.clientX - bounds.left) / parent.offsetWidth) * 2 - 1
+  //   mouse.y = -((event.clientY - bounds.top) / parent.offsetHeight) * 2 + 1
+  //   raycaster.setFromCamera(mouse, camera)
+
+  //   var intersects = raycaster.intersectObjects(scene.children, true)
+  //   if (intersects.length > 0) {
+  //     // Check if still
+  //     // Do stuff
+
+  //     intersects.forEach((element) => {
+  //       let positiveAnimatedX = Math.abs(animatedX.get())
+
+  //       // animatedX.get() < 0
+  //       //   ? (positiveAnimatedX = animatedX.get() * -1)
+  //       //   : (positiveAnimatedX = animatedX.get())
+
+  //       // console.log(animatedX.get(), positiveAnimatedX)
+
+  //       if (
+  //         positiveAnimatedX < element.object.position.x + 0.1 &&
+  //         positiveAnimatedX > element.object.position.x - 0.1 &&
+  //         movingX < 0.01 &&
+  //         movingX > -0.01
+  //       ) {
+  //         // Open artwork page / portfolio piece
+  //         console.log("success!")
+  //         console.log(currSelectedElement)
+  //         // console.log("positiveAnimatedX", positiveAnimatedX)
+
+  //         // console.log("pushing")
+  //         if (!isExiting) {
+  //           const goToUrl = `work/${imagesArr[currSelectedElement].slug}`
+  //           router.push(goToUrl, undefined, { scroll: false })
+  //         }
+  //         setIsExiting((prev) => {
+  //           // console.log(prev)
+  //           return true
+  //         })
+
+  //         // console.log(animatedXVelocity.get())
+  //         meshArr.forEach((el) => {
+  //           if (element.object.position === el.mesh.position) {
+  //             // console.log(el.id)
+  //           }
+  //         })
+  //       } else {
+  //         // Do nothing
+  //         // console.log("lol")
+  //       }
+  //     })
+
+  //     // console.log(intersects)
+  //   }
+  // }
 }

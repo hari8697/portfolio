@@ -173,6 +173,12 @@ export const HeroImage = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   @media ${device.laptop} and (orientation: landscape) {
@@ -247,6 +253,10 @@ const contentBlockShared = css`
   margin-bottom: ${(props) => (props.lastBlock ? "50px" : "1rem")};
 
   @media ${device.laptop} and (orientation: landscape) {
+    margin-bottom: ${(props) => (props.lastBlock ? "200px" : "2.4rem")};
+  }
+
+  @media ${device.desktop} {
     margin-bottom: ${(props) => (props.lastBlock ? "300px" : "2.4rem")};
   }
 
@@ -274,6 +284,9 @@ export const PresentationStyled = styled.div`
   ${contentBlockShared}
 
   @media ${device.laptop} and (orientation: landscape) {
+    margin: 100px 0 100px;
+  }
+  @media ${device.desktop} {
     margin: 180px 0 100px;
   }
 `
@@ -314,6 +327,11 @@ export const AlbumListStyled = styled.div`
     width: 100%;
     img {
       border-radius: 3px;
+    }
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
     }
   }
 
@@ -377,3 +395,100 @@ export const NextLinkStyled = styled(motion.div)`
     }
   }
 `
+
+/*=============================================
+=            Presentation            =
+=============================================*/
+
+export const SwiperContainerStyled = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: ${(props) => props.theme.bgColor};
+
+  z-index: 999;
+
+  /* visibility: ${(props) => (props.isOpen ? "visible" : "hidden")}; */
+  /* opacity: ${(props) => (props.isOpen ? 1 : 0)}; */
+  /* pointer-events: ${(props) => (props.isOpen ? "all" : "none")}; */
+
+  ${CloseBtnStyled} {
+    position: absolute;
+    top: 50px;
+    right: 8vw;
+
+    /* opacity: 0.7; */
+
+    @media ${device.laptop} and (orientation: landscape) {
+      top: 96px;
+      right: 5vw;
+    }
+
+    @media ${device.laptopL} {
+      right: 8vw;
+    }
+  }
+
+  .img_wrapper {
+    position: relative;
+    /* width: 100%; */
+    /* height: 80%; */
+    /* overflow: hidden; */
+  }
+
+  .swiper {
+    height: 100%;
+  }
+
+  .swiper-container {
+    position: fixed !important;
+    left: 50%;
+    top: 50%;
+    height: 92vh;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    // transform: rotate(90deg) !important;
+    /* img {
+      width: 100%;
+    } */
+  }
+
+  .swiper-pagination {
+    bottom: 20px !important;
+  }
+
+  .swiper-pagination-bullet {
+    background: ${(props) => props.theme.disabled};
+  }
+
+  .swiper-pagination-bullet-active {
+    background: ${(props) => props.theme.primaryColor};
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    opacity: 0;
+    pointer-events: none;
+
+    @media ${device.laptop} and (orientation: landscape) {
+      opacity: 0.2;
+      pointer-events: all;
+    }
+    transition: opacity 200ms ease-out;
+    padding: 1rem 2rem;
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    color: white;
+    font-size: 1.44rem;
+  }
+`
+
+/*=====  End of Presentation  ======*/

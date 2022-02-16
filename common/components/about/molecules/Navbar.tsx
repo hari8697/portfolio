@@ -1,7 +1,7 @@
 import { GridContainer, padding_for_pages } from "@/components/styled/"
 import Link from "next/link"
 import styled from "styled-components"
-import { CloseBtn_ImgWrap, PaddingWrap } from "./About.style"
+import { CloseBtn_ImgWrap, PaddingWrap } from "../styles/About.style"
 
 const Navbar = () => {
   return (

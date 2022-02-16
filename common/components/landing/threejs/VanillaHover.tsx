@@ -133,7 +133,7 @@ const VanillaHover = ({
           map: obj.texture,
         })
         obj.mesh = new THREE.Mesh(obj.geometry, obj.material)
-        console.log(obj.mesh.geometry.parameters.width)
+        // console.log(obj.mesh.geometry.parameters.width)
 
         return obj
       })
@@ -250,7 +250,19 @@ const VanillaHover = ({
     //   // animatedX.set(animatedX.get() - event.deltaY * 0.03175)
     // }
 
-    canvasNode.addEventListener("click", onMouseClick, false)
+    // canvasNode.addEventListener("click", onMouseClick)
+
+    let drag = false
+
+    canvasNode.addEventListener("mousedown", () => (drag = false))
+    canvasNode.addEventListener("mousemove", () => (drag = true))
+    canvasNode.addEventListener("mouseup", (e) => {
+      if (drag) {
+        // console.log("drag")
+      } else {
+        onMouseClick(e)
+      }
+    })
 
     init()
     animate()
@@ -321,6 +333,12 @@ const VanillaHover = ({
        * * Clear the animation loop when unmounted
        */
       cancelAnimationFrame(reqAnimFrame)
+
+      // * Clear out WebGL renderer
+      // renderer.forceContextLoss()
+      // renderer.context = null
+      // renderer.domElement = null
+      // renderer = null
     }
   }, [])
 
@@ -531,6 +549,7 @@ const VanillaHover = ({
   }
 
   function onMouseClick(event) {
+    snapFunc()
     event.preventDefault()
     movingX = currX - initialX
     var bounds = canvasNode.getBoundingClientRect()
@@ -552,8 +571,6 @@ const VanillaHover = ({
 
         // console.log(animatedX.get(), positiveAnimatedX)
 
-        // console.log(movingX)
-
         if (
           positiveAnimatedX < element.object.position.x + 0.1 &&
           positiveAnimatedX > element.object.position.x - 0.1 &&
@@ -563,6 +580,7 @@ const VanillaHover = ({
           // Open artwork page / portfolio piece
           console.log("success!")
           console.log(currSelectedElement)
+          // console.log("positiveAnimatedX", positiveAnimatedX)
 
           // console.log("pushing")
           if (!isExiting) {
@@ -592,7 +610,6 @@ const VanillaHover = ({
 
   const onMouseDown = () => {
     isScrollingY = false
-    // console.log(panPressed)
   }
   const onMouseUp = () => {
     snapFunc()

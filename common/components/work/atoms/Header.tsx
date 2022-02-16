@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 
 import { CloseBtnStyled, HeaderStyled, HeroImage } from "../styles/App.styled"
 
-const Header = ({ data, setIsExiting, heroImageProps }) => {
+const Header = ({ data, setIsExiting }) => {
   const { title, heroImage } = data.fields
 
   const { isMobile, isTablet, isNotLaptop } = useResponsiveHelper()
@@ -27,7 +27,7 @@ const Header = ({ data, setIsExiting, heroImageProps }) => {
   }, [isMobile, isTablet, isNotLaptop])
 
   return (
-    <HeaderStyled>
+    <HeaderStyled className="nosel">
       {!mobileVersion && (
         <Link href="/">
           <CloseBtnStyled>
@@ -44,17 +44,20 @@ const Header = ({ data, setIsExiting, heroImageProps }) => {
       )}
       <HeroImage className="hero_image">
         <div className="img_wrap">
-          <Image
-            {...heroImageProps}
+          <img src={`https:${heroImage.fields.file.url}`} alt="" />
+          {/* <Image
             src={`https:${heroImage.fields.file.url}`}
             alt=""
             layout={mobileVersion ? "fill" : "responsive"}
-            width={mobileVersion ? null : heroImageProps.width}
-            height={mobileVersion ? null : heroImageProps.height}
+            width={
+              mobileVersion ? null : heroImage.fields.file.details.image.width
+            }
+            height={
+              mobileVersion ? null : heroImage.fields.file.details.image.height
+            }
             priority={true}
             objectFit="cover"
-            placeholder="blur"
-          />
+          /> */}
         </div>
       </HeroImage>
       <div className="title_wrap">
