@@ -55,6 +55,9 @@ const LinksWrap = () => {
   }
   const linksComponents = LinksArr.map((element, index) => {
     const { text: item, val } = element
+
+    console.log(val)
+
     const attributes = () => {
       switch (val) {
         case "email":
