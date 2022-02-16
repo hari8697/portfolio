@@ -2,7 +2,7 @@ import Lottie from "react-lottie"
 import animData from "@/public/json/about/data.json"
 import animData_mobile from "@/public/json/about/data_mobile.json"
 import { useEffect, useState } from "react"
-import { SwooshContain, SwooshWrap } from "../molecules/About.style"
+import { SwooshContain, SwooshWrap } from "../styles/About.style"
 import { useWindowSize } from "@/common/utils/"
 
 const Swoosh = () => {

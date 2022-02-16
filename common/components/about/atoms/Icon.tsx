@@ -31,6 +31,11 @@ const IconWrap = styled.div`
   @media ${device.laptop} {
     height: 65px;
   }
+  @media ${device.laptopL} {
+    /* height: 60px; */
+    height: 3.5vw;
+    max-height: 70px;
+  }
   @media ${device.desktopL} {
     height: 70px;
   }

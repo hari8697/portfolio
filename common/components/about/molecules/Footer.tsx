@@ -1,7 +1,7 @@
 import TextLink from "../atoms/TextLink"
 import Copyright from "../atoms/Copyright"
 import styled from "styled-components"
-import { about_grid_col } from "./About.style"
+import { about_grid_col } from "../styles/About.style"
 import { full_W_H, GridContainer } from "@/components/styled"
 import { device, useResponsiveHelper } from "@/common/utils/"
 import { useEffect } from "react"
