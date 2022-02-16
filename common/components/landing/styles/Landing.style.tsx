@@ -102,7 +102,7 @@ export const Title = styled(H1)`
   text-transform: capitalize;
   opacity: 1;
   margin: 0.25rem 0;
-  width: max-content;
+  /* width: max-content; */
 `
 
 export const Subtitle = styled(H2)`
