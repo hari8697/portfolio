@@ -65,7 +65,7 @@ const LinksWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   white-space: pre-wrap;
-  max-width: 24ch;
+  max-width: 21ch;
 
   margin-bottom: 280px;
 `
