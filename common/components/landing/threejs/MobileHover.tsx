@@ -3,6 +3,7 @@ import styled from "styled-components"
 import hoverEffect from "@/components/landing/threejs/hover-effect"
 import * as THREE from "three"
 import { device } from "@/common/utils"
+import { useRouter } from "next/router"
 
 const MobileHover = ({
   imagesArr,
@@ -10,6 +11,7 @@ const MobileHover = ({
   setThreeImagesBools,
   preloaderBool,
 }) => {
+  const router = useRouter()
   const imageEl = useRef(null)
   const [myAnimation, setMyAnimation] = useState(null)
   const [animatedFwd, setAnimatedFwd] = useState(true)
@@ -76,10 +78,6 @@ const MobileHover = ({
     //   }
     // }, 2000)
 
-    // imageEl.current.addEventListener("mouseenter", onTouch)
-    imageEl.current.addEventListener("touchstart", onTouch)
-    // imageEl.current.addEventListener("click", onTouch)
-
     return () => {
       let myNode = imageEl.current
       if (myNode) {
@@ -92,7 +90,10 @@ const MobileHover = ({
 
   const onTouch = (e) => {
     e.preventDefault()
-    // console.log("lmao")
+    // console.log(activeImage)
+    console.log("Clicked item", activeImage)
+    const goToUrl = `work/${imagesArr[activeImage - 1].slug}`
+    router.push(goToUrl, undefined, { scroll: false })
   }
 
   useEffect(() => {
@@ -146,7 +147,7 @@ const MobileHover = ({
   }, [activeImage])
 
   return (
-    <ImageTrial ref={imageEl} className="hover_container">
+    <ImageTrial ref={imageEl} onClick={onTouch} className="hover_container">
       {/* <img
         ref={imageEl}
         src="/landing/album/image1.png"
