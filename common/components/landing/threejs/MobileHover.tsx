@@ -76,6 +76,10 @@ const MobileHover = ({
     //   }
     // }, 2000)
 
+    // imageEl.current.addEventListener("mouseenter", onTouch)
+    // imageEl.current.addEventListener("touchstart", onTouch)
+    imageEl.current.addEventListener("click", onTouch)
+
     return () => {
       let myNode = imageEl.current
       if (myNode) {
@@ -85,6 +89,10 @@ const MobileHover = ({
       }
     }
   }, [])
+
+  const onTouch = () => {
+    console.log("lmao")
+  }
 
   useEffect(() => {
     // console.log(activeImage)

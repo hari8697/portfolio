@@ -8,7 +8,7 @@ import {
   Paragraph,
   Title_wrap,
   Footer_wrap,
-} from "./Landing.style"
+} from "../styles/Landing.style"
 import React, { useEffect, useState, useRef } from "react"
 import { useResponsiveHelper, useWindowSize } from "@/common/utils/"
 import SocialItems from "@/components/shared/SocialItems"
