@@ -1,22 +1,16 @@
+import TextLink from "../atoms/TextLink"
+import styled from "styled-components"
 import { toast } from "react-toastify"
-import { useResponsiveHelper } from "@/common/utils/"
-const SocialItems = ({}) => {
-  const { isMobile, isTablet } = useResponsiveHelper()
-  // const socialItemsArr = Array.from(Array(4).keys())
-  const socialItemsArr =
-    isTablet || isMobile
-      ? [
-          "mailto:deathspacedesign@gmail.com",
-          "https://twitter.com/deathspace_",
-          "https://www.instagram.com/deathspace.design/",
-          "discord",
-        ]
-      : [
-          "email",
-          "https://twitter.com/deathspace_",
-          "https://www.instagram.com/deathspace.design/",
-          "discord",
-        ]
+import { device } from "@/common/utils"
+import { H5_Sizing, text_size_template } from "../../styled"
+
+const LinksWrap = () => {
+  const LinksArr = [
+    { text: "Email", val: "email" },
+    { text: "Twitter", val: "https://twitter.com/deathspace_" },
+    { text: "Instagram", val: "https://www.instagram.com/deathspace.design/" },
+    { text: "Discord", val: "discord" },
+  ]
 
   const handleClick = (item: string) => {
     console.log("clicked!", item)
@@ -59,18 +53,17 @@ const SocialItems = ({}) => {
       }
     }
   }
-
-  // let iconSize = 18
-  const socialItems = socialItemsArr.map((item, index) => {
+  const linksComponents = LinksArr.map((element, index) => {
+    const { text: item, val } = element
     const attributes = () => {
-      switch (item) {
+      switch (val) {
         case "email":
         case "discord":
           return {
-            onClick: () => handleClick(item),
+            onClick: () => handleClick(val),
           }
         default:
-          return { href: item }
+          return { href: val }
       }
     }
 
@@ -82,13 +75,30 @@ const SocialItems = ({}) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div className="social_icon">
-          <img src={`/landing/social/${index + 1}.svg`}></img>
-        </div>
+        <TextLink
+          addComma={index == LinksArr.length - 1 ? false : true}
+          key={index}
+        >
+          {item}
+        </TextLink>
       </a>
     )
   })
-  return <div className="social_wrap ">{socialItems}</div>
+  return <LinksWrapStyled>{linksComponents}</LinksWrapStyled>
 }
 
-export default SocialItems
+const LinksWrapStyled = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  white-space: pre-wrap;
+  max-width: 21ch;
+
+  margin-bottom: 280px;
+
+  @media ${device.desktopL} {
+    ${H5_Sizing};
+    /* max-width: 21ch; */
+  }
+`
+
+export default LinksWrap

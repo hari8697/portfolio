@@ -107,16 +107,19 @@ export const H4 = styled.h4`
   })};
 `
 
-export const H5 = styled.h5`
-  ${textStyle}
-  font-family: ${(props) => props.theme.primaryFont};
-  text-transform: ${(props) => props.capsON && "uppercase"};
-
+export const H5_Sizing = css`
   ${text_size_template({
     mobile: "header5",
     laptop: "header5",
     desktopL: "header5L",
   })};
+`
+
+export const H5 = styled.h5`
+  ${textStyle}
+  ${H5_Sizing}
+  font-family: ${(props) => props.theme.primaryFont};
+  text-transform: ${(props) => props.capsON && "uppercase"};
 `
 
 export const H5Large = styled(H5)`

@@ -1,4 +1,3 @@
-import TextLink from "../atoms/TextLink"
 import Copyright from "../atoms/Copyright"
 import styled from "styled-components"
 import { about_grid_col } from "../styles/About.style"
@@ -6,21 +5,10 @@ import { full_W_H, GridContainer } from "@/components/styled"
 import { device, useResponsiveHelper } from "@/common/utils/"
 import { useEffect } from "react"
 import SocialItems from "@/components/shared/SocialItems"
+import LinksWrap from "./LinksWrap"
 
 const Footer = () => {
   const { isMobile, isTablet } = useResponsiveHelper()
-
-  const LinksArr = ["Email", "Twitter", "Instagram"]
-  const linksComponents = LinksArr.map((item, index) => {
-    return (
-      <TextLink
-        addComma={index == LinksArr.length - 1 ? false : true}
-        key={index}
-      >
-        {item}
-      </TextLink>
-    )
-  })
 
   // const mobileLinks = Array.from({ length: 4 }, (_, i) => i + 1)
   // const mobileLinksComponents = mobileLinks.map(item => {
@@ -31,7 +19,7 @@ const Footer = () => {
     <StyledFooter>
       <ContentWrap>
         {!isMobile && !isTablet ? (
-          <LinksWrap>{linksComponents}</LinksWrap>
+          <LinksWrap></LinksWrap>
         ) : (
           <MobileLinksWrap>
             <span className="line"></span>
@@ -59,15 +47,6 @@ const StyledFooter = styled.footer`
 
 const ContentWrap = styled.div`
   ${about_grid_col}
-`
-
-const LinksWrap = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  white-space: pre-wrap;
-  max-width: 21ch;
-
-  margin-bottom: 280px;
 `
 
 const MobileLinksWrap = styled.div`
