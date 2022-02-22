@@ -33,11 +33,14 @@ const App = ({ data, albumImagesProps }) => {
   const ContainerVariants = {
     initial: {},
     animate: {
+      opacity: 1,
       transition: {
         delay: 0.05,
       },
     },
-    exit: {},
+    exit: {
+      opacity: 0,
+    },
   }
 
   const pageTransitionAnim = {
