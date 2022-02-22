@@ -14,7 +14,7 @@ import { useEffect, useState } from "react"
 
 import SwiperContainer from "./molecules/SwiperContainer"
 import image from "next/image"
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 
 const App = ({ data, albumImagesProps }) => {
   const fields: DataProp = data.fields
@@ -31,17 +31,21 @@ const App = ({ data, albumImagesProps }) => {
   } = fields
 
   const ContainerVariants = {
-    initial: {
-      opacity: 0,
-    },
+    initial: {},
     animate: {
-      opacity: 1,
       transition: {
         delay: 0.05,
       },
     },
-    exit: {
+    exit: {},
+  }
+
+  const pageTransitionAnim = {
+    initial: {
       opacity: 0,
+    },
+    animationComplete: {
+      opacity: 1,
     },
   }
 
@@ -50,6 +54,18 @@ const App = ({ data, albumImagesProps }) => {
 
   const [swiperOpen, setSwiperOpen] = useState(false)
   const [currSelectedSlide, setCurrSelectedSlide] = useState(1)
+
+  const [pageTransitionComplete, setPageTransitionComplete] = useState(false)
+
+  useEffect(() => {
+    const htmlEl = document.querySelector("html")
+    if (!pageTransitionComplete) {
+      htmlEl.classList.add("no_scroll")
+    } else {
+      htmlEl.classList.remove("no_scroll")
+    }
+    return () => {}
+  }, [pageTransitionComplete])
 
   return (
     <>
@@ -68,47 +84,59 @@ const App = ({ data, albumImagesProps }) => {
         initial="initial"
         animate={isExiting ? "exit" : "animate"}
       >
-        <Header data={data} setIsExiting={setIsExiting} />
-        <Presentation data={presentation} />
-
-        <SectionWrapper>
-          <SectionTitle>Role</SectionTitle>
-          <TextList data={role} />
-        </SectionWrapper>
-
-        <SectionWrapper>
-          <SectionTitle>Tech used</SectionTitle>
-          <TextList data={techUsed} />
-        </SectionWrapper>
-
-        <SectionWrapper className="type">
-          <SectionTitle>Type</SectionTitle>
-          <TextList data={type} />
-        </SectionWrapper>
-
-        <SectionWrapper className="year">
-          <SectionTitle>Year</SectionTitle>
-          <TextList data={year} />
-        </SectionWrapper>
-
-        <SectionWrapper className="links" lastBlock>
-          <SectionTitle>Links</SectionTitle>
-          <ButtonList data={links} />
-        </SectionWrapper>
-
-        <AlbumList
-          setSwiperOpen={setSwiperOpen}
-          setCurrSelectedSlide={setCurrSelectedSlide}
-          data={album}
-          albumImagesProps={albumImagesProps}
-          id={id}
-        />
-
-        <NextLink
-          isExiting={isExiting}
+        <Header
+          data={data}
           setIsExiting={setIsExiting}
-          next={next}
+          pageTransitionComplete={pageTransitionComplete}
+          setPageTransitionComplete={setPageTransitionComplete}
         />
+        <motion.div
+          className="content_wrap"
+          variants={pageTransitionAnim}
+          initial="initial"
+          animate={pageTransitionComplete && "animationComplete"}
+        >
+          <Presentation data={presentation} />
+
+          <SectionWrapper>
+            <SectionTitle>Role</SectionTitle>
+            <TextList data={role} />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <SectionTitle>Tech used</SectionTitle>
+            <TextList data={techUsed} />
+          </SectionWrapper>
+
+          <SectionWrapper className="type">
+            <SectionTitle>Type</SectionTitle>
+            <TextList data={type} />
+          </SectionWrapper>
+
+          <SectionWrapper className="year">
+            <SectionTitle>Year</SectionTitle>
+            <TextList data={year} />
+          </SectionWrapper>
+
+          <SectionWrapper className="links" lastBlock>
+            <SectionTitle>Links</SectionTitle>
+            <ButtonList data={links} />
+          </SectionWrapper>
+
+          <AlbumList
+            setSwiperOpen={setSwiperOpen}
+            setCurrSelectedSlide={setCurrSelectedSlide}
+            data={album}
+            albumImagesProps={albumImagesProps}
+            id={id}
+          />
+
+          <NextLink
+            isExiting={isExiting}
+            setIsExiting={setIsExiting}
+            next={next}
+          />
+        </motion.div>
       </Container>
     </>
   )

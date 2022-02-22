@@ -38,7 +38,7 @@ export const work_grid_col_Large = css`
   }
 `
 export const Container = styled(motion.div)`
-  ${full_W_H}
+  /* ${full_W_H} */
   ${GridContainer}
   ${padding_for_pages}
   
@@ -57,7 +57,7 @@ export const Container = styled(motion.div)`
 
   min-height: 100vh;
   position: relative;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 
   & > * {
     ${work_grid_col}
@@ -161,19 +161,19 @@ export const HeaderStyled = styled.div`
   }
 `
 
-export const HeroImage = styled.div`
+export const HeroImage = styled(motion.div)`
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
-  width: 105%;
-  height: 30vh;
+  /* transform: translateX(-50%); */
+  /* width: 100vw; */
+  /* height: 30vh; */
   .img_wrap {
+    overflow: hidden;
     position: relative;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    overflow: hidden;
     img {
       width: 100%;
       height: 100%;
@@ -293,7 +293,7 @@ export const PresentationStyled = styled.div`
 
 /*=====  End of Presentation  ======*/
 
-export const SectionWrapper = styled.div`
+export const SectionWrapper = styled(motion.div)`
   list-style: none;
   ${contentBlockShared}
 

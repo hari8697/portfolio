@@ -20,7 +20,7 @@ const ContainerVariants = {
     },
   },
   exit: {
-    opacity: 0,
+    // opacity: 0,
   },
 }
 
@@ -162,7 +162,6 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
       variants={ContainerVariants}
       initial="initial"
       animate={!preloaderBool && "animate"}
-      exit="exit"
       pageExtraHeight={isMobile || isTablet ? 1 : pageExtraHeight}
       ref={appContainer}
     >

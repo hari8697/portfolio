@@ -21,6 +21,10 @@ html {
     --toastify-text-color-dark: ${(props) => props.theme.placeHolderTextColor};
     --toastify-color-progress-dark: ${(props) => props.theme.primaryColor};
   }
+
+  &.no_scroll{
+    overflow: hidden;
+  }
 }
 
 *, *:before, *:after {
