@@ -71,7 +71,7 @@ const App = ({ data, albumImagesProps }) => {
   }, [pageTransitionComplete])
 
   return (
-    <>
+    <motion.div className="app_wrapper">
       <AnimatePresence>
         <SwiperContainer
           key={1}
@@ -84,7 +84,6 @@ const App = ({ data, albumImagesProps }) => {
 
       <Container
         variants={ContainerVariants}
-        initial="initial"
         animate={isExiting ? "exit" : "animate"}
       >
         <Header
@@ -141,7 +140,7 @@ const App = ({ data, albumImagesProps }) => {
           />
         </motion.div>
       </Container>
-    </>
+    </motion.div>
   )
 }
 

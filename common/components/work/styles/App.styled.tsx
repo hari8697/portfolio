@@ -166,8 +166,8 @@ export const HeroImage = styled(motion.div)`
   top: 0;
   left: 50%;
   /* transform: translateX(-50%); */
-  /* width: 100vw; */
-  /* height: 30vh; */
+  /* width: 100vw;
+  height: 30vh; */
   .img_wrap {
     overflow: hidden;
     position: relative;

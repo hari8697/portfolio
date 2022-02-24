@@ -91,7 +91,7 @@ export async function getStaticProps() {
     revalidate: 30,
   }
 }
-const IndexPage = styled.div`
+const IndexPage = styled(motion.div)`
   width: 100%;
   height: 100%;
 `

@@ -21,9 +21,9 @@ const Header = ({
   const [mobileVersion, setMobileVersion] = useState(false)
   const controls = useAnimation()
 
-  useEffect(() => {
-    console.log("mobileVersion", mobileVersion)
-  }, [mobileVersion])
+  // useEffect(() => {
+  //   console.log("mobileVersion", mobileVersion)
+  // }, [mobileVersion])
 
   useEffect(() => {
     if (isMobile || isTablet || isNotLaptop) {
@@ -32,9 +32,9 @@ const Header = ({
       setMobileVersion(false)
     }
     // console.log("mobileVersion", mobileVersion)
-    console.log("isMobile", isMobile)
-    console.log("isTablet", isTablet)
-    console.log("isNotLaptop", isNotLaptop)
+    // console.log("isMobile", isMobile)
+    // console.log("isTablet", isTablet)
+    // console.log("isNotLaptop", isNotLaptop)
   }, [isMobile, isTablet, isNotLaptop])
 
   const ContentVariants = {
@@ -47,19 +47,18 @@ const Header = ({
   }
 
   const heroImageAnimDelay = 0.25
-
-  const HeroImageVariants = {
+  let HeroImageVariants = {
     initial: {
       y: "calc(26vh + 50px)",
       x: "-50%",
       width: "100%",
-      height: "auto",
+      height: "25vh",
     },
     animate: {
       y: 0,
       transition: {
         width: "100vw",
-        height: "auto",
+        // height: "auto",
         duration: 0.5,
         ease: "easeOut",
         delay: heroImageAnimDelay,
@@ -122,7 +121,12 @@ const Header = ({
         // exit="exit"
       >
         <div className="img_wrap">
-          <img src={`https:${heroImage.fields.file.url}`} alt="" />
+          {/* <img src="/landing/album/image1.png" alt="" /> */}
+          {/* <img
+            src={`https:${heroImage.fields.file.url}`}
+            alt=""
+            style={{ opacity: "0" }}
+          /> */}
           {/* <Image
             src={`https:${heroImage.fields.file.url}`}
             alt=""
@@ -136,6 +140,15 @@ const Header = ({
             priority={true}
             objectFit="cover"
           /> */}
+          <Image
+            src={`https:${heroImage.fields.file.url}`}
+            alt=""
+            layout={"fill"}
+            // width={heroImage.fields.file.details.image.width}
+            // height={heroImage.fields.file.details.image.height}
+            priority={true}
+            objectFit="cover"
+          />
         </div>
       </HeroImage>
 

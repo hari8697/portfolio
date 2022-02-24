@@ -23,9 +23,7 @@ const Work = ({ projects, compKey, albumImagesProps }) => {
   }, [])
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      <App data={projects} albumImagesProps={albumImagesProps} key={compKey} />
-    </AnimatePresence>
+    <App data={projects} albumImagesProps={albumImagesProps} key={compKey} />
   )
 }
 
