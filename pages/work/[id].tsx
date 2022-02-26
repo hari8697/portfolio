@@ -6,7 +6,12 @@ import { AnimateSharedLayout, AnimatePresence } from "framer-motion"
 import { useEffect } from "react"
 
 import { getPlaiceholder } from "plaiceholder"
-const Work = ({ projects, compKey, albumImagesProps }) => {
+const Work = ({
+  projects,
+  compKey,
+  albumImagesProps,
+  //  heroImageProps
+}) => {
   // console.log(projects)
 
   useEffect(() => {
@@ -23,7 +28,12 @@ const Work = ({ projects, compKey, albumImagesProps }) => {
   }, [])
 
   return (
-    <App data={projects} albumImagesProps={albumImagesProps} key={compKey} />
+    <App
+      data={projects}
+      // heroImageProps={heroImageProps}
+      albumImagesProps={albumImagesProps}
+      key={compKey}
+    />
   )
 }
 
@@ -66,7 +76,7 @@ export async function getStaticProps({ params }) {
   const stringifiedData = safeJsonStringify(items)
   const data = JSON.parse(stringifiedData)
 
-  console.log("data[0]", data[0].fields.heroImage.fields.file.url)
+  // console.log("data[0]", data[0].fields.heroImage.fields.file.url)
 
   // * Hero image plaiceholder
   // const heroImage_attrs = await getPlaiceholder(

@@ -13,6 +13,7 @@ const Header = ({
   setIsExiting,
   pageTransitionComplete,
   setPageTransitionComplete,
+  // heroImageProps,
 }) => {
   const { title, heroImage } = data.fields
 
@@ -122,11 +123,7 @@ const Header = ({
       >
         <div className="img_wrap">
           {/* <img src="/landing/album/image1.png" alt="" /> */}
-          {/* <img
-            src={`https:${heroImage.fields.file.url}`}
-            alt=""
-            style={{ opacity: "0" }}
-          /> */}
+          {/* <img src={`https:${heroImage.fields.file.url}`} alt="" /> */}
           {/* <Image
             src={`https:${heroImage.fields.file.url}`}
             alt=""
@@ -144,6 +141,8 @@ const Header = ({
             src={`https:${heroImage.fields.file.url}`}
             alt=""
             layout={"fill"}
+            // width={null}
+            // height={null}
             // width={heroImage.fields.file.details.image.width}
             // height={heroImage.fields.file.details.image.height}
             priority={true}
