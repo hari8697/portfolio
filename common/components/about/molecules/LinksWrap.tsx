@@ -56,7 +56,7 @@ const LinksWrap = () => {
   const linksComponents = LinksArr.map((element, index) => {
     const { text: item, val } = element
 
-    console.log(val)
+    // console.log(val)
 
     const attributes = () => {
       switch (val) {

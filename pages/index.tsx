@@ -10,6 +10,7 @@ import { AppContext } from "../contexts/appContext"
 
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
+import Image from "next/image"
 
 function Home({ projects }) {
   // * Using context for persisting state of preloaderBool
@@ -41,9 +42,21 @@ function Home({ projects }) {
     return () => {}
   }, [isPreloading])
 
-  // useEffect(() => {
-  //   setProjectList(projects)
-  // }, [])
+  let heroImagePreloadSkels = projects.map((item) => {
+    return (
+      <Image
+        src={`https:${item.fields.heroImage.fields.file.url}`}
+        alt=""
+        layout={"fill"}
+        // width={null}
+        // height={null}
+        // width={item.fields.heroImage.fields.file.details.image.width}
+        // height={item.fields.heroImage.fields.file.details.image.height}
+        priority={true}
+        objectFit="cover"
+      />
+    )
+  })
 
   return (
     <IndexPage>
@@ -59,6 +72,17 @@ function Home({ projects }) {
           />
         )}
       </AnimatePresence>
+
+      <div
+        style={{
+          opacity: 0,
+          overflow: "hidden",
+          pointerEvents: "none",
+          zIndex: -10,
+        }}
+      >
+        {heroImagePreloadSkels}
+      </div>
       <App
         projects={projects}
         preloaderBool={isPreloading}
@@ -91,7 +115,7 @@ export async function getStaticProps() {
     revalidate: 30,
   }
 }
-const IndexPage = styled.div`
+const IndexPage = styled(motion.div)`
   width: 100%;
   height: 100%;
 `
