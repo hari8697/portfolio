@@ -16,7 +16,11 @@ import SwiperContainer from "./molecules/SwiperContainer"
 import image from "next/image"
 import { AnimatePresence, motion } from "framer-motion"
 
-const App = ({ data, albumImagesProps }) => {
+const App = ({
+  data,
+  albumImagesProps,
+  //  heroImageProps
+}) => {
   const fields: DataProp = data.fields
   const {
     id,
@@ -91,6 +95,7 @@ const App = ({ data, albumImagesProps }) => {
           setIsExiting={setIsExiting}
           pageTransitionComplete={pageTransitionComplete}
           setPageTransitionComplete={setPageTransitionComplete}
+          // heroImageProps={heroImageProps}
         />
         <motion.div
           className="content_wrap"

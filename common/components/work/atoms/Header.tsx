@@ -13,6 +13,7 @@ const Header = ({
   setIsExiting,
   pageTransitionComplete,
   setPageTransitionComplete,
+  // heroImageProps,
 }) => {
   const { title, heroImage } = data.fields
 
@@ -147,6 +148,8 @@ const Header = ({
               src={`https:${heroImage.fields.file.url}`}
               alt=""
               layout={"fill"}
+              // width={null}
+              // height={null}
               // width={heroImage.fields.file.details.image.width}
               // height={heroImage.fields.file.details.image.height}
               priority={true}
