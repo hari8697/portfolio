@@ -42,12 +42,13 @@ function Home({ projects }) {
     return () => {}
   }, [isPreloading])
 
-  let heroImagePreloadSkels = projects.map((item) => {
+  let heroImagePreloadSkels = projects.map((item, idx) => {
     return (
       <Image
         src={`https:${item.fields.heroImage.fields.file.url}`}
         alt=""
         layout={"fill"}
+        key={idx}
         // width={null}
         // height={null}
         // width={item.fields.heroImage.fields.file.details.image.width}
@@ -75,6 +76,7 @@ function Home({ projects }) {
 
       <div
         style={{
+          position: "relative",
           opacity: 0,
           overflow: "hidden",
           pointerEvents: "none",

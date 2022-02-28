@@ -122,7 +122,7 @@ export const CloseBtnStyled = styled.div`
   }
 `
 
-export const HeaderStyled = styled.div`
+export const HeaderStyled = styled(motion.div)`
   width: 100%;
   height: 100vh;
   padding: 56px 0 32px 0;

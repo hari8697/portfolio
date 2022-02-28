@@ -47,6 +47,20 @@ const Header = ({
     },
   }
 
+  const ContentWrapVariants = {
+    initial: {
+      // height: "100vh",
+    },
+    animate: {
+      height: "auto",
+      paddingBottom: "0px",
+    },
+    exit: {
+      height: "auto",
+      paddingBottom: "0px",
+    },
+  }
+
   const heroImageAnimDelay = 0.25
   let HeroImageVariants = {
     initial: {
@@ -91,11 +105,10 @@ const Header = ({
   }, [])
 
   return (
-    <HeaderStyled className="nosel">
+    <HeaderStyled className="nosel" variants={ContentWrapVariants}>
       <div className="content_wrap">
         {!mobileVersion && (
           <motion.div
-            variants={ContentVariants}
             initial="initial"
             animate={pageTransitionComplete && "animationComplete"}
           >
