@@ -122,11 +122,20 @@ export const CloseBtnStyled = styled.div`
   }
 `
 
-export const HeaderStyled = styled.div`
+export const HeaderStyled = styled(motion.div)`
   width: 100%;
-  padding-top: 30vh;
+  height: 100vh;
+  padding: 56px 0 32px 0;
+
+  .content_wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
 
   .title_wrap {
+    padding-top: calc(30vh - 56px);
+    /* padding-top: 30vh; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -163,7 +172,9 @@ export const HeaderStyled = styled.div`
 
 export const HeroImage = styled(motion.div)`
   position: absolute;
-  top: 0;
+  width: 100%;
+  /* top: 26%; */
+  transform: translateY(-26%);
   left: 50%;
   /* transform: translateX(-50%); */
   /* width: 100vw;

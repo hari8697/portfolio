@@ -47,16 +47,32 @@ const Header = ({
     },
   }
 
+  const ContentWrapVariants = {
+    initial: {
+      // height: "100vh",
+    },
+    animate: {
+      height: "auto",
+      paddingBottom: "0px",
+    },
+    exit: {
+      height: "auto",
+      paddingBottom: "0px",
+    },
+  }
+
   const heroImageAnimDelay = 0.25
   let HeroImageVariants = {
     initial: {
-      y: "calc(26vh + 50px)",
+      top: "26%",
       x: "-50%",
       width: "100%",
       height: "25vh",
     },
     animate: {
-      y: 0,
+      // y: 0,
+
+      top: "calc(0px - 56px)",
       transition: {
         width: "100vw",
         // height: "auto",
@@ -89,42 +105,46 @@ const Header = ({
   }, [])
 
   return (
-    <HeaderStyled className="nosel">
-      {!mobileVersion && (
-        <motion.div
-          variants={ContentVariants}
-          initial="initial"
-          animate={pageTransitionComplete && "animationComplete"}
-        >
-          <Link href="/">
-            <CloseBtnStyled>
-              <img
-                className="close_btn desktop"
-                src="/about/close_btn.svg"
-                alt=""
-                onClick={() => {
-                  setIsExiting(true)
-                }}
-              />
-            </CloseBtnStyled>
-          </Link>
-        </motion.div>
-      )}
+    <HeaderStyled className="nosel" variants={ContentWrapVariants}>
+      <div className="content_wrap">
+        {!mobileVersion && (
+          <motion.div
+            initial="initial"
+            animate={pageTransitionComplete && "animationComplete"}
+          >
+            <Link href="/">
+              <CloseBtnStyled>
+                <img
+                  className="close_btn desktop"
+                  src="/about/close_btn.svg"
+                  alt=""
+                  onClick={() => {
+                    setIsExiting(true)
+                  }}
+                />
+              </CloseBtnStyled>
+            </Link>
+          </motion.div>
+        )}
 
-      <HeroImage
-        className="hero_image"
-        variants={HeroImageVariants}
-        initial="initial"
-        animate={controls}
-        onAnimationComplete={() => {
-          setPageTransitionComplete(true)
-        }}
-        // exit="exit"
-      >
-        <div className="img_wrap">
-          {/* <img src="/landing/album/image1.png" alt="" /> */}
-          {/* <img src={`https:${heroImage.fields.file.url}`} alt="" /> */}
-          {/* <Image
+        <HeroImage
+          className="hero_image"
+          variants={HeroImageVariants}
+          initial="initial"
+          animate={controls}
+          onAnimationComplete={() => {
+            setPageTransitionComplete(true)
+          }}
+          // exit="exit"
+        >
+          <div className="img_wrap">
+            {/* <img src="/landing/album/image1.png" alt="" /> */}
+            {/* <img
+            src={`https:${heroImage.fields.file.url}`}
+            alt=""
+            style={{ opacity: "0" }}
+          /> */}
+            {/* <Image
             src={`https:${heroImage.fields.file.url}`}
             alt=""
             layout={mobileVersion ? "fill" : "responsive"}
@@ -137,42 +157,43 @@ const Header = ({
             priority={true}
             objectFit="cover"
           /> */}
-          <Image
-            src={`https:${heroImage.fields.file.url}`}
-            alt=""
-            layout={"fill"}
-            // width={null}
-            // height={null}
-            // width={heroImage.fields.file.details.image.width}
-            // height={heroImage.fields.file.details.image.height}
-            priority={true}
-            objectFit="cover"
-          />
-        </div>
-      </HeroImage>
+            <Image
+              src={`https:${heroImage.fields.file.url}`}
+              alt=""
+              layout={"fill"}
+              // width={null}
+              // height={null}
+              // width={heroImage.fields.file.details.image.width}
+              // height={heroImage.fields.file.details.image.height}
+              priority={true}
+              objectFit="cover"
+            />
+          </div>
+        </HeroImage>
 
-      <motion.div
-        variants={ContentVariants}
-        initial="initial"
-        animate={pageTransitionComplete && "animationComplete"}
-        className="title_wrap"
-      >
-        <H1 className="title">{title}</H1>
-        {mobileVersion && (
-          <Link href="/">
-            <CloseBtnStyled>
-              <img
-                className="close_btn mobile"
-                src="/about/close_btn.svg"
-                alt=""
-                onClick={() => {
-                  setIsExiting(true)
-                }}
-              />
-            </CloseBtnStyled>
-          </Link>
-        )}
-      </motion.div>
+        <motion.div
+          variants={ContentVariants}
+          initial="initial"
+          animate={pageTransitionComplete && "animationComplete"}
+          className="title_wrap"
+        >
+          <H1 className="title">{title}</H1>
+          {mobileVersion && (
+            <Link href="/">
+              <CloseBtnStyled>
+                <img
+                  className="close_btn mobile"
+                  src="/about/close_btn.svg"
+                  alt=""
+                  onClick={() => {
+                    setIsExiting(true)
+                  }}
+                />
+              </CloseBtnStyled>
+            </Link>
+          )}
+        </motion.div>
+      </div>
     </HeaderStyled>
   )
 }
