@@ -71,7 +71,7 @@ const Header = ({
     },
     animate: {
       // y: 0,
-
+      // width: "100vw",
       top: "calc(0px - 56px)",
       transition: {
         width: "100vw",

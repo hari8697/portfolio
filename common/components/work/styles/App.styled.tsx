@@ -173,7 +173,9 @@ export const HeaderStyled = styled(motion.div)`
 export const HeroImage = styled(motion.div)`
   position: absolute;
   width: 100%;
+  /* height: 25vh; */
   /* top: 26%; */
+  /* transform: translate(-50%, -26%); */
   transform: translateY(-26%);
   left: 50%;
   /* transform: translateX(-50%); */
