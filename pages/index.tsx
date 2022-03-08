@@ -18,6 +18,8 @@ function Home({ projects }) {
   const [isPreloading, setIsPreloading] = preloader
   // const [projectList, setProjectList] = projectsState
 
+  // console.log(projects)
+
   // console.log(isPreloading)
   // const [preloaderBool, setPreloaderBool] = useState(true) // ? Previous local state implementation
   const [threeImagesBools, setThreeImagesBools] = useState([])
@@ -110,9 +112,12 @@ export async function getStaticProps() {
   const stringifiedData = safeJsonStringify(res)
   const data = JSON.parse(stringifiedData)
 
+  let tempList = data.items
+  tempList.sort((a, b) => a.fields.order - b.fields.order)
+
   return {
     props: {
-      projects: data.items,
+      projects: tempList,
     },
     revalidate: 30,
   }
