@@ -16,9 +16,11 @@ const HeroImageDesktop = ({ setPageTransitionComplete, heroImage }) => {
   const heroImageAnimDelay = 0.25
   let HeroImageVariants = {
     initial: {
+      top: "50vh",
+      left: "50%",
       x: "-50%",
       y: "-50%",
-      scale: 1,
+      opacity: 0,
       //   top: "50vh",
       //   top: "26%",
       //   x: "-50%",
@@ -26,7 +28,10 @@ const HeroImageDesktop = ({ setPageTransitionComplete, heroImage }) => {
       //   height: "25vh",
     },
     animate: {
+      x: "-50%",
+      y: "-50%",
       scale: 0.9,
+      opacity: 1,
       //   top: "50vh",
       //   width: "104vh",
       //   height: "auto",
@@ -83,7 +88,6 @@ const HeroImageDesktop = ({ setPageTransitionComplete, heroImage }) => {
           // height={null}
           width={heroImage.fields.file.details.image.width}
           height={heroImage.fields.file.details.image.height}
-          priority={true}
           objectFit="cover"
         />
       </div>

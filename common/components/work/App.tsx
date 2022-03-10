@@ -48,6 +48,13 @@ const App = ({
   }
 
   const pageTransitionAnim = {
+    immediateHide: {
+      opacity: 0,
+      transition: {
+        duration: 0,
+        ease: "linear",
+      },
+    },
     initial: {
       opacity: 0,
     },
@@ -101,7 +108,10 @@ const App = ({
           className="content_wrap"
           variants={pageTransitionAnim}
           initial="initial"
-          animate={pageTransitionComplete && "animationComplete"}
+          animate={
+            pageTransitionComplete ? "animationComplete" : "immediateHide"
+          }
+          exit="initial"
         >
           <Presentation data={presentation} />
 

@@ -1,11 +1,7 @@
-import { H1 } from "../../styled/Text"
-import Link from "next/link"
+import { HeaderMobile } from "./HeaderMobile"
 import { useResponsiveHelper } from "@/common/utils/"
 import { useEffect, useState } from "react"
-
-import { CloseBtnStyled, HeaderStyled, HeroImage } from "../styles/App.styled"
-import { motion, useAnimation } from "framer-motion"
-import { HeroImageMobile, HeroImageDesktop } from "../atoms"
+import { HeaderDesktop } from "./HeaderDesktop"
 
 const Header = ({
   data,
@@ -20,9 +16,10 @@ const Header = ({
 
   const [mobileVersion, setMobileVersion] = useState(false)
 
-  // useEffect(() => {
-  //   console.log("mobileVersion", mobileVersion)
-  // }, [mobileVersion])
+  useEffect(() => {
+    setPageTransitionComplete(false)
+    console.log("mobileVersion", mobileVersion)
+  }, [mobileVersion])
 
   useEffect(() => {
     if (isMobile || isTablet || isNotLaptop) {
@@ -36,7 +33,14 @@ const Header = ({
     // console.log("isNotLaptop", isNotLaptop)
   }, [isMobile, isTablet, isNotLaptop])
 
-  const ContentVariants = {
+  const ContentVariantsMobile = {
+    immediateHide: {
+      opacity: 0,
+      transition: {
+        duration: 0,
+        ease: "linear",
+      },
+    },
     initial: {
       opacity: 0,
     },
@@ -44,80 +48,52 @@ const Header = ({
       opacity: 1,
     },
   }
-
-  const ContentWrapVariants = {
+  const ContentVariantsDesktop = {
+    immediateHide: {
+      opacity: 0,
+      transition: {
+        duration: 0,
+        ease: "linear",
+      },
+    },
     initial: {
-      // height: "100vh",
+      x: "2%",
+      opacity: 0,
     },
-    animate: {
-      height: "auto",
-      paddingBottom: "0px",
-    },
-    exit: {
-      height: "auto",
-      paddingBottom: "0px",
+    animationComplete: {
+      x: "5%",
+      opacity: 1,
+      transition: {
+        duration: 0.35,
+        ease: "easeOut",
+      },
     },
   }
 
   return (
-    <HeaderStyled className="nosel" variants={ContentWrapVariants}>
-      <div className="content_wrap">
-        {!mobileVersion && (
-          <motion.div
-            initial="initial"
-            animate={pageTransitionComplete && "animationComplete"}
-          >
-            <Link href="/">
-              <CloseBtnStyled>
-                <img
-                  className="close_btn desktop"
-                  src="/about/close_btn.svg"
-                  alt=""
-                  onClick={() => {
-                    setIsExiting(true)
-                  }}
-                />
-              </CloseBtnStyled>
-            </Link>
-          </motion.div>
-        )}
-
-        {mobileVersion ? (
-          <HeroImageMobile
-            setPageTransitionComplete={setPageTransitionComplete}
-            heroImage={heroImage}
-          />
-        ) : (
-          <HeroImageDesktop
-            setPageTransitionComplete={setPageTransitionComplete}
-            heroImage={heroImage}
-          />
-        )}
-
-        <motion.div
-          variants={ContentVariants}
-          initial="initial"
-          animate={pageTransitionComplete && "animationComplete"}
-          className="title_wrap"
-        >
-          <H1 className="title">{title}</H1>
-          {mobileVersion && (
-            <Link href="/">
-              <CloseBtnStyled>
-                <img
-                  className="close_btn mobile"
-                  src="/about/close_btn.svg"
-                  alt=""
-                  onClick={() => {
-                    setIsExiting(true)
-                  }}
-                />
-              </CloseBtnStyled>
-            </Link>
-          )}
-        </motion.div>
-      </div>
-    </HeaderStyled>
+    <>
+      {mobileVersion ? (
+        <HeaderMobile
+          mobileVersion={mobileVersion}
+          pageTransitionComplete={pageTransitionComplete}
+          setIsExiting={setIsExiting}
+          setPageTransitionComplete={setPageTransitionComplete}
+          heroImage={heroImage}
+          ContentVariants={ContentVariantsMobile}
+          title={title}
+        />
+      ) : (
+        <HeaderDesktop
+          mobileVersion={mobileVersion}
+          pageTransitionComplete={pageTransitionComplete}
+          setIsExiting={setIsExiting}
+          setPageTransitionComplete={setPageTransitionComplete}
+          heroImage={heroImage}
+          ContentVariants={ContentVariantsDesktop}
+          title={title}
+        />
+      )}
+    </>
   )
 }
 

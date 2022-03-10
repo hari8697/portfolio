@@ -128,6 +128,9 @@ export const HeaderStyled = styled(motion.div)`
   padding: 56px 0 32px 0;
 
   .content_wrap {
+  }
+
+  .content_wrap {
     width: 100%;
     height: 100%;
     position: relative;
@@ -148,6 +151,7 @@ export const HeaderStyled = styled(motion.div)`
   @media ${device.laptop} and (orientation: landscape) {
     /* position: relative; */
     width: 100%;
+    height: 100vh;
 
     padding-top: 96px;
     padding-bottom: 70px;
@@ -156,10 +160,11 @@ export const HeaderStyled = styled(motion.div)`
 
     .content_wrap {
       position: initial;
-      height: 100vh;
+      height: 100%;
     }
 
     .title_wrap {
+      padding: 0;
       display: block;
       position: relative;
       /* top: 45.5%; */
@@ -200,9 +205,9 @@ export const HeroImage = styled(motion.div)`
 
   @media ${device.laptop} and (orientation: landscape) {
     position: absolute;
-    top: 50vh;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /* top: 50vh;
+    left: 50%; */
+    /* transform: translate(-50%, -50%); */
     /* transform: translateX(-50%); */
     height: auto;
     margin: 0 auto;
