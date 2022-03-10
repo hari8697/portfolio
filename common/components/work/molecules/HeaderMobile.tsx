@@ -16,6 +16,8 @@ export function HeaderMobile({
   ContentVariants,
   title,
 }) {
+  const heroImageAnimDelay = 0.25
+
   const ContentWrapVariantsMobile = {
     initial: {
       height: "100vh",
@@ -33,39 +35,11 @@ export function HeaderMobile({
   return (
     <HeaderStyled className="nosel" variants={ContentWrapVariantsMobile}>
       <div className="content_wrap">
-        {!mobileVersion && (
-          <motion.div
-            initial="initial"
-            animate={
-              pageTransitionComplete ? "animationComplete" : "immediateHide"
-            }
-          >
-            <Link href="/">
-              <CloseBtnStyled>
-                <img
-                  className="close_btn desktop"
-                  src="/about/close_btn.svg"
-                  alt=""
-                  onClick={() => {
-                    setIsExiting(true)
-                  }}
-                />
-              </CloseBtnStyled>
-            </Link>
-          </motion.div>
-        )}
-
-        {mobileVersion ? (
-          <HeroImageMobile
-            setPageTransitionComplete={setPageTransitionComplete}
-            heroImage={heroImage}
-          />
-        ) : (
-          <HeroImageDesktop
-            setPageTransitionComplete={setPageTransitionComplete}
-            heroImage={heroImage}
-          />
-        )}
+        <HeroImageMobile
+          setPageTransitionComplete={setPageTransitionComplete}
+          heroImage={heroImage}
+          heroImageAnimDelay={heroImageAnimDelay}
+        />
 
         <motion.div
           variants={ContentVariants}
@@ -76,20 +50,19 @@ export function HeaderMobile({
           className="title_wrap"
         >
           <H1 className="title">{title}</H1>
-          {mobileVersion && (
-            <Link href="/">
-              <CloseBtnStyled>
-                <img
-                  className="close_btn mobile"
-                  src="/about/close_btn.svg"
-                  alt=""
-                  onClick={() => {
-                    setIsExiting(true)
-                  }}
-                />
-              </CloseBtnStyled>
-            </Link>
-          )}
+
+          <Link href="/">
+            <CloseBtnStyled>
+              <img
+                className="close_btn mobile"
+                src="/about/close_btn.svg"
+                alt=""
+                onClick={() => {
+                  setIsExiting(true)
+                }}
+              />
+            </CloseBtnStyled>
+          </Link>
         </motion.div>
       </div>
     </HeaderStyled>

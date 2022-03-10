@@ -5,7 +5,11 @@ import { useAnimation } from "framer-motion"
 
 import React from "react"
 
-const HeroImageMobile = ({ setPageTransitionComplete, heroImage }) => {
+const HeroImageMobile = ({
+  setPageTransitionComplete,
+  heroImage,
+  heroImageAnimDelay,
+}) => {
   const controls = useAnimation()
 
   useEffect(() => {
@@ -18,7 +22,6 @@ const HeroImageMobile = ({ setPageTransitionComplete, heroImage }) => {
     sequence()
   }, [])
 
-  const heroImageAnimDelay = 0.25
   let HeroImageVariants = {
     initial: {
       top: "26%",

@@ -16,9 +16,11 @@ const Header = ({
 
   const [mobileVersion, setMobileVersion] = useState(false)
 
+  useEffect(() => {}, [])
+
   useEffect(() => {
     setPageTransitionComplete(false)
-    console.log("mobileVersion", mobileVersion)
+    // console.log("mobileVersion", mobileVersion)
   }, [mobileVersion])
 
   useEffect(() => {
@@ -48,27 +50,6 @@ const Header = ({
       opacity: 1,
     },
   }
-  const ContentVariantsDesktop = {
-    immediateHide: {
-      opacity: 0,
-      transition: {
-        duration: 0,
-        ease: "linear",
-      },
-    },
-    initial: {
-      x: "2%",
-      opacity: 0,
-    },
-    animationComplete: {
-      x: "5%",
-      opacity: 1,
-      transition: {
-        duration: 0.35,
-        ease: "easeOut",
-      },
-    },
-  }
 
   return (
     <>
@@ -89,7 +70,6 @@ const Header = ({
           setIsExiting={setIsExiting}
           setPageTransitionComplete={setPageTransitionComplete}
           heroImage={heroImage}
-          ContentVariants={ContentVariantsDesktop}
           title={title}
         />
       )}

@@ -3,7 +3,11 @@ import Image from "next/image"
 import { useEffect } from "react"
 import { useAnimation } from "framer-motion"
 
-const HeroImageDesktop = ({ setPageTransitionComplete, heroImage }) => {
+const HeroImageDesktop = ({
+  setPageTransitionComplete,
+  heroImage,
+  heroImageAnimDelay,
+}) => {
   const controls = useAnimation()
 
   useEffect(() => {
@@ -13,7 +17,6 @@ const HeroImageDesktop = ({ setPageTransitionComplete, heroImage }) => {
     sequence()
   }, [])
 
-  const heroImageAnimDelay = 0.25
   let HeroImageVariants = {
     initial: {
       top: "50vh",
@@ -49,13 +52,19 @@ const HeroImageDesktop = ({ setPageTransitionComplete, heroImage }) => {
       opacity: 0,
     },
   }
-
+  function onStart() {
+    // setTimeout(() => {
+    //   setPageTransitionComplete(true)
+    // }, 200)
+    // console.log("Animation started")
+  }
   return (
     <HeroImage
       className="hero_image"
       variants={HeroImageVariants}
       initial="initial"
       animate={controls}
+      onAnimationStart={onStart}
       onAnimationComplete={() => {
         setPageTransitionComplete(true)
       }}
