@@ -26,16 +26,16 @@ export const GridContainer = css`
   grid-template-columns: repeat(4, 1fr);
   /* grid-template-rows: max-content max-content 1fr max-content; */
   grid-gap: 0px 16px;
-  margin: 0 24px;
+  padding: 0 24px;
 
   @media ${device.tablet} {
-    margin: 0 48px;
+    padding: 0 48px;
     gap: 0px 24px;
     grid-template-columns: repeat(8, 1fr);
   }
 
   @media ${device.laptop} and (orientation: landscape) {
-    margin: 0 120px;
+    padding: 0 120px;
     gap: 0px;
     grid-template-columns: repeat(24, 1fr);
   }
