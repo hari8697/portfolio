@@ -41,8 +41,11 @@ export const HeaderDesktop = ({
       x: "5%",
       opacity: 1,
       transition: {
-        duration: 0.35,
-        ease: "easeOut",
+        delay: heroImageAnimDelay + 0.1,
+        // duration: 0.35,
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
       },
     },
   }
