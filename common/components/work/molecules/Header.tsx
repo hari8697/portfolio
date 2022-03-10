@@ -1,5 +1,3 @@
-import Image from "next/image"
-
 import { H1 } from "../../styled/Text"
 import Link from "next/link"
 import { useResponsiveHelper } from "@/common/utils/"
@@ -7,6 +5,7 @@ import { useEffect, useState } from "react"
 
 import { CloseBtnStyled, HeaderStyled, HeroImage } from "../styles/App.styled"
 import { motion, useAnimation } from "framer-motion"
+import { HeroImageMobile, HeroImageDesktop } from "../atoms"
 
 const Header = ({
   data,
@@ -20,7 +19,6 @@ const Header = ({
   const { isMobile, isTablet, isNotLaptop } = useResponsiveHelper()
 
   const [mobileVersion, setMobileVersion] = useState(false)
-  const controls = useAnimation()
 
   // useEffect(() => {
   //   console.log("mobileVersion", mobileVersion)
@@ -61,49 +59,6 @@ const Header = ({
     },
   }
 
-  const heroImageAnimDelay = 0.25
-  let HeroImageVariants = {
-    initial: {
-      top: "26%",
-      x: "-50%",
-      width: "100%",
-      height: "25vh",
-    },
-    animate: {
-      // y: 0,
-      // width: "100vw",
-      top: "calc(0px - 56px)",
-      transition: {
-        width: "100vw",
-        // height: "auto",
-        duration: 0.5,
-        ease: "easeOut",
-        delay: heroImageAnimDelay,
-      },
-    },
-    setHeight: {
-      width: "100vw",
-      height: "30vh",
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-    exit: {
-      opacity: 0,
-    },
-  }
-
-  useEffect(() => {
-    const sequence = async () => {
-      controls.start("animate")
-      setTimeout(() => {
-        controls.start("setHeight")
-      }, heroImageAnimDelay * 1000)
-    }
-    sequence()
-  }, [])
-
   return (
     <HeaderStyled className="nosel" variants={ContentWrapVariants}>
       <div className="content_wrap">
@@ -127,49 +82,17 @@ const Header = ({
           </motion.div>
         )}
 
-        <HeroImage
-          className="hero_image"
-          variants={HeroImageVariants}
-          initial="initial"
-          animate={controls}
-          onAnimationComplete={() => {
-            setPageTransitionComplete(true)
-          }}
-          // exit="exit"
-        >
-          <div className="img_wrap">
-            {/* <img src="/landing/album/image1.png" alt="" /> */}
-            {/* <img
-            src={`https:${heroImage.fields.file.url}`}
-            alt=""
-            style={{ opacity: "0" }}
-          /> */}
-            {/* <Image
-            src={`https:${heroImage.fields.file.url}`}
-            alt=""
-            layout={mobileVersion ? "fill" : "responsive"}
-            width={
-              mobileVersion ? null : heroImage.fields.file.details.image.width
-            }
-            height={
-              mobileVersion ? null : heroImage.fields.file.details.image.height
-            }
-            priority={true}
-            objectFit="cover"
-          /> */}
-            <Image
-              src={`https:${heroImage.fields.file.url}`}
-              alt=""
-              layout={"fill"}
-              // width={null}
-              // height={null}
-              // width={heroImage.fields.file.details.image.width}
-              // height={heroImage.fields.file.details.image.height}
-              priority={true}
-              objectFit="cover"
-            />
-          </div>
-        </HeroImage>
+        {mobileVersion ? (
+          <HeroImageMobile
+            setPageTransitionComplete={setPageTransitionComplete}
+            heroImage={heroImage}
+          />
+        ) : (
+          <HeroImageDesktop
+            setPageTransitionComplete={setPageTransitionComplete}
+            heroImage={heroImage}
+          />
+        )}
 
         <motion.div
           variants={ContentVariants}

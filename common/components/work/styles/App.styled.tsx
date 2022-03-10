@@ -148,12 +148,16 @@ export const HeaderStyled = styled(motion.div)`
   @media ${device.laptop} and (orientation: landscape) {
     /* position: relative; */
     width: 100%;
-    height: 100vh;
 
     padding-top: 96px;
     padding-bottom: 70px;
 
     grid-column: 4 / 21;
+
+    .content_wrap {
+      position: initial;
+      height: 100vh;
+    }
 
     .title_wrap {
       display: block;
@@ -199,6 +203,7 @@ export const HeroImage = styled(motion.div)`
     top: 50vh;
     left: 50%;
     transform: translate(-50%, -50%);
+    /* transform: translateX(-50%); */
     height: auto;
     margin: 0 auto;
     width: 104vh;
