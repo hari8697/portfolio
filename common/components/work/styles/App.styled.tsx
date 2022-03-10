@@ -62,6 +62,12 @@ export const Container = styled(motion.div)`
   & > * {
     ${work_grid_col}
   }
+
+  .content_wrap {
+    &.large {
+      ${work_grid_col_Large}
+    }
+  }
   
   .album {
     img {
@@ -128,9 +134,6 @@ export const HeaderStyled = styled(motion.div)`
   padding: 56px 0 32px 0;
 
   .content_wrap {
-  }
-
-  .content_wrap {
     width: 100%;
     height: 100%;
     position: relative;
@@ -159,6 +162,7 @@ export const HeaderStyled = styled(motion.div)`
     grid-column: 4 / 21;
 
     .content_wrap {
+      ${work_grid_col}
       position: initial;
       height: 100%;
     }
@@ -339,7 +343,6 @@ export const ButtonListStyled = styled.div`
 `
 
 export const AlbumListStyled = styled.div`
-  ${work_grid_col_Large}
   display: flex;
   flex-direction: column;
   grid-gap: 1rem;
@@ -367,7 +370,6 @@ export const AlbumListStyled = styled.div`
 `
 
 export const NextLinkStyled = styled(motion.div)`
-  ${work_grid_col_Large}
   display: flex;
   flex-direction: column;
   grid-gap: 0.5rem;

@@ -139,7 +139,17 @@ const App = ({
             <SectionTitle>Links</SectionTitle>
             <ButtonList data={links} />
           </SectionWrapper>
+        </motion.div>
 
+        <motion.div
+          className="content_wrap large"
+          variants={pageTransitionAnim}
+          initial="initial"
+          animate={
+            pageTransitionComplete ? "animationComplete" : "immediateHide"
+          }
+          exit="initial"
+        >
           <AlbumList
             setSwiperOpen={setSwiperOpen}
             setCurrSelectedSlide={setCurrSelectedSlide}
