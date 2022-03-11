@@ -1,13 +1,6 @@
 import styled, { css } from "styled-components"
 
-import {
-  about_grid_col,
-  Bio,
-  BioGrid,
-  LogoContainer,
-  LogoGrid,
-  Logo_ImgWrap,
-} from "../styles/About.style"
+import { about_grid_col, Bio, BioGrid } from "../styles/About.style"
 import { device, typeScale } from "@/common/utils"
 import { motion } from "framer-motion"
 import { GridContainer, full_W_H } from "../../styled"
@@ -15,6 +8,7 @@ import IconsWrap from "./IconsWrap"
 import { useRef } from "react"
 import { H5, ParaLarge, H5Large } from "@/components/styled"
 import Footer from "./Footer"
+import LogoWrapper from "../atoms/LogoWrapper"
 
 const ContainerVariants = {
   initial: {
@@ -31,7 +25,11 @@ const ContainerVariants = {
   },
 }
 
-const About = () => {
+interface AboutProps {
+  animDelay: number
+}
+
+const About = ({ animDelay }: AboutProps) => {
   const constraintsRef = useRef(null)
 
   return (
@@ -41,13 +39,7 @@ const About = () => {
       animate="animate"
       exit="exit"
     >
-      <LogoGrid>
-        <LogoContainer>
-          <Logo_ImgWrap>
-            <img src="/common/DeathSpace_Logo.svg"></img>
-          </Logo_ImgWrap>
-        </LogoContainer>
-      </LogoGrid>
+      <LogoWrapper animDelay={animDelay} />
       <BioGrid>
         <Bio>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
