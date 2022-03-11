@@ -25,7 +25,11 @@ const ContainerVariants = {
   },
 }
 
-const About = () => {
+interface AboutProps {
+  animDelay: number
+}
+
+const About = ({ animDelay }: AboutProps) => {
   const constraintsRef = useRef(null)
 
   return (
@@ -35,7 +39,7 @@ const About = () => {
       animate="animate"
       exit="exit"
     >
-      <LogoWrapper />
+      <LogoWrapper animDelay={animDelay} />
       <BioGrid>
         <Bio>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

@@ -5,6 +5,8 @@ import Swoosh from "@/components/about/atoms/Swoosh"
 import { padding_for_pages } from "../styled/BaseStyles"
 import Navbar from "@/components/about/molecules/Navbar"
 
+const animDelay = 0.15
+
 const ContainerVariants = {
   initial: {
     opacity: 0,
@@ -12,7 +14,7 @@ const ContainerVariants = {
   animate: {
     opacity: 1,
     transition: {
-      delay: 0.15,
+      delay: animDelay,
     },
   },
   exit: {
@@ -30,7 +32,7 @@ const App = () => {
     >
       <Swoosh></Swoosh>
       <Navbar></Navbar>
-      <About></About>
+      <About animDelay={animDelay}></About>
     </AppWrap>
   )
 }

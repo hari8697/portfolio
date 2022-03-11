@@ -105,6 +105,7 @@ export const Logo_ImgWrap = styled.div`
 
   .letters_wrap {
     /* display: grid; */
+    overflow-y: hidden;
     display: flex;
     /* grid-template-columns: repeat(10, min-content); */
     /* height: 60%; */
