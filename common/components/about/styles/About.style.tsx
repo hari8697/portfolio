@@ -94,13 +94,27 @@ export const LogoContainer = styled(Div100vh)`
 export const Logo_ImgWrap = styled.div`
   position: relative;
   ${full_W_H}
-  max-height: 20vh;
 
-  grid-template-columns: inherit;
+  max-height: 20vh;
+  /* display: grid; */
+  /* grid-template-columns: repeat(10, 1fr); */
   ${default_grid_col}
+
+  display: flex;
+  align-items: center;
+
+  .letters_wrap {
+    /* display: grid; */
+    display: flex;
+    /* grid-template-columns: repeat(10, min-content); */
+    /* height: 60%; */
+    /* width: 100%; */
+  }
 
   img {
     ${full_W_H}
+    max-height: 100%;
+    /* width: min-content; */
   }
 `
 
