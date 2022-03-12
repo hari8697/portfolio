@@ -44,9 +44,7 @@ export function HeaderMobile({
         <motion.div
           variants={ContentVariants}
           initial="initial"
-          animate={
-            pageTransitionComplete ? "animationComplete" : "immediateHide"
-          }
+          animate={pageTransitionComplete && "animationComplete"}
           className="title_wrap"
         >
           <H1 className="title">{title}</H1>

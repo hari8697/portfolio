@@ -16,6 +16,8 @@ const HeroImageDesktop = ({
       controls.start("animate")
     }
     sequence()
+
+    return () => {}
   }, [])
 
   let HeroImageVariants = {

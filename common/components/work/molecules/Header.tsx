@@ -14,12 +14,10 @@ const Header = ({
 
   const { isMobile, isTablet, isNotLaptop } = useResponsiveHelper()
 
-  const [mobileVersion, setMobileVersion] = useState(false)
-
-  useEffect(() => {}, [])
+  const [mobileVersion, setMobileVersion] = useState(true)
 
   useEffect(() => {
-    setPageTransitionComplete(false)
+    // setPageTransitionComplete(false)
     // console.log("mobileVersion", mobileVersion)
   }, [mobileVersion])
 

@@ -5,9 +5,9 @@ export const useResponsiveHelper = () => {
   const { width: vW, height: vH } = useWindowSize()
 
   const [responsiveCheck, setResponsiveCheck] = useState({
-    isMobile: null,
-    isTablet: null,
-    isNotLaptop: null,
+    isMobile: true,
+    isTablet: true,
+    isNotLaptop: true,
   })
 
   const mobileCheckFunc = (width, height) => {

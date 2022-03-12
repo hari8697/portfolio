@@ -35,11 +35,13 @@ export default function Landing({
   setSelectedTitle,
   setThreeImagesBools,
   preloaderBool,
+  isExiting,
+  setIsExiting,
 }) {
   const router = useRouter()
   const selectedTitleAnimated = useSpring(1)
   const { isMobile, isTablet } = useResponsiveHelper()
-  const [isExiting, setIsExiting] = useState(false)
+  // const [isExiting, setIsExiting] = useState(false)
 
   useEffect(() => {
     selectedTitleAnimated.set(selectedTitle)
