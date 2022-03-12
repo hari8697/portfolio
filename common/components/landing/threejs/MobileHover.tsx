@@ -10,6 +10,8 @@ const MobileHover = ({
   activeImage,
   setThreeImagesBools,
   preloaderBool,
+  isExiting,
+  setIsExiting,
 }) => {
   const router = useRouter()
   const imageEl = useRef(null)
@@ -90,6 +92,7 @@ const MobileHover = ({
 
   const onTouch = (e) => {
     e.preventDefault()
+    setIsExiting(true)
     // console.log(activeImage)
     console.log("Clicked item", activeImage)
     const goToUrl = `work/${imagesArr[activeImage - 1].slug}`

@@ -21,10 +21,12 @@ const VanillaHover = ({
   pageExtraHeight,
   onTextureLoad,
   setThreeImagesBools,
+  isExiting,
+  setIsExiting,
 }) => {
   const router = useRouter()
   const canvasEl = useRef(null)
-  const [isExiting, setIsExiting] = useState(false)
+  // const [isExiting, setIsExiting] = useState(false)
 
   const { width: vW, height: vH } = useWindowSize()
 

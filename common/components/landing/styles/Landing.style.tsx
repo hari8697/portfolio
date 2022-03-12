@@ -9,8 +9,9 @@ import {
   full_W_H,
 } from "@/components/styled/index"
 import { device, typeScale } from "@/common/utils"
+import { motion } from "framer-motion"
 
-export const GridContainer = styled.div`
+export const GridContainer = styled(motion.div)`
   height: 100%;
   margin: 0 24px;
   position: relative;
@@ -62,7 +63,7 @@ export const GridContainer = styled.div`
   }
 `
 
-export const Header_wrap = styled.div`
+export const Header_wrap = styled(motion.div)`
   grid-column: 1 / -1;
   display: flex;
   height: min-content;
@@ -110,7 +111,7 @@ export const Subtitle = styled(H2)`
   margin: 0.25rem 0;
 `
 
-export const Title_wrap = styled.div`
+export const Title_wrap = styled(motion.div)`
   grid-column: 1 / -1;
   margin-top: 40vh;
 
@@ -164,7 +165,7 @@ export const Title_wrap = styled.div`
   }
 `
 
-export const Footer_wrap = styled.div`
+export const Footer_wrap = styled(motion.div)`
   grid-column: 1 / -1;
   grid-row: 4 / 5;
   display: flex;

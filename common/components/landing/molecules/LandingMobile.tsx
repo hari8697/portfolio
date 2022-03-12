@@ -17,6 +17,14 @@ import { H5Link } from "@/components/styled/"
 import MobileHover from "../threejs/MobileHover"
 import { useRouter } from "next/router"
 
+const slowTransition = {
+  type: "spring",
+  // stiffness: 500,
+  // damping: 120,
+  duration: 0.5,
+  bounce: 0.2,
+}
+
 const ContainerVariants = {
   initial: {
     opacity: 0,
@@ -26,6 +34,12 @@ const ContainerVariants = {
   },
   exit: {
     opacity: 0,
+    transition: slowTransition,
+  },
+  title_exit: {
+    opacity: 0,
+    y: 50,
+    transition: slowTransition,
   },
 }
 
@@ -75,11 +89,11 @@ export default function Landing({
               const goToUrl = `work/${item.slug}`
               router.push(goToUrl, undefined, { scroll: false })
             }
-
-            setIsExiting((prev) => {
-              // console.log(prev)
-              return true
-            })
+            setIsExiting(true)
+            // setIsExiting((prev) => {
+            //   // console.log(prev)
+            //   return true
+            // })
           } else {
             setSelectedTitle(item.id)
             selectedTitleAnimated.set(item.id)
@@ -142,7 +156,11 @@ export default function Landing({
       animate="animate"
       exit="exit"
     >
-      <Header_wrap className="noselect">
+      <Header_wrap
+        className="noselect"
+        variants={ContainerVariants}
+        animate={isExiting ? "exit" : "animate"}
+      >
         <div className="logo">
           <img src="/common/DeathSpace_Logo.svg"></img>
         </div>
@@ -172,6 +190,8 @@ export default function Landing({
 
       <div className="hero_image">
         <MobileHover
+          isExiting={isExiting}
+          setIsExiting={setIsExiting}
           preloaderBool={preloaderBool}
           imagesArr={imagesArr}
           activeImage={selectedTitle}
@@ -185,6 +205,8 @@ export default function Landing({
             <motion.div
               ref={title_wrapper}
               className="text_wrapper"
+              variants={ContainerVariants}
+              animate={isExiting ? "title_exit" : "animate"}
               style={{ y: textWrapperY }}
             >
               {portItems}
@@ -192,7 +214,11 @@ export default function Landing({
           </span>
         </div>
       </Title_wrap>
-      <Footer_wrap className="noselect">
+      <Footer_wrap
+        className="noselect"
+        variants={ContainerVariants}
+        animate={isExiting ? "exit" : "animate"}
+      >
         <SocialItems />
         {footerSwipe(vW, vH)}
       </Footer_wrap>

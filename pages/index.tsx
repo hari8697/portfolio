@@ -40,7 +40,7 @@ function Home({ projects }) {
   ])
 
   useEffect(() => {
-    console.log(isPreloading)
+    // console.log(isPreloading)
     return () => {}
   }, [isPreloading])
 

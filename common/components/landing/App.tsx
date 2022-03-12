@@ -169,6 +169,8 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
     >
       {!isMobile && !isTablet && (
         <VanillaHover
+          isExiting={isExiting}
+          setIsExiting={setIsExiting}
           animatedX={animatedX}
           imagesArr={imagesArr}
           onTextureLoad={onTextureLoad}
