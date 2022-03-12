@@ -1,6 +1,6 @@
 import { CloseBtnStyled, HeaderStyled, HeroImage } from "../styles/App.styled"
 import Image from "next/image"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useAnimation } from "framer-motion"
 
 const HeroImageDesktop = ({
@@ -9,6 +9,7 @@ const HeroImageDesktop = ({
   heroImageAnimDelay,
 }) => {
   const controls = useAnimation()
+  const [imageLoaded, setImageLoaded] = useState(false)
 
   useEffect(() => {
     const sequence = async () => {
@@ -18,12 +19,17 @@ const HeroImageDesktop = ({
   }, [])
 
   let HeroImageVariants = {
+    hidden: {
+      opacity: 0,
+    },
     initial: {
       top: "50vh",
       left: "50%",
       x: "-50%",
       y: "-50%",
-      opacity: 0,
+      scale: 1,
+      // opacity: 1,
+
       //   top: "50vh",
       //   top: "26%",
       //   x: "-50%",
@@ -31,20 +37,26 @@ const HeroImageDesktop = ({
       //   height: "25vh",
     },
     animate: {
+      top: "50vh",
+      left: "50%",
       x: "-50%",
       y: "-50%",
       scale: 0.9,
-      opacity: 1,
+
       //   top: "50vh",
       //   width: "104vh",
       //   height: "auto",
 
       //   top: "calc(0px - 56px)",
       transition: {
-        // width: "100vw",
-        // height: "auto",
-        duration: 0.5,
-        ease: "easeOut",
+        // duration: 0.5,
+        // ease: "easeOut",
+
+        type: "spring",
+        // stiffness: 50,
+        // damping: 100,
+        duration: 1,
+        bounce: 0.1,
         delay: heroImageAnimDelay,
       },
     },
@@ -52,19 +64,17 @@ const HeroImageDesktop = ({
       opacity: 0,
     },
   }
-  function onStart() {
-    // setTimeout(() => {
-    //   setPageTransitionComplete(true)
-    // }, 200)
-    // console.log("Animation started")
+  const onImageLoad = (item) => {
+    // console.log("Image was loaded!")
+    setImageLoaded(true)
   }
   return (
     <HeroImage
       className="hero_image"
       variants={HeroImageVariants}
-      initial="initial"
-      animate={controls}
-      onAnimationStart={onStart}
+      // style={{ opacity: imageLoaded ? 1 : 0 }}
+      initial={"initial"}
+      animate={"animate"}
       onAnimationComplete={() => {
         setPageTransitionComplete(true)
       }}
@@ -75,8 +85,8 @@ const HeroImageDesktop = ({
         {/* <img
           src={`https:${heroImage.fields.file.url}`}
           alt=""
-          style={{ opacity: "0" }}
-          /> */}
+          // style={{ opacity: "0" }}
+        /> */}
         {/* <Image
           src={`https:${heroImage.fields.file.url}`}
           alt=""
@@ -97,7 +107,10 @@ const HeroImageDesktop = ({
           // height={null}
           width={heroImage.fields.file.details.image.width}
           height={heroImage.fields.file.details.image.height}
+          priority={true}
+          // loading="eager"
           objectFit="cover"
+          onLoadingComplete={onImageLoad}
         />
       </div>
     </HeroImage>

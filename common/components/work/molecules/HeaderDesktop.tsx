@@ -16,9 +16,7 @@ export const HeaderDesktop = ({
   title,
 }) => {
   const ContentWrapVariantsDesktop = {
-    initial: {
-      // height: "100vh",
-    },
+    initial: {},
     animate: {},
     exit: {},
   }
@@ -34,18 +32,21 @@ export const HeaderDesktop = ({
       },
     },
     initial: {
-      x: "2%",
-      opacity: 0,
+      x: "0%",
+      opacity: 1,
     },
     animate: {
       x: "5%",
       opacity: 1,
       transition: {
-        delay: heroImageAnimDelay + 0.1,
+        delay: heroImageAnimDelay,
         // duration: 0.35,
         type: "spring",
-        stiffness: 100,
-        damping: 20,
+        // stiffness: 70,
+        // damping: 20,
+
+        duration: 1,
+        bounce: 0.1,
       },
     },
   }
