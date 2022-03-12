@@ -20,9 +20,9 @@ import { useRouter } from "next/router"
 const slowTransition = {
   type: "spring",
   stiffness: 500,
-  damping: 120,
-  // duration: 0.5,
-  // bounce: 0.2,
+  damping: 80,
+  // duration: 2,
+  // bounce: 0.5,
 }
 
 const ContainerVariants = {
@@ -55,7 +55,8 @@ export default function Landing({
   const router = useRouter()
   const selectedTitleAnimated = useSpring(1)
   const { isMobile, isTablet } = useResponsiveHelper()
-  // const [isExiting, setIsExiting] = useState(false)
+  const [currSlug, setCurrSlug] = useState("")
+  const [completedExit, setCompletedExit] = useState(false)
 
   useEffect(() => {
     selectedTitleAnimated.set(selectedTitle)
@@ -85,10 +86,8 @@ export default function Landing({
         onClick={(e) => {
           e.preventDefault()
           if (item.id === selectedTitle) {
-            if (!isExiting) {
-              const goToUrl = `work/${item.slug}`
-              router.push(goToUrl, undefined, { scroll: false })
-            }
+            // exitFunc(item.slug)
+            setCurrSlug(item.slug)
             setIsExiting(true)
             // setIsExiting((prev) => {
             //   // console.log(prev)
@@ -149,6 +148,18 @@ export default function Landing({
     })
   }, [])
 
+  const exitFunc = (slug) => {}
+
+  useEffect(() => {
+    console.log("completedExit", completedExit)
+    console.log("isExiting", isExiting)
+
+    if (completedExit && isExiting) {
+      const goToUrl = `work/${currSlug}`
+      router.push(goToUrl, undefined, { scroll: false })
+    }
+  }, [completedExit])
+
   return (
     <GridContainer
       variants={ContainerVariants}
@@ -160,6 +171,8 @@ export default function Landing({
         className="noselect"
         variants={ContainerVariants}
         animate={isExiting ? "exit" : "animate"}
+        onAnimationStart={() => setCompletedExit(false)}
+        onAnimationComplete={() => setCompletedExit(true)}
       >
         <div className="logo">
           <img src="/common/DeathSpace_Logo.svg"></img>
@@ -192,6 +205,7 @@ export default function Landing({
         <MobileHover
           isExiting={isExiting}
           setIsExiting={setIsExiting}
+          setCurrSlug={setCurrSlug}
           preloaderBool={preloaderBool}
           imagesArr={imagesArr}
           activeImage={selectedTitle}
