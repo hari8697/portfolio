@@ -16,6 +16,15 @@ import Link from "next/link"
 import { H5Link } from "@/components/styled/"
 
 const ContainerVariants = {
+  title_exit: {
+    opacity: 0,
+
+    transition: {
+      type: "spring",
+      stiffness: 70,
+      damping: 20,
+    },
+  },
   initial: {
     opacity: 0,
   },
@@ -168,7 +177,7 @@ export default function Landing({
         variants={ContainerVariants}
         animate={isExiting ? "exit" : "animate"}
       >
-        <SocialItems />
+        <SocialItems isExiting={isExiting} />
         {footerSwipe(vW, vH)}
       </Footer_wrap>
     </GridContainer>

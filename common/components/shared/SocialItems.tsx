@@ -1,6 +1,29 @@
 import { toast } from "react-toastify"
 import { useResponsiveHelper } from "@/common/utils/"
-const SocialItems = ({}) => {
+import { motion } from "framer-motion"
+
+const ContainerVariants = {
+  title_exit: {
+    opacity: 0,
+  },
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+    x: -20,
+    transition: {
+      type: "spring",
+      stiffness: 70,
+      damping: 20,
+    },
+  },
+}
+
+const SocialItems = ({ isExiting }) => {
   const { isMobile, isTablet } = useResponsiveHelper()
   // const socialItemsArr = Array.from(Array(4).keys())
   const socialItemsArr =
@@ -88,7 +111,15 @@ const SocialItems = ({}) => {
       </a>
     )
   })
-  return <div className="social_wrap ">{socialItems}</div>
+  return (
+    <motion.div
+      variants={ContainerVariants}
+      animate={isExiting ? "exit" : "animate"}
+      className="social_wrap "
+    >
+      {socialItems}
+    </motion.div>
+  )
 }
 
 export default SocialItems

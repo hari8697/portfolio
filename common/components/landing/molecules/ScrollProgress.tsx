@@ -13,7 +13,6 @@ const ContainerVariants = {
     opacity: 0,
 
     transition: {
-      // duration: 0.35,
       type: "spring",
       stiffness: 70,
       damping: 20,
