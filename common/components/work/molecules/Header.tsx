@@ -61,7 +61,6 @@ const Header = ({
     <AnimatePresence>
       {mobileVersion ? (
         <HeaderMobile
-          mobileVersion={mobileVersion}
           pageTransitionComplete={pageTransitionComplete}
           setIsExiting={setIsExiting}
           setPageTransitionComplete={setPageTransitionComplete}
@@ -72,7 +71,6 @@ const Header = ({
         />
       ) : (
         <HeaderDesktop
-          mobileVersion={mobileVersion}
           pageTransitionComplete={pageTransitionComplete}
           setIsExiting={setIsExiting}
           setPageTransitionComplete={setPageTransitionComplete}
