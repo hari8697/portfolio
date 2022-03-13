@@ -158,6 +158,7 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
     stiffness: 800,
     damping: 68,
   })
+
   return (
     <Container
       variants={ContainerVariants}
@@ -195,13 +196,18 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
       ) : (
         <LandingWrapper>
           <Landing
+            isExiting={isExiting}
             animatedX={animatedX}
             imagesArr={imagesArr}
             moveByFactor={moveByFactor}
             maxDragX={maxDragX}
             setMaxDragX={setMaxDragX}
           ></Landing>
-          <ScrollProgress animatedX={animatedX} maxDragX={maxDragX} />
+          <ScrollProgress
+            isExiting={isExiting}
+            animatedX={animatedX}
+            maxDragX={maxDragX}
+          />
         </LandingWrapper>
       )}
     </Container>

@@ -44,6 +44,7 @@ const footerSwipe = (vW, vH) => {
 }
 
 export default function Landing({
+  isExiting,
   animatedX,
   imagesArr,
   moveByFactor,
@@ -52,6 +53,7 @@ export default function Landing({
 }) {
   // const [titleDragX, setTitleDragX] = useState(0)
   const [titleWrapperMoveByHeight, setTitleWrapperMoveByHeight] = useState(0)
+  const [completedExit, setCompletedExit] = useState(false)
   const { width: vW, height: vH } = useWindowSize()
 
   const title_wrapper = useRef(null)
@@ -115,7 +117,13 @@ export default function Landing({
       animate="animate"
       exit="exit"
     >
-      <Header_wrap className="noselect">
+      <Header_wrap
+        className="noselect"
+        variants={ContainerVariants}
+        animate={isExiting ? "exit" : "animate"}
+        onAnimationStart={() => setCompletedExit(false)}
+        onAnimationComplete={() => setCompletedExit(true)}
+      >
         <div className="logo">
           <img src="/common/DeathSpace_Logo.svg"></img>
         </div>
@@ -147,13 +155,19 @@ export default function Landing({
               ref={title_wrapper}
               style={{ y: textWrapperY }}
               className="text_wrapper"
+              variants={ContainerVariants}
+              animate={isExiting ? "title_exit" : "animate"}
             >
               {portItems}
             </motion.div>
           </div>
         </div>
       </Title_wrap>
-      <Footer_wrap className="noselect">
+      <Footer_wrap
+        className="noselect"
+        variants={ContainerVariants}
+        animate={isExiting ? "exit" : "animate"}
+      >
         <SocialItems />
         {footerSwipe(vW, vH)}
       </Footer_wrap>

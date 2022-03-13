@@ -41,11 +41,11 @@ export const HeaderDesktop = ({
         delay: heroImageAnimDelay,
         // duration: 0.35,
         type: "spring",
-        // stiffness: 70,
-        // damping: 20,
+        stiffness: 70,
+        damping: 20,
 
-        duration: 1,
-        bounce: 0.1,
+        // duration: 1,
+        // bounce: 0.1,
       },
     },
   }
@@ -77,7 +77,7 @@ export const HeaderDesktop = ({
         <motion.div
           variants={titleVariants}
           initial="initial"
-          animate={pageTransitionComplete && "animate"}
+          animate={"animate"}
           className="title_wrap"
         >
           <H1 className="title">{title}</H1>

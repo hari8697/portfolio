@@ -74,6 +74,7 @@ const HeroImageDesktop = ({
     // console.log("Image was loaded!")
     setImageLoaded(true)
   }
+
   return (
     <HeroImage
       className="hero_image"
