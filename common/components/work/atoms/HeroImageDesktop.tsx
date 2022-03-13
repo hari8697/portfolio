@@ -1,6 +1,6 @@
 import { CloseBtnStyled, HeaderStyled, HeroImage } from "../styles/App.styled"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useAnimation } from "framer-motion"
 
 const HeroImageDesktop = ({
@@ -10,14 +10,17 @@ const HeroImageDesktop = ({
 }) => {
   const controls = useAnimation()
   const [imageLoaded, setImageLoaded] = useState(false)
+  const _isMounted = useRef(true)
 
   useEffect(() => {
-    const sequence = async () => {
+    const sequence = () => {
       controls.start("animate")
     }
     sequence()
 
-    return () => {}
+    return () => {
+      _isMounted.current = false
+    }
   }, [])
 
   let HeroImageVariants = {
@@ -66,6 +69,7 @@ const HeroImageDesktop = ({
       opacity: 0,
     },
   }
+
   const onImageLoad = (item) => {
     // console.log("Image was loaded!")
     setImageLoaded(true)
@@ -77,8 +81,10 @@ const HeroImageDesktop = ({
       // style={{ opacity: imageLoaded ? 1 : 0 }}
       initial={"initial"}
       animate={"animate"}
-      onAnimationComplete={() => {
-        setPageTransitionComplete(true)
+      onAnimationComplete={async () => {
+        if (_isMounted) {
+          setPageTransitionComplete(true)
+        }
       }}
       // exit="exit"
     >

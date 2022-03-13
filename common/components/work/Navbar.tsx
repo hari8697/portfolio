@@ -10,6 +10,8 @@ function Navbar() {
   useEffect(() => {
     if (isMobile || isTablet || isNotLaptop) {
       setMobileVersion(true)
+    } else if ((isMobile || isTablet || isNotLaptop) == null || undefined) {
+      setMobileVersion(true)
     } else {
       setMobileVersion(false)
     }

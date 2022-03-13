@@ -13,7 +13,7 @@ const HeroImageMobile = ({
   const controls = useAnimation()
 
   useEffect(() => {
-    const sequence = async () => {
+    const sequence = () => {
       controls.start("animate")
       setTimeout(() => {
         controls.start("setHeight")

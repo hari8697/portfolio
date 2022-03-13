@@ -19,8 +19,8 @@ import { useRouter } from "next/router"
 
 const slowTransition = {
   type: "spring",
-  stiffness: 500,
-  damping: 80,
+  stiffness: 600,
+  damping: 70,
   // duration: 2,
   // bounce: 0.5,
 }
@@ -151,8 +151,8 @@ export default function Landing({
   const exitFunc = (slug) => {}
 
   useEffect(() => {
-    console.log("completedExit", completedExit)
-    console.log("isExiting", isExiting)
+    // console.log("completedExit", completedExit)
+    // console.log("isExiting", isExiting)
 
     if (completedExit && isExiting) {
       const goToUrl = `work/${currSlug}`

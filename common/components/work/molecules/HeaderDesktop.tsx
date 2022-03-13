@@ -8,7 +8,6 @@ import Link from "next/link"
 import { H1 } from "@/components/styled/index"
 
 export const HeaderDesktop = ({
-  mobileVersion,
   pageTransitionComplete,
   setIsExiting,
   setPageTransitionComplete,

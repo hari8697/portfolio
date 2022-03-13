@@ -5,9 +5,9 @@ export const useResponsiveHelper = () => {
   const { width: vW, height: vH } = useWindowSize()
 
   const [responsiveCheck, setResponsiveCheck] = useState({
-    isMobile: true,
-    isTablet: true,
-    isNotLaptop: true,
+    isMobile: null,
+    isTablet: null,
+    isNotLaptop: null,
   })
 
   const mobileCheckFunc = (width, height) => {
@@ -35,20 +35,24 @@ export const useResponsiveHelper = () => {
 
   // Run once initially
   useEffect(() => {
-    setResponsiveCheck({
-      isMobile: mobileCheckFunc(vW, vH),
-      isTablet: tabletCheckFunc(vW, vH),
-      isNotLaptop: laptopCheckFunc(vW, vH),
-    })
+    if ((vW && vH) != null || undefined) {
+      setResponsiveCheck({
+        isMobile: mobileCheckFunc(vW, vH),
+        isTablet: tabletCheckFunc(vW, vH),
+        isNotLaptop: laptopCheckFunc(vW, vH),
+      })
+    }
   }, [])
 
   // Run everytime hook updates
   useEffect(() => {
-    setResponsiveCheck({
-      isMobile: mobileCheckFunc(vW, vH),
-      isTablet: tabletCheckFunc(vW, vH),
-      isNotLaptop: laptopCheckFunc(vW, vH),
-    })
+    if ((vW && vH) != null || undefined) {
+      setResponsiveCheck({
+        isMobile: mobileCheckFunc(vW, vH),
+        isTablet: tabletCheckFunc(vW, vH),
+        isNotLaptop: laptopCheckFunc(vW, vH),
+      })
+    }
   }, [vW, vH])
 
   return responsiveCheck

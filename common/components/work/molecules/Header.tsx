@@ -1,7 +1,8 @@
 import { HeaderMobile } from "./HeaderMobile"
-import { useResponsiveHelper } from "@/common/utils/"
+import { useResponsiveHelper, useWindowSize } from "@/common/utils/"
 import { useEffect, useState } from "react"
 import { HeaderDesktop } from "./HeaderDesktop"
+import { AnimatePresence } from "framer-motion"
 
 const Header = ({
   data,
@@ -14,6 +15,8 @@ const Header = ({
 
   const { isMobile, isTablet, isNotLaptop } = useResponsiveHelper()
 
+  const { width: vW, height: vH } = useWindowSize()
+
   const [mobileVersion, setMobileVersion] = useState(true)
 
   useEffect(() => {
@@ -24,10 +27,15 @@ const Header = ({
   useEffect(() => {
     if (isMobile || isTablet || isNotLaptop) {
       setMobileVersion(true)
+    } else if ((isMobile || isTablet || isNotLaptop) == null || undefined) {
+      setMobileVersion(true)
     } else {
       setMobileVersion(false)
     }
     // console.log("mobileVersion", mobileVersion)
+
+    // console.log("vW", vW)
+    // console.log("vH", vH)
     // console.log("isMobile", isMobile)
     // console.log("isTablet", isTablet)
     // console.log("isNotLaptop", isNotLaptop)
@@ -50,7 +58,7 @@ const Header = ({
   }
 
   return (
-    <>
+    <AnimatePresence>
       {mobileVersion ? (
         <HeaderMobile
           mobileVersion={mobileVersion}
@@ -60,6 +68,7 @@ const Header = ({
           heroImage={heroImage}
           ContentVariants={ContentVariantsMobile}
           title={title}
+          key={1}
         />
       ) : (
         <HeaderDesktop
@@ -69,9 +78,10 @@ const Header = ({
           setPageTransitionComplete={setPageTransitionComplete}
           heroImage={heroImage}
           title={title}
+          key={2}
         />
       )}
-    </>
+    </AnimatePresence>
   )
 }
 
