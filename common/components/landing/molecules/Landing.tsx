@@ -106,7 +106,9 @@ export default function Landing({
         parseFloat(computedStyle.marginLeft) +
         parseFloat(computedStyle.marginRight)
 
-      setTitleWrapperMoveByHeight(titleWrapperHeight - elementHeight)
+      setTitleWrapperMoveByHeight(titleWrapperHeight - elementHeight - 8)
+
+      // console.log(titleWrapperHeight - elementHeight)
     }
   }
 
