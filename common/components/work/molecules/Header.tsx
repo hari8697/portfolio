@@ -20,7 +20,7 @@ const Header = ({
   const [mobileVersion, setMobileVersion] = useState(true)
 
   useEffect(() => {
-    // setPageTransitionComplete(false)
+    setPageTransitionComplete(false)
     // console.log("mobileVersion", mobileVersion)
   }, [mobileVersion])
 
