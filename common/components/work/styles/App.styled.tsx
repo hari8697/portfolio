@@ -174,7 +174,7 @@ export const HeaderStyled = styled(motion.div)`
       position: relative;
       /* top: 45.5%; */
       /* top: calc(96px + 70px); */
-      top: 50%;
+      top: 50.5%;
       /* transform: translateY(-50%); */
 
       .title {

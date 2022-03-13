@@ -14,13 +14,24 @@ export const HeaderDesktop = ({
   heroImage,
   title,
 }) => {
-  const ContentWrapVariantsDesktop = {
-    initial: {},
-    animate: {},
-    exit: {},
-  }
-
   const heroImageAnimDelay = 0.25
+  const CloseBtnVars = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      transition: {
+        delay: heroImageAnimDelay + 0.5,
+        type: "spring",
+        stiffness: 70,
+        damping: 20,
+      },
+    },
+    exit: {
+      opacity: 0,
+    },
+  }
 
   const titleVariants = {
     immediateHide: {
@@ -51,9 +62,13 @@ export const HeaderDesktop = ({
   }
 
   return (
-    <HeaderStyled className="nosel" variants={ContentWrapVariantsDesktop}>
+    <HeaderStyled className="nosel">
       <div className="content_wrap">
-        <motion.div initial="initial" animate={"animate"}>
+        <motion.div
+          variants={CloseBtnVars}
+          initial="initial"
+          animate={"animate"}
+        >
           <Link href="/">
             <CloseBtnStyled>
               <img
