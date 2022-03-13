@@ -19,8 +19,8 @@ import { useRouter } from "next/router"
 
 const slowTransition = {
   type: "spring",
-  stiffness: 600,
-  damping: 70,
+  stiffness: 500,
+  damping: 75,
   // duration: 2,
   // bounce: 0.5,
 }
