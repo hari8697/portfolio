@@ -15,9 +15,16 @@ export function HeaderMobile({
   ContentVariants,
   title,
 }) {
-  const heroImageAnimDelay = 0.25
+  const heroImageAnimDelay = 0.1
 
   const ContentWrapVariantsMobile = {
+    immediateHide: {
+      opacity: 0,
+      transition: {
+        duration: 0,
+        ease: "linear",
+      },
+    },
     initial: {
       height: "100vh",
     },
@@ -43,7 +50,9 @@ export function HeaderMobile({
         <motion.div
           variants={ContentVariants}
           initial="initial"
-          animate={pageTransitionComplete && "animationComplete"}
+          animate={
+            pageTransitionComplete ? "animationComplete" : "immediateHide"
+          }
           className="title_wrap"
         >
           <H1 className="title">{title}</H1>

@@ -81,7 +81,7 @@ const HeroImageDesktop = ({
       // style={{ opacity: imageLoaded ? 1 : 0 }}
       initial={"initial"}
       animate={"animate"}
-      onAnimationComplete={async () => {
+      onAnimationComplete={() => {
         if (_isMounted) {
           setPageTransitionComplete(true)
         }

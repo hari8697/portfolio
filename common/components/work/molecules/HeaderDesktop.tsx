@@ -77,7 +77,7 @@ export const HeaderDesktop = ({
         <motion.div
           variants={titleVariants}
           initial="initial"
-          animate={"animate"}
+          animate={pageTransitionComplete && "animate"}
           className="title_wrap"
         >
           <H1 className="title">{title}</H1>
