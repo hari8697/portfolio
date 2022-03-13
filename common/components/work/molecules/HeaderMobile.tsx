@@ -18,13 +18,6 @@ export function HeaderMobile({
   const heroImageAnimDelay = 0.1
 
   const ContentWrapVariantsMobile = {
-    immediateHide: {
-      opacity: 0,
-      transition: {
-        duration: 0,
-        ease: "linear",
-      },
-    },
     initial: {
       height: "100vh",
     },
