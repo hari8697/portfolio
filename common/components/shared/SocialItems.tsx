@@ -23,7 +23,7 @@ const ContainerVariants = {
   },
 }
 
-const SocialItems = ({ isExiting }) => {
+const SocialItems = ({ isExiting = false }) => {
   const { isMobile, isTablet } = useResponsiveHelper()
   // const socialItemsArr = Array.from(Array(4).keys())
   const socialItemsArr =

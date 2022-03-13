@@ -24,7 +24,7 @@ const Footer = () => {
           <MobileLinksWrap>
             <span className="line"></span>
 
-            <SocialItems isExiting={false}></SocialItems>
+            <SocialItems></SocialItems>
           </MobileLinksWrap>
         )}
         <Copyright />
