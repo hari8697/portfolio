@@ -12,6 +12,7 @@ import styled from "styled-components"
 import { motion, useVelocity, useTransform } from "framer-motion"
 import { useWindowSize } from "@/common/utils/"
 import { useRouter } from "next/router"
+import { gsap } from "gsap"
 
 const VanillaHover = ({
   animatedX,
@@ -133,6 +134,7 @@ const VanillaHover = ({
         }
 
         obj.material = new THREE.MeshBasicMaterial({
+          transparent: true,
           map: obj.texture,
         })
         obj.mesh = new THREE.Mesh(obj.geometry, obj.material)
@@ -201,7 +203,6 @@ const VanillaHover = ({
 
       // console.log(movingX)
       camera.position.x = -animatedX.get()
-
       // meshArr.forEach((el) => {
       //   scene.add(el.mesh)
       //   el.mesh.position.x = animatedX.get() + el.id * 10.5
@@ -344,6 +345,35 @@ const VanillaHover = ({
       // renderer = null
     }
   }, [])
+
+  const exitAnimation = (currEl) => {
+    meshArr.forEach((el) => {
+      // el.mesh.visible = false
+      // el.material.opacity = 0.2
+      const transition = {
+        duration: 0.25,
+        ease: "expoOut",
+      }
+      const moveByX = 1
+      if (el.id != currEl) {
+        gsap.to(el.material, {
+          opacity: 0,
+          ...transition,
+        })
+        if (el.id > currEl) {
+          gsap.to(el.mesh.position, {
+            x: el.mesh.position.x + moveByX,
+            ...transition,
+          })
+        } else {
+          gsap.to(el.mesh.position, {
+            x: el.mesh.position.x - moveByX,
+            ...transition,
+          })
+        }
+      }
+    })
+  }
 
   // const nearestOddNumber = i => {
   //   if (i%2 == 0) return i
@@ -583,6 +613,7 @@ const VanillaHover = ({
           // Open artwork page / portfolio piece
           console.log("success!")
           console.log(currSelectedElement)
+          exitAnimation(currSelectedElement)
           // console.log("positiveAnimatedX", positiveAnimatedX)
 
           // console.log("pushing")
