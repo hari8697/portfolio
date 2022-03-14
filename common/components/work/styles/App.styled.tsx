@@ -132,7 +132,6 @@ export const HeaderStyled = styled(motion.div)`
   width: 100%;
   height: 100vh;
   padding: 56px 0 32px 0;
-
   .content_wrap {
     width: 100%;
     height: 100%;
@@ -151,6 +150,23 @@ export const HeaderStyled = styled(motion.div)`
     }
   }
 
+  @media ${device.tablet} {
+    grid-column: 1 / -1;
+    display: inherit;
+    grid-template-columns: inherit;
+    grid-gap: inherit;
+
+    .content_wrap {
+      grid-column: 1 / -1;
+      display: inherit;
+      grid-template-columns: inherit;
+      grid-gap: inherit;
+
+      .title_wrap {
+        grid-column: 2 / -2;
+      }
+    }
+  }
   @media ${device.laptop} and (orientation: landscape) {
     /* position: relative; */
     width: 100%;
@@ -188,8 +204,8 @@ export const HeaderStyled = styled(motion.div)`
 export const HeroImage = styled(motion.div)`
   position: absolute;
   width: 100%;
-  /* height: 25vh; */
-  /* top: 26%; */
+  height: 25vh;
+  top: 26%;
   /* transform: translate(-50%, -26%); */
   transform: translateY(-26%);
   left: 50%;
@@ -208,6 +224,15 @@ export const HeroImage = styled(motion.div)`
       height: 100%;
       object-fit: cover;
     }
+  }
+
+  @media ${device.mobileL} {
+    height: 30vh;
+  }
+  @media ${device.tablet} {
+    top: 21%;
+    grid-column: 1 / -1;
+    height: 35vh;
   }
 
   @media ${device.laptop} and (orientation: landscape) {
