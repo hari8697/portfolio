@@ -17,6 +17,14 @@ import { H5Link } from "@/components/styled/"
 import MobileHover from "../threejs/MobileHover"
 import { useRouter } from "next/router"
 
+const slowTransition = {
+  type: "spring",
+  stiffness: 500,
+  damping: 75,
+  // duration: 2,
+  // bounce: 0.5,
+}
+
 const ContainerVariants = {
   initial: {
     opacity: 0,
@@ -26,6 +34,12 @@ const ContainerVariants = {
   },
   exit: {
     opacity: 0,
+    transition: slowTransition,
+  },
+  title_exit: {
+    opacity: 0,
+    y: 50,
+    transition: slowTransition,
   },
 }
 
@@ -35,11 +49,14 @@ export default function Landing({
   setSelectedTitle,
   setThreeImagesBools,
   preloaderBool,
+  isExiting,
+  setIsExiting,
 }) {
   const router = useRouter()
   const selectedTitleAnimated = useSpring(1)
   const { isMobile, isTablet } = useResponsiveHelper()
-  const [isExiting, setIsExiting] = useState(false)
+  const [currSlug, setCurrSlug] = useState("")
+  const [completedExit, setCompletedExit] = useState(false)
 
   useEffect(() => {
     selectedTitleAnimated.set(selectedTitle)
@@ -69,15 +86,13 @@ export default function Landing({
         onClick={(e) => {
           e.preventDefault()
           if (item.id === selectedTitle) {
-            if (!isExiting) {
-              const goToUrl = `work/${item.slug}`
-              router.push(goToUrl, undefined, { scroll: false })
-            }
-
-            setIsExiting((prev) => {
-              // console.log(prev)
-              return true
-            })
+            // exitFunc(item.slug)
+            setCurrSlug(item.slug)
+            setIsExiting(true)
+            // setIsExiting((prev) => {
+            //   // console.log(prev)
+            //   return true
+            // })
           } else {
             setSelectedTitle(item.id)
             selectedTitleAnimated.set(item.id)
@@ -133,6 +148,18 @@ export default function Landing({
     })
   }, [])
 
+  const exitFunc = (slug) => {}
+
+  useEffect(() => {
+    // console.log("completedExit", completedExit)
+    // console.log("isExiting", isExiting)
+
+    if (completedExit && isExiting) {
+      const goToUrl = `work/${currSlug}`
+      router.push(goToUrl, undefined, { scroll: false })
+    }
+  }, [completedExit])
+
   return (
     <GridContainer
       variants={ContainerVariants}
@@ -140,7 +167,13 @@ export default function Landing({
       animate="animate"
       exit="exit"
     >
-      <Header_wrap className="noselect">
+      <Header_wrap
+        className="noselect"
+        variants={ContainerVariants}
+        animate={isExiting ? "exit" : "animate"}
+        onAnimationStart={() => setCompletedExit(false)}
+        onAnimationComplete={() => setCompletedExit(true)}
+      >
         <div className="logo">
           <img src="/common/DeathSpace_Logo.svg"></img>
         </div>
@@ -170,6 +203,9 @@ export default function Landing({
 
       <div className="hero_image">
         <MobileHover
+          isExiting={isExiting}
+          setIsExiting={setIsExiting}
+          setCurrSlug={setCurrSlug}
           preloaderBool={preloaderBool}
           imagesArr={imagesArr}
           activeImage={selectedTitle}
@@ -183,6 +219,8 @@ export default function Landing({
             <motion.div
               ref={title_wrapper}
               className="text_wrapper"
+              variants={ContainerVariants}
+              animate={isExiting ? "title_exit" : "animate"}
               style={{ y: textWrapperY }}
             >
               {portItems}
@@ -190,7 +228,11 @@ export default function Landing({
           </span>
         </div>
       </Title_wrap>
-      <Footer_wrap className="noselect">
+      <Footer_wrap
+        className="noselect"
+        variants={ContainerVariants}
+        animate={isExiting ? "exit" : "animate"}
+      >
         <SocialItems />
         {footerSwipe(vW, vH)}
       </Footer_wrap>

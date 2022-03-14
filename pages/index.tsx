@@ -40,7 +40,7 @@ function Home({ projects }) {
   ])
 
   useEffect(() => {
-    console.log(isPreloading)
+    // console.log(isPreloading)
     return () => {}
   }, [isPreloading])
 
@@ -78,11 +78,13 @@ function Home({ projects }) {
 
       <div
         style={{
-          position: "relative",
+          position: "fixed",
+          width: 3840,
+          height: 2160,
           opacity: 0,
           overflow: "hidden",
           pointerEvents: "none",
-          zIndex: -10,
+          zIndex: -99,
         }}
       >
         {heroImagePreloadSkels}

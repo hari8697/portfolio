@@ -8,7 +8,6 @@ import Link from "next/link"
 import { H1 } from "@/components/styled/index"
 
 export function HeaderMobile({
-  mobileVersion,
   pageTransitionComplete,
   setIsExiting,
   setPageTransitionComplete,
@@ -16,7 +15,7 @@ export function HeaderMobile({
   ContentVariants,
   title,
 }) {
-  const heroImageAnimDelay = 0.25
+  const heroImageAnimDelay = 0.1
 
   const ContentWrapVariantsMobile = {
     initial: {

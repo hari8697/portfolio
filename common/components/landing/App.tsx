@@ -20,12 +20,13 @@ const ContainerVariants = {
     },
   },
   exit: {
-    // opacity: 0,
+    opacity: 0,
   },
 }
 
 function App({ setThreeImagesBools, preloaderBool, projects }) {
   const appContainer = useRef(null)
+  const [isExiting, setIsExiting] = useState(false)
   const { isMobile, isTablet } = useResponsiveHelper()
 
   const { width: vW, height: vH } = useWindowSize()
@@ -157,16 +158,20 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
     stiffness: 800,
     damping: 68,
   })
+
   return (
     <Container
       variants={ContainerVariants}
       initial="initial"
       animate={!preloaderBool && "animate"}
+      exit="exit"
       pageExtraHeight={isMobile || isTablet ? 1 : pageExtraHeight}
       ref={appContainer}
     >
       {!isMobile && !isTablet && (
         <VanillaHover
+          isExiting={isExiting}
+          setIsExiting={setIsExiting}
           animatedX={animatedX}
           imagesArr={imagesArr}
           onTextureLoad={onTextureLoad}
@@ -179,6 +184,8 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
       {isMobile || isTablet ? (
         <LandingWrapper>
           <LandingMobile
+            isExiting={isExiting}
+            setIsExiting={setIsExiting}
             preloaderBool={preloaderBool}
             imagesArr={imagesArr}
             selectedTitle={selectedTitle}
@@ -189,13 +196,18 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
       ) : (
         <LandingWrapper>
           <Landing
+            isExiting={isExiting}
             animatedX={animatedX}
             imagesArr={imagesArr}
             moveByFactor={moveByFactor}
             maxDragX={maxDragX}
             setMaxDragX={setMaxDragX}
           ></Landing>
-          <ScrollProgress animatedX={animatedX} maxDragX={maxDragX} />
+          <ScrollProgress
+            isExiting={isExiting}
+            animatedX={animatedX}
+            maxDragX={maxDragX}
+          />
         </LandingWrapper>
       )}
     </Container>

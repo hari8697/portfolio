@@ -10,6 +10,9 @@ const MobileHover = ({
   activeImage,
   setThreeImagesBools,
   preloaderBool,
+  isExiting,
+  setIsExiting,
+  setCurrSlug,
 }) => {
   const router = useRouter()
   const imageEl = useRef(null)
@@ -90,10 +93,12 @@ const MobileHover = ({
 
   const onTouch = (e) => {
     e.preventDefault()
+    setCurrSlug(imagesArr[activeImage - 1].slug)
+    setIsExiting(true)
     // console.log(activeImage)
     console.log("Clicked item", activeImage)
-    const goToUrl = `work/${imagesArr[activeImage - 1].slug}`
-    router.push(goToUrl, undefined, { scroll: false })
+    // const goToUrl = `work/${imagesArr[activeImage - 1].slug}`
+    // router.push(goToUrl, undefined, { scroll: false })
   }
 
   useEffect(() => {

@@ -1,7 +1,25 @@
 import { useWindowSize } from "@/common/utils"
 import { motion, useTransform } from "framer-motion"
 
-const ScrollProgress = ({ animatedX, maxDragX }) => {
+const ContainerVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: {
+    y: 20,
+    opacity: 0,
+
+    transition: {
+      type: "spring",
+      stiffness: 70,
+      damping: 20,
+    },
+  },
+}
+const ScrollProgress = ({ animatedX, maxDragX, isExiting }) => {
   const { width: vW, height: vH } = useWindowSize()
   const scrollBarWidth = useTransform(
     animatedX,
@@ -12,7 +30,12 @@ const ScrollProgress = ({ animatedX, maxDragX }) => {
     <div>
       {vW > 1023 && vW / vH > 1 && (
         <>
-          <div className="noselect scroll_wrapper">
+          <motion.div
+            className="noselect scroll_wrapper"
+            variants={ContainerVariants}
+            initial="initial"
+            animate={isExiting ? "exit" : "animate"}
+          >
             <div className="scroll_arrow">
               <img src="/landing/scrollHorizontal.svg"></img>
             </div>
@@ -23,7 +46,7 @@ const ScrollProgress = ({ animatedX, maxDragX }) => {
               ></motion.span>
               <span className="bg"></span>
             </div>
-          </div>
+          </motion.div>
         </>
       )}
     </div>

@@ -16,6 +16,15 @@ import Link from "next/link"
 import { H5Link } from "@/components/styled/"
 
 const ContainerVariants = {
+  title_exit: {
+    opacity: 0,
+
+    transition: {
+      type: "spring",
+      stiffness: 70,
+      damping: 20,
+    },
+  },
   initial: {
     opacity: 0,
   },
@@ -44,6 +53,7 @@ const footerSwipe = (vW, vH) => {
 }
 
 export default function Landing({
+  isExiting,
   animatedX,
   imagesArr,
   moveByFactor,
@@ -52,6 +62,7 @@ export default function Landing({
 }) {
   // const [titleDragX, setTitleDragX] = useState(0)
   const [titleWrapperMoveByHeight, setTitleWrapperMoveByHeight] = useState(0)
+  const [completedExit, setCompletedExit] = useState(false)
   const { width: vW, height: vH } = useWindowSize()
 
   const title_wrapper = useRef(null)
@@ -95,7 +106,9 @@ export default function Landing({
         parseFloat(computedStyle.marginLeft) +
         parseFloat(computedStyle.marginRight)
 
-      setTitleWrapperMoveByHeight(titleWrapperHeight - elementHeight)
+      setTitleWrapperMoveByHeight(titleWrapperHeight - elementHeight - 8)
+
+      // console.log(titleWrapperHeight - elementHeight)
     }
   }
 
@@ -115,7 +128,13 @@ export default function Landing({
       animate="animate"
       exit="exit"
     >
-      <Header_wrap className="noselect">
+      <Header_wrap
+        className="noselect"
+        variants={ContainerVariants}
+        animate={isExiting ? "exit" : "animate"}
+        onAnimationStart={() => setCompletedExit(false)}
+        onAnimationComplete={() => setCompletedExit(true)}
+      >
         <div className="logo">
           <img src="/common/DeathSpace_Logo.svg"></img>
         </div>
@@ -147,14 +166,20 @@ export default function Landing({
               ref={title_wrapper}
               style={{ y: textWrapperY }}
               className="text_wrapper"
+              variants={ContainerVariants}
+              animate={isExiting ? "title_exit" : "animate"}
             >
               {portItems}
             </motion.div>
           </div>
         </div>
       </Title_wrap>
-      <Footer_wrap className="noselect">
-        <SocialItems />
+      <Footer_wrap
+        className="noselect"
+        variants={ContainerVariants}
+        animate={isExiting ? "exit" : "animate"}
+      >
+        <SocialItems isExiting={isExiting} />
         {footerSwipe(vW, vH)}
       </Footer_wrap>
     </GridContainer>

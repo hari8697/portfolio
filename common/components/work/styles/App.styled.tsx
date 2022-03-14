@@ -163,8 +163,9 @@ export const HeaderStyled = styled(motion.div)`
 
     .content_wrap {
       ${work_grid_col}
-      position: initial;
+      position: static;
       height: 100%;
+      /* min-height: 100vh; */
     }
 
     .title_wrap {
@@ -174,6 +175,7 @@ export const HeaderStyled = styled(motion.div)`
       /* top: 45.5%; */
       /* top: calc(96px + 70px); */
       top: 50%;
+      margin: 0.25rem 0;
       /* transform: translateY(-50%); */
 
       .title {
@@ -191,6 +193,7 @@ export const HeroImage = styled(motion.div)`
   /* transform: translate(-50%, -26%); */
   transform: translateY(-26%);
   left: 50%;
+  overflow: hidden;
   /* transform: translateX(-50%); */
   /* width: 100vw;
   height: 30vh; */
@@ -209,12 +212,12 @@ export const HeroImage = styled(motion.div)`
 
   @media ${device.laptop} and (orientation: landscape) {
     position: absolute;
-    /* top: 50vh;
-    left: 50%; */
-    /* transform: translate(-50%, -50%); */
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
     /* transform: translateX(-50%); */
-    height: auto;
     margin: 0 auto;
+    height: 58.5vh;
     width: 104vh;
     z-index: -1;
 

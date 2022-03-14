@@ -8,22 +8,30 @@ import Link from "next/link"
 import { H1 } from "@/components/styled/index"
 
 export const HeaderDesktop = ({
-  mobileVersion,
   pageTransitionComplete,
   setIsExiting,
   setPageTransitionComplete,
   heroImage,
   title,
 }) => {
-  const ContentWrapVariantsDesktop = {
-    initial: {
-      // height: "100vh",
-    },
-    animate: {},
-    exit: {},
-  }
-
   const heroImageAnimDelay = 0.25
+  const CloseBtnVars = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      transition: {
+        delay: heroImageAnimDelay + 0.5,
+        type: "spring",
+        stiffness: 70,
+        damping: 20,
+      },
+    },
+    exit: {
+      opacity: 0,
+    },
+  }
 
   const titleVariants = {
     immediateHide: {
@@ -34,26 +42,33 @@ export const HeaderDesktop = ({
       },
     },
     initial: {
-      x: "2%",
-      opacity: 0,
+      x: "0%",
+      opacity: 1,
     },
     animate: {
       x: "5%",
       opacity: 1,
       transition: {
-        delay: heroImageAnimDelay + 0.1,
+        delay: heroImageAnimDelay,
         // duration: 0.35,
         type: "spring",
-        stiffness: 100,
+        stiffness: 70,
         damping: 20,
+
+        // duration: 1,
+        // bounce: 0.1,
       },
     },
   }
 
   return (
-    <HeaderStyled className="nosel" variants={ContentWrapVariantsDesktop}>
+    <HeaderStyled className="nosel">
       <div className="content_wrap">
-        <motion.div initial="initial" animate={"animate"}>
+        <motion.div
+          variants={CloseBtnVars}
+          initial="initial"
+          animate={"animate"}
+        >
           <Link href="/">
             <CloseBtnStyled>
               <img
