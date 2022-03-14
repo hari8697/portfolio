@@ -183,8 +183,6 @@ export default function Landing({
         animate={isExiting ? "exit" : "animate"}
         onAnimationStart={() => setCompletedExit(false)}
         onAnimationComplete={() => {
-          console.log("anim completed")
-
           setCompletedExit(true)
         }}
       >

@@ -55,7 +55,7 @@ function Home({ projects }) {
         // height={null}
         // width={item.fields.heroImage.fields.file.details.image.width}
         // height={item.fields.heroImage.fields.file.details.image.height}
-        priority={true}
+        // priority={true}
         objectFit="cover"
       />
     )
