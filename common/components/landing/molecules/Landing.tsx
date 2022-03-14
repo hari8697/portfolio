@@ -132,8 +132,6 @@ export default function Landing({
         className="noselect"
         variants={ContainerVariants}
         animate={isExiting ? "exit" : "animate"}
-        onAnimationStart={() => setCompletedExit(false)}
-        onAnimationComplete={() => setCompletedExit(true)}
       >
         <div className="logo">
           <img src="/common/DeathSpace_Logo.svg"></img>
@@ -168,6 +166,8 @@ export default function Landing({
               className="text_wrapper"
               variants={ContainerVariants}
               animate={isExiting ? "title_exit" : "animate"}
+              onAnimationStart={() => setCompletedExit(false)}
+              onAnimationComplete={() => setCompletedExit(true)}
             >
               {portItems}
             </motion.div>
