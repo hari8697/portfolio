@@ -351,10 +351,10 @@ const VanillaHover = ({
       // el.mesh.visible = false
       // el.material.opacity = 0.2
       const transition = {
-        duration: 0.25,
-        ease: "expoOut",
+        duration: 0.4,
+        ease: "easeOut",
       }
-      const moveByX = 1
+      const moveByX = 0.06
       if (el.id != currEl) {
         gsap.to(el.material, {
           opacity: 0,
