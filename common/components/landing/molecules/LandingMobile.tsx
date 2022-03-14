@@ -25,24 +25,6 @@ const slowTransition = {
   // bounce: 0.5,
 }
 
-const ContainerVariants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-  exit: {
-    opacity: 0,
-    transition: slowTransition,
-  },
-  title_exit: {
-    opacity: 0,
-    y: 50,
-    transition: slowTransition,
-  },
-}
-
 export default function Landing({
   imagesArr,
   selectedTitle,
@@ -115,6 +97,24 @@ export default function Landing({
     [imagesArr.length, 1],
     [-titleWrapperMoveByHeight, 0]
   )
+
+  const ContainerVariants = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+    },
+    exit: {
+      opacity: 0,
+      transition: slowTransition,
+    },
+    title_exit: {
+      opacity: 0,
+      y: textWrapperY.get() + 50,
+      transition: slowTransition,
+    },
+  }
 
   const calcAnimHelperValues = () => {
     // Title anim Values
