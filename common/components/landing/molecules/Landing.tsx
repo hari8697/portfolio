@@ -59,10 +59,10 @@ export default function Landing({
   moveByFactor,
   maxDragX,
   setMaxDragX,
+  setCompletedExit,
 }) {
   // const [titleDragX, setTitleDragX] = useState(0)
   const [titleWrapperMoveByHeight, setTitleWrapperMoveByHeight] = useState(0)
-  const [completedExit, setCompletedExit] = useState(false)
   const { width: vW, height: vH } = useWindowSize()
 
   const title_wrapper = useRef(null)

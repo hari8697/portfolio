@@ -51,12 +51,14 @@ export default function Landing({
   preloaderBool,
   isExiting,
   setIsExiting,
+  setCompletedExit,
+  setCurrSlug,
 }) {
   const router = useRouter()
   const selectedTitleAnimated = useSpring(1)
   const { isMobile, isTablet } = useResponsiveHelper()
-  const [currSlug, setCurrSlug] = useState("")
-  const [completedExit, setCompletedExit] = useState(false)
+  // const [currSlug, setCurrSlug] = useState("")
+  // const [completedExit, setCompletedExit] = useState(false)
 
   useEffect(() => {
     selectedTitleAnimated.set(selectedTitle)
@@ -147,18 +149,6 @@ export default function Landing({
       calcAnimHelperValues()
     })
   }, [])
-
-  const exitFunc = (slug) => {}
-
-  useEffect(() => {
-    // console.log("completedExit", completedExit)
-    // console.log("isExiting", isExiting)
-
-    if (completedExit && isExiting) {
-      const goToUrl = `work/${currSlug}`
-      router.push(goToUrl, undefined, { scroll: false })
-    }
-  }, [completedExit])
 
   return (
     <GridContainer

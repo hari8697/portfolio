@@ -23,6 +23,7 @@ const VanillaHover = ({
   setThreeImagesBools,
   isExiting,
   setIsExiting,
+  setCurrSlug,
 }) => {
   const router = useRouter()
   const canvasEl = useRef(null)
@@ -585,10 +586,14 @@ const VanillaHover = ({
           // console.log("positiveAnimatedX", positiveAnimatedX)
 
           // console.log("pushing")
-          if (!isExiting) {
-            const goToUrl = `work/${imagesArr[currSelectedElement].slug}`
-            router.push(goToUrl, undefined, { scroll: false })
-          }
+
+          // if (!isExiting) {
+          //   const goToUrl = `work/${imagesArr[currSelectedElement].slug}`
+          //   router.push(goToUrl, undefined, { scroll: false })
+          // }
+
+          setCurrSlug(`${imagesArr[currSelectedElement].slug}`)
+
           setIsExiting((prev) => {
             // console.log(prev)
             return true
