@@ -112,7 +112,7 @@ export default function Landing({
   let titleWrapperHeight
   const textWrapperY = useTransform(
     selectedTitleAnimated,
-    [4, 1],
+    [imagesArr.length, 1],
     [-titleWrapperMoveByHeight, 0]
   )
 
