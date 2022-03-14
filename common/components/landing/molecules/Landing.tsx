@@ -33,6 +33,11 @@ const ContainerVariants = {
   },
   exit: {
     opacity: 0,
+    transition: {
+      type: "spring",
+      stiffness: 200,
+      damping: 20,
+    },
   },
 }
 
@@ -166,8 +171,6 @@ export default function Landing({
               className="text_wrapper"
               variants={ContainerVariants}
               animate={isExiting ? "title_exit" : "animate"}
-              onAnimationStart={() => setCompletedExit(false)}
-              onAnimationComplete={() => setCompletedExit(true)}
             >
               {portItems}
             </motion.div>
@@ -178,6 +181,8 @@ export default function Landing({
         className="noselect"
         variants={ContainerVariants}
         animate={isExiting ? "exit" : "animate"}
+        onAnimationStart={() => setCompletedExit(false)}
+        onAnimationComplete={() => setCompletedExit(true)}
       >
         <SocialItems isExiting={isExiting} />
         {footerSwipe(vW, vH)}
