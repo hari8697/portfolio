@@ -35,7 +35,7 @@ const ContainerVariants = {
     opacity: 0,
     transition: {
       type: "spring",
-      stiffness: 200,
+      stiffness: 100,
       damping: 20,
     },
   },
@@ -182,7 +182,11 @@ export default function Landing({
         variants={ContainerVariants}
         animate={isExiting ? "exit" : "animate"}
         onAnimationStart={() => setCompletedExit(false)}
-        onAnimationComplete={() => setCompletedExit(true)}
+        onAnimationComplete={() => {
+          console.log("anim completed")
+
+          setCompletedExit(true)
+        }}
       >
         <SocialItems isExiting={isExiting} />
         {footerSwipe(vW, vH)}
