@@ -139,6 +139,7 @@ export const HeaderStyled = styled(motion.div)`
   }
 
   .title_wrap {
+    height: max-content;
     padding-top: calc(30vh - 56px);
     /* padding-top: 30vh; */
     display: flex;
@@ -175,10 +176,11 @@ export const HeaderStyled = styled(motion.div)`
     padding-top: 96px;
     padding-bottom: 70px;
 
-    grid-column: 4 / 21;
+    /* grid-column: 4 / 21; */
 
     .content_wrap {
-      ${work_grid_col}
+      /* ${work_grid_col} */ 
+      grid-column: 4 / 21;
       position: static;
       height: 100%;
       /* min-height: 100vh; */
@@ -337,6 +339,19 @@ const contentBlockShared = css`
 
 export const PresentationStyled = styled.div`
   ${contentBlockShared}
+
+  ${ParaLarge} {
+    a {
+      color: ${(props) => props.theme.linkTextColor};
+      transition: all 250ms ease-out;
+
+      &:hover,
+      &:focus {
+        /* color: ${(props) => props.theme.primaryColor}; */
+        text-decoration: underline;
+      }
+    }
+  }
 
   @media ${device.laptop} and (orientation: landscape) {
     margin: 100px 0 100px;
