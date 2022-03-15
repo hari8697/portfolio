@@ -23,7 +23,12 @@ const ButtonList = ({ data }) => {
     let iconSrc
     if (hasIcon) iconSrc = "https:" + el.fields.iconImage.fields.file.url
     return (
-      <a href={urlArr[idx] && urlArr[idx]} key={idx}>
+      <a
+        href={urlArr[idx] && urlArr[idx]}
+        key={idx}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <ButtonLink withIcon={hasIcon}>
           <Para>{btn_title}</Para>
           {hasIcon && (
