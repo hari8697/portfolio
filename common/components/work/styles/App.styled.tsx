@@ -179,27 +179,29 @@ export const HeaderStyled = styled(motion.div)`
     /* grid-column: 4 / 21; */
 
     .content_wrap {
-      /* ${work_grid_col} */ 
-      grid-column: 4 / 21;
+      /* ${work_grid_col} */
+      /* grid-column: 4 / 21; */
       position: static;
       height: 100%;
       /* min-height: 100vh; */
-    }
+      .title_wrap {
+        /* ${work_grid_col} */
+        grid-column: 4 / 21;
+        padding: 0;
+        display: block;
+        position: relative;
+        /* top: 45.5%; */
+        /* top: calc(96px + 70px); */
+        top: 50%;
+        margin: 0.25rem 0;
+        /* transform: translateY(-50%); */
 
-    .title_wrap {
-      padding: 0;
-      display: block;
-      position: relative;
-      /* top: 45.5%; */
-      /* top: calc(96px + 70px); */
-      top: 50%;
-      margin: 0.25rem 0;
-      /* transform: translateY(-50%); */
-
-      .title {
-        margin: 0;
+        .title {
+          margin: 0;
+        }
       }
     }
+
   }
 `
 
