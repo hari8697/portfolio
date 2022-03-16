@@ -173,8 +173,8 @@ export const HeaderStyled = styled(motion.div)`
     width: 100%;
     height: 100vh;
 
-    padding-top: 96px;
-    padding-bottom: 70px;
+    padding: 72px 0 50px;
+    
 
     /* grid-column: 4 / 21; */
 
@@ -202,6 +202,9 @@ export const HeaderStyled = styled(motion.div)`
       }
     }
 
+  }
+  @media ${device.laptopL} {
+    padding: 96px 0 70px;
   }
 `
 
