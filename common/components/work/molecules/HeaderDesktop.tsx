@@ -64,24 +64,22 @@ export const HeaderDesktop = ({
   return (
     <HeaderStyled className="nosel">
       <div className="content_wrap">
-        <motion.div
-          variants={CloseBtnVars}
-          initial="initial"
-          animate={"animate"}
-        >
-          <Link href="/">
-            <CloseBtnStyled>
-              <img
-                className="close_btn desktop"
-                src="/about/close_btn.svg"
-                alt=""
-                onClick={() => {
-                  setIsExiting(true)
-                }}
-              />
-            </CloseBtnStyled>
-          </Link>
-        </motion.div>
+        <Link href="/">
+          <CloseBtnStyled
+            variants={CloseBtnVars}
+            initial="initial"
+            animate={"animate"}
+          >
+            <img
+              className="close_btn desktop"
+              src="/about/close_btn.svg"
+              alt=""
+              onClick={() => {
+                setIsExiting(true)
+              }}
+            />
+          </CloseBtnStyled>
+        </Link>
 
         <HeroImageDesktop
           setPageTransitionComplete={setPageTransitionComplete}

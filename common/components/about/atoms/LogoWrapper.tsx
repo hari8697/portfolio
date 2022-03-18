@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
+import ScrollArrow from "../../shared/ScrollArrow"
 import { LogoContainer, LogoGrid, Logo_ImgWrap } from "../styles/About.style"
 
 interface LogoWrapperProps {
@@ -108,6 +109,7 @@ const LogoWrapper = ({ animDelay }: LogoWrapperProps) => {
             </motion.div>
           </Logo_ImgWrap>
         </LogoContainer>
+        <ScrollArrow></ScrollArrow>
       </LogoGrid>
     </div>
   )

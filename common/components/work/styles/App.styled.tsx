@@ -84,7 +84,7 @@ export const NavbarStyled = styled.div`
   position: relative;
 `
 
-export const CloseBtnStyled = styled.div`
+export const CloseBtnStyled = styled(motion.div)`
   z-index: 10;
   opacity: 0.8;
   transition: opacity 100ms ease-out;
@@ -183,6 +183,7 @@ export const HeaderStyled = styled(motion.div)`
       /* grid-column: 4 / 21; */
       position: static;
       height: 100%;
+      /* min-height:  80vh; */
       /* min-height: 100vh; */
       .title_wrap {
         /* ${work_grid_col} */
@@ -212,24 +213,24 @@ export const HeroImage = styled(motion.div)`
   position: absolute;
   width: 100%;
   height: 25vh;
-  top: 26%;
+  /* top: 26%; */
   /* transform: translate(-50%, -26%); */
-  transform: translateY(-26%);
-  left: 50%;
+  /* transform: translateY(-26%); */
+  /* left: 50%; */
   overflow: hidden;
   /* transform: translateX(-50%); */
   /* width: 100vw;
   height: 30vh; */
   .img_wrap {
-    overflow: hidden;
-    position: relative;
+    /* overflow: hidden; */
+    /* position: relative; */
     width: 100%;
     height: 100%;
     /* object-fit: cover; */
     img {
-      width: 100%;
+      /* width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover; */
     }
   }
 
@@ -243,15 +244,15 @@ export const HeroImage = styled(motion.div)`
   }
 
   @media ${device.laptop} and (orientation: landscape) {
-    position: absolute;
-    top: 50vh;
+    /* position: absolute; */
+    /* top: 50vh;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1); */
     /* transform: translateX(-50%); */
-    margin: 0 auto;
+    /* margin: 0 auto; */
     height: 58.5vh;
     width: 104vh;
-    z-index: -1;
+    /* z-index: -1; */
 
     /* width: 66.66vw; // * 12 units in threejs for 100vw, each image is 8 units, hence 8/12 */
     /* min-height: 58.44vh; // * 7.7 units in threejs for 100vh, each image is 4.5 units, hence 4.5/7.7 */

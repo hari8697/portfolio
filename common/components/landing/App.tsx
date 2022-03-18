@@ -262,7 +262,6 @@ const LandingWrapper = styled(motion.div)`
       display: grid;
       place-items: center;
       width: 30px;
-      opacity: 0.4;
       margin-right: 60px;
       margin-top: 2px;
     }

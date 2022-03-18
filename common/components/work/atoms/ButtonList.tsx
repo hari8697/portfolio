@@ -16,9 +16,15 @@ interface Props {
 const ButtonList = ({ data }) => {
   let buttonsArr = data.fields.buttons
   let urlArr = data.fields.urlArray
+  let alternateTitleArr = data.fields.alternateTitle
 
   let comps = buttonsArr.map((el, idx) => {
-    const btn_title = el.fields.title
+    const btn_title =
+      alternateTitleArr != null || undefined
+        ? alternateTitleArr[idx] != null || undefined
+          ? alternateTitleArr[idx]
+          : el.fields.title
+        : el.fields.title
     const hasIcon = el.fields.icon
     let iconSrc
     if (hasIcon) iconSrc = "https:" + el.fields.iconImage.fields.file.url
