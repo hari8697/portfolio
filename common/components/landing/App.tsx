@@ -255,7 +255,7 @@ const LandingWrapper = styled(motion.div)`
     bottom: 32px;
     right: 0;
     display: flex;
-    overflow: hidden;
+    /* overflow-x: hidden; */
     grid-column-start: 20;
 
     .scroll_arrow {
