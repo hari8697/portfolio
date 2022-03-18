@@ -87,7 +87,7 @@ export const NavbarStyled = styled.div`
 export const CloseBtnStyled = styled(motion.div)`
   z-index: 10;
   opacity: 0.8;
-  transition: opacity 100ms ease-out;
+  transition: opacity 200ms ease-out;
   &:hover,
   :focus {
     cursor: pointer;
@@ -97,7 +97,7 @@ export const CloseBtnStyled = styled(motion.div)`
     width: 21px;
     padding: 8px;
     padding-right: 0;
-    transition: opacity 100ms ease-out;
+    transition: opacity 200ms ease-out;
     &:hover,
     :focus {
       cursor: pointer;
