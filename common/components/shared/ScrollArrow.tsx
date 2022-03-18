@@ -9,7 +9,7 @@ const defaultVars = {
     y: -moveByVal,
   },
   animate: {
-    opacity: [0, 0.3, 0.3, 0],
+    opacity: [0, 0.4, 0.4, 0],
     y: [-moveByVal, 0, 0, moveByVal],
 
     transition: {
@@ -44,7 +44,13 @@ const defaultVars = {
 const ScrollArrow = ({ motionVariants = defaultVars }) => {
   const [hasScrolled, setHasScrolled] = useState(false)
   useEffect(() => {
-    const handleScroll = () => setHasScrolled(true)
+    const handleScroll = () => {
+      const htmlDom = document?.querySelector("html")
+      console.log(htmlDom?.scrollTop)
+      if (htmlDom?.scrollTop > 20) {
+        setHasScrolled(true)
+      }
+    }
     window.addEventListener("scroll", handleScroll)
 
     return () => window.removeEventListener("scroll", handleScroll)

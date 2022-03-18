@@ -8,6 +8,7 @@ import {
   padding_for_pages,
 } from "@/components/styled"
 import { device } from "@/common/utils"
+import { ScrollArrowStyled } from "../../shared/ScrollArrow"
 
 export const work_grid_col = css`
   grid-column: 1 / -1;
@@ -169,7 +170,7 @@ export const HeaderStyled = styled(motion.div)`
     }
   }
   @media ${device.laptop} and (orientation: landscape) {
-    /* position: relative; */
+    position: relative;
     width: 100%;
     height: 100vh;
 
@@ -200,6 +201,16 @@ export const HeaderStyled = styled(motion.div)`
         .title {
           margin: 0;
         }
+      }
+
+      
+      ${ScrollArrowStyled} {
+        position: absolute;
+        top: 90%;
+        /* top: 0;
+        left: 0;
+        height: 20px; */
+        justify-self: center;
       }
     }
 
