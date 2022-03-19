@@ -1,4 +1,4 @@
-export const fragment = `uniform float time;
+uniform float time;
 uniform sampler2D tDiffuse;
 uniform vec2 resolution;
 varying vec2 vUv;
@@ -19,4 +19,4 @@ void main() {
     float b = texture2D(tDiffuse, newUV.xy += c * (0.1 * .55)).z;
     vec4 color = vec4(r, g, b, 1.);
     gl_FragColor = color;
-}`
+}

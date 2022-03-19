@@ -4,8 +4,10 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass"
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass"
 
-import { vertex } from "./shader/vertex.js"
-import { fragment } from "./shader/fragment.js"
+import effectVertex from "./shader/effect/vertex.glsl"
+import effectFragment from "./shader/effect/fragment.glsl"
+import meshVertex from "./shader/mesh/vertex.glsl"
+import meshFragment from "./shader/mesh/fragment.glsl"
 
 import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
@@ -13,6 +15,56 @@ import { motion, useVelocity, useTransform } from "framer-motion"
 import { useWindowSize } from "@/common/utils/"
 import { useRouter } from "next/router"
 import { gsap } from "gsap"
+
+function getDistortionShaderDefinition() {
+  return {
+    uniforms: {
+      tDiffuse: { type: "t", value: null },
+      strength: { type: "f", value: 0 },
+      height: { type: "f", value: 1 },
+      aspectRatio: { type: "f", value: 1 },
+      cylindricalRatio: { type: "f", value: 1 },
+    },
+
+    vertexShader: [
+      "uniform float strength;", // s: 0 = perspective, 1 = stereographic
+      "uniform float height;", // h: tan(verticalFOVInRadians / 2)
+      "uniform float aspectRatio;", // a: screenWidth / screenHeight
+      "uniform float cylindricalRatio;", // c: cylindrical distortion ratio. 1 = spherical
+
+      "varying vec3 vUV;", // output to interpolate over screen
+      "varying vec2 vUVDot;", // output to interpolate over screen
+
+      "void main() {",
+      "gl_Position = projectionMatrix * (modelViewMatrix * vec4(position, 1.0));",
+
+      "float scaledHeight = strength * height;",
+      "float cylAspectRatio = aspectRatio * cylindricalRatio;",
+      "float aspectDiagSq = aspectRatio * aspectRatio + 1.0;",
+      "float diagSq = scaledHeight * scaledHeight * aspectDiagSq;",
+      "vec2 signedUV = (2.0 * uv + vec2(-1.0, -1.0));",
+
+      "float z = 0.5 * sqrt(diagSq + 1.0) + 0.5;",
+      "float ny = (z - 1.0) / (cylAspectRatio * cylAspectRatio + 1.0);",
+
+      "vUVDot = sqrt(ny) * vec2(cylAspectRatio, 1.0) * signedUV;",
+      "vUV = vec3(0.5, 0.5, 1.0) * z + vec3(-0.5, -0.5, 0.0);",
+      "vUV.xy += uv;",
+      "}",
+    ].join("\n"),
+
+    fragmentShader: [
+      "uniform sampler2D tDiffuse;", // sampler of rendered scene?s render target
+      "varying vec3 vUV;", // interpolated vertex output data
+      "varying vec2 vUVDot;", // interpolated vertex output data
+
+      "void main() {",
+      "vec3 uv = dot(vUVDot, vUVDot) * vec3(-0.5, -0.5, -1.0) + vUV;",
+      "gl_FragColor = texture2DProj(tDiffuse, uv);",
+      "}",
+    ].join("\n"),
+  }
+}
 
 const VanillaHover = ({
   animatedX,
@@ -35,7 +87,15 @@ const VanillaHover = ({
   let reqAnimFrame
 
   // const [panPressed, setPanPressed] = useState(false)
-  let camera, scene, renderer, composer, renderPass, customPass, canvasNode
+  let camera,
+    scene,
+    renderer,
+    composer,
+    renderPass,
+    customPass,
+    canvasNode,
+    cameraDragFOV,
+    distortedEffect
   let material,
     mesh,
     uMouse = new THREE.Vector2(0, 0)
@@ -70,6 +130,7 @@ const VanillaHover = ({
   const mouse = new THREE.Vector2()
 
   let meshArr
+  let textureLoader = new THREE.TextureLoader()
 
   // const ease = [0.6, 0.05, -0.01, 0.99]
   // const easeVal = [0.65, 0, 0.35, 1]
@@ -88,14 +149,21 @@ const VanillaHover = ({
         75,
         canvasNode.offsetWidth / canvasNode.offsetHeight,
         0.01,
-        10
+        1000
       )
+      // camera.fov = 180.0
       // camera.fov =
       //   2 *
       //   Math.atan(canvasNode.offsetWidth / camera.aspect / (2 * 5)) *
       //   (180 / Math.PI) // in degrees
 
       camera.position.z = 5
+      // camera.position.z = 10
+      // camera.position.y = 2
+      // camera.position.x = 2
+      // camera.rotateOnAxis(new THREE.Vector3(0, 1, 0), 1)
+
+      // camera.position.z = 5
 
       scene = new THREE.Scene()
 
@@ -110,7 +178,7 @@ const VanillaHover = ({
           id: i - 1,
           material,
           geometry: new THREE.PlaneGeometry(8, 4.5),
-          texture: new THREE.TextureLoader().load(
+          texture: textureLoader.load(
             // `/landing/album/image${i}.webp`,
             el.src ? el.src : `/landing/album/image${i}.webp`,
             () => {
@@ -136,6 +204,8 @@ const VanillaHover = ({
         obj.material = new THREE.MeshBasicMaterial({
           transparent: true,
           map: obj.texture,
+          // vertexShader: meshVertex,
+          // fragmentShader: meshFragment,
         })
         obj.mesh = new THREE.Mesh(obj.geometry, obj.material)
         // console.log(obj.mesh.geometry.parameters.width)
@@ -184,13 +254,33 @@ const VanillaHover = ({
           uType: { value: 0 },
           time: { value: 0 },
         },
-        vertexShader: vertex,
-        fragmentShader: fragment,
+        vertexShader: effectVertex,
+        fragmentShader: effectFragment,
       }
 
       customPass = new ShaderPass(myEffect)
       customPass.renderToScreen = true
       composer.addPass(customPass)
+
+      distortedEffect = new ShaderPass(getDistortionShaderDefinition())
+      console.log(distortedEffect)
+
+      // composer.addPass(distortedEffect)
+      // effect.renderToScreen = true
+
+      // Setup distortion effect
+      var horizontalFOV = 120
+      var strength = 0.55
+      var cylindricalRatio = 2
+      var height =
+        Math.tan(THREE.Math.degToRad(horizontalFOV) / 2) / camera.aspect
+
+      cameraDragFOV = (Math.atan(height) * 2 * 180) / 3.1415926535
+
+      distortedEffect.uniforms["strength"].value = strength
+      distortedEffect.uniforms["height"].value = height
+      distortedEffect.uniforms["aspectRatio"].value = camera.aspect
+      distortedEffect.uniforms["cylindricalRatio"].value = cylindricalRatio
     }
 
     const animate = function () {
@@ -648,9 +738,21 @@ const VanillaHover = ({
 
   const onMouseDown = () => {
     isScrollingY = false
+
+    console.log(composer)
+    console.log(distortedEffect)
+
+    composer?.addPass(distortedEffect)
+    distortedEffect.renderToScreen = true
+    camera.fov = cameraDragFOV
+    camera?.updateProjectionMatrix()
   }
   const onMouseUp = () => {
     snapFunc()
+    composer?.removePass(distortedEffect)
+    distortedEffect.renderToScreen = true
+    camera.fov = 75
+    camera?.updateProjectionMatrix()
   }
 
   return (
