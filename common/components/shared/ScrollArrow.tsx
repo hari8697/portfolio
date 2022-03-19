@@ -46,7 +46,7 @@ const ScrollArrow = ({ motionVariants = defaultVars }) => {
   useEffect(() => {
     const handleScroll = () => {
       const htmlDom = document?.querySelector("html")
-      console.log(htmlDom?.scrollTop)
+      // console.log(htmlDom?.scrollTop)
       if (htmlDom?.scrollTop > 20) {
         setHasScrolled(true)
       }
