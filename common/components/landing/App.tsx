@@ -9,6 +9,7 @@ import { device } from "@/common/utils"
 import { motion, useSpring, useViewportScroll } from "framer-motion"
 import React, { useEffect, useState, useRef } from "react"
 import { useRouter } from "next/router"
+import { Para, ParaLarge } from "@/components/styled"
 
 const ContainerVariants = {
   initial: {
@@ -265,7 +266,15 @@ const LandingWrapper = styled(motion.div)`
       margin-right: 60px;
       margin-top: 2px;
     }
+    .bar_wrap {
+      /* position: relative; */
 
+      ${ParaLarge} {
+        /* position: absolute;
+        top: -1rem; */
+        opacity: 0.7;
+      }
+    }
     .scrollProgressBar {
       padding: 14px 0;
       .bg,

@@ -1,6 +1,7 @@
 import { useWindowSize } from "@/common/utils"
 import { motion, useTransform } from "framer-motion"
 import ScrollArrow from "../../shared/ScrollArrow"
+import { Para, ParaLarge } from "@/components/styled"
 
 const ContainerVariants = {
   initial: {
@@ -41,12 +42,15 @@ const ScrollProgress = ({ animatedX, maxDragX, isExiting }) => {
               {/* <img src="/common/scrollHorizontal.svg"></img> */}
               <ScrollArrow></ScrollArrow>
             </div>
-            <div className="scrollProgressBar">
-              <motion.span
-                style={{ width: scrollBarWidth }}
-                className="fg"
-              ></motion.span>
-              <span className="bg"></span>
+            <div className="bar_wrap">
+              {/* <ParaLarge>Scroll for more</ParaLarge> */}
+              <div className="scrollProgressBar">
+                <motion.span
+                  style={{ width: scrollBarWidth }}
+                  className="fg"
+                ></motion.span>
+                <span className="bg"></span>
+              </div>
             </div>
           </motion.div>
         </>
