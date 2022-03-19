@@ -15,8 +15,6 @@ const HeroImageMobile = ({
   const { width: vW, height: vH } = useWindowSize()
   const [animVars, setAnimVars] = useState({
     initial: {
-      top: "26%",
-      left: "50%",
       x: "-50%",
       width: "100%",
     },
@@ -25,7 +23,6 @@ const HeroImageMobile = ({
       // width: "100vw",
       top: "calc(0px - 56px)",
       transition: {
-        width: "100vw",
         // height: "auto",
         duration: 0.5,
         ease: "easeOut",
@@ -59,7 +56,6 @@ const HeroImageMobile = ({
     setAnimVars({
       initial: {
         top: "26%",
-        left: "50%",
         x: "-50%",
         width: "100%",
         height: vW < 425 ? "25vh" : vW < 768 ? "30vh" : "35vh",

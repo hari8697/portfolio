@@ -224,10 +224,10 @@ export const HeroImage = styled(motion.div)`
   position: absolute;
   width: 100%;
   height: 25vh;
-  /* top: 26%; */
-  /* transform: translate(-50%, -26%); */
+  top: 26%;
+  left: 50%;
   /* transform: translateY(-26%); */
-  /* left: 50%; */
+  /* transform: translate(-50%, -26%); */
   overflow: hidden;
   /* transform: translateX(-50%); */
   /* width: 100vw;
@@ -261,6 +261,8 @@ export const HeroImage = styled(motion.div)`
     transform: translate(-50%, -50%) scale(1); */
     /* transform: translateX(-50%); */
     /* margin: 0 auto; */
+    top: initial;
+    left: initial;
     height: 58.5vh;
     width: 104vh;
     /* z-index: -1; */
