@@ -324,7 +324,7 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
  */
 
 const contentBlockShared = css`
-  margin-bottom: ${(props) => (props.lastBlock ? "50px" : "1rem")};
+  margin-bottom: ${(props) => (props.lastBlock ? "50px" : "1.2rem")};
 
   @media ${device.laptop} and (orientation: landscape) {
     margin-bottom: ${(props) => (props.lastBlock ? "200px" : "2.4rem")};
