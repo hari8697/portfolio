@@ -4,10 +4,10 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass"
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass"
 
-import effectVertex from "./shader/effect/vertex.glsl"
-import effectFragment from "./shader/effect/fragment.glsl"
-import meshVertex from "./shader/mesh/vertex.glsl"
-import meshFragment from "./shader/mesh/fragment.glsl"
+import effectVertex from "./shader/effect/vertex.js"
+import effectFragment from "./shader/effect/fragment.js"
+// import meshVertex from "./shader/mesh/vertex.glsl"
+// import meshFragment from "./shader/mesh/fragment.glsl"
 
 import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
@@ -739,8 +739,8 @@ const VanillaHover = ({
   const onMouseDown = () => {
     isScrollingY = false
 
-    console.log(composer)
-    console.log(distortedEffect)
+    // console.log(composer)
+    // console.log(distortedEffect)
 
     composer?.addPass(distortedEffect)
     distortedEffect.renderToScreen = true
