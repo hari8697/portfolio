@@ -8,7 +8,6 @@ import {
   padding_for_pages,
 } from "@/components/styled"
 import { device } from "@/common/utils"
-import { ScrollArrowStyled } from "../../shared/ScrollArrow"
 
 export const work_grid_col = css`
   grid-column: 1 / -1;
@@ -85,10 +84,10 @@ export const NavbarStyled = styled.div`
   position: relative;
 `
 
-export const CloseBtnStyled = styled(motion.div)`
+export const CloseBtnStyled = styled.div`
   z-index: 10;
   opacity: 0.8;
-  transition: opacity 200ms ease-out;
+  transition: opacity 100ms ease-out;
   &:hover,
   :focus {
     cursor: pointer;
@@ -98,7 +97,7 @@ export const CloseBtnStyled = styled(motion.div)`
     width: 21px;
     padding: 8px;
     padding-right: 0;
-    transition: opacity 200ms ease-out;
+    transition: opacity 100ms ease-out;
     &:hover,
     :focus {
       cursor: pointer;
@@ -133,6 +132,7 @@ export const HeaderStyled = styled(motion.div)`
   width: 100%;
   height: 100vh;
   padding: 56px 0 32px 0;
+
   .content_wrap {
     width: 100%;
     height: 100%;
@@ -140,7 +140,6 @@ export const HeaderStyled = styled(motion.div)`
   }
 
   .title_wrap {
-    height: max-content;
     padding-top: calc(30vh - 56px);
     /* padding-top: 30vh; */
     display: flex;
@@ -152,120 +151,75 @@ export const HeaderStyled = styled(motion.div)`
     }
   }
 
-  @media ${device.tablet} {
-    grid-column: 1 / -1;
-    display: inherit;
-    grid-template-columns: inherit;
-    grid-gap: inherit;
-
-    .content_wrap {
-      grid-column: 1 / -1;
-      display: inherit;
-      grid-template-columns: inherit;
-      grid-gap: inherit;
-
-      .title_wrap {
-        grid-column: 2 / -2;
-      }
-    }
-  }
   @media ${device.laptop} and (orientation: landscape) {
-    position: relative;
+    /* position: relative; */
     width: 100%;
     height: 100vh;
 
-    padding: 72px 0 50px;
-    
+    padding-top: 96px;
+    padding-bottom: 70px;
 
-    /* grid-column: 4 / 21; */
+    grid-column: 4 / 21;
 
     .content_wrap {
-      /* ${work_grid_col} */
-      /* grid-column: 4 / 21; */
+      ${work_grid_col}
       position: static;
       height: 100%;
-      /* min-height:  80vh; */
       /* min-height: 100vh; */
-      .title_wrap {
-        /* ${work_grid_col} */
-        grid-column: 4 / 21;
-        padding: 0;
-        display: block;
-        position: relative;
-        /* top: 45.5%; */
-        /* top: calc(96px + 70px); */
-        top: 50%;
-        margin: 0.25rem 0;
-        /* transform: translateY(-50%); */
-
-        .title {
-          margin: 0;
-        }
-      }
-
-      
-      ${ScrollArrowStyled} {
-        position: absolute;
-        top: 90%;
-        /* top: 0;
-        left: 0;
-        height: 20px; */
-        justify-self: center;
-      }
     }
 
-  }
-  @media ${device.laptopL} {
-    padding: 96px 0 70px;
+    .title_wrap {
+      padding: 0;
+      display: block;
+      position: relative;
+      /* top: 45.5%; */
+      /* top: calc(96px + 70px); */
+      top: 50%;
+      margin: 0.25rem 0;
+      /* transform: translateY(-50%); */
+
+      .title {
+        margin: 0;
+      }
+    }
   }
 `
 
 export const HeroImage = styled(motion.div)`
   position: absolute;
   width: 100%;
-  height: 25vh;
-  top: 26%;
-  left: 50%;
-  /* transform: translateY(-26%); */
+  /* height: 25vh; */
+  /* top: 26%; */
   /* transform: translate(-50%, -26%); */
+  transform: translateY(-26%);
+  left: 50%;
   overflow: hidden;
   /* transform: translateX(-50%); */
   /* width: 100vw;
   height: 30vh; */
   .img_wrap {
-    /* overflow: hidden; */
-    /* position: relative; */
+    overflow: hidden;
+    position: relative;
     width: 100%;
     height: 100%;
-    /* object-fit: cover; */
+    object-fit: cover;
     img {
-      /* width: 100%;
+      width: 100%;
       height: 100%;
-      object-fit: cover; */
+      object-fit: cover;
     }
   }
 
-  @media ${device.mobileL} {
-    height: 30vh;
-  }
-  @media ${device.tablet} {
-    top: 21%;
-    grid-column: 1 / -1;
-    height: 35vh;
-  }
-
   @media ${device.laptop} and (orientation: landscape) {
-    /* position: absolute; */
-    /* top: 50vh;
+    position: absolute;
+    top: 50vh;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1); */
+    transform: translate(-50%, -50%) scale(1);
     /* transform: translateX(-50%); */
-    /* margin: 0 auto; */
-    top: initial;
-    left: initial;
+    margin: 0 auto;
     height: 58.5vh;
     width: 104vh;
-    /* z-index: -1; */
+    z-index: -1;
 
     /* width: 66.66vw; // * 12 units in threejs for 100vw, each image is 8 units, hence 8/12 */
     /* min-height: 58.44vh; // * 7.7 units in threejs for 100vh, each image is 4.5 units, hence 4.5/7.7 */
@@ -326,7 +280,7 @@ export const ButtonLinkStyled = styled.button.attrs((props) => {
  */
 
 const contentBlockShared = css`
-  margin-bottom: ${(props) => (props.lastBlock ? "50px" : "1.2rem")};
+  margin-bottom: ${(props) => (props.lastBlock ? "50px" : "1rem")};
 
   @media ${device.laptop} and (orientation: landscape) {
     margin-bottom: ${(props) => (props.lastBlock ? "200px" : "2.4rem")};
@@ -358,19 +312,6 @@ const contentBlockShared = css`
 
 export const PresentationStyled = styled.div`
   ${contentBlockShared}
-
-  ${ParaLarge} {
-    a {
-      color: ${(props) => props.theme.linkTextColor};
-      transition: all 250ms ease-out;
-
-      &:hover,
-      &:focus {
-        /* color: ${(props) => props.theme.primaryColor}; */
-        text-decoration: underline;
-      }
-    }
-  }
 
   @media ${device.laptop} and (orientation: landscape) {
     margin: 100px 0 100px;

@@ -1,6 +1,5 @@
 import { motion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
-import ScrollArrow from "../../shared/ScrollArrow"
 import { LogoContainer, LogoGrid, Logo_ImgWrap } from "../styles/About.style"
 
 interface LogoWrapperProps {
@@ -80,7 +79,6 @@ const LogoWrapper = ({ animDelay }: LogoWrapperProps) => {
   const slicedLetters = slicedLettersNos.map((item, idx) => {
     return (
       <motion.img
-        className="noselect nodrag"
         key={idx}
         src={`/about/sliced_logo/${item}.svg`}
         variants={singleLetterVars}
@@ -99,7 +97,7 @@ const LogoWrapper = ({ animDelay }: LogoWrapperProps) => {
               variants={lettersWrapVars}
               initial="initial"
               animate="animate"
-              className="letters_wrap noselect nodrag"
+              className="letters_wrap"
               style={{
                 height: calcLogoHeight(imgWrapDimensions?.x)
                   ? calcLogoHeight(imgWrapDimensions?.x)
@@ -110,7 +108,6 @@ const LogoWrapper = ({ animDelay }: LogoWrapperProps) => {
             </motion.div>
           </Logo_ImgWrap>
         </LogoContainer>
-        <ScrollArrow></ScrollArrow>
       </LogoGrid>
     </div>
   )

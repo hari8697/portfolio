@@ -33,11 +33,6 @@ const ContainerVariants = {
   },
   exit: {
     opacity: 0,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20,
-    },
   },
 }
 
@@ -64,10 +59,10 @@ export default function Landing({
   moveByFactor,
   maxDragX,
   setMaxDragX,
-  setCompletedExit,
 }) {
   // const [titleDragX, setTitleDragX] = useState(0)
   const [titleWrapperMoveByHeight, setTitleWrapperMoveByHeight] = useState(0)
+  const [completedExit, setCompletedExit] = useState(false)
   const { width: vW, height: vH } = useWindowSize()
 
   const title_wrapper = useRef(null)
@@ -137,6 +132,8 @@ export default function Landing({
         className="noselect"
         variants={ContainerVariants}
         animate={isExiting ? "exit" : "animate"}
+        onAnimationStart={() => setCompletedExit(false)}
+        onAnimationComplete={() => setCompletedExit(true)}
       >
         <div className="logo">
           <img src="/common/DeathSpace_Logo.svg"></img>
@@ -181,10 +178,6 @@ export default function Landing({
         className="noselect"
         variants={ContainerVariants}
         animate={isExiting ? "exit" : "animate"}
-        onAnimationStart={() => setCompletedExit(false)}
-        onAnimationComplete={() => {
-          setCompletedExit(true)
-        }}
       >
         <SocialItems isExiting={isExiting} />
         {footerSwipe(vW, vH)}

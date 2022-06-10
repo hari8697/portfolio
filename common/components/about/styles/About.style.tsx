@@ -3,7 +3,6 @@ import styled, { css } from "styled-components"
 
 import { full_W_H, GridContainer, ParaLarge } from "@/components/styled"
 import Div100vh from "react-div-100vh"
-import { ScrollArrowStyled } from "../../shared/ScrollArrow"
 
 export const default_grid_col = css`
   grid-column: 1 / -1;
@@ -73,17 +72,8 @@ export const CloseBtn_ImgWrap = styled.div`
 =            Main Logo            =
 =============================================*/
 export const LogoGrid = styled.div`
-  position: absolute;
   width: 100%;
-
   ${GridContainer}
-  grid-template-rows: 1fr min-content;
-
-  ${ScrollArrowStyled} {
-    position: absolute;
-    bottom: 90px;
-    justify-self: center;
-  }
 `
 export const LogoContainer = styled(Div100vh)`
   height: 100%;

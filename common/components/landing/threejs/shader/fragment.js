@@ -1,4 +1,4 @@
-const frag = `uniform float time;
+export const fragment = `uniform float time;
 uniform sampler2D tDiffuse;
 uniform vec2 resolution;
 varying vec2 vUv;
@@ -20,5 +20,3 @@ void main() {
     vec4 color = vec4(r, g, b, 1.);
     gl_FragColor = color;
 }`
-
-export default frag

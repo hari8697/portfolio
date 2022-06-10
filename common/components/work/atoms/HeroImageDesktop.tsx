@@ -112,10 +112,10 @@ const HeroImageDesktop = ({
         <Image
           src={`https:${heroImage.fields.file.url}`}
           alt=""
-          layout={"fill"} // width={null}
+          layout={"responsive"} // width={null}
           // height={null}
-          // width={heroImage.fields.file.details.image.width}
-          // height={heroImage.fields.file.details.image.height}
+          width={heroImage.fields.file.details.image.width}
+          height={heroImage.fields.file.details.image.height}
           priority={true}
           // loading="eager"
           objectFit="cover"

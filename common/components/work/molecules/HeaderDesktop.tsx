@@ -6,7 +6,6 @@ import { motion } from "framer-motion"
 import { HeroImageMobile, HeroImageDesktop } from "../atoms"
 import Link from "next/link"
 import { H1 } from "@/components/styled/index"
-import ScrollArrow from "../../shared/ScrollArrow"
 
 export const HeaderDesktop = ({
   pageTransitionComplete,
@@ -98,7 +97,6 @@ export const HeaderDesktop = ({
         >
           <H1 className="title">{title}</H1>
         </motion.div>
-        <ScrollArrow></ScrollArrow>
       </div>
     </HeaderStyled>
   )

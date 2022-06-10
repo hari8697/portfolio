@@ -8,8 +8,6 @@ import { useResponsiveHelper, useWindowSize } from "@/common/utils/"
 import { device } from "@/common/utils"
 import { motion, useSpring, useViewportScroll } from "framer-motion"
 import React, { useEffect, useState, useRef } from "react"
-import { useRouter } from "next/router"
-import { Para, ParaLarge } from "@/components/styled"
 
 const ContainerVariants = {
   initial: {
@@ -27,9 +25,6 @@ const ContainerVariants = {
 }
 
 function App({ setThreeImagesBools, preloaderBool, projects }) {
-  const router = useRouter()
-  const [completedExit, setCompletedExit] = useState(false)
-  const [currSlug, setCurrSlug] = useState("")
   const appContainer = useRef(null)
   const [isExiting, setIsExiting] = useState(false)
   const { isMobile, isTablet } = useResponsiveHelper()
@@ -51,16 +46,6 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
   // useEffect(() => {
   //   console.log(selectedTitle)
   // }, [selectedTitle])
-
-  useEffect(() => {
-    // console.log("completedExit", completedExit)
-    // console.log("isExiting", isExiting)
-
-    if (completedExit && isExiting && (currSlug != "" || null || undefined)) {
-      const goToUrl = `work/${currSlug}`
-      router.push(goToUrl, undefined, { scroll: false })
-    }
-  }, [completedExit])
 
   const setupSwipes = () => {
     const slider = appContainer.current
@@ -194,7 +179,6 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
           scrollValueY={scrollYProgress}
           pageExtraHeight={pageExtraHeight}
           setThreeImagesBools={setThreeImagesBools}
-          setCurrSlug={setCurrSlug}
         />
       )}
       {isMobile || isTablet ? (
@@ -207,8 +191,6 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
             selectedTitle={selectedTitle}
             setSelectedTitle={setSelectedTitle}
             setThreeImagesBools={setThreeImagesBools}
-            setCompletedExit={setCompletedExit}
-            setCurrSlug={setCurrSlug}
           ></LandingMobile>
         </LandingWrapper>
       ) : (
@@ -220,7 +202,6 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
             moveByFactor={moveByFactor}
             maxDragX={maxDragX}
             setMaxDragX={setMaxDragX}
-            setCompletedExit={setCompletedExit}
           ></Landing>
           <ScrollProgress
             isExiting={isExiting}
@@ -256,25 +237,18 @@ const LandingWrapper = styled(motion.div)`
     bottom: 32px;
     right: 0;
     display: flex;
-    /* overflow-x: hidden; */
+    overflow: hidden;
     grid-column-start: 20;
 
     .scroll_arrow {
       display: grid;
       place-items: center;
       width: 30px;
+      opacity: 0.4;
       margin-right: 60px;
       margin-top: 2px;
     }
-    .bar_wrap {
-      /* position: relative; */
 
-      ${ParaLarge} {
-        /* position: absolute;
-        top: -1rem; */
-        opacity: 0.7;
-      }
-    }
     .scrollProgressBar {
       padding: 14px 0;
       .bg,
