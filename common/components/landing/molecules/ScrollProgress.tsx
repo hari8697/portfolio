@@ -1,5 +1,7 @@
 import { useWindowSize } from "@/common/utils"
 import { motion, useTransform } from "framer-motion"
+import ScrollArrow from "../../shared/ScrollArrow"
+import ScrollText from "../atoms/ScrollText"
 
 const ContainerVariants = {
   initial: {
@@ -37,14 +39,18 @@ const ScrollProgress = ({ animatedX, maxDragX, isExiting }) => {
             animate={isExiting ? "exit" : "animate"}
           >
             <div className="scroll_arrow">
-              <img src="/landing/scrollHorizontal.svg"></img>
+              {/* <img src="/common/scrollHorizontal.svg"></img> */}
+              <ScrollArrow></ScrollArrow>
             </div>
-            <div className="scrollProgressBar">
-              <motion.span
-                style={{ width: scrollBarWidth }}
-                className="fg"
-              ></motion.span>
-              <span className="bg"></span>
+            <div className="bar_wrap">
+              <ScrollText></ScrollText>
+              <div className="scrollProgressBar">
+                <motion.span
+                  style={{ width: scrollBarWidth }}
+                  className="fg"
+                ></motion.span>
+                <span className="bg"></span>
+              </div>
             </div>
           </motion.div>
         </>

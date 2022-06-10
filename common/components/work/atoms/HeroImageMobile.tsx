@@ -1,9 +1,10 @@
 import { CloseBtnStyled, HeaderStyled, HeroImage } from "../styles/App.styled"
 import Image from "next/image"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useAnimation } from "framer-motion"
 
 import React from "react"
+import { useWindowSize } from "@/common/utils"
 
 const HeroImageMobile = ({
   setPageTransitionComplete,
@@ -11,30 +12,17 @@ const HeroImageMobile = ({
   heroImageAnimDelay,
 }) => {
   const controls = useAnimation()
-
-  useEffect(() => {
-    const sequence = () => {
-      controls.start("animate")
-      setTimeout(() => {
-        controls.start("setHeight")
-      }, heroImageAnimDelay * 1000)
-    }
-    sequence()
-  }, [])
-
-  let HeroImageVariants = {
+  const { width: vW, height: vH } = useWindowSize()
+  const [animVars, setAnimVars] = useState({
     initial: {
-      top: "26%",
       x: "-50%",
       width: "100%",
-      height: "25vh",
     },
     animate: {
       // y: 0,
       // width: "100vw",
       top: "calc(0px - 56px)",
       transition: {
-        width: "100vw",
         // height: "auto",
         duration: 0.5,
         ease: "easeOut",
@@ -52,13 +40,67 @@ const HeroImageMobile = ({
     exit: {
       opacity: 0,
     },
-  }
+  })
+
+  useEffect(() => {
+    const sequence = () => {
+      controls.start("animate")
+      setTimeout(() => {
+        controls.start("setHeight")
+      }, heroImageAnimDelay * 1000)
+    }
+    sequence()
+  }, [])
+
+  useEffect(() => {
+    setAnimVars({
+      initial: {
+        top: "26%",
+        x: "-50%",
+        width: "100%",
+        height: vW < 425 ? "25vh" : vW < 768 ? "30vh" : "35vh",
+      },
+      ...animVars,
+    })
+  }, [vW, vH])
+
+  // let HeroImageVariants = {
+  //   initial: {
+  //     top: "26%",
+  //     x: "-50%",
+  //     width: "100%",
+  //     height: vW < 425 ? "25vh" : vW < 768 ? "30vh" : "35vh",
+  //   },
+  //   animate: {
+  //     // y: 0,
+  //     // width: "100vw",
+  //     top: "calc(0px - 56px)",
+  //     transition: {
+  //       width: "100vw",
+  //       // height: "auto",
+  //       duration: 0.5,
+  //       ease: "easeOut",
+  //       delay: heroImageAnimDelay,
+  //     },
+  //   },
+  //   setHeight: {
+  //     width: "100vw",
+  //     height: "30vh",
+  //     transition: {
+  //       duration: 0.5,
+  //       ease: "easeOut",
+  //     },
+  //   },
+  //   exit: {
+  //     opacity: 0,
+  //   },
+  // }
 
   return (
     <HeroImage
       className="hero_image"
-      variants={HeroImageVariants}
-      initial="initial"
+      variants={animVars}
+      initial={"initial"}
       animate={controls}
       onAnimationComplete={() => {
         setPageTransitionComplete(true)

@@ -25,24 +25,6 @@ const slowTransition = {
   // bounce: 0.5,
 }
 
-const ContainerVariants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-  exit: {
-    opacity: 0,
-    transition: slowTransition,
-  },
-  title_exit: {
-    opacity: 0,
-    y: 50,
-    transition: slowTransition,
-  },
-}
-
 export default function Landing({
   imagesArr,
   selectedTitle,
@@ -51,12 +33,14 @@ export default function Landing({
   preloaderBool,
   isExiting,
   setIsExiting,
+  setCompletedExit,
+  setCurrSlug,
 }) {
   const router = useRouter()
   const selectedTitleAnimated = useSpring(1)
   const { isMobile, isTablet } = useResponsiveHelper()
-  const [currSlug, setCurrSlug] = useState("")
-  const [completedExit, setCompletedExit] = useState(false)
+  // const [currSlug, setCurrSlug] = useState("")
+  // const [completedExit, setCompletedExit] = useState(false)
 
   useEffect(() => {
     selectedTitleAnimated.set(selectedTitle)
@@ -110,9 +94,27 @@ export default function Landing({
   let titleWrapperHeight
   const textWrapperY = useTransform(
     selectedTitleAnimated,
-    [4, 1],
+    [imagesArr.length, 1],
     [-titleWrapperMoveByHeight, 0]
   )
+
+  const ContainerVariants = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+    },
+    exit: {
+      opacity: 0,
+      transition: slowTransition,
+    },
+    title_exit: {
+      opacity: 0,
+      y: textWrapperY.get() + 50,
+      transition: slowTransition,
+    },
+  }
 
   const calcAnimHelperValues = () => {
     // Title anim Values
@@ -147,18 +149,6 @@ export default function Landing({
       calcAnimHelperValues()
     })
   }, [])
-
-  const exitFunc = (slug) => {}
-
-  useEffect(() => {
-    // console.log("completedExit", completedExit)
-    // console.log("isExiting", isExiting)
-
-    if (completedExit && isExiting) {
-      const goToUrl = `work/${currSlug}`
-      router.push(goToUrl, undefined, { scroll: false })
-    }
-  }, [completedExit])
 
   return (
     <GridContainer
