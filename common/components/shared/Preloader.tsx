@@ -156,7 +156,7 @@ const loadImage = async (arr, updateFunc) => {
         await img.decode()
         // img is ready to used
 
-        // console.log("Image " + name + " has been loaded")
+        console.log("Image " + name + " has been loaded")
         // console.log(
         //   "Image " +
         //     name +
