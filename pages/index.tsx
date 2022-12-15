@@ -25,6 +25,7 @@ function Home({ projects }) {
   const [threeImagesBools, setThreeImagesBools] = useState([])
   const [loadImagesArr, setLoadImagesArr] = useState([
     ...social_images_arr,
+    ...sliced_logo_arr,
     {
       url: "/common/scrollHorizontal.svg",
       name: "scrollHorizontal",
@@ -132,6 +133,15 @@ const social_images_arr = Array.from({ length: 4 }, (_, i) => {
   return {
     url: `/landing/social/${i + 1}.svg`,
     name: `social_icon_${i + 1}`,
+    loaded_bool: false,
+    imgObject: {},
+  }
+})
+
+const sliced_logo_arr = Array.from({ length: 10 }, (_, i) => {
+  return {
+    url: `/about/sliced_logo/${i + 1}.svg`,
+    name: `sliced_logo${i + 1}`,
     loaded_bool: false,
     imgObject: {},
   }
