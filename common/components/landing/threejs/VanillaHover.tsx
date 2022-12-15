@@ -65,6 +65,7 @@ const VanillaHover = ({
 
   let isScrollingY = false
   let isSnapping = false
+  let scrollDisabled = false
 
   const raycaster = new THREE.Raycaster()
   const mouse = new THREE.Vector2()
@@ -285,7 +286,7 @@ const VanillaHover = ({
     })
 
     const unsubscribeY = scrollValueY_animatedX.onChange(() => {
-      if (!isSnapping) {
+      if (!isSnapping && !scrollDisabled) {
         // console.log("scrollValue", scrollValueY_animatedX.get())
         // let tempScrollVal = scrollValueY_animatedX.get()
         isScrollingY = true
@@ -614,6 +615,7 @@ const VanillaHover = ({
           console.log("success!")
           console.log(currSelectedElement)
           exitAnimation(currSelectedElement)
+          scrollDisabled = true
           // console.log("positiveAnimatedX", positiveAnimatedX)
 
           // console.log("pushing")
