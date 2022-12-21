@@ -629,7 +629,7 @@ const VanillaHover = ({
           setCurrSlug(`${imagesArr[currSelectedElement].slug}`)
 
           setIsExiting((prev) => {
-            console.log(prev)
+            // console.log(prev)
             return true
           })
 

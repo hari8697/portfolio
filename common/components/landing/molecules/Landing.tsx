@@ -33,11 +33,11 @@ const ContainerVariants = {
   exit: {
     opacity: 0,
     transition: {
-      // type: "spring",
-      // stiffness: 100,
-      // damping: 10,
-      duration: 0.2,
-      ease: "easeOut",
+      type: "spring",
+      stiffness: 100,
+      damping: 17,
+      // duration: 0.2,
+      // ease: "easeOut",
     },
   },
 }
@@ -138,6 +138,10 @@ export default function Landing({
         className="noselect"
         variants={ContainerVariants}
         animate={isExiting ? "exit" : "animate"}
+        onAnimationStart={() => setCompletedExit(false)}
+        onAnimationComplete={() => {
+          setCompletedExit(true)
+        }}
       >
         <div className="logo">
           <img src="/common/DeathSpace_Logo.svg"></img>
@@ -182,10 +186,6 @@ export default function Landing({
         className="noselect"
         variants={ContainerVariants}
         animate={isExiting ? "exit" : "animate"}
-        onAnimationStart={() => setCompletedExit(false)}
-        onAnimationComplete={() => {
-          setCompletedExit(true)
-        }}
       >
         <SocialItems isExiting={isExiting} />
         {footerSwipe(vW, vH)}
