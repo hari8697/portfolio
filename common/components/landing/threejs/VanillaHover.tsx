@@ -278,6 +278,7 @@ const VanillaHover = ({
       // window.scrollTo(0, 0)
     }
 
+    scrollDisabled = false
     ogFunc()
 
     const unsubscribeSnap = scrollVal.onChange(() => {
@@ -628,7 +629,7 @@ const VanillaHover = ({
           setCurrSlug(`${imagesArr[currSelectedElement].slug}`)
 
           setIsExiting((prev) => {
-            // console.log(prev)
+            console.log(prev)
             return true
           })
 

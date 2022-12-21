@@ -32,7 +32,7 @@ const HeroImageDesktop = ({
       left: "50%",
       x: "-50%",
       y: "-50%",
-      scale: 1,
+      // scale: 1,
       // opacity: 1,
 
       //   top: "50vh",
@@ -42,10 +42,10 @@ const HeroImageDesktop = ({
       //   height: "25vh",
     },
     animate: {
-      top: "50vh",
-      left: "50%",
-      x: "-50%",
-      y: "-50%",
+      // top: "50vh",
+      // left: "50%",
+      // x: "-50%",
+      // y: "-50%",
       scale: 0.9,
 
       //   top: "50vh",

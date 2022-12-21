@@ -108,7 +108,7 @@ export async function getStaticProps({ params }) {
       projects: data[0],
       compKey: params.id,
     },
-    revalidate: 30,
+    revalidate: 1,
   }
 }
 

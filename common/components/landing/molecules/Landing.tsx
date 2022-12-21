@@ -16,15 +16,14 @@ import Link from "next/link"
 import { H5Link } from "@/components/styled/"
 
 const ContainerVariants = {
-  title_exit: {
-    opacity: 0,
-
-    transition: {
-      type: "spring",
-      stiffness: 70,
-      damping: 20,
-    },
-  },
+  // title_exit: {
+  //   opacity: 0,
+  //   transition: {
+  //     type: "spring",
+  //     stiffness: 50,
+  //     damping: 80,
+  //   },
+  // },
   initial: {
     opacity: 0,
   },
@@ -34,9 +33,11 @@ const ContainerVariants = {
   exit: {
     opacity: 0,
     transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20,
+      // type: "spring",
+      // stiffness: 100,
+      // damping: 10,
+      duration: 0.2,
+      ease: "easeOut",
     },
   },
 }
@@ -170,7 +171,7 @@ export default function Landing({
               style={{ y: textWrapperY }}
               className="text_wrapper"
               variants={ContainerVariants}
-              animate={isExiting ? "title_exit" : "animate"}
+              animate={isExiting ? "exit" : "animate"}
             >
               {portItems}
             </motion.div>
