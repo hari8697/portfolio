@@ -22,10 +22,20 @@ function Home({ projects }) {
 
   // console.log(isPreloading)
   // const [preloaderBool, setPreloaderBool] = useState(true) // ? Previous local state implementation
+
+  const heroImages = projects.map((item, idx) => {
+    return {
+      url: `https:${item.fields.heroImage.fields.file.url}`,
+      name: `heroImage${idx}`,
+      loaded_bool: false,
+      imgObject: {},
+    }
+  })
   const [threeImagesBools, setThreeImagesBools] = useState([])
   const [loadImagesArr, setLoadImagesArr] = useState([
     ...social_images_arr,
     ...sliced_logo_arr,
+    ...heroImages,
     {
       url: "/common/scrollHorizontal.svg",
       name: "scrollHorizontal",

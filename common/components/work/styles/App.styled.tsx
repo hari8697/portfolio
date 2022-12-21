@@ -261,8 +261,8 @@ export const HeroImage = styled(motion.div)`
     transform: translate(-50%, -50%) scale(1); */
     /* transform: translateX(-50%); */
     /* margin: 0 auto; */
-    top: initial;
-    left: initial;
+    /* top: initial;
+    left: initial; */
     height: 58.5vh;
     width: 104vh;
     /* z-index: -1; */

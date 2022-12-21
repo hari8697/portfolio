@@ -278,6 +278,7 @@ const VanillaHover = ({
       // window.scrollTo(0, 0)
     }
 
+    scrollDisabled = false
     ogFunc()
 
     const unsubscribeSnap = scrollVal.onChange(() => {
