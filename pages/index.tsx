@@ -35,7 +35,7 @@ function Home({ projects }) {
   const [loadImagesArr, setLoadImagesArr] = useState([
     ...social_images_arr,
     ...sliced_logo_arr,
-    ...heroImages,
+    // ...heroImages,
     {
       url: "/common/scrollHorizontal.svg",
       name: "scrollHorizontal",
