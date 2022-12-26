@@ -33,7 +33,8 @@ const MobileHover = ({
 
         let newTexture = loader.load(
           // `/landing/album/image${image.id}.webp`,
-          image.src ? image.src : `/landing/album/image${image.id}.webp`,
+          image.src,
+          // image.src ? image.src : `/landing/album/image${image.id}.webp`,
           () => {
             newTexture.needsUpdate = true
             setThreeImagesBools((prevValue) => {
@@ -66,8 +67,10 @@ const MobileHover = ({
       new hoverEffect({
         parent: imageEl.current,
         intensity: 0.3,
-        image1: "/landing/album/image1.webp",
-        image2: "/landing/album/image2.webp",
+        image1: imagesArr[0].src,
+        image2: imagesArr[1].src,
+        // image1: "/landing/album/image1.webp",
+        // image2: "/landing/album/image2.webp",
         displacementImage: "/landing/textures/8.webp",
         imagesRatio: 0.5621815718157182,
         hover: false,
