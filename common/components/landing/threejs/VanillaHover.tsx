@@ -158,7 +158,7 @@ const VanillaHover = ({
             })
       }
 
-      // NOTE - Trial fix for framedrop when scrolling
+      // NOTE - Fix for framedrop when scrolling
       scene.traverse((obj) => (obj.frustumCulled = false))
 
       // const bgColor = new THREE.Color(0x0e0c10)
