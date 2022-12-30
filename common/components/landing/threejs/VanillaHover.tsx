@@ -286,6 +286,7 @@ const VanillaHover = ({
       // window.scrollTo(0, 0)
     }
 
+    setScrollDisabled(false)
     ogFunc()
 
     const unsubscribeSnap = scrollVal.onChange(() => {
@@ -294,7 +295,7 @@ const VanillaHover = ({
     })
 
     const unsubscribeY = scrollValueY_animatedX.onChange(() => {
-      if (!isSnapping && !isExiting) {
+      if (!isSnapping && !isExiting && !scrollDisabled) {
         // console.log("scrollValue", scrollValueY_animatedX.get())
         // let tempScrollVal = scrollValueY_animatedX.get()
         isScrollingY = true
@@ -327,6 +328,7 @@ const VanillaHover = ({
 
     return () => {
       var myNode = canvasEl.current
+      setScrollDisabled(false)
       if (myNode) {
         while (myNode.firstChild) {
           myNode.removeChild(myNode.lastChild)
@@ -624,7 +626,7 @@ const VanillaHover = ({
           console.log("success!")
           console.log(currSelectedElement)
           exitAnimation(currSelectedElement)
-          // setScrollDisabled(true)
+          setScrollDisabled(true)
 
           // console.log("positiveAnimatedX", positiveAnimatedX)
 
