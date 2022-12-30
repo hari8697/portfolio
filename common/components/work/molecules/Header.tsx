@@ -6,7 +6,7 @@ import { AnimatePresence } from "framer-motion"
 
 const Header = ({
   data,
-
+  isExiting,
   setIsExiting,
   pageTransitionComplete,
   setPageTransitionComplete,
@@ -72,6 +72,7 @@ const Header = ({
         />
       ) : (
         <HeaderDesktop
+          isExiting={isExiting}
           pageTransitionComplete={pageTransitionComplete}
           setIsExiting={setIsExiting}
           setPageTransitionComplete={setPageTransitionComplete}

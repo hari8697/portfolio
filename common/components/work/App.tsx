@@ -100,6 +100,7 @@ const App = ({
             exit={"exit"}
           >
             <Header
+              isExiting={isExiting}
               data={data}
               setIsExiting={setIsExiting}
               pageTransitionComplete={pageTransitionComplete}
