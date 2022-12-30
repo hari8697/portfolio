@@ -81,10 +81,12 @@ export const HeaderDesktop = ({
               alt=""
               onClick={(e) => {
                 e.preventDefault()
-                setIsExiting(true)
                 const goToUrl = `/`
                 if (!isExiting) {
-                  router.push(goToUrl, undefined, { scroll: false })
+                  setIsExiting(true)
+                  setTimeout(() => {
+                    router.push(goToUrl, undefined, { scroll: false })
+                  }, 250)
                 }
               }}
             />
