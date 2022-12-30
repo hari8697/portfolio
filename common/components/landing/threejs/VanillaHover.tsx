@@ -65,7 +65,8 @@ const VanillaHover = ({
 
   let isScrollingY = false
   let isSnapping = false
-  let scrollDisabled = false
+
+  const [scrollDisabled, setScrollDisabled] = useState(false)
 
   const raycaster = new THREE.Raycaster()
   const mouse = new THREE.Vector2()
@@ -285,7 +286,6 @@ const VanillaHover = ({
       // window.scrollTo(0, 0)
     }
 
-    scrollDisabled = false
     ogFunc()
 
     const unsubscribeSnap = scrollVal.onChange(() => {
@@ -294,7 +294,7 @@ const VanillaHover = ({
     })
 
     const unsubscribeY = scrollValueY_animatedX.onChange(() => {
-      if (!isSnapping && !scrollDisabled) {
+      if (!isSnapping && !isExiting) {
         // console.log("scrollValue", scrollValueY_animatedX.get())
         // let tempScrollVal = scrollValueY_animatedX.get()
         isScrollingY = true
@@ -326,7 +326,6 @@ const VanillaHover = ({
     window.addEventListener("resize", onResize)
 
     return () => {
-      scrollDisabled = false
       var myNode = canvasEl.current
       if (myNode) {
         while (myNode.firstChild) {
@@ -601,7 +600,7 @@ const VanillaHover = ({
     mouse.y = -((event.clientY - bounds.top) / canvasNode.clientHeight) * 2 + 1
     raycaster.setFromCamera(mouse, camera)
 
-    var intersects = raycaster.intersectObjects(scene.children, true)
+    var intersects = raycaster.intersectObjects(scene?.children, true)
     if (intersects.length > 0) {
       // Check if still
       // Do stuff
@@ -625,7 +624,8 @@ const VanillaHover = ({
           console.log("success!")
           console.log(currSelectedElement)
           exitAnimation(currSelectedElement)
-          scrollDisabled = true
+          // setScrollDisabled(true)
+
           // console.log("positiveAnimatedX", positiveAnimatedX)
 
           // console.log("pushing")
