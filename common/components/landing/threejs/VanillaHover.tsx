@@ -326,6 +326,7 @@ const VanillaHover = ({
     window.addEventListener("resize", onResize)
 
     return () => {
+      scrollDisabled = false
       var myNode = canvasEl.current
       if (myNode) {
         while (myNode.firstChild) {
