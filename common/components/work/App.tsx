@@ -92,80 +92,83 @@ const App = ({
           data={album}
         />
       </AnimatePresence>
+      <AnimatePresence>
+        {!isExiting && (
+          <Container
+            variants={ContainerVariants}
+            animate={"animate"}
+            exit={"exit"}
+          >
+            <Header
+              data={data}
+              setIsExiting={setIsExiting}
+              pageTransitionComplete={pageTransitionComplete}
+              setPageTransitionComplete={setPageTransitionComplete}
+              // heroImageProps={heroImageProps}
+            />
+            <motion.div
+              className="content_wrap"
+              variants={pageTransitionAnim}
+              initial="initial"
+              animate={
+                pageTransitionComplete ? "animationComplete" : "immediateHide"
+              }
+              exit="initial"
+            >
+              <Presentation data={presentation} />
 
-      <Container
-        variants={ContainerVariants}
-        animate={isExiting ? "exit" : "animate"}
-      >
-        <Header
-          data={data}
-          isExiting={isExiting}
-          setIsExiting={setIsExiting}
-          pageTransitionComplete={pageTransitionComplete}
-          setPageTransitionComplete={setPageTransitionComplete}
-          // heroImageProps={heroImageProps}
-        />
-        <motion.div
-          className="content_wrap"
-          variants={pageTransitionAnim}
-          initial="initial"
-          animate={
-            pageTransitionComplete ? "animationComplete" : "immediateHide"
-          }
-          exit="initial"
-        >
-          <Presentation data={presentation} />
+              <SectionWrapper>
+                <SectionTitle>Role</SectionTitle>
+                <TextList data={role} />
+              </SectionWrapper>
 
-          <SectionWrapper>
-            <SectionTitle>Role</SectionTitle>
-            <TextList data={role} />
-          </SectionWrapper>
+              <SectionWrapper>
+                <SectionTitle>Tech used</SectionTitle>
+                <TextList data={techUsed} />
+              </SectionWrapper>
 
-          <SectionWrapper>
-            <SectionTitle>Tech used</SectionTitle>
-            <TextList data={techUsed} />
-          </SectionWrapper>
+              <SectionWrapper className="type">
+                <SectionTitle>Type</SectionTitle>
+                <TextList data={type} />
+              </SectionWrapper>
 
-          <SectionWrapper className="type">
-            <SectionTitle>Type</SectionTitle>
-            <TextList data={type} />
-          </SectionWrapper>
+              <SectionWrapper className="year">
+                <SectionTitle>Year</SectionTitle>
+                <TextList data={year} />
+              </SectionWrapper>
 
-          <SectionWrapper className="year">
-            <SectionTitle>Year</SectionTitle>
-            <TextList data={year} />
-          </SectionWrapper>
+              <SectionWrapper className="links" lastBlock>
+                <SectionTitle>Links</SectionTitle>
+                <ButtonList data={links} />
+              </SectionWrapper>
+            </motion.div>
 
-          <SectionWrapper className="links" lastBlock>
-            <SectionTitle>Links</SectionTitle>
-            <ButtonList data={links} />
-          </SectionWrapper>
-        </motion.div>
+            <motion.div
+              className="content_wrap large"
+              variants={pageTransitionAnim}
+              initial="initial"
+              animate={
+                pageTransitionComplete ? "animationComplete" : "immediateHide"
+              }
+              exit="initial"
+            >
+              <AlbumList
+                setSwiperOpen={setSwiperOpen}
+                setCurrSelectedSlide={setCurrSelectedSlide}
+                data={album}
+                albumImagesProps={albumImagesProps}
+                id={id}
+              />
 
-        <motion.div
-          className="content_wrap large"
-          variants={pageTransitionAnim}
-          initial="initial"
-          animate={
-            pageTransitionComplete ? "animationComplete" : "immediateHide"
-          }
-          exit="initial"
-        >
-          <AlbumList
-            setSwiperOpen={setSwiperOpen}
-            setCurrSelectedSlide={setCurrSelectedSlide}
-            data={album}
-            albumImagesProps={albumImagesProps}
-            id={id}
-          />
-
-          <NextLink
-            isExiting={isExiting}
-            setIsExiting={setIsExiting}
-            next={next}
-          />
-        </motion.div>
-      </Container>
+              <NextLink
+                isExiting={isExiting}
+                setIsExiting={setIsExiting}
+                next={next}
+              />
+            </motion.div>
+          </Container>
+        )}
+      </AnimatePresence>
     </motion.div>
   )
 }

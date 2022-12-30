@@ -10,7 +10,7 @@ import ScrollArrow from "../../shared/ScrollArrow"
 
 export const HeaderDesktop = ({
   pageTransitionComplete,
-  isExiting,
+
   setIsExiting,
   setPageTransitionComplete,
   heroImage,
@@ -86,7 +86,6 @@ export const HeaderDesktop = ({
         </motion.div>
 
         <HeroImageDesktop
-          isExiting={isExiting}
           setPageTransitionComplete={setPageTransitionComplete}
           heroImage={heroImage}
           heroImageAnimDelay={heroImageAnimDelay}
