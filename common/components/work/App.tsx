@@ -38,9 +38,9 @@ const App = ({
     initial: {},
     animate: {
       opacity: 1,
-      transition: {
-        delay: 0.05,
-      },
+      // transition: {
+      //   delay: 0.05,
+      // },
     },
     exit: {
       opacity: 0,
@@ -99,6 +99,7 @@ const App = ({
       >
         <Header
           data={data}
+          isExiting={isExiting}
           setIsExiting={setIsExiting}
           pageTransitionComplete={pageTransitionComplete}
           setPageTransitionComplete={setPageTransitionComplete}
