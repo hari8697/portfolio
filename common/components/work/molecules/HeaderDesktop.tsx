@@ -2,7 +2,7 @@ import { useResponsiveHelper } from "@/common/utils/"
 import { useEffect, useState } from "react"
 
 import { CloseBtnStyled, HeaderStyled } from "../styles/App.styled"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { HeroImageMobile, HeroImageDesktop } from "../atoms"
 import Link from "next/link"
 import { H1 } from "@/components/styled/index"
@@ -10,6 +10,7 @@ import ScrollArrow from "../../shared/ScrollArrow"
 
 export const HeaderDesktop = ({
   pageTransitionComplete,
+  isExiting,
   setIsExiting,
   setPageTransitionComplete,
   heroImage,
@@ -85,6 +86,7 @@ export const HeaderDesktop = ({
         </motion.div>
 
         <HeroImageDesktop
+          isExiting={isExiting}
           setPageTransitionComplete={setPageTransitionComplete}
           heroImage={heroImage}
           heroImageAnimDelay={heroImageAnimDelay}

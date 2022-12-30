@@ -272,7 +272,9 @@ const VanillaHover = ({
       }
     })
 
-    init()
+    if (renderer == undefined) {
+      init()
+    }
     animate()
   }
 
