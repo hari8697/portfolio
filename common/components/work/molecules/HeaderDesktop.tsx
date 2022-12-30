@@ -81,7 +81,7 @@ export const HeaderDesktop = ({
               if (!isExiting) {
                 setIsExiting(true)
                 setTimeout(() => {
-                  router.push(goToUrl, undefined, { scroll: false })
+                  router.push(goToUrl, undefined, { scroll: true })
                 }, 100)
               }
             }}
