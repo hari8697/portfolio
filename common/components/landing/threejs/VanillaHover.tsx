@@ -161,6 +161,10 @@ const VanillaHover = ({
       // NOTE - Fix for framedrop when scrolling
       scene.traverse((obj) => (obj.frustumCulled = false))
 
+      setTimeout(() => {
+        scene.traverse((obj) => (obj.frustumCulled = true))
+      }, 500)
+
       // const bgColor = new THREE.Color(0x0e0c10)
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
       // renderer.setClearColor(0xffffff, 0)
@@ -272,9 +276,7 @@ const VanillaHover = ({
       }
     })
 
-    if (renderer == undefined) {
-      init()
-    }
+    init()
     animate()
   }
 
@@ -346,10 +348,11 @@ const VanillaHover = ({
       cancelAnimationFrame(reqAnimFrame)
 
       // * Clear out WebGL renderer
-      // renderer.forceContextLoss()
+      renderer.forceContextLoss()
       // renderer.context = null
       // renderer.domElement = null
-      // renderer = null
+      renderer = null
+      scene = null
     }
   }, [])
 
