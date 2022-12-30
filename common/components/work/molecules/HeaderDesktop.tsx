@@ -7,6 +7,7 @@ import { HeroImageMobile, HeroImageDesktop } from "../atoms"
 import Link from "next/link"
 import { H1 } from "@/components/styled/index"
 import ScrollArrow from "../../shared/ScrollArrow"
+import { useRouter } from "next/router"
 
 export const HeaderDesktop = ({
   pageTransitionComplete,
@@ -16,6 +17,7 @@ export const HeaderDesktop = ({
   heroImage,
   title,
 }) => {
+  const router = useRouter()
   const heroImageAnimDelay = 0.25
   const CloseBtnVars = {
     initial: {
@@ -71,22 +73,28 @@ export const HeaderDesktop = ({
           initial="initial"
           animate={"animate"}
         >
-          <Link href="/">
-            <CloseBtnStyled>
-              <img
-                className="close_btn desktop"
-                src="/about/close_btn.svg"
-                alt=""
-                onClick={() => {
+          {/* <Link href="/"> */}
+          <CloseBtnStyled>
+            <img
+              className="close_btn desktop"
+              src="/about/close_btn.svg"
+              alt=""
+              onClick={(e) => {
+                e.preventDefault()
+                const goToUrl = `/`
+                if (!isExiting) {
                   setIsExiting(true)
-                }}
-              />
-            </CloseBtnStyled>
-          </Link>
+                  setTimeout(() => {
+                    router.push(goToUrl, undefined, { scroll: false })
+                  }, 250)
+                }
+              }}
+            />
+          </CloseBtnStyled>
+          {/* </Link> */}
         </motion.div>
 
         <HeroImageDesktop
-          isExiting={isExiting}
           setPageTransitionComplete={setPageTransitionComplete}
           heroImage={heroImage}
           heroImageAnimDelay={heroImageAnimDelay}

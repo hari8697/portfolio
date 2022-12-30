@@ -5,7 +5,7 @@ import { useAnimation } from "framer-motion"
 
 const HeroImageDesktop = ({
   setPageTransitionComplete,
-  isExiting,
+
   heroImage,
   heroImageAnimDelay,
 }) => {
@@ -83,7 +83,7 @@ const HeroImageDesktop = ({
       variants={HeroImageVariants}
       // style={{ opacity: imageLoaded ? 1 : 0 }}
       initial={"initial"}
-      animate={isExiting ? "exit" : "animate"}
+      animate={"animate"}
       exit={"exit"}
       onAnimationComplete={() => {
         if (_isMounted) {
