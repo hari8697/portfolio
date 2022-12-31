@@ -66,7 +66,8 @@ const VanillaHover = ({
   let isScrollingY = false
   let isSnapping = false
 
-  const [scrollDisabled, setScrollDisabled] = useState(false)
+  // const [scrollDisabled, setScrollDisabled] = useState(false)
+  let scrollDisabled = false
 
   const raycaster = new THREE.Raycaster()
   const mouse = new THREE.Vector2()
@@ -286,8 +287,8 @@ const VanillaHover = ({
     window.onunload = function () {
       // window.scrollTo(0, 0)
     }
+    scrollDisabled = false
 
-    setScrollDisabled(false)
     ogFunc()
 
     const unsubscribeSnap = scrollVal.onChange(() => {
@@ -296,7 +297,7 @@ const VanillaHover = ({
     })
 
     const unsubscribeY = scrollValueY_animatedX.onChange(() => {
-      if (!isSnapping && !isExiting && !scrollDisabled) {
+      if (!isSnapping && !scrollDisabled) {
         // console.log("scrollValue", scrollValueY_animatedX.get())
         // let tempScrollVal = scrollValueY_animatedX.get()
         isScrollingY = true
@@ -329,7 +330,7 @@ const VanillaHover = ({
 
     return () => {
       var myNode = canvasEl.current
-      setScrollDisabled(false)
+      scrollDisabled = false
       if (myNode) {
         while (myNode.firstChild) {
           myNode.removeChild(myNode.lastChild)
@@ -627,7 +628,7 @@ const VanillaHover = ({
           console.log("success!")
           console.log(currSelectedElement)
           exitAnimation(currSelectedElement)
-          setScrollDisabled(true)
+          scrollDisabled = true
 
           // console.log("positiveAnimatedX", positiveAnimatedX)
 
