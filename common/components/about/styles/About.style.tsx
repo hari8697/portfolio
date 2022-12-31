@@ -124,6 +124,7 @@ export const Logo_ImgWrap = styled.div`
 
   img {
     ${full_W_H}
+    width: initial;
     max-height: 100%;
     /* width: min-content; */
   }
