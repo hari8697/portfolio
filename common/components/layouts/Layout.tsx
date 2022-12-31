@@ -35,10 +35,10 @@ const Layout = ({ children, title = "DeathSpace Design" }) => {
           autoClose={2500}
           hideProgressBar={false}
           newestOnTop={false}
-          closeOnClick
+          closeOnClick={false}
           rtl={false}
           pauseOnFocusLoss
-          draggable
+          draggable={false}
           pauseOnHover
           theme="dark"
           transition={Slide}

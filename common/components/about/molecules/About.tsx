@@ -42,16 +42,21 @@ const About = ({ animDelay }: AboutProps) => {
       <LogoWrapper animDelay={animDelay} />
       <BioGrid>
         <Bio>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia
-          quis vel eros donec ac odio. Nulla facilisi cras fermentum odio eu
-          feugiat. Massa enim nec dui nunc mattis enim ut. Malesuada fames ac
-          turpis egestas. Varius quam quisque id diam vel quam elementum. Quis
-          viverra nibh cras pulvinar mattis nunc sed blandit libero. Ac placerat
-          vestibulum lectus mauris ultrices eros. Mauris commodo quis imperdiet
-          massa tincidunt nunc pulvinar sapien et. Ut pharetra sit amet aliquam.
-          Quisque id diam vel quam elementum. In ornare quam viverra orci
-          sagittis eu volutpat odio.
+          Hi! I'm DeathSpace, a front-end web developer & UI/UX enthusiast from
+          Bangalore, India. I specialize in creating websites for businesses
+          that are tailored to their needs, with pixel-perfect code. Oh, and I
+          have a serious passion for making neat animations.
+          <br />
+          <br />
+          Please have a look around to find a selection of my most recent
+          projects. From small business websites to complex web applications, I
+          have a track record of delivering high-quality solutions that meet the
+          needs of my clients. I'm always looking for new challenges and
+          opportunities to grow as a developer.
+          <br />
+          <br />
+          Thank you for visiting my portfolio. If you have a project that you
+          think I could help with, I'd love to hear from you!
         </Bio>
       </BioGrid>
       <IconSizingContain ref={constraintsRef}>
