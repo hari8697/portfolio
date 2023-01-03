@@ -81,6 +81,16 @@ const App = ({
     return () => {}
   }, [pageTransitionComplete])
 
+  useEffect(() => {
+    const htmlEl = document.querySelector("html")
+    if (swiperOpen) {
+      htmlEl.classList.add("no_scroll")
+    } else {
+      htmlEl.classList.remove("no_scroll")
+    }
+    return () => {}
+  }, [swiperOpen])
+
   return (
     <motion.div className="app_wrapper">
       <AnimatePresence>

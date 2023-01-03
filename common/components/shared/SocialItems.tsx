@@ -1,3 +1,4 @@
+import styled from "styled-components"
 import { toast } from "react-toastify"
 import { useResponsiveHelper } from "@/common/utils/"
 import { motion } from "framer-motion"
@@ -33,6 +34,7 @@ const SocialItems = ({ isExiting = false }) => {
           "https://twitter.com/deathspace_",
           "https://www.instagram.com/deathspace.design/",
           "discord",
+          "https://github.com/hari8697/portfolio",
         ]
       : [
           "email",
@@ -105,9 +107,9 @@ const SocialItems = ({ isExiting = false }) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div className="social_icon">
+        <SocialIcon className="social_icon">
           <img src={`/landing/social/${index + 1}.svg`}></img>
-        </div>
+        </SocialIcon>
       </a>
     )
   })
@@ -121,5 +123,7 @@ const SocialItems = ({ isExiting = false }) => {
     </motion.div>
   )
 }
+
+const SocialIcon = styled.div``
 
 export default SocialItems
