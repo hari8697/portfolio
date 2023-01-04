@@ -16,20 +16,20 @@ const IconsWrap = (props) => {
   let x
   // const iconsArr = Array.from({ length: 14 }, (_, i) => i + 1)
   const iconsArr = [
-    "Javascript",
     "HTML",
     "CSS",
+    "Javascript",
+    "Typescript",
+    "Python",
+    "Sass/Scss",
     "Node.js",
-    "GitHub",
     "React",
     "Vue",
+    "Figma",
+    "Three.js",
+    "GitHub",
     "GitLab",
     "Docker",
-    "Figma",
-    "Sass/Scss",
-    "NPM",
-    "Unity",
-    "Sourcetree",
   ]
 
   const icons = iconsArr.map((item, index) => {
