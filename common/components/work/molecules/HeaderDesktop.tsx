@@ -74,21 +74,22 @@ export const HeaderDesktop = ({
           animate={"animate"}
         >
           {/* <Link href="/"> */}
-          <CloseBtnStyled>
+          <CloseBtnStyled
+            onClick={(e) => {
+              e.preventDefault()
+              const goToUrl = `/`
+              if (!isExiting) {
+                setIsExiting(true)
+                setTimeout(() => {
+                  router.push(goToUrl, undefined, { scroll: true })
+                }, 100)
+              }
+            }}
+          >
             <img
               className="close_btn desktop"
               src="/about/close_btn.svg"
               alt=""
-              onClick={(e) => {
-                e.preventDefault()
-                const goToUrl = `/`
-                if (!isExiting) {
-                  setIsExiting(true)
-                  setTimeout(() => {
-                    router.push(goToUrl, undefined, { scroll: false })
-                  }, 250)
-                }
-              }}
             />
           </CloseBtnStyled>
           {/* </Link> */}

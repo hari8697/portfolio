@@ -3,13 +3,21 @@ import styled from "styled-components"
 import { toast } from "react-toastify"
 import { device } from "@/common/utils"
 import { H5_Sizing, text_size_template } from "../../styled"
+import { useEffect } from "react"
 
 const LinksWrap = () => {
   const LinksArr = [
-    { text: "Email", val: "email" },
+    {
+      text: "Email",
+      val: "email",
+    },
     { text: "Twitter", val: "https://twitter.com/deathspace_" },
+    { text: "Github", val: "https://github.com/hari8697" },
     { text: "Instagram", val: "https://www.instagram.com/deathspace.design/" },
-    { text: "Discord", val: "discord" },
+    {
+      text: "Discord",
+      val: "discord",
+    },
   ]
 
   const handleClick = (item: string) => {
@@ -34,6 +42,8 @@ const LinksWrap = () => {
   const copyToClipboard = (textToBeCopied, message, item) => {
     const errorMessage = `Copying to clipboard failed. Here's my ${item}: ${textToBeCopied}`
     if (textToBeCopied != null || undefined) {
+      // console.log(navigator.clipboard)
+
       if (navigator.clipboard) {
         navigator.clipboard.writeText(textToBeCopied).then(
           function () {
@@ -53,9 +63,9 @@ const LinksWrap = () => {
       }
     }
   }
-  const linksComponents = LinksArr.map((element, index) => {
-    const { text: item, val } = element
 
+  const getLinkComps = (element, index) => {
+    const { text: item, val } = element
     // console.log(val)
 
     const attributes = () => {
@@ -86,7 +96,12 @@ const LinksWrap = () => {
         </TextLink>
       </a>
     )
+  }
+
+  let linksComponents = LinksArr.map((element, index) => {
+    return getLinkComps(element, index)
   })
+
   return <LinksWrapStyled>{linksComponents}</LinksWrapStyled>
 }
 
@@ -94,7 +109,7 @@ const LinksWrapStyled = styled.div`
   display: flex;
   flex-wrap: wrap;
   white-space: pre-wrap;
-  max-width: 21ch;
+  max-width: 22ch;
 
   margin-bottom: 280px;
 

@@ -38,13 +38,17 @@ const Preloader = ({
   useEffect(() => {
     // console.log("threearr changed")
     // console.log(checkAllThreeLoaded(threeImagesBools))
-    setAllThreeLoaded(checkAllThreeLoaded(threeImagesBools))
+    if (!allThreeLoaded) {
+      setAllThreeLoaded(checkAllThreeLoaded(threeImagesBools))
+    }
   }, [threeImagesBools])
 
   useEffect(() => {
     // console.log("imagesarr changed")
     // console.log(checkAllStaticImagesLoaded(loadImagesArr))
-    setAllImagesLoaded(checkAllStaticImagesLoaded(loadImagesArr))
+    if (!allImagesLoaded) {
+      setAllImagesLoaded(checkAllStaticImagesLoaded(loadImagesArr))
+    }
   }, [loadImagesArr])
 
   useEffect(() => {

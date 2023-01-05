@@ -112,7 +112,7 @@ export const CloseBtnStyled = styled(motion.div)`
     right: 5vw;
     opacity: 0.5;
     .close_btn {
-      width: 16px;
+      width: 20px;
       max-width: none;
       padding: 0;
     }
@@ -124,7 +124,7 @@ export const CloseBtnStyled = styled(motion.div)`
 
   @media ${device.desktop} {
     .close_btn {
-      width: 20px;
+      width: 23px;
     }
   }
 `

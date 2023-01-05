@@ -65,6 +65,8 @@ const VanillaHover = ({
 
   let isScrollingY = false
   let isSnapping = false
+
+  // const [scrollDisabled, setScrollDisabled] = useState(false)
   let scrollDisabled = false
 
   const raycaster = new THREE.Raycaster()
@@ -159,11 +161,12 @@ const VanillaHover = ({
       }
 
       // NOTE - Fix for framedrop when scrolling
-      scene.traverse((obj) => (obj.frustumCulled = false))
-
-      setTimeout(() => {
-        scene.traverse((obj) => (obj.frustumCulled = true))
-      }, 500)
+      if (scene != null || undefined) {
+        scene?.traverse((obj) => (obj.frustumCulled = false))
+        setTimeout(() => {
+          scene?.traverse((obj) => (obj.frustumCulled = true))
+        }, 500)
+      }
 
       // const bgColor = new THREE.Color(0x0e0c10)
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
@@ -284,8 +287,8 @@ const VanillaHover = ({
     window.onunload = function () {
       // window.scrollTo(0, 0)
     }
-
     scrollDisabled = false
+
     ogFunc()
 
     const unsubscribeSnap = scrollVal.onChange(() => {
@@ -327,6 +330,7 @@ const VanillaHover = ({
 
     return () => {
       var myNode = canvasEl.current
+      scrollDisabled = false
       if (myNode) {
         while (myNode.firstChild) {
           myNode.removeChild(myNode.lastChild)
@@ -600,7 +604,7 @@ const VanillaHover = ({
     mouse.y = -((event.clientY - bounds.top) / canvasNode.clientHeight) * 2 + 1
     raycaster.setFromCamera(mouse, camera)
 
-    var intersects = raycaster.intersectObjects(scene.children, true)
+    var intersects = raycaster.intersectObjects(scene?.children, true)
     if (intersects.length > 0) {
       // Check if still
       // Do stuff
@@ -625,6 +629,7 @@ const VanillaHover = ({
           console.log(currSelectedElement)
           exitAnimation(currSelectedElement)
           scrollDisabled = true
+
           // console.log("positiveAnimatedX", positiveAnimatedX)
 
           // console.log("pushing")

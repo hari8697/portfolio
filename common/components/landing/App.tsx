@@ -170,8 +170,11 @@ function App({ setThreeImagesBools, preloaderBool, projects }) {
   const [maxDragX, setMaxDragX] = useState(0)
 
   let animatedX = useSpring(0, {
+    // stiffness: 800,
+    // damping: 68,
+
     stiffness: 800,
-    damping: 68,
+    damping: 100,
   })
 
   return (
