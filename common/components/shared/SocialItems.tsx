@@ -54,7 +54,7 @@ const SocialItems = ({ isExiting = false }) => {
         break
       case "discord":
         message = "Discord username copied!"
-        textToBeCopied = "DeathSpace#0538"
+        textToBeCopied = "DeathSpace#6488"
         copyToClipboard(textToBeCopied, message, item)
         break
       default:
